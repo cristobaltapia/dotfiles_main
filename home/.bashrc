@@ -37,5 +37,3 @@ source /usr/bin/virtualenvwrapper.sh
 
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 source "$HOME/.homesick/repos/homeshick/completions/homeshick-completion.bash"
-
-[1;36m        clone[0m printf[1;31m        clone[0m printf
