@@ -10,19 +10,19 @@ cd %:p:h
 
 set expandtab
 "set textwidth=79
-set tabstop=8
-set softtabstop=4
-set shiftwidth=4
-set autoindent
+"set tabstop=8
+"set softtabstop=4
+"set shiftwidth=4
+"set autoindent
 
 " Set the folding method
 set foldmethod=indent
-set foldnestmax=2
+set foldnestmax=3
 
 " Implements different textwidth for comments and normal code
 if !exists('g:pep8_text_width')
     " Code textwidth.
-    let g:pep8_text_width = 200
+    let g:pep8_text_width = 90
 endif
 
 if !exists('g:pep8_comment_text_width')

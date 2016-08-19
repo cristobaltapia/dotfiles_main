@@ -1,10 +1,11 @@
 imap <buffer> <M-o> <Plug>Tex_InsertItemOnThisLine
 "let g:Tex_CompileRule_pdf = 'pdflatex --interaction=nonstopmode $*'
-let g:Tex_DefaultTargetFormat = 'pdf'
+"let g:Tex_DefaultTargetFormat = 'pdf'
+let g:Tex_GotoError=0
 
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
+"set tabstop=2
+"set softtabstop=2
+"set shiftwidth=2
 
 set grepprg=grep\ -nH\ $*
 let g:Imap_UsePlaceHolders = 1
@@ -20,6 +21,7 @@ filetype plugin on
 "let g:Tex_Leader=','  " I use this
 let g:tex_flavor='latex'
 let g:Tex_DefaultTargetFormat = 'pdf'
+"let g:Tex_BibtexFlavor = 'biber'
 "let g:Tex_MultipleCompileFormats='pdf, aux, bib'
 "
 function! GetVisual() range
@@ -51,10 +53,10 @@ else
     nnoremap <buffer> <LocalLeader>lk :call SyncTex()<CR>
 endif
 "let g:Tex_CompileRule_pdf = 'pdflatex -synctex=-1 -src-specials -interaction=nonstopmode $*'
-let g:Tex_CompileRule_pdf = 'latexmk -pdf -pdflatex="pdflatex -shell-escape --synctex=-1 -src-specials -interaction=nonstopmode" $*'
+let g:Tex_CompileRule_pdf = 'latexmk -pdf -pdflatex="pdflatex -shell-escape -src-specials -interaction=nonstopmode" $*'
+let g:Tex_CustomTemplateFolder='/home/tapia/Templates/latex'
 
+" Latex + siunitx
+call IMAP('ESI','\SI{<++>}{<++>}<++>','tex')
+call IMAP('ESR','\SIrange{<++>}{<++>}{<++>}<++>','tex')
 
-"Map <Esc> to Shift-Space. Its more confortable
-inoremap <S-Space> <Esc>
-vnoremap <S-Space> <Esc>
-snoremap <S-Space> <Esc>

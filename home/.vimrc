@@ -39,7 +39,7 @@ endif
 "
 Plugin 'VundleVim/Vundle.vim'
 " Neocomplete
-Plugin 'Shougo/neocomplete.vim'
+"Plugin 'Shougo/neocomplete.vim'
 "Plugin 'Shougo/neosnippet'
 "Plugin 'Shougo/neosnippet-snippets'
 "SuperTab
@@ -58,9 +58,9 @@ Plugin 'honza/vim-snippets'
 Plugin 'junegunn/vim-easy-align'
 " fugitive.vim: a Git wrappe
 Plugin 'tpope/vim-fugitive'
-"APDL Syntax
-"Plugin 'vim-scripts/apdl.vim'
-Plugin 'cristobaltapia/apdl.vim'
+""APDL Syntax
+""Plugin 'vim-scripts/apdl.vim'
+"Plugin 'cristobaltapia/apdl.vim'
 " Better file browser
 Plugin 'scrooloose/nerdtree'
 " Unite
@@ -158,9 +158,20 @@ set wildignore=*.swp,*.bak,*.pyc,*.class,*.aux,*.toc
 "----------------------------------------------------------------------
 augroup file_type
     autocmd!
+    autocmd FileType python colorscheme wombat
+    autocmd FileType python AirlineRefresh
+    autocmd FileType python setlocal shiftwidth=4
+        \ tabstop=4
+        \ softtabstop=4
+        \ expandtab
     autocmd FileType html setlocal shiftwidth=2 tabstop=2
     autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2
     autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
+    autocmd FileType tex AirlineRefresh
+    autocmd FileType tex setlocal shiftwidth=2
+        \ tabstop=2
+        \ softtabstop=2
+        \ expandtab
 augroup END
 
 "----------------------------------------------------------------------
@@ -473,4 +484,4 @@ if has('win32')
     endfunction
 endif
 
-let g:Tex_CustomTemplateFolder='/home/tapia/Templates/latex'
+"

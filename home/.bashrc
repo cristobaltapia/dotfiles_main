@@ -18,7 +18,7 @@ export EDITOR="vim"
 # update the values of LINES and COLUMNS
 shopt -s checkwinsize
 
-export VDPAU_DRIVER=va_gl
+#export VDPAU_DRIVER=va_gl
 # Powertop
 #echo 'on' > '/sys/bus/usb/devices/usb1/power/control';
 #echo 'on' > '/sys/bus/usb/devices/usb2/power/control';
@@ -32,8 +32,8 @@ source /usr/bin/virtualenvwrapper.sh
 #PYTHONPATH="${PYTHONPATH}:/home/tapia/salomei/appli_V7_7_1/bin/salome"
 #export PYTHONPATH
 
-
 #. /home/tapia/torch/install/bin/torch-activate
 
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 source "$HOME/.homesick/repos/homeshick/completions/homeshick-completion.bash"
+
