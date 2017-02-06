@@ -1,8 +1,9 @@
 " Execute file being edited with <Shift> + e:
-set makeprg=python\ -c\ \"import\ py_compile,sys;\ sys.stderr=sys.stdout;\ py_compile.compile(r'%')\"
-set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
-nmap <F5> :!python "%:p" <CR>
-cd %:p:h
+" set makeprg=python\ -c\ \"import\ py_compile,sys;\ sys.stderr=sys.stdout;\ py_compile.compile(r'%')\"
+" set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
+" nmap <F5> :!python "%:p" <CR>
+"
+" cd %:p:h
 "set guioptions-=l
 "set guioptions-=r
 "set guioptions-=R
@@ -22,7 +23,7 @@ set foldnestmax=3
 " Implements different textwidth for comments and normal code
 if !exists('g:pep8_text_width')
     " Code textwidth.
-    let g:pep8_text_width = 90
+    let g:pep8_text_width = 79
 endif
 
 if !exists('g:pep8_comment_text_width')
@@ -31,6 +32,7 @@ if !exists('g:pep8_comment_text_width')
 endif
 
 augroup pep8textwidth
+    autocmd!
     autocmd! CursorMoved,CursorMovedI <buffer> :exe 'setlocal textwidth='.s:GetCurrentTextWidth()
 augroup END
 
@@ -43,3 +45,9 @@ function! s:GetCurrentTextWidth()
     endif
     return g:pep8_text_width
 endfunction
+
+" Sort imports
+autocmd FileType python nnoremap <LocalLeader>i :!isort %<CR><CR>
+autocmd FileType python nnoremap <LocalLeader>= :0,$!yapf --style=pep8<CR>
+" autocmd FileType python nnoremap <LocalLeader>= :0,$!yapf --style=H:/.config/yapf/format<CR>
+"

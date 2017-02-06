@@ -7,16 +7,19 @@ filetype off                  " required
 " Setting up Vundle - the vim plugin bundler
 if has('win32')
     let iCanHazVundle=1
-    let vundle_readme=expand('H:/vimfiles/bundle/vundle/README.md')
+    "let vundle_readme=expand('H:/vimfiles/bundle/vundle/README.md')
+    let vundle_readme=expand('~/.vim/bundle/Vundle.vim/README.md')
     if !filereadable(vundle_readme)
         echo "Installing Vundle..."
         echo ""
-        silent !mkdir H:/vimfiles/bundle
-        silent !git clone https://github.com/gmarik/Vundle.vim H:/vimfiles/bundle/Vundle.vim
+        "silent !mkdir H:/vimfiles/bundle
+        silent !mkdir ~/.vim/bundle
+        "silent !git clone https://github.com/gmarik/Vundle.vim H:/vimfiles/bundle/Vundle.vim
+        silent !git clone https://github.com/gmarik/Vundle.vim ~/.vim/bundle/Vundle.vim
         let iCanHazVundle=0
     endif
-    set rtp+=$HOME/vimfiles/bundle/Vundle.vim
-    call vundle#rc()
+    set rtp+=$HOME/.vim/bundle/Vundle.vim
+    call vundle#begin()
 else
     let iCanHazVundle=1
     let vundle_readme=expand('~/.vim/bundle/Vundle.vim/README.md')
@@ -29,27 +32,26 @@ else
     endif
     " set the runtime path to include Vundle and initialize
     set rtp+=$HOME/.vim/bundle/Vundle.vim
-    call vundle#rc()
+    call vundle#begin()
 endif
 "
 "----------------------------------------------------------------------
 "
 " let Vundle manage Vundle
 " required!
-"
-Plugin 'VundleVim/Vundle.vim'
+Plugin 'gmarik/Vundle.vim'
 " Neocomplete
-"Plugin 'Shougo/neocomplete.vim'
+Plugin 'Shougo/neocomplete.vim'
 "Plugin 'Shougo/neosnippet'
 "Plugin 'Shougo/neosnippet-snippets'
+" vim-Grammarous
+Plugin 'rhysd/vim-grammarous'
 "SuperTab
 Plugin 'ervandew/supertab'
 "AutoComplPop
 "Plugin 'vim-scripts/AutoComplPop'
 " Track the engine.
 Plugin 'SirVer/ultisnips'
-" Virtualenv support
-Plugin 'jmcantrell/vim-virtualenv'
 " Pydoc
 Plugin 'fs111/pydoc.vim'
 " Snippets are separated from the engine. Add this if you want them:
@@ -58,9 +60,9 @@ Plugin 'honza/vim-snippets'
 Plugin 'junegunn/vim-easy-align'
 " fugitive.vim: a Git wrappe
 Plugin 'tpope/vim-fugitive'
-""APDL Syntax
-""Plugin 'vim-scripts/apdl.vim'
-"Plugin 'cristobaltapia/apdl.vim'
+"APDL Syntax
+"Plugin 'vim-scripts/apdl.vim'
+Plugin 'cristobaltapia/apdl.vim'
 " Better file browser
 Plugin 'scrooloose/nerdtree'
 " Unite
@@ -73,6 +75,8 @@ Plugin 'mattn/emmet-vim'
 Plugin 'kien/tabman.vim'
 " Vim-Airline
 Plugin 'bling/vim-airline'
+" Jedi-Vim
+Plugin 'davidhalter/jedi-vim'
 " Gvim colorscheme
 Plugin 'Wombat'
 " Pending tasks list
@@ -87,14 +91,17 @@ Plugin 'michaeljsmith/vim-indent-object'
 Plugin 'bronson/vim-trailing-whitespace'
 " Matlab
 Plugin 'MatlabFilesEdition'
+" Conda Environment
+Plugin 'cjrh/vim-conda'
 " Latex
-"Plugin 'gerw/vim-latex-suite'
-Plugin 'file:///home/tapia/GitProjects/vim-latex-suite/'
+"Plugin 'git://git.code.sf.net/p/vim-latex/vim-latex'
+Plugin 'gerw/vim-latex-suite'
+"Plugin 'lervag/vimtex'
 "Plugin 'lervag/vim-latex'
 " Rename. Rename a buffer within Vim and on disk
 Plugin 'Rename'
 " Syntax checking hacks for vim
-Plugin 'scrooloose/syntastic'
+"Plugin 'scrooloose/syntastic'
 " Search results counter
 Plugin 'IndexedSearch'
 " XML/HTML tags navigation
@@ -105,8 +112,26 @@ Plugin 'myusuf3/numbers.vim'
 Plugin 'kien/ctrlp.vim'
 " YouCompleteMe
 "Plugin 'Valloric/YouCompleteMe'
-"Indent Guides
+" Python mode
+Plugin 'python-mode/python-mode'
+" Vim indent guides (colors!)
 Plugin 'nathanaelkane/vim-indent-guides'
+" Pretty-Vim-Python syntax highlight
+" Plugin 'sentientmachine/Pretty-Vim-Python'
+" Solirized colorscheme
+Plugin 'altercation/vim-colors-solarized'
+" Base16 colorscheme
+Plugin 'chriskempson/base16-vim'
+" ALE
+Plugin 'w0rp/ale'
+" Asyncrun
+Plugin 'skywind3000/asyncrun.vim'
+" Space-vim-dark colorscheme
+Plugin 'liuchengxu/space-vim-dark'
+" Code formatter
+Plugin 'google/yapf'
+
+call vundle#end()
 
 " Installing plugins the first time
 if iCanHazVundle == 0
@@ -146,6 +171,7 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set virtualedit=block
+
 "----------------------------------------------------------------------
 
 "----------------------------------------------------------------------
@@ -158,7 +184,8 @@ set wildignore=*.swp,*.bak,*.pyc,*.class,*.aux,*.toc
 "----------------------------------------------------------------------
 augroup file_type
     autocmd!
-    autocmd FileType python colorscheme wombat
+    "autocmd FileType python colorscheme wombat-mod
+    autocmd FileType python colorscheme space-vim-dark
     autocmd FileType python AirlineRefresh
     autocmd FileType python setlocal shiftwidth=4
         \ tabstop=4
@@ -204,7 +231,7 @@ nnoremap gk k
 "----------------------------------------------------------------------
 " Buffer navigation
 "----------------------------------------------------------------------
-" My preference when using buffers. See `:h hidden` for more details
+" Preference when using buffers. See `:h hidden` for more details
 set hidden
 " Move to the next buffer
 nmap tn :bnext<CR>
@@ -219,6 +246,7 @@ nmap <leader>bl :ls<CR>
 "----------------------------------------------------------------------
 " automatically close autocompletion window
 augroup autocompl_window
+    autocmd!
     autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
     autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 augroup END
@@ -275,7 +303,8 @@ let NERDTreeIgnore = ['\.pyc$', '\.pyo$']
 "----------------------------------------------------------------------
 " colors for gvim
 if has('gui_running')
-    colorscheme wombat
+    colorscheme space-vim-dark
+    "colorscheme molokai
 endif
 "----------------------------------------------------------------------
 
@@ -324,6 +353,7 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 
 syntax on
 filetype on
+let python_highlight_all=1
 
 "----------------------------------------------------------------------
 " Solve Backspace problem in Windows
@@ -434,10 +464,40 @@ set linebreak
 "----------------------------------------------------------------------
 " Syntastic configurations
 "----------------------------------------------------------------------
-let g:syntastic_aggregate_errors = 1
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
+
+"let g:syntastic_aggregate_errors = 1
 " close the error location list
-nnoremap <leader>ce :lclose<cr>
-let g:syntastic_python_checkers = ['python']
+"nnoremap <leader>ce :lclose<cr>
+"let g:syntastic_python_checkers = ['python']
+
+"----------------------------------------------------------------------
+"
+"----------------------------------------------------------------------
+" Ale configurations
+"----------------------------------------------------------------------
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+let g:ale_python_pylint_executable = 'python'
+let g:pymode_python = 'python'
+
+let g:ale_linters = {
+            \   'python': ['flake8'],
+            \}
+
+" Run linters on save
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 0
+" if you don't want linters to run on opening a file
+let g:ale_lint_on_enter = 0
 "----------------------------------------------------------------------
 
 "----------------------------------------------------------------------
@@ -452,6 +512,32 @@ nnoremap <c-s> :Unite -quick-match buffer<cr>
 "----------------------------------------------------------------------
 
 "----------------------------------------------------------------------
+" NERD Commenter configurations
+"----------------------------------------------------------------------
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+
+" Set a language to use its alternate delimiters by default
+let g:NERDAltDelims_java = 1
+
+" Add your own custom formats or override the defaults
+let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+"----------------------------------------------------------------------
+
+"----------------------------------------------------------------------
+" Redefine Diff function
 if has('win32')
     set diffexpr=MyDiff()
     function! MyDiff()
@@ -484,4 +570,124 @@ if has('win32')
     endfunction
 endif
 
+" -------------------------------------------------------------
+" Python-mode
+" -------------------------------------------------------------
+let g:pymode_rope = 0
 "
+"" Documentation
+"let g:pymode_doc = 1
+"let g:pymode_doc_key = 'K'
+"
+" Linting
+" Auto check on save
+" let g:pymode_lint_write = 1
+let g:pymode_lint_checkers = ['pyflakes']
+let g:pymode_lint_cwindow = 0
+let g:pymode_lint = 1
+
+"
+"" Support virtualenv
+"let g:pymode_virtualenv = 0
+"
+"" Enable breakpoints plugin
+""let g:pymode_breakpoint = 0
+""let g:pymode_breakpoint_bind = '<leader>b'
+"
+"" syntax highlighting
+" let g:pymode_syntax = 1
+let g:pymode_syntax_all = 1
+" let g:pymode_syntax_indent_errors = g:pymode_syntax_all
+" let g:pymode_syntax_space_errors = g:pymode_syntax_all
+
+let g:pymode_folding = 0
+
+" -------------------------------------------------------------
+
+"
+" Don't autofold code
+"let g:pymode_folding = 0
+"
+" Pydoc
+let g:pydoc_cmd = 'python -m pydoc'
+
+" pydoc to switch to an already open tab with pydoc page
+let g:pydoc_use_drop=1
+" lines to show doc
+"let g:pydoc_window_lines=20
+let g:pydoc_window_lines=0.5
+" Highlight search term
+let g:pydoc_highlight=1
+"
+" Latex-Suite Template folder
+let g:Tex_CustomTemplateDirectory = '~/templates'
+let g:Tex_GotoError=0
+
+" Edit commands for the navifation in help documents
+nnoremap <C-9> :<C-]>
+
+" Suppress message of vim-conda
+let g:conda_startup_msg_suppress = 1
+let g:jedi#force_py_version = 2
+let g:UltisnipsUsePythonVersion = 2
+
+" Setting for grammar check (Grammarous)
+let g:grammarous#disabled_rules = {
+            \ '*' : ['WHITESPACE_RULE', 'EN_QUOTES', 'COMMA_PARENTHESIS_WHITESPACE'],
+            \ 'help' : ['WHITESPACE_RULE', 'EN_QUOTES', 'SENTENCE_WHITESPACE', 'UPPERCASE_SENTENCE_START'],
+            \ }
+" Use vim spellang
+let g:grammarous#use_vim_spelllang = 1
+
+" Jedi-Vim
+let g:jedi#popup_on_dot = 0
+let g:jedi#show_call_signatures = "2"
+let g:jedi#goto_command = "<leader>d"
+let g:jedi#goto_assignments_command = "<leader>g"
+let g:jedi#goto_definitions_command = ""
+let g:jedi#documentation_command = "K"
+let g:jedi#usages_command = "<leader>n"
+let g:jedi#completions_command = "<C-Space>"
+let g:jedi#rename_command = "<leader>r"
+
+"----------------------------------------------------------------------
+" Quick run
+"----------------------------------------------------------------------
+ nnoremap <F5> :call <SID>compile_and_run()<CR>
+ " close quickfix window
+ nnoremap <Leader>cq :ccl<CR>
+
+ augroup SPACEVIM_ASYNCRUN
+     autocmd!
+     " Automatically open the quickfix window
+     autocmd User AsyncRunStart call asyncrun#quickfix_toggle(25, 1)
+ augroup END
+
+ function! s:compile_and_run()
+     exec 'w'
+     if &filetype == 'c'
+         exec "AsyncRun! gcc % -o %<; time ./%<"
+     elseif &filetype == 'cpp'
+        exec "AsyncRun! g++ -std=c++11 % -o %<; time ./%<"
+     elseif &filetype == 'java'
+        exec "AsyncRun! javac %; time java %<"
+     elseif &filetype == 'sh'
+        exec "AsyncRun! time bash %"
+     elseif &filetype == 'python'
+        exec "AsyncRun python %:p"
+     endif
+ endfunction
+
+ cd %:p:h
+"----------------------------------------------------------------------
+"
+" vp doesn't replace paste buffer
+function! RestoreRegister()
+  let @" = s:restore_reg
+  return ''
+endfunction
+function! s:Repl()
+  let s:restore_reg = @"
+  return "p@=RestoreRegister()\<cr>"
+endfunction
+vmap <silent> <expr> p <sid>Repl()
