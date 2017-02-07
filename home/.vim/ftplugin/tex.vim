@@ -1,6 +1,4 @@
 imap <buffer> <M-o> <Plug>Tex_InsertItemOnThisLine
-"let g:Tex_CompileRule_pdf = 'pdflatex --interaction=nonstopmode $*'
-"let g:Tex_DefaultTargetFormat = 'pdf'
 let g:Tex_GotoError=0
 
 "set tabstop=2
