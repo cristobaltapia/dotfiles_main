@@ -61,6 +61,8 @@ Plugin 'tpope/vim-fugitive'
 ""APDL Syntax
 ""Plugin 'vim-scripts/apdl.vim'
 "Plugin 'cristobaltapia/apdl.vim'
+" Jedi-Vim
+Plugin 'davidhalter/jedi-vim'
 " Better file browser
 Plugin 'scrooloose/nerdtree'
 " Unite
@@ -88,8 +90,8 @@ Plugin 'bronson/vim-trailing-whitespace'
 " Matlab
 Plugin 'MatlabFilesEdition'
 " Latex
-"Plugin 'gerw/vim-latex-suite'
-Plugin 'file:///home/tapia/GitProjects/vim-latex-suite/'
+Plugin 'gerw/vim-latex-suite'
+"Plugin 'file:///home/tapia/GitProjects/vim-latex-suite/'
 "Plugin 'lervag/vim-latex'
 " Rename. Rename a buffer within Vim and on disk
 Plugin 'Rename'
@@ -409,13 +411,6 @@ if has('win32')
 endif
 "----------------------------------------------------------------------
 
-"----------------------------------------------------------------------
-"Map <Esc> to Shift-Space. Its more confortable
-inoremap <S-Space> <Esc>
-vnoremap <S-Space> <Esc>
-snoremap <S-Space> <Esc>
-"----------------------------------------------------------------------
-
 " Change buffer without saving
 set hidden
 
@@ -485,3 +480,24 @@ if has('win32')
 endif
 
 "
+"----------------------------------------------------------------------
+"Map <Esc> to Shift-Space. Its more confortable
+inoremap <S-Space> <Esc>
+vnoremap <S-Space> <Esc>
+snoremap <S-Space> <Esc>
+"----------------------------------------------------------------------
+
+" Jedi Vim
+let g:jedi#auto_initialization = 1
+let g:jedi#auto_vim_configuration = 1
+let g:jedi#popup_on_dot = 0
+" Options: 1 or 2
+let g:jedi#show_call_signatures = "1"
+" Mappings
+let g:jedi#goto_command = "<leader>d"
+let g:jedi#goto_assignments_command = "<leader>g"
+let g:jedi#goto_definitions_command = ""
+let g:jedi#documentation_command = "K"
+let g:jedi#usages_command = "<leader>n"
+let g:jedi#completions_command = "<C-Space>"
+let g:jedi#rename_command = "<leader>r"

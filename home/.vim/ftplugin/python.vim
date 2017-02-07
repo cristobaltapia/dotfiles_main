@@ -17,7 +17,7 @@ set expandtab
 
 " Set the folding method
 set foldmethod=indent
-set foldnestmax=3
+set foldnestmax=4
 
 " Implements different textwidth for comments and normal code
 if !exists('g:pep8_text_width')

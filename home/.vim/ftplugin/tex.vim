@@ -60,3 +60,9 @@ let g:Tex_CustomTemplateFolder='/home/tapia/Templates/latex'
 call IMAP('ESI','\SI{<++>}{<++>}<++>','tex')
 call IMAP('ESR','\SIrange{<++>}{<++>}{<++>}<++>','tex')
 
+"----------------------------------------------------------------------
+"Map <Esc> to Shift-Space. Its more confortable
+inoremap <S-Space> <Esc>
+vnoremap <S-Space> <Esc>
+snoremap <S-Space> <Esc>
+"----------------------------------------------------------------------
