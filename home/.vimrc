@@ -77,8 +77,6 @@ Plugin 'mattn/emmet-vim'
 Plugin 'kien/tabman.vim'
 " Vim-Airline
 Plugin 'bling/vim-airline'
-" Jedi-Vim
-Plugin 'davidhalter/jedi-vim'
 " Gvim colorscheme
 Plugin 'Wombat'
 " Pending tasks list
@@ -94,7 +92,7 @@ Plugin 'bronson/vim-trailing-whitespace'
 " Matlab
 Plugin 'MatlabFilesEdition'
 " Conda Environment
-Plugin 'cjrh/vim-conda'
+"Plugin 'cjrh/vim-conda'
 " Latex
 "Plugin 'git://git.code.sf.net/p/vim-latex/vim-latex'
 Plugin 'gerw/vim-latex-suite'
@@ -489,7 +487,7 @@ nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 let g:ale_python_pylint_executable = 'python'
-let g:pymode_python = 'python'
+let g:pymode_python = 'python3'
 
 let g:ale_linters = {
             \   'python': ['flake8'],
@@ -630,8 +628,7 @@ nnoremap <C-9> :<C-]>
 
 " Suppress message of vim-conda
 let g:conda_startup_msg_suppress = 1
-let g:jedi#force_py_version = 2
-let g:UltisnipsUsePythonVersion = 2
+let g:UltisnipsUsePythonVersion = 3
 
 " Setting for grammar check (Grammarous)
 let g:grammarous#disabled_rules = {
@@ -641,16 +638,6 @@ let g:grammarous#disabled_rules = {
 " Use vim spellang
 let g:grammarous#use_vim_spelllang = 1
 
-" Jedi-Vim
-let g:jedi#popup_on_dot = 0
-let g:jedi#show_call_signatures = "2"
-let g:jedi#goto_command = "<leader>d"
-let g:jedi#goto_assignments_command = "<leader>g"
-let g:jedi#goto_definitions_command = ""
-let g:jedi#documentation_command = "K"
-let g:jedi#usages_command = "<leader>n"
-let g:jedi#completions_command = "<C-Space>"
-let g:jedi#rename_command = "<leader>r"
 
 "----------------------------------------------------------------------
 " Quick run
