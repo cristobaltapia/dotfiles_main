@@ -487,7 +487,6 @@ nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 let g:ale_python_pylint_executable = 'python'
-let g:pymode_python = 'python3'
 
 let g:ale_linters = {
             \   'python': ['flake8'],
@@ -574,11 +573,13 @@ endif
 " Python-mode
 " -------------------------------------------------------------
 let g:pymode_rope = 0
-"
+let g:pymode_rope_completion = 1
+let g:pymode_python = 'python3'
+
 "" Documentation
-"let g:pymode_doc = 1
-"let g:pymode_doc_key = 'K'
-"
+let g:pymode_doc = 1
+let g:pymode_doc_key = 'K'
+
 " Linting
 " Auto check on save
 " let g:pymode_lint_write = 1
