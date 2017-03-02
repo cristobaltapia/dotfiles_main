@@ -48,6 +48,8 @@ Plugin 'Shougo/neocomplete.vim'
 Plugin 'rhysd/vim-grammarous'
 "SuperTab
 Plugin 'ervandew/supertab'
+"AutoComplPop
+"Plugin 'vim-scripts/AutoComplPop'
 " Track the engine.
 Plugin 'SirVer/ultisnips'
 " Virtualenv support
@@ -90,9 +92,14 @@ Plugin 'MatlabFilesEdition'
 " Conda Environment
 "Plugin 'cjrh/vim-conda'
 " Latex
+"Plugin 'git://git.code.sf.net/p/vim-latex/vim-latex'
 Plugin 'gerw/vim-latex-suite'
+"Plugin 'lervag/vimtex'
+"Plugin 'lervag/vim-latex'
 " Rename. Rename a buffer within Vim and on disk
 Plugin 'Rename'
+" Syntax checking hacks for vim
+"Plugin 'scrooloose/syntastic'
 " Search results counter
 Plugin 'IndexedSearch'
 " XML/HTML tags navigation
@@ -103,10 +110,10 @@ Plugin 'myusuf3/numbers.vim'
 Plugin 'kien/ctrlp.vim'
 " YouCompleteMe
 "Plugin 'Valloric/YouCompleteMe'
+" Python mode
+Plugin 'python-mode/python-mode'
 " Vim indent guides (colors!)
 Plugin 'nathanaelkane/vim-indent-guides'
-" Pretty-Vim-Python syntax highlight
-" Plugin 'sentientmachine/Pretty-Vim-Python'
 " Solirized colorscheme
 Plugin 'altercation/vim-colors-solarized'
 " Base16 colorscheme
@@ -117,6 +124,8 @@ Plugin 'w0rp/ale'
 Plugin 'skywind3000/asyncrun.vim'
 " Space-vim-dark colorscheme
 Plugin 'liuchengxu/space-vim-dark'
+" Codi, an interactive scratchpad for vim
+"Plugin 'metakirby5/codi.vim'
 
 call vundle#end()
 
@@ -529,39 +538,24 @@ endif
 " -------------------------------------------------------------
 " Python-mode
 " -------------------------------------------------------------
+" Deactivate everything except the syntax
 let g:pymode_rope = 0
-let g:pymode_rope_lookup_project = 0
-let g:pymode_rope_completion = 0
-let g:pymode_rope_complete_on_dot = 0
-let g:pymode_rope_regenerate_on_write = 0
-let g:pymode_python = 'python3'
-
 "" Documentation
-let g:pymode_doc = 1
-let g:pymode_doc_key = 'K'
-
+let g:pymode_doc = 0
 " Linting
-" Auto check on save
-" let g:pymode_lint_write = 1
-let g:pymode_lint_checkers = ['pyflakes']
-let g:pymode_lint_cwindow = 0
 let g:pymode_lint = 0
-
-"
 " Support virtualenv
-"let g:pymode_virtualenv = 0
-"
-" Enable breakpoints plugin
+let g:pymode_virtualenv = 0
+" breakpoints plugin
 let g:pymode_breakpoint = 0
-"let g:pymode_breakpoint_bind = '<leader>b'
-"
+" folding
+let g:pymode_folding = 0
 " syntax highlighting
 " let g:pymode_syntax = 1
 let g:pymode_syntax_all = 1
 " let g:pymode_syntax_indent_errors = g:pymode_syntax_all
 " let g:pymode_syntax_space_errors = g:pymode_syntax_all
 
-let g:pymode_folding = 0
 
 " -------------------------------------------------------------
 
