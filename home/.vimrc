@@ -77,7 +77,7 @@ Plug 'matchit.zip'
 " Numbers (relative numbers)
 Plug 'myusuf3/numbers.vim'
 " Ctrl P
-Plug 'kien/ctrlp.vim', { 'for', 'python' }
+Plug 'kien/ctrlp.vim', { 'for': 'python' }
 " Python mode
 Plug 'python-mode/python-mode', { 'for': 'python' }
 " Vim indent guides (colors!)
@@ -95,7 +95,7 @@ Plug 'liuchengxu/space-vim-dark'
 " Plugins that will only work under linux
 if has("unix")
     " Codi, an interactive scratchpad for vim
-    Plugin 'metakirby5/codi.vim', { 'for', 'python' }
+    Plugin 'metakirby5/codi.vim', { 'for': 'python' }
     " YouCompleteMe
     Plug 'Valloric/YouCompleteMe'
 endif
