@@ -1,144 +1,106 @@
+" 
 " Vim configuration file
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
-"----------------------------------------------------------------------
-" no vi-compatible
-" Setting up Vundle - the vim plugin bundler
+" Author: Cristóbal Tapia Camú
+"
+" Load vim-plug
 if has('win32')
-    let iCanHazVundle=1
-    "let vundle_readme=expand('H:/vimfiles/bundle/vundle/README.md')
-    let vundle_readme=expand('~/.vim/bundle/Vundle.vim/README.md')
-    if !filereadable(vundle_readme)
-        echo "Installing Vundle..."
-        echo ""
-        "silent !mkdir H:/vimfiles/bundle
-        silent !mkdir ~/.vim/bundle
-        "silent !git clone https://github.com/gmarik/Vundle.vim H:/vimfiles/bundle/Vundle.vim
-        silent !git clone https://github.com/gmarik/Vundle.vim ~/.vim/bundle/Vundle.vim
-        let iCanHazVundle=0
+    " this does not work, but I leave it here just to remember what I need to do
+    if empty(glob("~/vimfiles/autoload/plug.vim"))
+        execute 'md ~\vimfiles\autoload'
+        execute "$uri = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'"
+        execute '(New-Object Net.WebClient).DownloadFile($uri, $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath("~\vimfiles\autoload\plug.vim"))'
     endif
-    set rtp+=$HOME/.vim/bundle/Vundle.vim
-    call vundle#begin()
 else
-    let iCanHazVundle=1
-    let vundle_readme=expand('~/.vim/bundle/Vundle.vim/README.md')
-    if !filereadable(vundle_readme)
-        echo "Installing Vundle..."
-        echo ""
-        silent !mkdir -p $HOME/.vim/bundle
-        silent !git clone https://github.com/gmarik/Vundle.vim ~/.vim/bundle/Vundle.vim
-        let iCanHazVundle=0
+    if empty(glob("~/.vim/autoload/plug.vim"))
+        execute '!curl -fLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim'
     endif
-    " set the runtime path to include Vundle and initialize
-    set rtp+=$HOME/.vim/bundle/Vundle.vim
-    call vundle#begin()
+
 endif
-"
+
 "----------------------------------------------------------------------
-"
-" let Vundle manage Vundle
-" required!
-Plugin 'gmarik/Vundle.vim'
+call plug#begin('~/.vim/plugged')
+
 " Neocomplete
-Plugin 'Shougo/neocomplete.vim'
-"Plugin 'Shougo/neosnippet'
-"Plugin 'Shougo/neosnippet-snippets'
+Plug 'Shougo/neocomplete.vim'
+"Plug 'Shougo/neosnippet'
+"Plug 'Shougo/neosnippet-snippets'
 " vim-Grammarous
-Plugin 'rhysd/vim-grammarous'
+Plug 'rhysd/vim-grammarous'
 "SuperTab
-Plugin 'ervandew/supertab'
-"AutoComplPop
-"Plugin 'vim-scripts/AutoComplPop'
+Plug 'ervandew/supertab'
 " Track the engine.
-Plugin 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips'
 " Virtualenv support
-Plugin 'jmcantrell/vim-virtualenv'
+Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
 " Pydoc
-Plugin 'fs111/pydoc.vim'
+Plug 'fs111/pydoc.vim', { 'for': 'python' }
 " Snippets are separated from the engine. Add this if you want them:
-Plugin 'honza/vim-snippets'
+Plug 'honza/vim-snippets'
 " Vim Easy Align
-Plugin 'junegunn/vim-easy-align'
+Plug 'junegunn/vim-easy-align'
 " fugitive.vim: a Git wrappe
-Plugin 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 "APDL Syntax
-"Plugin 'vim-scripts/apdl.vim'
-Plugin 'cristobaltapia/apdl.vim'
+Plug 'cristobaltapia/apdl.vim'
 " Better file browser
-Plugin 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 " Code commenter
-Plugin 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdcommenter'
 " Emmet
-Plugin 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim'
 " Tab list panel
-Plugin 'kien/tabman.vim'
+Plug 'kien/tabman.vim'
 " Vim-Airline
-Plugin 'bling/vim-airline'
-" Gvim colorscheme
-Plugin 'Wombat'
+Plug 'bling/vim-airline'
 " Pending tasks list
-Plugin 'fisadev/FixedTaskList.vim'
+Plug 'fisadev/FixedTaskList.vim'
 " Surround
-Plugin 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 " Autoclose
-Plugin 'Townk/vim-autoclose'
+Plug 'Townk/vim-autoclose'
 " Indent text object
-Plugin 'michaeljsmith/vim-indent-object'
+Plug 'michaeljsmith/vim-indent-object'
 " Fix white spaces at end of lines
-Plugin 'bronson/vim-trailing-whitespace'
+Plug 'bronson/vim-trailing-whitespace'
 " Matlab
-Plugin 'MatlabFilesEdition'
+Plug 'MatlabFilesEdition'
 " Conda Environment
-"Plugin 'cjrh/vim-conda'
+Plug 'cjrh/vim-conda'
 " Latex
-"Plugin 'git://git.code.sf.net/p/vim-latex/vim-latex'
-Plugin 'gerw/vim-latex-suite'
-"Plugin 'lervag/vimtex'
-"Plugin 'lervag/vim-latex'
+Plug 'gerw/vim-latex-suite', {'for': 'tex' }
 " Rename. Rename a buffer within Vim and on disk
-Plugin 'Rename'
-" Syntax checking hacks for vim
-"Plugin 'scrooloose/syntastic'
+Plug 'Rename'
 " Search results counter
-Plugin 'IndexedSearch'
+Plug 'IndexedSearch'
 " XML/HTML tags navigation
-Plugin 'matchit.zip'
+Plug 'matchit.zip'
 " Numbers (relative numbers)
-Plugin 'myusuf3/numbers.vim'
+Plug 'myusuf3/numbers.vim'
 " Ctrl P
-Plugin 'kien/ctrlp.vim'
-" YouCompleteMe
-"Plugin 'Valloric/YouCompleteMe'
+Plug 'kien/ctrlp.vim', { 'for', 'python' }
 " Python mode
-Plugin 'python-mode/python-mode'
+Plug 'python-mode/python-mode', { 'for': 'python' }
 " Vim indent guides (colors!)
-Plugin 'nathanaelkane/vim-indent-guides'
+Plug 'nathanaelkane/vim-indent-guides'
 " Solirized colorscheme
-Plugin 'altercation/vim-colors-solarized'
+Plug 'altercation/vim-colors-solarized'
 " Base16 colorscheme
-Plugin 'chriskempson/base16-vim'
+Plug 'chriskempson/base16-vim'
 " ALE
-Plugin 'w0rp/ale'
+Plug 'w0rp/ale', { 'for': 'python' }
 " Asyncrun
-Plugin 'skywind3000/asyncrun.vim'
+Plug 'skywind3000/asyncrun.vim'
 " Space-vim-dark colorscheme
-Plugin 'liuchengxu/space-vim-dark'
-" Codi, an interactive scratchpad for vim
-"Plugin 'metakirby5/codi.vim'
-
-call vundle#end()
-
-" Installing plugins the first time
-if iCanHazVundle == 0
-    echo "Installing Plugins, please ignore key map error messages"
-    echo ""
-    :PluginInstall
+Plug 'liuchengxu/space-vim-dark'
+" Plugins that will only work under linux
+if has("unix")
+    " Codi, an interactive scratchpad for vim
+    Plugin 'metakirby5/codi.vim', { 'for', 'python' }
+    " YouCompleteMe
+    Plug 'Valloric/YouCompleteMe'
 endif
 
-" allow plugins by file type
-filetype plugin on
-filetype indent on
+call plug#end()
 
 " Latex options
 let g:tex_flavor='latex'
@@ -184,17 +146,17 @@ augroup file_type
     autocmd FileType python colorscheme space-vim-dark
     autocmd FileType python AirlineRefresh
     autocmd FileType python setlocal shiftwidth=4
-        \ tabstop=4
-        \ softtabstop=4
-        \ expandtab
+                \ tabstop=4
+                \ softtabstop=4
+                \ expandtab
     autocmd FileType html setlocal shiftwidth=2 tabstop=2
     autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2
     autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
     autocmd FileType tex AirlineRefresh
     autocmd FileType tex setlocal shiftwidth=2
-        \ tabstop=2
-        \ softtabstop=2
-        \ expandtab
+                \ tabstop=2
+                \ softtabstop=2
+                \ expandtab
 augroup END
 
 "----------------------------------------------------------------------
@@ -597,41 +559,41 @@ let g:grammarous#use_vim_spelllang = 1
 "----------------------------------------------------------------------
 " Quick run
 "----------------------------------------------------------------------
- nnoremap <F5> :call <SID>compile_and_run()<CR>
- " close quickfix window
- nnoremap <Leader>cq :ccl<CR>
+nnoremap <F5> :call <SID>compile_and_run()<CR>
+" close quickfix window
+nnoremap <Leader>cq :ccl<CR>
 
- augroup SPACEVIM_ASYNCRUN
-     autocmd!
-     " Automatically open the quickfix window
-     autocmd User AsyncRunStart call asyncrun#quickfix_toggle(25, 1)
- augroup END
+augroup SPACEVIM_ASYNCRUN
+    autocmd!
+    " Automatically open the quickfix window
+    autocmd User AsyncRunStart call asyncrun#quickfix_toggle(25, 1)
+augroup END
 
- function! s:compile_and_run()
-     exec 'w'
-     if &filetype == 'c'
-         exec "AsyncRun! gcc % -o %<; time ./%<"
-     elseif &filetype == 'cpp'
+function! s:compile_and_run()
+    exec 'w'
+    if &filetype == 'c'
+        exec "AsyncRun! gcc % -o %<; time ./%<"
+    elseif &filetype == 'cpp'
         exec "AsyncRun! g++ -std=c++11 % -o %<; time ./%<"
-     elseif &filetype == 'java'
+    elseif &filetype == 'java'
         exec "AsyncRun! javac %; time java %<"
-     elseif &filetype == 'sh'
+    elseif &filetype == 'sh'
         exec "AsyncRun! time bash %"
-     elseif &filetype == 'python'
+    elseif &filetype == 'python'
         exec "AsyncRun python %:p"
-     endif
- endfunction
+    endif
+endfunction
 
- cd %:p:h
+cd %:p:h
 "----------------------------------------------------------------------
 "
 " vp doesn't replace paste buffer
 function! RestoreRegister()
-  let @" = s:restore_reg
-  return ''
+    let @" = s:restore_reg
+    return ''
 endfunction
 function! s:Repl()
-  let s:restore_reg = @"
-  return "p@=RestoreRegister()\<cr>"
+    let s:restore_reg = @"
+    return "p@=RestoreRegister()\<cr>"
 endfunction
 vmap <silent> <expr> p <sid>Repl()
