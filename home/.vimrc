@@ -48,8 +48,6 @@ Plugin 'Shougo/neocomplete.vim'
 Plugin 'rhysd/vim-grammarous'
 "SuperTab
 Plugin 'ervandew/supertab'
-"AutoComplPop
-"Plugin 'vim-scripts/AutoComplPop'
 " Track the engine.
 Plugin 'SirVer/ultisnips'
 " Virtualenv support
@@ -67,8 +65,6 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'cristobaltapia/apdl.vim'
 " Better file browser
 Plugin 'scrooloose/nerdtree'
-" Unite
-Plugin 'Shougo/unite.vim'
 " Code commenter
 Plugin 'scrooloose/nerdcommenter'
 " Emmet
@@ -94,14 +90,9 @@ Plugin 'MatlabFilesEdition'
 " Conda Environment
 "Plugin 'cjrh/vim-conda'
 " Latex
-"Plugin 'git://git.code.sf.net/p/vim-latex/vim-latex'
 Plugin 'gerw/vim-latex-suite'
-"Plugin 'lervag/vimtex'
-"Plugin 'lervag/vim-latex'
 " Rename. Rename a buffer within Vim and on disk
 Plugin 'Rename'
-" Syntax checking hacks for vim
-"Plugin 'scrooloose/syntastic'
 " Search results counter
 Plugin 'IndexedSearch'
 " XML/HTML tags navigation
@@ -112,8 +103,6 @@ Plugin 'myusuf3/numbers.vim'
 Plugin 'kien/ctrlp.vim'
 " YouCompleteMe
 "Plugin 'Valloric/YouCompleteMe'
-" Python mode
-Plugin 'python-mode/python-mode'
 " Vim indent guides (colors!)
 Plugin 'nathanaelkane/vim-indent-guides'
 " Pretty-Vim-Python syntax highlight
@@ -128,8 +117,6 @@ Plugin 'w0rp/ale'
 Plugin 'skywind3000/asyncrun.vim'
 " Space-vim-dark colorscheme
 Plugin 'liuchengxu/space-vim-dark'
-" Code formatter
-Plugin 'google/yapf'
 
 call vundle#end()
 
@@ -462,23 +449,6 @@ set linebreak
 "----------------------------------------------------------------------
 
 "----------------------------------------------------------------------
-" Syntastic configurations
-"----------------------------------------------------------------------
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
-
-"let g:syntastic_aggregate_errors = 1
-" close the error location list
-"nnoremap <leader>ce :lclose<cr>
-"let g:syntastic_python_checkers = ['python']
-
-"----------------------------------------------------------------------
 "
 "----------------------------------------------------------------------
 " Ale configurations
@@ -486,28 +456,15 @@ set linebreak
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
-let g:ale_python_pylint_executable = 'python'
-
 let g:ale_linters = {
-            \   'python': ['flake8'],
+            \   'python': ['flake8','pylint'],
             \}
 
 " Run linters on save
 let g:ale_lint_on_save = 1
-let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_text_changed = 1
 " if you don't want linters to run on opening a file
-let g:ale_lint_on_enter = 0
-"----------------------------------------------------------------------
-
-"----------------------------------------------------------------------
-" Unite configuration
-"----------------------------------------------------------------------
-nnoremap <C-p> :Unite file_rec/async<cr>
-let g:unite_source_history_yank_enable = 1
-" slect from previous yanks
-nnoremap <c-y> :Unite history/yank<cr>
-" quick switch buffer
-nnoremap <c-s> :Unite -quick-match buffer<cr>
+let g:ale_lint_on_enter = 1
 "----------------------------------------------------------------------
 
 "----------------------------------------------------------------------
@@ -573,7 +530,10 @@ endif
 " Python-mode
 " -------------------------------------------------------------
 let g:pymode_rope = 0
-let g:pymode_rope_completion = 1
+let g:pymode_rope_lookup_project = 0
+let g:pymode_rope_completion = 0
+let g:pymode_rope_complete_on_dot = 0
+let g:pymode_rope_regenerate_on_write = 0
 let g:pymode_python = 'python3'
 
 "" Documentation
@@ -585,17 +545,17 @@ let g:pymode_doc_key = 'K'
 " let g:pymode_lint_write = 1
 let g:pymode_lint_checkers = ['pyflakes']
 let g:pymode_lint_cwindow = 0
-let g:pymode_lint = 1
+let g:pymode_lint = 0
 
 "
-"" Support virtualenv
+" Support virtualenv
 "let g:pymode_virtualenv = 0
 "
-"" Enable breakpoints plugin
-""let g:pymode_breakpoint = 0
-""let g:pymode_breakpoint_bind = '<leader>b'
+" Enable breakpoints plugin
+let g:pymode_breakpoint = 0
+"let g:pymode_breakpoint_bind = '<leader>b'
 "
-"" syntax highlighting
+" syntax highlighting
 " let g:pymode_syntax = 1
 let g:pymode_syntax_all = 1
 " let g:pymode_syntax_indent_errors = g:pymode_syntax_all
