@@ -24,12 +24,15 @@ let g:Tex_FontMenus = 0
 let g:Tex_FontMaps = 0
 let g:Tex_EnvironmentMenus = 0
 let g:Tex_SmartKeyBS = 0
+let g:Tex_GotoError=0
 " Set smart quote
 let g:Tex_SmartKeyQuote = 1
 let g:Tex_SmartQuoteOpen = "``"
 let g:Tex_SmartQuoteClose = "''"
 " Define Custom template folder
-let g:Tex_CustomTemplateFolder='/home/tapia/Templates/latex'
+let g:Tex_CustomTemplateDirectory = '~/Templates/latex'
+let g:Imap_FreezeImap = 1
+
 
 "let g:Tex_BibtexFlavor = 'biber'
 "
@@ -68,4 +71,3 @@ let g:Tex_CompileRule_pdf = 'latexmk -pdf -pdflatex="pdflatex -shell-escape -src
 call IMAP('ESI','\SI{<++>}{<++>}<++>','tex')
 call IMAP('ESR','\SIrange{<++>}{<++>}{<++>}<++>','tex')
 
-"----------------------------------------------------------------------
