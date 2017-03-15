@@ -68,6 +68,7 @@ Plug 'MatlabFilesEdition'
 Plug 'cjrh/vim-conda'
 " Latex
 Plug 'gerw/vim-latex-suite', {'for': 'tex' }
+Plut 'vim-latex/vim-latex', {'for', 'tex' }
 " Rename. Rename a buffer within Vim and on disk
 Plug 'Rename'
 " Search results counter
@@ -371,9 +372,9 @@ endif
 
 "----------------------------------------------------------------------
 "Map <Esc> to Shift-Space. Its more confortable
-inoremap <A-Space> <Esc>
-vnoremap <A-Space> <Esc>
-snoremap <A-Space> <Esc>
+imap <S-Space> <Esc>
+vmap <S-Space> <Esc>
+smap <S-Space> <Esc>
 "----------------------------------------------------------------------
 
 " Change buffer without saving

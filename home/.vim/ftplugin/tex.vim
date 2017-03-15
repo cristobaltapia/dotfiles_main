@@ -24,7 +24,9 @@ let g:Tex_FontMenus = 0
 let g:Tex_FontMaps = 0
 let g:Tex_EnvironmentMenus = 0
 let g:Tex_SmartKeyBS = 0
-let g:Tex_GotoError=0
+let g:Tex_SmartKeyDot = 0
+let g:Tex_GotoError = 0
+let  g:Tex_Diacritics = 0
 " Set smart quote
 let g:Tex_SmartKeyQuote = 1
 let g:Tex_SmartQuoteOpen = "``"
@@ -36,17 +38,17 @@ let g:Imap_FreezeImap = 1
 
 "let g:Tex_BibtexFlavor = 'biber'
 "
-function! GetVisual() range
-        let reg_save = getreg('"')
-        let regtype_save = getregtype('"')
-        let cb_save = &clipboard
-        set clipboard&
-        normal! ""gvy
-        let selection = getreg('"')
-        call setreg('"', reg_save, regtype_save)
-        let &clipboard = cb_save
-        return selection
-endfunction
+"function! GetVisual() range
+"        let reg_save = getreg('"')
+"        let regtype_save = getregtype('"')
+"        let cb_save = &clipboard
+"        set clipboard&
+"        normal! ""gvy
+"        let selection = getreg('"')
+"        call setreg('"', reg_save, regtype_save)
+"        let &clipboard = cb_save
+"        return selection
+"endfunction
 
 if has('win32')
     let g:Tex_ViewRule_pdf = 'SumatraPDF -reuse-instance -inverse-search "gvim -c \":RemoteOpen +\%l \%f\""'
