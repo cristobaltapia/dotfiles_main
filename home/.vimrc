@@ -26,6 +26,8 @@ Plug 'Shougo/neocomplete.vim'
 "Plug 'roxma/nvim-completion-manager'
 "Plug 'Shougo/neosnippet'
 "Plug 'Shougo/neosnippet-snippets'
+" Rainbow parentheses
+Plug 'kien/rainbow_parentheses.vim'
 " vim-Grammarous
 Plug 'rhysd/vim-grammarous'
 "SuperTab
