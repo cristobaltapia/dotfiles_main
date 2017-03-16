@@ -21,34 +21,33 @@ let g:Tex_DefaultTargetFormat = 'pdf'
 let g:Tex_SectionMenus = 0
 let g:Tex_SectionMaps = 0
 let g:Tex_FontMenus = 0
-let g:Tex_FontMaps = 0
+let g:Tex_FontMaps = 1
 let g:Tex_EnvironmentMenus = 0
 let g:Tex_SmartKeyBS = 0
 let g:Tex_SmartKeyDot = 0
 let g:Tex_GotoError = 0
-let  g:Tex_Diacritics = 0
+let g:Tex_Diacritics = 0
 " Set smart quote
 let g:Tex_SmartKeyQuote = 1
 let g:Tex_SmartQuoteOpen = "``"
 let g:Tex_SmartQuoteClose = "''"
 " Define Custom template folder
 let g:Tex_CustomTemplateDirectory = '~/Templates/latex'
-let g:Imap_FreezeImap = 1
-
+let g:Imap_FreezeImap = 0
 
 "let g:Tex_BibtexFlavor = 'biber'
 "
-"function! GetVisual() range
-"        let reg_save = getreg('"')
-"        let regtype_save = getregtype('"')
-"        let cb_save = &clipboard
-"        set clipboard&
-"        normal! ""gvy
-"        let selection = getreg('"')
-"        call setreg('"', reg_save, regtype_save)
-"        let &clipboard = cb_save
-"        return selection
-"endfunction
+function! GetVisual() range
+        let reg_save = getreg('"')
+        let regtype_save = getregtype('"')
+        let cb_save = &clipboard
+        set clipboard&
+        normal! ""gvy
+        let selection = getreg('"')
+        call setreg('"', reg_save, regtype_save)
+        let &clipboard = cb_save
+        return selection
+endfunction
 
 if has('win32')
     let g:Tex_ViewRule_pdf = 'SumatraPDF -reuse-instance -inverse-search "gvim -c \":RemoteOpen +\%l \%f\""'
@@ -72,4 +71,6 @@ let g:Tex_CompileRule_pdf = 'latexmk -pdf -pdflatex="pdflatex -shell-escape -src
 " Latex + siunitx
 call IMAP('ESI','\SI{<++>}{<++>}<++>','tex')
 call IMAP('ESR','\SIrange{<++>}{<++>}{<++>}<++>','tex')
+call IMAP('FEM','FEM','tex')
 
+"----------------------------------------------------------------------
