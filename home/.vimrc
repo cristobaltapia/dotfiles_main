@@ -22,6 +22,8 @@ call plug#begin('~/.vim/plugged')
 
 " Neocomplete
 Plug 'Shougo/neocomplete.vim'
+" Nvim comlpetion manager
+"Plug 'roxma/nvim-completion-manager'
 "Plug 'Shougo/neosnippet'
 "Plug 'Shougo/neosnippet-snippets'
 " vim-Grammarous
@@ -67,8 +69,8 @@ Plug 'MatlabFilesEdition'
 " Conda Environment
 Plug 'cjrh/vim-conda'
 " Latex
-Plug 'gerw/vim-latex-suite', {'for': 'tex' }
-Plut 'vim-latex/vim-latex', {'for', 'tex' }
+Plug 'vim-latex/vim-latex', {'for': 'tex' }
+"Plug 'vim-latex/vim-latex'
 " Rename. Rename a buffer within Vim and on disk
 Plug 'Rename'
 " Search results counter
@@ -315,9 +317,9 @@ endif
 "----------------------------------------------------------------------
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 "let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsExpandTrigger="<c-k>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsExpandTrigger = "<c-k>"
+let g:UltiSnipsJumpForwardTrigger = "<c-b>"
+let g:UltiSnipsJumpBackwardTrigger = "<c-z>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
@@ -372,9 +374,9 @@ endif
 
 "----------------------------------------------------------------------
 "Map <Esc> to Shift-Space. Its more confortable
-imap <S-Space> <Esc>
-vmap <S-Space> <Esc>
-smap <S-Space> <Esc>
+inoremap <S-Space> <Esc>
+vnoremap <S-Space> <Esc>
+snoremap <S-Space> <Esc>
 "----------------------------------------------------------------------
 
 " Change buffer without saving
@@ -391,7 +393,34 @@ vnoremap <space> zf
 set breakindent showbreak=..
 set linebreak
 "----------------------------------------------------------------------
+"
+" -------------------------------------------------------------
+" Python-mode
+" -------------------------------------------------------------
+" Deactivate everything except the syntax
+let g:pymode_rope = 0
+"" Documentation
+let g:pymode_doc = 0
+" Linting
+let g:pymode_lint = 0
+" Support virtualenv
+let g:pymode_virtualenv = 0
+" breakpoints plugin
+let g:pymode_breakpoint = 0
+" folding
+let g:pymode_folding = 0
+" syntax highlighting
+" let g:pymode_syntax = 1
+let g:pymode_syntax_all = 1
+" let g:pymode_syntax_indent_errors = g:pymode_syntax_all
+" let g:pymode_syntax_space_errors = g:pymode_syntax_all
+"
+" Don't autofold code
+"let g:pymode_folding = 0
+"
+" -------------------------------------------------------------
 
+"
 "----------------------------------------------------------------------
 "
 "----------------------------------------------------------------------
@@ -407,7 +436,7 @@ let g:ale_linters = {
 " Run linters on save
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 1
-" if you don't want linters to run on opening a file
+" linters run on opening a file
 let g:ale_lint_on_enter = 1
 "----------------------------------------------------------------------
 
