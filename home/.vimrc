@@ -92,12 +92,14 @@ Plug 'w0rp/ale', { 'for': 'python' }
 Plug 'skywind3000/asyncrun.vim'
 " Space-vim-dark colorscheme
 Plug 'liuchengxu/space-vim-dark'
+" tables with vim
+Plug 'dhruvasagar/vim-table-mode'
 " Plugins that will only work under linux
 if has("unix")
     " Codi, an interactive scratchpad for vim
-    Plugin 'metakirby5/codi.vim', { 'for': 'python' }
+    Plug 'metakirby5/codi.vim', { 'for': 'python' }
     " YouCompleteMe
-    Plug 'Valloric/YouCompleteMe'
+    "Plug 'Valloric/YouCompleteMe'
 endif
 
 call plug#end()
@@ -597,3 +599,8 @@ function! s:Repl()
     return "p@=RestoreRegister()\<cr>"
 endfunction
 vmap <silent> <expr> p <sid>Repl()
+
+" Table mode
+let g:table_mode_corner_corner='+'
+let g:table_mode_header_fillchar='='
+
