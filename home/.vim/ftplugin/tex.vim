@@ -13,14 +13,29 @@ syntax enable
 syntax spell toplevel
 "
 filetype plugin on
-"set shellslash  " conflict with vundle
-"set grepprg=grep\ -nH\ $*
-"filetype indent on
-"let g:Tex_Leader=','  " I use this
-let g:tex_flavor='latex'
+
+let g:tex_flavor = 'latex'
 let g:Tex_DefaultTargetFormat = 'pdf'
+"
+" Disable some functionality of vim-latex-suite
+let g:Tex_SectionMenus = 0
+let g:Tex_SectionMaps = 0
+let g:Tex_FontMenus = 0
+let g:Tex_FontMaps = 1
+let g:Tex_EnvironmentMenus = 0
+let g:Tex_SmartKeyBS = 0
+let g:Tex_SmartKeyDot = 0
+let g:Tex_GotoError = 0
+let g:Tex_Diacritics = 0
+" Set smart quote
+let g:Tex_SmartKeyQuote = 1
+let g:Tex_SmartQuoteOpen = "``"
+let g:Tex_SmartQuoteClose = "''"
+" Define Custom template folder
+let g:Tex_CustomTemplateDirectory = '~/Templates/latex'
+let g:Imap_FreezeImap = 0
+
 "let g:Tex_BibtexFlavor = 'biber'
-"let g:Tex_MultipleCompileFormats='pdf, aux, bib'
 "
 function! GetVisual() range
         let reg_save = getreg('"')
@@ -52,15 +67,10 @@ else
 endif
 "let g:Tex_CompileRule_pdf = 'pdflatex -synctex=-1 -src-specials -interaction=nonstopmode $*'
 let g:Tex_CompileRule_pdf = 'latexmk -pdf -pdflatex="pdflatex -shell-escape -src-specials -interaction=nonstopmode" $*'
-let g:Tex_CustomTemplateFolder='/home/tapia/Templates/latex'
 
 " Latex + siunitx
 call IMAP('ESI','\SI{<++>}{<++>}<++>','tex')
 call IMAP('ESR','\SIrange{<++>}{<++>}{<++>}<++>','tex')
+call IMAP('FEM','FEM','tex')
 
-"----------------------------------------------------------------------
-"Map <Esc> to Shift-Space. Its more confortable
-inoremap <S-Space> <Esc>
-vnoremap <S-Space> <Esc>
-snoremap <S-Space> <Esc>
 "----------------------------------------------------------------------

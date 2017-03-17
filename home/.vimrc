@@ -22,8 +22,12 @@ call plug#begin('~/.vim/plugged')
 
 " Neocomplete
 Plug 'Shougo/neocomplete.vim'
+" Nvim comlpetion manager
+"Plug 'roxma/nvim-completion-manager'
 "Plug 'Shougo/neosnippet'
 "Plug 'Shougo/neosnippet-snippets'
+" Rainbow parentheses
+Plug 'kien/rainbow_parentheses.vim'
 " vim-Grammarous
 Plug 'rhysd/vim-grammarous'
 "SuperTab
@@ -67,7 +71,7 @@ Plug 'MatlabFilesEdition'
 " Conda Environment
 Plug 'cjrh/vim-conda'
 " Latex
-Plug 'gerw/vim-latex-suite', {'for': 'tex' }
+Plug 'vim-latex/vim-latex', {'for': 'tex' }
 " Rename. Rename a buffer within Vim and on disk
 Plug 'Rename'
 " Search results counter
@@ -599,8 +603,3 @@ function! s:Repl()
     return "p@=RestoreRegister()\<cr>"
 endfunction
 vmap <silent> <expr> p <sid>Repl()
-
-" Table mode
-let g:table_mode_corner_corner='+'
-let g:table_mode_header_fillchar='='
-
