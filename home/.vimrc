@@ -256,6 +256,12 @@ let OmniCpp_MayCompleteScope = 0
 " change this behaviour with the OmniCpp_SelectFirstItem option.
 let OmniCpp_SelectFirstItem = 0
 "----------------------------------------------------------------------
+"
+" Rainbow Parentheses options
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
 
 "----------------------------------------------------------------------
 " NERDTree (better file browser) toggle
