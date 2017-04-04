@@ -20,20 +20,22 @@ endif
 "----------------------------------------------------------------------
 call plug#begin('~/.vim/plugged')
 
-" Neocomplete
+" Neocomplete + snippets
 Plug 'Shougo/neocomplete.vim'
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
+Plug 'honza/vim-snippets'
+Plug 'cristobaltapia/MySnippets'
 " Nvim comlpetion manager
 "Plug 'roxma/nvim-completion-manager'
-"Plug 'Shougo/neosnippet'
-"Plug 'Shougo/neosnippet-snippets'
 " Rainbow parentheses
-Plug 'kien/rainbow_parentheses.vim'
+Plug 'luochen1990/rainbow', { 'for': 'python' }
 " vim-Grammarous
 Plug 'rhysd/vim-grammarous'
 "SuperTab
 Plug 'ervandew/supertab'
 " Track the engine.
-Plug 'SirVer/ultisnips'
+"Plug 'SirVer/ultisnips'
 " Virtualenv support
 Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
 " Pydoc
@@ -226,6 +228,31 @@ highlight Pmenu ctermbg=4 guibg=LightGray
 " highlight PmenuSel ctermbg=8 guibg=DarkBlue guifg=Red
 " highlight PmenuSbar ctermbg=7 guibg=DarkGray
 " highlight PmenuThumb guibg=Black
+"
+" Activate Rainbow parentheses
+let g:rainbow_active = 1
+let g:rainbow_conf = {
+\   'guifgs': ['darkorange3', 'seagreen3', 'royalblue3', 'firebrick'],
+\   'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+\   'operators': '_,_',
+\   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+\   'separately': {
+\       '*': {},
+\       'tex': {
+\           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+\       },
+\       'lisp': {
+\           'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+\       },
+\       'vim': {
+\           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+\       },
+\       'html': {
+\           'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+\       },
+\       'css': 0,
+\   }
+\}
 "----------------------------------------------------------------------
 
 "----------------------------------------------------------------------
@@ -315,19 +342,39 @@ else
 endif
 
 "----------------------------------------------------------------------
-" Ultisnips
+" Noesnippet
 "----------------------------------------------------------------------
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-"let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsExpandTrigger = "<c-k>"
-let g:UltiSnipsJumpForwardTrigger = "<c-b>"
-let g:UltiSnipsJumpBackwardTrigger = "<c-z>"
+" Plugin key-mappings.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <C-b> <Plug>(neosnippet_expand_or_jump)
+smap <C-b> <Plug>(neosnippet_expand_or_jump)
+xmap <C-k> <Plug>(neosnippet_expand_target)
 
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
+" SuperTab like snippets behavior.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+"imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
-" define own sippets directorie
-let g:UltiSnipsSnippetDirectories=["UltiSnips", "MySnippets"]
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
+
+" disable default snippets
+let g:neosnippet#disable_runtime_snippets = {
+            \'python' : 1,
+            \}
+
+
+let g:neosnippet#snippets_directory=['~/.vim/plugged/vim-snippets/snippets',
+            \'~/.vim/plugged/MySnippets/'
+            \]
 
 
 "----------------------------------------------------------------------
@@ -417,6 +464,9 @@ let g:pymode_syntax_all = 1
 " let g:pymode_syntax_indent_errors = g:pymode_syntax_all
 " let g:pymode_syntax_space_errors = g:pymode_syntax_all
 "
+" Don't autofold code
+"let g:pymode_folding = 0
+"
 " -------------------------------------------------------------
 
 "
@@ -484,12 +534,12 @@ if has('win32')
                     let l:shxq_sav = ''
                     set shellxquote&
                 endif
-                let cmd = '"' . 'C:\Program Files (x86)\GnuWin32\bin\diff"'
+                let cmd = '"' . 'C:\cygwin64\bin\diff"'
             else
                 let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
             endif
         else
-            let cmd = 'C:\Program Files (x86)\GnuWin32\bin\diff'
+            let cmd = 'C:\cygwin64\bin\diff'
         endif
         silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3
         if exists('l:shxq_sav')
