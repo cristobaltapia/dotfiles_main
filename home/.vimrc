@@ -3,6 +3,16 @@
 " Author: Cristóbal Tapia Camú
 "
 " Load vim-plug
+if has('nvim')
+    echo 'Test'
+    if empty(glob("~/vimfiles/autoload/plug.vim"))
+        execute "!curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+    endif
+    echo 'Test'
+    set rtp^=~/.vim/
+end
+
+
 if has('win32')
     " this does not work, but I leave it here just to remember what I need to do
     if empty(glob("~/vimfiles/autoload/plug.vim"))
@@ -275,6 +285,9 @@ let NERDTreeIgnore = ['\.pyc$', '\.pyo$']
 if has('gui_running')
     colorscheme space-vim-dark
     "colorscheme molokai
+    "
+elseif has('nvim')
+    colorscheme space-vim-dark
 endif
 "----------------------------------------------------------------------
 
@@ -445,7 +458,7 @@ let g:ale_linters = {
 
 " Run linters on save
 let g:ale_lint_on_save = 1
-let g:ale_lint_on_text_changed = 1
+let g:ale_lint_on_text_changed = 0
 " if you don't want linters to run on opening a file
 let g:ale_lint_on_enter = 1
 "----------------------------------------------------------------------
@@ -609,3 +622,7 @@ function! s:Repl()
     return "p@=RestoreRegister()\<cr>"
 endfunction
 vmap <silent> <expr> p <sid>Repl()
+
+" Table-mode
+let g:table_mode_corner_corner='+'
+let g:table_mode_header_fillchar='='
