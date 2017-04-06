@@ -30,20 +30,24 @@ endif
 "----------------------------------------------------------------------
 call plug#begin('~/.vim/plugged')
 
-" Neocomplete
+" Neocomplete + snippets
 Plug 'Shougo/neocomplete.vim'
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
+Plug 'honza/vim-snippets'
+Plug 'cristobaltapia/MySnippets'
 " Nvim comlpetion manager
 "Plug 'roxma/nvim-completion-manager'
 "Plug 'Shougo/neosnippet'
 "Plug 'Shougo/neosnippet-snippets'
 " Rainbow parentheses
-Plug 'kien/rainbow_parentheses.vim'
+Plug 'luochen1990/rainbow', { 'for': 'python' }
 " vim-Grammarous
 Plug 'rhysd/vim-grammarous'
 "SuperTab
 Plug 'ervandew/supertab'
 " Track the engine.
-Plug 'SirVer/ultisnips'
+"Plug 'SirVer/ultisnips'
 " Virtualenv support
 Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
 " Pydoc
@@ -82,6 +86,7 @@ Plug 'MatlabFilesEdition'
 Plug 'cjrh/vim-conda'
 " Latex
 Plug 'vim-latex/vim-latex', {'for': 'tex' }
+"Plug 'vim-latex/vim-latex'
 " Rename. Rename a buffer within Vim and on disk
 Plug 'Rename'
 " Search results counter
@@ -106,8 +111,8 @@ Plug 'w0rp/ale', { 'for': 'python' }
 Plug 'skywind3000/asyncrun.vim'
 " Space-vim-dark colorscheme
 Plug 'liuchengxu/space-vim-dark'
-" tables with vim
-Plug 'dhruvasagar/vim-table-mode'
+" Vim-Jupyter integration
+"Plug 'ivanov/vim-ipython'
 " Plugins that will only work under linux
 if has("unix")
     " Codi, an interactive scratchpad for vim
@@ -267,11 +272,31 @@ let OmniCpp_MayCompleteScope = 0
 let OmniCpp_SelectFirstItem = 0
 "----------------------------------------------------------------------
 "
-" Rainbow Parentheses options
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
+" Activate Rainbow parentheses
+let g:rainbow_active = 1
+let g:rainbow_conf = {
+\   'guifgs': ['darkorange3', 'seagreen3', 'royalblue3', 'firebrick'],
+\   'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+\   'operators': '_,_',
+\   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+\   'separately': {
+\       '*': {},
+\       'tex': {
+\           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+\       },
+\       'lisp': {
+\           'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+\       },
+\       'vim': {
+\           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+\       },
+\       'html': {
+\           'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+\       },
+\       'css': 0,
+\   }
+\}
+"----------------------------------------------------------------------
 
 "----------------------------------------------------------------------
 " NERDTree (better file browser) toggle
@@ -363,19 +388,39 @@ else
 endif
 
 "----------------------------------------------------------------------
-" Ultisnips
+" Noesnippet
 "----------------------------------------------------------------------
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-"let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsExpandTrigger="<c-k>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" Plugin key-mappings.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <C-b> <Plug>(neosnippet_expand_or_jump)
+smap <C-b> <Plug>(neosnippet_expand_or_jump)
+xmap <C-k> <Plug>(neosnippet_expand_target)
 
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
+" SuperTab like snippets behavior.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+"imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
-" define own sippets directorie
-let g:UltiSnipsSnippetDirectories=["UltiSnips", "MySnippets"]
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
+
+" disable default snippets
+let g:neosnippet#disable_runtime_snippets = {
+            \'python' : 1,
+            \}
+
+
+let g:neosnippet#snippets_directory=['~/.vim/plugged/vim-snippets/snippets',
+            \'~/.vim/plugged/MySnippets/'
+            \]
 
 
 "----------------------------------------------------------------------
@@ -443,7 +488,31 @@ vnoremap <space> zf
 set breakindent showbreak=..
 set linebreak
 "----------------------------------------------------------------------
+"
+" -------------------------------------------------------------
+" Python-mode
+" -------------------------------------------------------------
+" Deactivate everything except the syntax
+let g:pymode_rope = 0
+"" Documentation
+let g:pymode_doc = 0
+" Linting
+let g:pymode_lint = 0
+" Support virtualenv
+let g:pymode_virtualenv = 0
+" breakpoints plugin
+let g:pymode_breakpoint = 0
+" folding
+let g:pymode_folding = 0
+" syntax highlighting
+let g:pymode_syntax = 1
+let g:pymode_syntax_all = 1
+" let g:pymode_syntax_indent_errors = g:pymode_syntax_all
+" let g:pymode_syntax_space_errors = g:pymode_syntax_all
+"
+" -------------------------------------------------------------
 
+"
 "----------------------------------------------------------------------
 "
 "----------------------------------------------------------------------
@@ -458,8 +527,8 @@ let g:ale_linters = {
 
 " Run linters on save
 let g:ale_lint_on_save = 1
-let g:ale_lint_on_text_changed = 0
-" if you don't want linters to run on opening a file
+let g:ale_lint_on_text_changed = 1
+" linters run on opening a file
 let g:ale_lint_on_enter = 1
 "----------------------------------------------------------------------
 
@@ -522,34 +591,6 @@ if has('win32')
     endfunction
 endif
 
-" -------------------------------------------------------------
-" Python-mode
-" -------------------------------------------------------------
-" Deactivate everything except the syntax
-let g:pymode_rope = 0
-"" Documentation
-let g:pymode_doc = 0
-" Linting
-let g:pymode_lint = 0
-" Support virtualenv
-let g:pymode_virtualenv = 0
-" breakpoints plugin
-let g:pymode_breakpoint = 0
-" folding
-let g:pymode_folding = 0
-" syntax highlighting
-" let g:pymode_syntax = 1
-let g:pymode_syntax_all = 1
-" let g:pymode_syntax_indent_errors = g:pymode_syntax_all
-" let g:pymode_syntax_space_errors = g:pymode_syntax_all
-
-
-" -------------------------------------------------------------
-
-"
-" Don't autofold code
-"let g:pymode_folding = 0
-"
 " Pydoc
 let g:pydoc_cmd = 'python -m pydoc'
 
@@ -562,9 +603,6 @@ let g:pydoc_window_lines=0.5
 let g:pydoc_highlight=1
 "
 " Latex-Suite Template folder
-let g:Tex_CustomTemplateDirectory = '~/templates'
-let g:Tex_GotoError=0
-
 " Edit commands for the navifation in help documents
 nnoremap <C-9> :<C-]>
 
@@ -622,7 +660,3 @@ function! s:Repl()
     return "p@=RestoreRegister()\<cr>"
 endfunction
 vmap <silent> <expr> p <sid>Repl()
-
-" Table-mode
-let g:table_mode_corner_corner='+'
-let g:table_mode_header_fillchar='='
