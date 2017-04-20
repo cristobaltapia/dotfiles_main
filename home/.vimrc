@@ -36,18 +36,12 @@ Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'honza/vim-snippets'
 Plug 'cristobaltapia/MySnippets'
-" Nvim comlpetion manager
-"Plug 'roxma/nvim-completion-manager'
-"Plug 'Shougo/neosnippet'
-"Plug 'Shougo/neosnippet-snippets'
 " Rainbow parentheses
 Plug 'luochen1990/rainbow', { 'for': 'python' }
 " vim-Grammarous
 Plug 'rhysd/vim-grammarous'
 "SuperTab
 Plug 'ervandew/supertab'
-" Track the engine.
-"Plug 'SirVer/ultisnips'
 " Virtualenv support
 Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
 " Pydoc
@@ -132,6 +126,7 @@ nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 " ...and to Source Vimrc
 nnoremap <leader>sv :source $MYVIMRC<cr>
 "----------------------------------------------------------------------
+
 " In windows, solve the problem of the repositioning of the gui window
 if has('win32')
     set guioptions=egrt
