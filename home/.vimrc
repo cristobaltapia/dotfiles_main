@@ -343,13 +343,12 @@ set cursorline
 "----------------------------------------------------------------------
 " Powerline configurations
 "----------------------------------------------------------------------
-let g:Powerline_symbols = 'fancy'
-
-let g:airline_powerline_fonts=1
+"let g:Powerline_symbols = 'fancy'
+let g:airline_powerline_fonts = 1
 if has('win32')
     set guifont=Source\ Code\ Pro\ for\ Powerline:h10
 else
-    set guifont=Source\ Code\ Pro\ for\ Powerline
+    set guifont=Noto\ Mono\ for\ Powerline
 endif
 "----------------------------------------------------------------------
 
