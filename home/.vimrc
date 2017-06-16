@@ -75,18 +75,18 @@ Plug 'michaeljsmith/vim-indent-object'
 " Fix white spaces at end of lines
 Plug 'bronson/vim-trailing-whitespace'
 " Matlab
-Plug 'MatlabFilesEdition'
+Plug 'vim-scripts/MatlabFilesEdition'
 " Conda Environment
 Plug 'cjrh/vim-conda'
 " Latex
 Plug 'vim-latex/vim-latex', {'for': 'tex' }
 "Plug 'vim-latex/vim-latex'
 " Rename. Rename a buffer within Vim and on disk
-Plug 'Rename'
+Plug 'vim-scripts/Rename'
 " Search results counter
-Plug 'IndexedSearch'
+Plug 'vim-scripts/IndexedSearch'
 " XML/HTML tags navigation
-Plug 'matchit.zip'
+Plug 'vim-scripts/matchit.zip'
 " Numbers (relative numbers)
 Plug 'myusuf3/numbers.vim'
 " Ctrl P
