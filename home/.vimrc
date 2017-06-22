@@ -126,6 +126,7 @@ nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 " ...and to Source Vimrc
 nnoremap <leader>sv :source $MYVIMRC<cr>
 "----------------------------------------------------------------------
+"
 
 " In windows, solve the problem of the repositioning of the gui window
 if has('win32')
@@ -403,7 +404,7 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 
 " For conceal markers.
 if has('conceal')
-  set conceallevel=2 concealcursor=niv
+  set conceallevel=0 concealcursor=niv
 endif
 
 " disable default snippets
@@ -654,3 +655,6 @@ function! s:Repl()
     return "p@=RestoreRegister()\<cr>"
 endfunction
 vmap <silent> <expr> p <sid>Repl()
+"
+" Colors of the line numbers
+highlight LineNr guifg=#aa9911
