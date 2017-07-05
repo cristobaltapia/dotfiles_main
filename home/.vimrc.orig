@@ -1,4 +1,4 @@
-"
+" 
 " Vim configuration file
 " Author: Cristóbal Tapia Camú
 "
@@ -30,24 +30,28 @@ endif
 "----------------------------------------------------------------------
 call plug#begin('~/.vim/plugged')
 
-" Track the engine.
-Plug 'SirVer/ultisnips'
-" Snippets are separated from the engine. Add this if you want them:
-Plug 'honza/vim-snippets'
 " Neocomplete + snippets
 Plug 'Shougo/neocomplete.vim'
-" Own snippets
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
+Plug 'honza/vim-snippets'
 Plug 'cristobaltapia/MySnippets'
+" Nvim comlpetion manager
+"Plug 'roxma/nvim-completion-manager'
 " Rainbow parentheses
 Plug 'luochen1990/rainbow', { 'for': 'python' }
 " vim-Grammarous
 Plug 'rhysd/vim-grammarous'
 "SuperTab
 Plug 'ervandew/supertab'
+" Track the engine.
+"Plug 'SirVer/ultisnips'
 " Virtualenv support
 Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
 " Pydoc
 Plug 'fs111/pydoc.vim', { 'for': 'python' }
+" Snippets are separated from the engine. Add this if you want them:
+Plug 'honza/vim-snippets'
 " Vim Easy Align
 Plug 'junegunn/vim-easy-align'
 " fugitive.vim: a Git wrappe
@@ -75,18 +79,17 @@ Plug 'michaeljsmith/vim-indent-object'
 " Fix white spaces at end of lines
 Plug 'bronson/vim-trailing-whitespace'
 " Matlab
-Plug 'vim-scripts/MatlabFilesEdition'
+Plug 'MatlabFilesEdition'
 " Conda Environment
 Plug 'cjrh/vim-conda'
 " Latex
 Plug 'vim-latex/vim-latex', {'for': 'tex' }
-"Plug 'vim-latex/vim-latex'
 " Rename. Rename a buffer within Vim and on disk
-Plug 'vim-scripts/Rename'
+Plug 'Rename'
 " Search results counter
-Plug 'vim-scripts/IndexedSearch'
+Plug 'IndexedSearch'
 " XML/HTML tags navigation
-Plug 'vim-scripts/matchit.zip'
+Plug 'matchit.zip'
 " Numbers (relative numbers)
 Plug 'myusuf3/numbers.vim'
 " Ctrl P
@@ -103,20 +106,16 @@ Plug 'chriskempson/base16-vim'
 Plug 'w0rp/ale', { 'for': 'python' }
 " Asyncrun
 Plug 'skywind3000/asyncrun.vim'
-" Dispatch
-Plug 'tpope/vim-dispatch'
 " Space-vim-dark colorscheme
 Plug 'liuchengxu/space-vim-dark'
-" Vim-Jupyter integration
-"Plug 'ivanov/vim-ipython'
+" tables with vim
+Plug 'dhruvasagar/vim-table-mode'
 " Plugins that will only work under linux
 if has("unix")
     " Codi, an interactive scratchpad for vim
     Plug 'metakirby5/codi.vim', { 'for': 'python' }
     " YouCompleteMe
-    Plug 'Valloric/YouCompleteMe'
-    " Game code-break
-    Plug 'johngrib/vim-game-code-break'
+    "Plug 'Valloric/YouCompleteMe'
 endif
 
 call plug#end()
@@ -130,8 +129,6 @@ nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 " ...and to Source Vimrc
 nnoremap <leader>sv :source $MYVIMRC<cr>
 "----------------------------------------------------------------------
-"
-
 " In windows, solve the problem of the repositioning of the gui window
 if has('win32')
     set guioptions=egrt
@@ -240,6 +237,7 @@ highlight Pmenu ctermbg=4 guibg=LightGray
 " highlight PmenuSel ctermbg=8 guibg=DarkBlue guifg=Red
 " highlight PmenuSbar ctermbg=7 guibg=DarkGray
 " highlight PmenuThumb guibg=Black
+<<<<<<< HEAD
 " use global scope search
 let OmniCpp_GlobalScopeSearch = 1
 " 0 = namespaces disabled
@@ -270,7 +268,7 @@ let OmniCpp_MayCompleteScope = 0
 " When 'completeopt' does not contain "longest", Vim automatically select the first entry of the popup menu. You can
 " change this behaviour with the OmniCpp_SelectFirstItem option.
 let OmniCpp_SelectFirstItem = 0
-"----------------------------------------------------------------------
+=======
 "
 " Activate Rainbow parentheses
 let g:rainbow_active = 1
@@ -296,7 +294,14 @@ let g:rainbow_conf = {
 \       'css': 0,
 \   }
 \}
+>>>>>>> 788aced03ef95244f560505992be5e036a753435
 "----------------------------------------------------------------------
+"
+" Rainbow Parentheses options
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
 
 "----------------------------------------------------------------------
 " NERDTree (better file browser) toggle
@@ -343,12 +348,13 @@ set cursorline
 "----------------------------------------------------------------------
 " Powerline configurations
 "----------------------------------------------------------------------
-"let g:Powerline_symbols = 'fancy'
-let g:airline_powerline_fonts = 1
+let g:Powerline_symbols = 'fancy'
+
+let g:airline_powerline_fonts=1
 if has('win32')
     set guifont=Source\ Code\ Pro\ for\ Powerline:h10
 else
-    set guifont=Noto\ Mono\ for\ Powerline
+    set guifont=Source\ Code\ Pro\ for\ Powerline
 endif
 "----------------------------------------------------------------------
 
@@ -357,11 +363,6 @@ endif
 let g:airline#extensions#tabline#enabled = 1
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
-" Enable virtualenv integration
-let g:airline#extensions#virtualenv#enabled = 1
-
-" Cooperation with Asyncrun
-let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
 
 syntax on
 filetype on
@@ -374,24 +375,12 @@ if has('win32')
 endif
 "----------------------------------------------------------------------
 
-" Neocomplete configuration
+" Use neocomplete.
 "let g:neocomplete#enable_at_startup = 1
 " Use smartcase.
 let g:neocomplete#enable_smart_case = 1
 " Set minimum syntax keyword length.
 let g:neocomplete#sources#syntax#min_keyword_length = 3
-"
-" Ultisnip configuration
-let g:UltiSnipsExpandTrigger="<c-k>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-let g:UltiSnipsSnippetDirectories=[
-            \'~/.vim/plugged/MySnippets/'
-            \'~/.vim/plugged/vim-snippets/snippets',
-            \'Ultisnips',
-            \]
-" let g:UltiSnipsSnippetDirectories='~/.vim/plugged/MySnippets/'
 
 " Visual selection automatically copies to the clipboard
 if has('win32')
@@ -404,30 +393,47 @@ else
 endif
 
 "----------------------------------------------------------------------
-" YouCompleteMe
-"----------------------------------------------------------------------
-let g:ycm_python_binary_path = 'python'
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
-let g:ycm_min_num_of_chars_for_completion = 3
-let g:ycm_complete_in_strings = 1
-let g:ycm_seed_identifiers_with_syntax = 1
-let g:ycm_key_invoke_completion = '<C-Space>'
-let g:ycm_filepath_completion_use_working_dir = 0
-let g:ycm_disable_for_files_larger_than_kb = 1000
-
-"----------------------------------------------------------------------
 " Noesnippet
 "----------------------------------------------------------------------
-" disable default snippets
-" let g:neosnippet#disable_runtime_snippets = {
-"             \'python' : 1,
-"             \}
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+<<<<<<< HEAD
+"let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsExpandTrigger="<c-k>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+=======
+" Plugin key-mappings.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <C-b> <Plug>(neosnippet_expand_or_jump)
+smap <C-b> <Plug>(neosnippet_expand_or_jump)
+xmap <C-k> <Plug>(neosnippet_expand_target)
 
+" SuperTab like snippets behavior.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+"imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 " For conceal markers.
 if has('conceal')
-  set conceallevel=0 concealcursor=niv
+  set conceallevel=2 concealcursor=niv
 endif
+
+" disable default snippets
+let g:neosnippet#disable_runtime_snippets = {
+            \'python' : 1,
+            \}
+>>>>>>> 788aced03ef95244f560505992be5e036a753435
+
+
+let g:neosnippet#snippets_directory=['~/.vim/plugged/vim-snippets/snippets',
+            \'~/.vim/plugged/MySnippets/'
+            \]
+
 
 "----------------------------------------------------------------------
 " Configuration for vim-easy-align
@@ -494,6 +500,8 @@ vnoremap <space> zf
 set breakindent showbreak=..
 set linebreak
 "----------------------------------------------------------------------
+<<<<<<< HEAD
+=======
 "
 " -------------------------------------------------------------
 " Python-mode
@@ -516,9 +524,12 @@ let g:pymode_syntax_all = 1
 " let g:pymode_syntax_indent_errors = g:pymode_syntax_all
 " let g:pymode_syntax_space_errors = g:pymode_syntax_all
 "
-" -------------------------------------------------------------
-
+" Don't autofold code
+"let g:pymode_folding = 0
 "
+" -------------------------------------------------------------
+>>>>>>> 788aced03ef95244f560505992be5e036a753435
+
 "----------------------------------------------------------------------
 "
 "----------------------------------------------------------------------
@@ -534,7 +545,7 @@ let g:ale_linters = {
 " Run linters on save
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 0
-" linters run on opening a file
+" if you don't want linters to run on opening a file
 let g:ale_lint_on_enter = 1
 "----------------------------------------------------------------------
 
@@ -583,12 +594,12 @@ if has('win32')
                     let l:shxq_sav = ''
                     set shellxquote&
                 endif
-                let cmd = '"' . 'C:\Program Files (x86)\GnuWin32\bin\diff"'
+                let cmd = '"' . 'C:\cygwin64\bin\diff"'
             else
                 let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
             endif
         else
-            let cmd = 'C:\Program Files (x86)\GnuWin32\bin\diff'
+            let cmd = 'C:\cygwin64\bin\diff'
         endif
         silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3
         if exists('l:shxq_sav')
@@ -597,6 +608,34 @@ if has('win32')
     endfunction
 endif
 
+" -------------------------------------------------------------
+" Python-mode
+" -------------------------------------------------------------
+" Deactivate everything except the syntax
+let g:pymode_rope = 0
+"" Documentation
+let g:pymode_doc = 0
+" Linting
+let g:pymode_lint = 0
+" Support virtualenv
+let g:pymode_virtualenv = 0
+" breakpoints plugin
+let g:pymode_breakpoint = 0
+" folding
+let g:pymode_folding = 0
+" syntax highlighting
+" let g:pymode_syntax = 1
+let g:pymode_syntax_all = 1
+" let g:pymode_syntax_indent_errors = g:pymode_syntax_all
+" let g:pymode_syntax_space_errors = g:pymode_syntax_all
+
+
+" -------------------------------------------------------------
+
+"
+" Don't autofold code
+"let g:pymode_folding = 0
+"
 " Pydoc
 let g:pydoc_cmd = 'python -m pydoc'
 
@@ -609,6 +648,9 @@ let g:pydoc_window_lines=0.5
 let g:pydoc_highlight=1
 "
 " Latex-Suite Template folder
+let g:Tex_CustomTemplateDirectory = '~/templates'
+let g:Tex_GotoError=0
+
 " Edit commands for the navifation in help documents
 nnoremap <C-9> :<C-]>
 
@@ -666,6 +708,7 @@ function! s:Repl()
     return "p@=RestoreRegister()\<cr>"
 endfunction
 vmap <silent> <expr> p <sid>Repl()
-"
-" Colors of the line numbers
-highlight LineNr guifg=#aa9911
+
+" Table-mode
+let g:table_mode_corner_corner='+'
+let g:table_mode_header_fillchar='='
