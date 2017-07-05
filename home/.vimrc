@@ -353,6 +353,9 @@ let g:airline#extensions#tabline#enabled = 1
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
 
+" Cooperation with Asyncrun
+let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
+
 syntax on
 filetype on
 let python_highlight_all=1
@@ -521,7 +524,8 @@ let g:ale_linters = {
 
 " Run linters on save
 let g:ale_lint_on_save = 1
-let g:ale_lint_on_text_changed = 1
+let g:ale_lint_on_text_changed = 0
+
 " linters run on opening a file
 let g:ale_lint_on_enter = 1
 "----------------------------------------------------------------------
@@ -596,7 +600,6 @@ let g:pydoc_window_lines=0.5
 " Highlight search term
 let g:pydoc_highlight=1
 "
-" Latex-Suite Template folder
 " Edit commands for the navifation in help documents
 nnoremap <C-9> :<C-]>
 
@@ -654,3 +657,17 @@ function! s:Repl()
     return "p@=RestoreRegister()\<cr>"
 endfunction
 vmap <silent> <expr> p <sid>Repl()
+
+"----------------------------------------------------------------------
+" Fugitive
+"----------------------------------------------------------------------
+" command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
+"
+" if exists(':Make') == 2
+"     noautocmd Make
+" else
+"     silent noautocmd make!
+"     redraw!
+"     return 'call fugitive#cwindow()'
+" endif
+"----------------------------------------------------------------------

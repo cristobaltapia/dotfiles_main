@@ -52,3 +52,7 @@ _cli_bash_autocomplete() {
 
 complete -F _cli_bash_autocomplete $PROG
 
+
+if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+        source /etc/profile.d/vte.sh
+fi
