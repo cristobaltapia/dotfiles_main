@@ -1,4 +1,4 @@
-" 
+"
 " Vim configuration file
 " Author: Cristóbal Tapia Camú
 "
@@ -30,11 +30,13 @@ endif
 "----------------------------------------------------------------------
 call plug#begin('~/.vim/plugged')
 
+" Track the engine.
+Plug 'SirVer/ultisnips'
+" Snippets are separated from the engine. Add this if you want them:
+Plug 'honza/vim-snippets'
 " Neocomplete + snippets
 Plug 'Shougo/neocomplete.vim'
-Plug 'Shougo/neosnippet'
-Plug 'Shougo/neosnippet-snippets'
-Plug 'honza/vim-snippets'
+" Own snippets
 Plug 'cristobaltapia/MySnippets'
 " Rainbow parentheses
 Plug 'luochen1990/rainbow', { 'for': 'python' }
@@ -46,8 +48,6 @@ Plug 'ervandew/supertab'
 Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
 " Pydoc
 Plug 'fs111/pydoc.vim', { 'for': 'python' }
-" Snippets are separated from the engine. Add this if you want them:
-Plug 'honza/vim-snippets'
 " Vim Easy Align
 Plug 'junegunn/vim-easy-align'
 " fugitive.vim: a Git wrappe
@@ -103,6 +103,8 @@ Plug 'chriskempson/base16-vim'
 Plug 'w0rp/ale', { 'for': 'python' }
 " Asyncrun
 Plug 'skywind3000/asyncrun.vim'
+" Dispatch
+Plug 'tpope/vim-dispatch'
 " Space-vim-dark colorscheme
 Plug 'liuchengxu/space-vim-dark'
 " Vim-Jupyter integration
@@ -112,7 +114,9 @@ if has("unix")
     " Codi, an interactive scratchpad for vim
     Plug 'metakirby5/codi.vim', { 'for': 'python' }
     " YouCompleteMe
-    "Plug 'Valloric/YouCompleteMe'
+    Plug 'Valloric/YouCompleteMe'
+    " Game code-break
+    Plug 'johngrib/vim-game-code-break'
 endif
 
 call plug#end()
@@ -353,6 +357,8 @@ endif
 let g:airline#extensions#tabline#enabled = 1
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
+" Enable virtualenv integration
+let g:airline#extensions#virtualenv#enabled = 1
 
 syntax on
 filetype on
@@ -365,12 +371,24 @@ if has('win32')
 endif
 "----------------------------------------------------------------------
 
-" Use neocomplete.
+" Neocomplete configuration
 "let g:neocomplete#enable_at_startup = 1
 " Use smartcase.
 let g:neocomplete#enable_smart_case = 1
 " Set minimum syntax keyword length.
 let g:neocomplete#sources#syntax#min_keyword_length = 3
+"
+" Ultisnip configuration
+let g:UltiSnipsExpandTrigger="<c-k>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+let g:UltiSnipsSnippetDirectories=[
+            \'~/.vim/plugged/MySnippets/'
+            \'~/.vim/plugged/vim-snippets/snippets',
+            \'Ultisnips',
+            \]
+" let g:UltiSnipsSnippetDirectories='~/.vim/plugged/MySnippets/'
 
 " Visual selection automatically copies to the clipboard
 if has('win32')
@@ -383,40 +401,30 @@ else
 endif
 
 "----------------------------------------------------------------------
+" YouCompleteMe
+"----------------------------------------------------------------------
+let g:ycm_python_binary_path = 'python'
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+let g:ycm_min_num_of_chars_for_completion = 3
+let g:ycm_complete_in_strings = 1
+let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_key_invoke_completion = '<C-Space>'
+let g:ycm_filepath_completion_use_working_dir = 0
+let g:ycm_disable_for_files_larger_than_kb = 1000
+
+"----------------------------------------------------------------------
 " Noesnippet
 "----------------------------------------------------------------------
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-" Plugin key-mappings.
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-imap <C-b> <Plug>(neosnippet_expand_or_jump)
-smap <C-b> <Plug>(neosnippet_expand_or_jump)
-xmap <C-k> <Plug>(neosnippet_expand_target)
+" disable default snippets
+" let g:neosnippet#disable_runtime_snippets = {
+"             \'python' : 1,
+"             \}
 
-" SuperTab like snippets behavior.
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-imap <C-k> <Plug>(neosnippet_expand_or_jump)
-"imap <expr><TAB>
-" \ pumvisible() ? "\<C-n>" :
-" \ neosnippet#expandable_or_jumpable() ?
-" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 " For conceal markers.
 if has('conceal')
   set conceallevel=0 concealcursor=niv
 endif
-
-" disable default snippets
-let g:neosnippet#disable_runtime_snippets = {
-            \'python' : 1,
-            \}
-
-
-let g:neosnippet#snippets_directory=['~/.vim/plugged/vim-snippets/snippets',
-            \'~/.vim/plugged/MySnippets/'
-            \]
-
 
 "----------------------------------------------------------------------
 " Configuration for vim-easy-align
@@ -522,7 +530,7 @@ let g:ale_linters = {
 
 " Run linters on save
 let g:ale_lint_on_save = 1
-let g:ale_lint_on_text_changed = 1
+let g:ale_lint_on_text_changed = 0
 " linters run on opening a file
 let g:ale_lint_on_enter = 1
 "----------------------------------------------------------------------
