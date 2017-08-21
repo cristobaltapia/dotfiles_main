@@ -29,7 +29,7 @@ endif
 
 "----------------------------------------------------------------------
 call plug#begin('~/.vim/plugged')
-
+"
 " Track the engine.
 Plug 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
@@ -87,8 +87,8 @@ Plug 'vim-scripts/Rename'
 Plug 'vim-scripts/IndexedSearch'
 " XML/HTML tags navigation
 Plug 'vim-scripts/matchit.zip'
-" Numbers (relative numbers)
-Plug 'myusuf3/numbers.vim'
+" " Numbers (relative numbers)
+" Plug 'myusuf3/numbers.vim'
 " Ctrl P
 Plug 'kien/ctrlp.vim', { 'for': 'python' }
 " Python mode
@@ -107,6 +107,8 @@ Plug 'skywind3000/asyncrun.vim'
 Plug 'tpope/vim-dispatch'
 " Space-vim-dark colorscheme
 Plug 'liuchengxu/space-vim-dark'
+" vim-jason: a better json
+Plug 'elzr/vim-json', {'for': 'json'}
 " Vim-Jupyter integration
 "Plug 'ivanov/vim-ipython'
 " Plugins that will only work under linux
@@ -336,8 +338,10 @@ set nowritebackup
 set encoding=utf-8
 " set the default folding method
 set foldmethod=marker
-" Highlight the current line
-set cursorline
+" " Highlight the current line
+" set cursorline
+" set ttyfast
+" set regexpengine=1
 "----------------------------------------------------------------------
 
 "----------------------------------------------------------------------
@@ -666,3 +670,14 @@ vmap <silent> <expr> p <sid>Repl()
 "
 " Colors of the line numbers
 highlight LineNr guifg=#aa9911
+
+" Fix problem with detected file changes
+function! ProcessFileChangedShell()
+        if v:fcs_reason == 'mode' || v:fcs_reason == 'time'
+                let v:fcs_choice = ''
+        else
+                let v:fcs_choice = 'ask'
+        endif
+endfunction
+
+autocmd FileChangedShell <buffer> call ProcessFileChangedShell()

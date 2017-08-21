@@ -27,10 +27,14 @@ let g:Tex_SmartKeyBS = 0
 let g:Tex_SmartKeyDot = 0
 let g:Tex_GotoError = 0
 let g:Tex_Diacritics = 0
+let g:Tex_UsePython = 1
 " Set smart quote
 let g:Tex_SmartKeyQuote = 1
 let g:Tex_SmartQuoteOpen = "``"
 let g:Tex_SmartQuoteClose = "''"
+
+let g:Tex_Folding = 1
+let g:Tex_AutoFolding = 1
 " Define Custom template folder
 let g:Tex_CustomTemplateDirectory = '~/Templates/latex'
 let g:Imap_FreezeImap = 0
