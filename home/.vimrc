@@ -334,7 +334,7 @@ set encoding=utf-8
 " set the default folding method
 set foldmethod=marker
 " " Highlight the current line
-" set cursorline
+set cursorline
 " set ttyfast
 " set regexpengine=1
 "----------------------------------------------------------------------
@@ -346,7 +346,7 @@ set foldmethod=marker
 let g:airline_powerline_fonts = 1
 if has('win32')
     set guifont=Source\ Code\ Pro\ for\ Powerline:h10
-else
+elseif has('vim')
     set guifont=Noto\ Mono\ for\ Powerline
 endif
 "----------------------------------------------------------------------
@@ -609,7 +609,7 @@ let g:pydoc_highlight=1
 "
 " Latex-Suite Template folder
 " Edit commands for the navifation in help documents
-nnoremap <C-9> :<C-]>
+nnoremap <C-9> <C-]>
 
 " Suppress message of vim-conda
 let g:conda_startup_msg_suppress = 1

@@ -4,10 +4,6 @@
 " nmap <F5> :!python "%:p" <CR>
 "
 " cd %:p:h
-"set guioptions-=l
-"set guioptions-=r
-"set guioptions-=R
-"set guioptions-=L
 
 set expandtab
 "set textwidth=79

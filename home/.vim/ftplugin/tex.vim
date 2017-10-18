@@ -1,10 +1,6 @@
 imap <buffer> <M-o> <Plug>Tex_InsertItemOnThisLine
 let g:Tex_GotoError=0
 
-"set tabstop=2
-"set softtabstop=2
-"set shiftwidth=2
-
 set grepprg=grep\ -nH\ $*
 let g:Imap_UsePlaceHolders = 1
 imap <buffer> <M-o> <Plug>Tex_InsertItemOnThisLine
