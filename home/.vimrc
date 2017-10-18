@@ -89,6 +89,8 @@ Plug 'python-mode/python-mode', { 'for': 'python' }
 Plug 'nathanaelkane/vim-indent-guides'
 " Solirized colorscheme
 Plug 'altercation/vim-colors-solarized'
+" Oceanic-next colorscheme
+Plug 'mhartington/oceanic-next'
 " Base16 colorscheme
 Plug 'chriskempson/base16-vim'
 " ALE
@@ -312,6 +314,11 @@ if has('gui_running')
 elseif has('nvim')
     colorscheme space-vim-dark
 endif
+
+if (has("termguicolors"))
+ set termguicolors
+endif
+
 "----------------------------------------------------------------------
 
 "----------------------------------------------------------------------
