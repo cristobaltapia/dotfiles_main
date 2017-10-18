@@ -88,7 +88,7 @@ Plug 'vim-scripts/IndexedSearch'
 " XML/HTML tags navigation
 Plug 'vim-scripts/matchit.zip'
 " " Numbers (relative numbers)
-" Plug 'myusuf3/numbers.vim'
+Plug 'myusuf3/numbers.vim'
 " Ctrl P
 Plug 'kien/ctrlp.vim', { 'for': 'python' }
 " Python mode
@@ -179,6 +179,10 @@ augroup file_type
     autocmd FileType tex setlocal shiftwidth=2
                 \ tabstop=2
                 \ softtabstop=2
+                \ expandtab
+    autocmd FileType fortran setlocal shiftwidth=3
+                \ tabstop=3
+                \ softtabstop=3
                 \ expandtab
 augroup END
 
@@ -412,7 +416,7 @@ endif
 "----------------------------------------------------------------------
 let g:ycm_python_binary_path = 'python'
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
-let g:ycm_min_num_of_chars_for_completion = 0
+let g:ycm_min_num_of_chars_for_completion = 1
 let g:ycm_complete_in_strings = 1
 let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_key_invoke_completion = '<C-Space>'
