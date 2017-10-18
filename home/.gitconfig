@@ -1,3 +1,5 @@
 [user]
 	email = crtapia@gmail.com
 	name = Cristóbal Tapia Camú
+[core]
+    editor = "nvim"
