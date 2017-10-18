@@ -663,7 +663,7 @@ endfunction
 cd %:p:h
 "----------------------------------------------------------------------
 "
-" vp doesn't replace paste buffer
+" vp ddoesn't replace paste buffer
 function! RestoreRegister()
     let @" = s:restore_reg
     return ''
