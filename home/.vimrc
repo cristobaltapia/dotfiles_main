@@ -3,16 +3,6 @@
 " Author: Cristóbal Tapia Camú
 "
 " Load vim-plug
-if has('nvim')
-    echo 'Test'
-    if empty(glob("~/vimfiles/autoload/plug.vim"))
-        execute "!curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-    endif
-    echo 'Test'
-    set rtp^=~/.vim/
-end
-
-
 if has('win32')
     " this does not work, but I leave it here just to remember what I need to do
     if empty(glob("~/vimfiles/autoload/plug.vim"))
@@ -20,11 +10,12 @@ if has('win32')
         execute "$uri = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'"
         execute '(New-Object Net.WebClient).DownloadFile($uri, $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath("~\vimfiles\autoload\plug.vim"))'
     endif
-else
+endif
+
+if has('vim')
     if empty(glob("~/.vim/autoload/plug.vim"))
         execute '!curl -fLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim'
     endif
-
 endif
 
 "----------------------------------------------------------------------
