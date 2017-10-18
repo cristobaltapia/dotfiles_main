@@ -36,7 +36,8 @@ Plug 'rhysd/vim-grammarous'
 "SuperTab
 Plug 'ervandew/supertab'
 " Virtualenv support
-Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
+" Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
+Plug 'tpict/vim-virtualenv', { 'for': 'python', 'commit': 'c9a52e5' }
 " Pydoc
 Plug 'fs111/pydoc.vim', { 'for': 'python' }
 " Vim Easy Align
