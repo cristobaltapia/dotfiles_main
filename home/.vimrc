@@ -25,8 +25,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
 Plug 'honza/vim-snippets'
-" Neocomplete + snippets
-Plug 'Shougo/neocomplete.vim'
 " Own snippets
 Plug 'cristobaltapia/MySnippets'
 " Rainbow parentheses
@@ -110,9 +108,18 @@ if has("unix")
     " Codi, an interactive scratchpad for vim
     Plug 'metakirby5/codi.vim', { 'for': 'python' }
     " YouCompleteMe
-    Plug 'Valloric/YouCompleteMe'
+    " Plug 'Valloric/YouCompleteMe'
     " Game code-break
     Plug 'johngrib/vim-game-code-break'
+endif
+
+if  has("vim")
+    " Neocomplete + snippets
+    Plug 'Shougo/neocomplete.vim'
+
+elseif has("nvim")
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'zchee/deoplete-jedi'
 endif
 
 call plug#end()
@@ -413,14 +420,30 @@ endif
 "----------------------------------------------------------------------
 " YouCompleteMe
 "----------------------------------------------------------------------
-let g:ycm_python_binary_path = 'python'
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
-let g:ycm_min_num_of_chars_for_completion = 1
-let g:ycm_complete_in_strings = 1
-let g:ycm_seed_identifiers_with_syntax = 1
-let g:ycm_key_invoke_completion = '<C-Space>'
-let g:ycm_filepath_completion_use_working_dir = 0
-let g:ycm_disable_for_files_larger_than_kb = 1000
+"let g:ycm_python_binary_path = 'python'
+"map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+"let g:ycm_min_num_of_chars_for_completion = 1
+"let g:ycm_complete_in_strings = 1
+"let g:ycm_seed_identifiers_with_syntax = 1
+"let g:ycm_key_invoke_completion = '<C-Space>'
+"let g:ycm_filepath_completion_use_working_dir = 0
+"let g:ycm_disable_for_files_larger_than_kb = 1000
+"
+"----------------------------------------------------------------------
+" Deoplete
+"----------------------------------------------------------------------
+" Use deoplete.
+let g:deoplete#enable_at_startup = 1
+" Use smartcase.
+let g:deoplete#enable_smart_case = 1
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function() abort
+    return deoplete#close_popup() . "\<CR>"
+endfunction
 
 "----------------------------------------------------------------------
 " Noesnippet
