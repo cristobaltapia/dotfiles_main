@@ -53,7 +53,7 @@ function parse_git_dirty {
 }
 
 alias ls='ls --color=auto'
-export PS1="[\[\e[32m\]\u\[\e[m\]\[\e[32m\]@\[\e[m\]\[\e[32m\]\h\[\e[m\]]:\[\e[36m\]\W\[\e[m\]\[\e[31m\]\`parse_git_branch\`\[\e[m\]$"
+export PS1="[\[\e[32m\]\u\[\e[m\]\[\e[32m\]@\[\e[m\]\[\e[32m\]\h\[\e[m\]]:\[\e[36m\]\W\[\e[m\]\[\e[31m\]\`parse_git_branch\`\[\e[m\]$ "
 
 # Set language for the console
 export LANG="en_US.UTF-8"
