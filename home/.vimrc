@@ -92,7 +92,7 @@ Plug 'mhartington/oceanic-next'
 " Base16 colorscheme
 Plug 'chriskempson/base16-vim'
 " ALE
-Plug 'w0rp/ale', { 'for': 'python' }
+Plug 'w0rp/ale', { 'for': ['python', 'tex', 'fortran'] }
 " Asyncrun
 Plug 'skywind3000/asyncrun.vim'
 " Dispatch
@@ -101,16 +101,14 @@ Plug 'tpope/vim-dispatch'
 Plug 'liuchengxu/space-vim-dark'
 " vim-jason: a better json
 Plug 'elzr/vim-json', {'for': 'json'}
-" Vim-Jupyter integration
-"Plug 'ivanov/vim-ipython'
 " Plugins that will only work under linux
 if has("unix")
     " Codi, an interactive scratchpad for vim
     Plug 'metakirby5/codi.vim', { 'for': 'python' }
-    " YouCompleteMe
-    " Plug 'Valloric/YouCompleteMe'
     " Game code-break
     Plug 'johngrib/vim-game-code-break'
+    " Vim-Jupyter integration
+    "Plug 'ivanov/vim-ipython'
 endif
 
 if  has("vim")
@@ -541,8 +539,8 @@ let g:pymode_breakpoint = 0
 " folding
 let g:pymode_folding = 0
 " syntax highlighting
-let g:pymode_syntax = 1
-let g:pymode_syntax_all = 1
+let g:pymode_syntax = 0
+let g:pymode_syntax_all = 0
 " let g:pymode_syntax_indent_errors = g:pymode_syntax_all
 " let g:pymode_syntax_space_errors = g:pymode_syntax_all
 "
@@ -559,6 +557,8 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 let g:ale_linters = {
             \   'python': ['flake8','pylint'],
+            \   'tex': ['chktex', 'proselint'],
+            \   'fortran': ['gcc'],
             \}
 
 " Run linters on save
@@ -566,6 +566,11 @@ let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 0
 " linters run on opening a file
 let g:ale_lint_on_enter = 1
+
+let g:ale_fixers = {
+            \   'python': ['yapf'],
+            \}
+
 "----------------------------------------------------------------------
 
 "----------------------------------------------------------------------
@@ -702,11 +707,11 @@ highlight LineNr guifg=#aa9911
 
 " Fix problem with detected file changes
 function! ProcessFileChangedShell()
-        if v:fcs_reason == 'mode' || v:fcs_reason == 'time'
-                let v:fcs_choice = ''
-        else
-                let v:fcs_choice = 'ask'
-        endif
+    if v:fcs_reason == 'mode' || v:fcs_reason == 'time'
+        let v:fcs_choice = ''
+    else
+        let v:fcs_choice = 'ask'
+    endif
 endfunction
 
 autocmd FileChangedShell <buffer> call ProcessFileChangedShell()
