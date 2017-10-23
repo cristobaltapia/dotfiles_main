@@ -282,7 +282,7 @@ let OmniCpp_SelectFirstItem = 0
 " Activate Rainbow parentheses
 let g:rainbow_active = 1
 let g:rainbow_conf = {
-\   'guifgs': ['darkorange3', 'seagreen3', 'royalblue3', 'firebrick'],
+\   'guifgs': ['darkorange', 'seagreen', 'royalblue', 'firebrick'],
 \   'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
 \   'operators': '_,_',
 \   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
@@ -292,7 +292,7 @@ let g:rainbow_conf = {
 \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
 \       },
 \       'lisp': {
-\           'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+\           'guifgs': ['royalblue', 'darkorange', 'seagreen', 'firebrick', 'darkorchid'],
 \       },
 \       'vim': {
 \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
