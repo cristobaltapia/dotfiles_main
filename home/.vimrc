@@ -118,6 +118,8 @@ if  has("vim")
 elseif has("nvim")
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     Plug 'zchee/deoplete-jedi'
+    Plug 'hkupty/iron.nvim', {'for': 'python'}
+    " Plug 'kassio/neoterm', {'for': 'python'}
 endif
 
 call plug#end()
