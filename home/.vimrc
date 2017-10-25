@@ -101,6 +101,8 @@ Plug 'tpope/vim-dispatch'
 Plug 'liuchengxu/space-vim-dark'
 " vim-jason: a better json
 Plug 'elzr/vim-json', {'for': 'json'}
+" Jedi-vim
+Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 " Plugins that will only work under linux
 if has("unix")
     " Codi, an interactive scratchpad for vim
@@ -418,18 +420,6 @@ else
 endif
 
 "----------------------------------------------------------------------
-" YouCompleteMe
-"----------------------------------------------------------------------
-"let g:ycm_python_binary_path = 'python'
-"map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
-"let g:ycm_min_num_of_chars_for_completion = 1
-"let g:ycm_complete_in_strings = 1
-"let g:ycm_seed_identifiers_with_syntax = 1
-"let g:ycm_key_invoke_completion = '<C-Space>'
-"let g:ycm_filepath_completion_use_working_dir = 0
-"let g:ycm_disable_for_files_larger_than_kb = 1000
-"
-"----------------------------------------------------------------------
 " Deoplete
 "----------------------------------------------------------------------
 " Use deoplete.
@@ -444,6 +434,47 @@ inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function() abort
     return deoplete#close_popup() . "\<CR>"
 endfunction
+
+"----------------------------------------------------------------------
+" Pydoc
+"----------------------------------------------------------------------
+let g:pydoc_cmd = 'python -m pydoc'
+
+" pydoc to switch to an already open tab with pydoc page
+let g:pydoc_use_drop=1
+" lines to show doc
+"let g:pydoc_window_lines=20
+let g:pydoc_window_lines=0.5
+" Highlight search term
+let g:pydoc_highlight=1
+"
+"-------------------------------------------------------------
+" Python-mode
+"-------------------------------------------------------------
+" Deactivate everything except the syntax
+let g:pymode_rope = 0
+"" Documentation
+let g:pymode_doc = 0
+" Linting
+let g:pymode_lint = 0
+" Support virtualenv
+let g:pymode_virtualenv = 0
+" breakpoints plugin
+let g:pymode_breakpoint = 0
+" folding
+let g:pymode_folding = 0
+" syntax highlighting
+let g:pymode_syntax = 1
+let g:pymode_syntax_all = 1
+"
+" let g:pymode_syntax_indent_errors = g:pymode_syntax_all
+" let g:pymode_syntax_space_errors = g:pymode_syntax_all
+"
+"-------------------------------------------------------------
+" Jedi-vim
+"-------------------------------------------------------------
+let g:jedi#popup_on_dot = 0
+let g:jedi#completions_enabled = 0
 
 "----------------------------------------------------------------------
 " Noesnippet
@@ -525,29 +556,6 @@ set breakindent showbreak=..
 set linebreak
 "----------------------------------------------------------------------
 "
-" -------------------------------------------------------------
-" Python-mode
-" -------------------------------------------------------------
-" Deactivate everything except the syntax
-let g:pymode_rope = 0
-"" Documentation
-let g:pymode_doc = 0
-" Linting
-let g:pymode_lint = 0
-" Support virtualenv
-let g:pymode_virtualenv = 0
-" breakpoints plugin
-let g:pymode_breakpoint = 0
-" folding
-let g:pymode_folding = 0
-" syntax highlighting
-let g:pymode_syntax = 0
-let g:pymode_syntax_all = 0
-" let g:pymode_syntax_indent_errors = g:pymode_syntax_all
-" let g:pymode_syntax_space_errors = g:pymode_syntax_all
-"
-" -------------------------------------------------------------
-
 "
 "----------------------------------------------------------------------
 "
@@ -634,17 +642,6 @@ if has('win32')
     endfunction
 endif
 
-" Pydoc
-let g:pydoc_cmd = 'python -m pydoc'
-
-" pydoc to switch to an already open tab with pydoc page
-let g:pydoc_use_drop=1
-" lines to show doc
-"let g:pydoc_window_lines=20
-let g:pydoc_window_lines=0.5
-" Highlight search term
-let g:pydoc_highlight=1
-"
 " Latex-Suite Template folder
 " Edit commands for the navifation in help documents
 nnoremap <C-9> <C-]>
