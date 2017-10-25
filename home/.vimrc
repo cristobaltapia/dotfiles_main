@@ -70,7 +70,6 @@ Plug 'vim-scripts/MatlabFilesEdition'
 Plug 'cjrh/vim-conda'
 " Latex
 Plug 'vim-latex/vim-latex', {'for': 'tex' }
-"Plug 'vim-latex/vim-latex'
 " Rename. Rename a buffer within Vim and on disk
 Plug 'vim-scripts/Rename'
 " Search results counter
@@ -133,19 +132,19 @@ let g:tex_flavor='latex'
 cd %:p:h
 
 "----------------------------------------------------------------------
-" diverse options
+" Diverse options
 "----------------------------------------------------------------------
-set scrolloff=3     " when scrolling, keep cursor 3 lines away from screen border
+set scrolloff=3     " When scrolling, keep cursor 3 lines away from screen border
 set autoread        " Files are read as soon as they are changed
-set noswapfile      " don't use swapfile for the buffers
+set noswapfile      " Don't use swapfile for the buffers
 set noerrorbells    " Don't show error messages
 set visualbell      " Set visual bell instead of beeping
-set nobackup        " don't use backup files
+set nobackup        " Don't use backup files
 set nowritebackup
-set encoding=utf-8  " set the character encoding to utf-8
-set foldmethod=marker   " set the default folding method
+set encoding=utf-8  " Set the character encoding to utf-8
+set foldmethod=marker   " Set the default folding method
 set cursorline      " Highlight the current line
-set breakindent showbreak=..    " linebreaks with indentation
+set breakindent showbreak=..    " Linebreaks with indentation
 set linebreak
 set hidden          " Change buffer without saving
 set expandtab       " Use spaces to replace tabs
@@ -170,15 +169,11 @@ if has('conceal')
 endif
 
 if has('win32')
-    " Visual selection automatically copies to the clipboard
-    set go+=a
-    " Solve Backspace problem in Windows
-    set backspace=indent,eol,start
-    " Solve problem of repositioning of the GUI
-    set guioptions=egrt
-    " Change temp directory
-    let $TMP="c:/Temp"
-    set directory=.,$TMP,$TEMP
+    set go+=a                       " Visual selection automatically copies to the clipboard
+    set backspace=indent,eol,start  " Solve Backspace problem in Windows
+    set guioptions=egrt             " Solve problem of repositioning of the GUI
+    let $TMP="c:/Temp"              " Change temp directory
+    set directory=.,$TMP,$TEMP      " ...
 else
     " Visual selection automatically copies to the clipboard
     nnoremap y "+y
@@ -186,8 +181,8 @@ else
     snoremap y "+y
     nnoremap <S-Insert> "+p
     " More space to write! :)
-    set guioptions-=m  "remove menu bar
-    set guioptions-=T  "remove toolbar
+    set guioptions-=m  " Remove menu bar
+    set guioptions-=T  " Remove toolbar
 endif
 
 " Colors for GVim
@@ -202,12 +197,12 @@ endif
 "----------------------------------------------------------------------
 " Map to stop highlighting of last search
 nnoremap <leader>pp :nohlsearch<cr>
-"
+
 " Folding remaping
 nnoremap <space> za
 vnoremap <space> zf
 
-"Map <Esc> to Shift-Space. Its more confortable
+" Map <Esc> to Shift-Space. Its more confortable
 inoremap <S-Space> <Esc>
 vnoremap <S-Space> <Esc>
 snoremap <S-Space> <Esc>
@@ -232,7 +227,7 @@ nmap tp :bprevious<CR>
 nmap <leader>bq :bp <BAR> bd #<CR>
 " Show all open buffers and their status
 nmap <leader>bl :ls<CR>
-" show pending tasks list
+" Show pending tasks list
 noremap <F2> :TaskList<CR>
 "----------------------------------------------------------------------
 
@@ -263,13 +258,13 @@ augroup file_type
 augroup END
 
 "----------------------------------------------------------------------
-" toggle Tagbar display
+" Toggle Tagbar display
 noremap <F4> :TagbarToggle<CR>
-" autofocus on Tagbar open
+" Autofocus on Tagbar open
 let g:tagbar_autofocus = 1
 
 "----------------------------------------------------------------------
-" automatically close autocompletion window
+" Automatically close autocompletion window
 augroup autocompl_window
     autocmd!
     autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
@@ -322,15 +317,15 @@ elseif has('vim')
     set guifont=Noto\ Mono\ for\ Powerline
 endif
 
-"" Enable the list of buffers
+" Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
 " Enable virtualenv integration
 let g:airline#extensions#virtualenv#enabled = 1
-
 " Cooperation with Asyncrun
 let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
+
 "----------------------------------------------------------------------
 
 "----------------------------------------------------------------------
@@ -355,7 +350,6 @@ let g:UltiSnipsSnippetDirectories=[
             \'~/.vim/plugged/vim-snippets/snippets',
             \'Ultisnips',
             \]
-" let g:UltiSnipsSnippetDirectories='~/.vim/plugged/MySnippets/'
 
 "----------------------------------------------------------------------
 " Deoplete
