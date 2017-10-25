@@ -103,25 +103,25 @@ Plug 'liuchengxu/space-vim-dark'
 Plug 'elzr/vim-json', {'for': 'json'}
 " Jedi-vim
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+
 " Plugins that will only work under linux
 if has("unix")
     " Codi, an interactive scratchpad for vim
     Plug 'metakirby5/codi.vim', { 'for': 'python' }
     " Game code-break
     Plug 'johngrib/vim-game-code-break'
-    " Vim-Jupyter integration
-    "Plug 'ivanov/vim-ipython'
 endif
 
 if  has("vim")
     " Neocomplete + snippets
     Plug 'Shougo/neocomplete.vim'
-
 elseif has("nvim")
+    " Deoplete (completion)
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    " Jedi for deoplete
     Plug 'zchee/deoplete-jedi'
+    " Ipython terminal
     Plug 'hkupty/iron.nvim', {'for': 'python'}
-    " Plug 'kassio/neoterm', {'for': 'python'}
 endif
 
 call plug#end()
@@ -129,42 +129,115 @@ call plug#end()
 " Latex options
 let g:tex_flavor='latex'
 
-"----------------------------------------------------------------------
-" mapping to Open Vimrc
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-" ...and to Source Vimrc
-nnoremap <leader>sv :source $MYVIMRC<cr>
-"----------------------------------------------------------------------
-"
+" Change direcotry to folder of opened file
+cd %:p:h
 
-" In windows, solve the problem of the repositioning of the gui window
+"----------------------------------------------------------------------
+" diverse options
+"----------------------------------------------------------------------
+set scrolloff=3     " when scrolling, keep cursor 3 lines away from screen border
+set autoread        " Files are read as soon as they are changed
+set noswapfile      " don't use swapfile for the buffers
+set noerrorbells    " Don't show error messages
+set visualbell      " Set visual bell instead of beeping
+set nobackup        " don't use backup files
+set nowritebackup
+set encoding=utf-8  " set the character encoding to utf-8
+set foldmethod=marker   " set the default folding method
+set cursorline      " Highlight the current line
+set breakindent showbreak=..    " linebreaks with indentation
+set linebreak
+set hidden          " Change buffer without saving
+set expandtab       " Use spaces to replace tabs
+set tabstop=4       " Number of spaces that a <Tab> in the file counts for
+set softtabstop=4   " Number of spaces that a <Tab> counts for on editing operations
+set shiftwidth=4    " Number of spaces to use for each step of (auto)indent
+set virtualedit=block   " Allow virtual editing in Visual block mode
+set wildignore=*.swp,*.bak,*.pyc,*.class,*.aux,*.toc    " Ignore some file extensions
+set laststatus=2    " Always show status bar
+set incsearch       " Incremental search
+set hlsearch        " Highlighted search results
+set nu              " Line numbers
+set hidden          " Preference when using buffers
+
+if (has("termguicolors"))
+    set termguicolors
+endif
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=0 concealcursor=niv
+endif
+
 if has('win32')
+    " Visual selection automatically copies to the clipboard
+    set go+=a
+    " Solve Backspace problem in Windows
+    set backspace=indent,eol,start
+    " Solve problem of repositioning of the GUI
     set guioptions=egrt
+    " Change temp directory
+    let $TMP="c:/Temp"
+    set directory=.,$TMP,$TEMP
 else
-    "More space to write! :)
+    " Visual selection automatically copies to the clipboard
+    nnoremap y "+y
+    vnoremap y "+y
+    snoremap y "+y
+    nnoremap <S-Insert> "+p
+    " More space to write! :)
     set guioptions-=m  "remove menu bar
     set guioptions-=T  "remove toolbar
 endif
+
+" Colors for GVim
+if has('gui_running')
+    colorscheme space-vim-dark
+elseif has('nvim')
+    colorscheme space-vim-dark
+endif
+
+"----------------------------------------------------------------------
+" Mappings
+"----------------------------------------------------------------------
+" Map to stop highlighting of last search
+nnoremap <leader>pp :nohlsearch<cr>
+"
+" Folding remaping
+nnoremap <space> za
+vnoremap <space> zf
+
+"Map <Esc> to Shift-Space. Its more confortable
+inoremap <S-Space> <Esc>
+vnoremap <S-Space> <Esc>
+snoremap <S-Space> <Esc>
+
+" Mapping to Open Vimrc
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+" ...and to Source Vimrc
+nnoremap <leader>sv :source $MYVIMRC<cr>
+
+" Movements
+nnoremap j gj
+nnoremap k gk
+nnoremap gj j
+nnoremap gk k
+
+" Move to the next buffer
+nmap tn :bnext<CR>
+" Move to the previous buffer
+nmap tp :bprevious<CR>
+" Close the current buffer and move to the previous one
+" This replicates the idea of closing a tab
+nmap <leader>bq :bp <BAR> bd #<CR>
+" Show all open buffers and their status
+nmap <leader>bl :ls<CR>
+" show pending tasks list
+noremap <F2> :TaskList<CR>
 "----------------------------------------------------------------------
 
 "----------------------------------------------------------------------
-" tabs and spaces handling
-"----------------------------------------------------------------------
-set expandtab
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set virtualedit=block
-
-"----------------------------------------------------------------------
-
-"----------------------------------------------------------------------
-" Ignore some file extensions
-set wildignore=*.swp,*.bak,*.pyc,*.class,*.aux,*.toc
-"----------------------------------------------------------------------
-
-"----------------------------------------------------------------------
-" tablength exceptions
+" Tablength exceptions
 "----------------------------------------------------------------------
 augroup file_type
     autocmd!
@@ -190,46 +263,10 @@ augroup file_type
 augroup END
 
 "----------------------------------------------------------------------
-" always show status bar
-set ls=2
-
-" incremental search
-set incsearch
-" highlighted search results
-set hlsearch
-" map to stop highlighting of last search
-nnoremap <leader>pp :nohlsearch<cr>
-" line numbers
-set nu
-
 " toggle Tagbar display
 noremap <F4> :TagbarToggle<CR>
 " autofocus on Tagbar open
 let g:tagbar_autofocus = 1
-
-"----------------------------------------------------------------------
-" Custom remaps
-"----------------------------------------------------------------------
-nnoremap j gj
-nnoremap k gk
-nnoremap gj j
-nnoremap gk k
-"----------------------------------------------------------------------
-
-"----------------------------------------------------------------------
-" Buffer navigation
-"----------------------------------------------------------------------
-" Preference when using buffers. See `:h hidden` for more details
-set hidden
-" Move to the next buffer
-nmap tn :bnext<CR>
-" Move to the previous buffer
-nmap tp :bprevious<CR>
-" Close the current buffer and move to the previous one
-" This replicates the idea of closing a tab
-nmap <leader>bq :bp <BAR> bd #<CR>
-" Show all open buffers and their status
-nmap <leader>bl :ls<CR>
 
 "----------------------------------------------------------------------
 " automatically close autocompletion window
@@ -240,71 +277,31 @@ augroup autocompl_window
 augroup END
 
 "----------------------------------------------------------------------
-" show pending tasks list
-noremap <F2> :TaskList<CR>
-
+" Rainbow parentheses
 "----------------------------------------------------------------------
-" colors and settings of autocompletion
-highlight Pmenu ctermbg=4 guibg=LightGray
-" highlight PmenuSel ctermbg=8 guibg=DarkBlue guifg=Red
-" highlight PmenuSbar ctermbg=7 guibg=DarkGray
-" highlight PmenuThumb guibg=Black
-" use global scope search
-let OmniCpp_GlobalScopeSearch = 1
-" 0 = namespaces disabled
-" 1 = search namespaces in the current buffer
-" 2 = search namespaces in the current buffer and in included files
-let OmniCpp_NamespaceSearch = 1
-" 0 = auto
-" 1 = always show all members
-let OmniCpp_DisplayMode = 1
-" 0 = don't show scope in abbreviation
-" 1 = show scope in abbreviation and remove the last column
-let OmniCpp_ShowScopeInAbbr = 0
-" This option allows to display the prototype of a function in the abbreviation part of the popup menu.
-" 0 = don't display prototype in abbreviation
-" 1 = display prototype in abbreviation
-let OmniCpp_ShowPrototypeInAbbr = 1
-" This option allows to show/hide the access information ('+', '#', '-') in the popup menu.
-" 0 = hide access
-" 1 = show access
-let OmniCpp_ShowAccess = 1
-" This option can be use if you don't want to parse using namespace declarations in included files and want to add
-" namespaces that are always used in your project.
-let OmniCpp_DefaultNamespaces = ["std"]
-" Complete Behaviour
-let OmniCpp_MayCompleteDot = 0
-let OmniCpp_MayCompleteArrow = 0
-let OmniCpp_MayCompleteScope = 0
-" When 'completeopt' does not contain "longest", Vim automatically select the first entry of the popup menu. You can
-" change this behaviour with the OmniCpp_SelectFirstItem option.
-let OmniCpp_SelectFirstItem = 0
-"----------------------------------------------------------------------
-"
-" Activate Rainbow parentheses
 let g:rainbow_active = 1
 let g:rainbow_conf = {
-\   'guifgs': ['darkorange', 'seagreen', 'royalblue', 'firebrick'],
-\   'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
-\   'operators': '_,_',
-\   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
-\   'separately': {
-\       '*': {},
-\       'tex': {
-\           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
-\       },
-\       'lisp': {
-\           'guifgs': ['royalblue', 'darkorange', 'seagreen', 'firebrick', 'darkorchid'],
-\       },
-\       'vim': {
-\           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
-\       },
-\       'html': {
-\           'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
-\       },
-\       'css': 0,
-\   }
-\}
+            \'guifgs': ['darkorange', 'seagreen', 'royalblue', 'firebrick'],
+            \'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+            \'operators': '_,_',
+            \'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+            \'separately': {
+            \    '*': {},
+            \    'tex': {
+            \        'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+            \    },
+            \    'lisp': {
+            \        'guifgs': ['royalblue', 'darkorange', 'seagreen', 'firebrick', 'darkorchid'],
+            \    },
+            \    'vim': {
+            \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+            \       },
+            \       'html': {
+            \           'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+            \       },
+            \       'css': 0,
+            \   }
+            \}
 "----------------------------------------------------------------------
 
 "----------------------------------------------------------------------
@@ -312,48 +309,6 @@ let g:rainbow_conf = {
 map <F3> :NERDTreeToggle<CR>
 " Ignore files on NERDTree
 let NERDTreeIgnore = ['\.pyc$', '\.pyo$']
-"----------------------------------------------------------------------
-
-"----------------------------------------------------------------------
-" colors for gvim
-if has('gui_running')
-    colorscheme space-vim-dark
-    "colorscheme molokai
-    "
-elseif has('nvim')
-    colorscheme space-vim-dark
-endif
-
-if (has("termguicolors"))
- set termguicolors
-endif
-
-"----------------------------------------------------------------------
-
-"----------------------------------------------------------------------
-" diverse options
-"----------------------------------------------------------------------
-" when scrolling, keep cursor 3 lines away from screen border
-set scrolloff=3
-"Files are read as soon as they are changed
-set autoread
-" don't use swapfile for the buffers
-set noswapfile
-" don't show error messages
-set noerrorbells
-" set visual bell instead of beeping
-set visualbell
-" don't use backup files
-set nobackup
-set nowritebackup
-" set the character encoding to utf-8
-set encoding=utf-8
-" set the default folding method
-set foldmethod=marker
-" " Highlight the current line
-set cursorline
-" set ttyfast
-" set regexpengine=1
 "----------------------------------------------------------------------
 
 "----------------------------------------------------------------------
@@ -366,9 +321,7 @@ if has('win32')
 elseif has('vim')
     set guifont=Noto\ Mono\ for\ Powerline
 endif
-"----------------------------------------------------------------------
 
-"----------------------------------------------------------------------
 "" Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
 " Show just the filename
@@ -378,24 +331,19 @@ let g:airline#extensions#virtualenv#enabled = 1
 
 " Cooperation with Asyncrun
 let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
-
-syntax on
-filetype on
-let python_highlight_all=1
+"----------------------------------------------------------------------
 
 "----------------------------------------------------------------------
-" Solve Backspace problem in Windows
-if has('win32')
-    set backspace=indent,eol,start
+
+if has('vim')
+    " Neocomplete configuration
+    "let g:neocomplete#enable_at_startup = 1
+    " Use smartcase.
+    let g:neocomplete#enable_smart_case = 1
+    " Set minimum syntax keyword length.
+    let g:neocomplete#sources#syntax#min_keyword_length = 3
 endif
-"----------------------------------------------------------------------
 
-" Neocomplete configuration
-"let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
 "
 " Ultisnip configuration
 let g:UltiSnipsExpandTrigger="<c-k>"
@@ -409,16 +357,6 @@ let g:UltiSnipsSnippetDirectories=[
             \]
 " let g:UltiSnipsSnippetDirectories='~/.vim/plugged/MySnippets/'
 
-" Visual selection automatically copies to the clipboard
-if has('win32')
-    set go+=a
-else
-    nnoremap y "+y
-    vnoremap y "+y
-    snoremap y "+y
-    nnoremap <S-Insert> "+p
-endif
-
 "----------------------------------------------------------------------
 " Deoplete
 "----------------------------------------------------------------------
@@ -426,16 +364,25 @@ endif
 let g:deoplete#enable_at_startup = 1
 " Use smartcase.
 let g:deoplete#enable_smart_case = 1
+
 " <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
+
 " <CR>: close popup and save indent.
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function() abort
     return deoplete#close_popup() . "\<CR>"
 endfunction
 
-"----------------------------------------------------------------------
+"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+" PYTHON CONFIGURATION
+"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+syntax on
+filetype on
+let python_highlight_all=1
+
 " Pydoc
 "----------------------------------------------------------------------
 let g:pydoc_cmd = 'python -m pydoc'
@@ -476,19 +423,7 @@ let g:pymode_syntax_all = 1
 let g:jedi#popup_on_dot = 0
 let g:jedi#completions_enabled = 0
 
-"----------------------------------------------------------------------
-" Noesnippet
-"----------------------------------------------------------------------
-" disable default snippets
-" let g:neosnippet#disable_runtime_snippets = {
-"             \'python' : 1,
-"             \}
-
-
-" For conceal markers.
-if has('conceal')
-  set conceallevel=0 concealcursor=niv
-endif
+"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 "----------------------------------------------------------------------
 " Configuration for vim-easy-align
@@ -527,38 +462,6 @@ let g:easy_align_delimiters = {
             \ }
 "----------------------------------------------------------------------
 
-"----------------------------------------------------------------------
-if has('win32')
-    let $TMP="c:/Temp"
-    set directory=.,$TMP,$TEMP
-endif
-"----------------------------------------------------------------------
-
-"----------------------------------------------------------------------
-"Map <Esc> to Shift-Space. Its more confortable
-inoremap <S-Space> <Esc>
-vnoremap <S-Space> <Esc>
-snoremap <S-Space> <Esc>
-"----------------------------------------------------------------------
-
-" Change buffer without saving
-set hidden
-
-"----------------------------------------------------------------------
-" Folding remaping
-nnoremap <space> za
-vnoremap <space> zf
-"----------------------------------------------------------------------
-
-"----------------------------------------------------------------------
-" linebreaks with indentation
-set breakindent showbreak=..
-set linebreak
-"----------------------------------------------------------------------
-"
-"
-"----------------------------------------------------------------------
-"
 "----------------------------------------------------------------------
 " Ale configurations
 "----------------------------------------------------------------------
@@ -658,7 +561,6 @@ let g:grammarous#disabled_rules = {
 " Use vim spellang
 let g:grammarous#use_vim_spelllang = 1
 
-
 "----------------------------------------------------------------------
 " Quick run
 "----------------------------------------------------------------------
@@ -687,9 +589,7 @@ function! s:compile_and_run()
     endif
 endfunction
 
-cd %:p:h
 "----------------------------------------------------------------------
-"
 " vp ddoesn't replace paste buffer
 function! RestoreRegister()
     let @" = s:restore_reg
