@@ -187,9 +187,11 @@ endif
 
 " Colors for GVim
 if has('gui_running')
-    colorscheme space-vim-dark
+    " colorscheme space-vim-dark
+    colorscheme OceanicNext
 elseif has('nvim')
-    colorscheme space-vim-dark
+    " colorscheme space-vim-dark
+    colorscheme OceanicNext
 endif
 
 "----------------------------------------------------------------------
@@ -237,7 +239,8 @@ noremap <F2> :TaskList<CR>
 augroup file_type
     autocmd!
     "autocmd FileType python colorscheme wombat-mod
-    autocmd FileType python colorscheme space-vim-dark
+    " autocmd FileType python colorscheme space-vim-dark
+    autocmd FileType python colorscheme OceanicNext
     autocmd FileType python AirlineRefresh
     autocmd FileType python setlocal shiftwidth=4
                 \ tabstop=4
@@ -289,12 +292,12 @@ let g:rainbow_conf = {
             \        'guifgs': ['royalblue', 'darkorange', 'seagreen', 'firebrick', 'darkorchid'],
             \    },
             \    'vim': {
-            \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+            \        'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
             \       },
-            \       'html': {
-            \           'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+            \    'html': {
+            \        'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
             \       },
-            \       'css': 0,
+            \    'css': 0,
             \   }
             \}
 "----------------------------------------------------------------------
@@ -372,6 +375,7 @@ endfunction
 "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 " PYTHON CONFIGURATION
 "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+let g:deoplete#sources#jedi#server_timeout = 30
 
 syntax on
 filetype on
@@ -478,6 +482,9 @@ let g:ale_fixers = {
             \   'python': ['yapf'],
             \}
 
+" Change default symbols for ALE
+" let g:ale_sign_error = "✗"
+" let g:ale_sign_warning = "⚠"
 "----------------------------------------------------------------------
 
 "----------------------------------------------------------------------
