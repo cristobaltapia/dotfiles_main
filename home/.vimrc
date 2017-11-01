@@ -18,6 +18,16 @@ if has('vim')
     endif
 endif
 
+function! BuildComposer(info)
+  if a:info.status != 'unchanged' || a:info.force
+    if has('nvim')
+      !cargo build --release
+    else
+      !cargo build --release --no-default-features --features json-rpc
+    endif
+  endif
+endfunction
+
 "----------------------------------------------------------------------
 call plug#begin('~/.vim/plugged')
 "
@@ -38,6 +48,8 @@ Plug 'ervandew/supertab'
 Plug 'tpict/vim-virtualenv', { 'for': 'python', 'commit': 'c9a52e5' }
 " Pydoc
 Plug 'fs111/pydoc.vim', { 'for': 'python' }
+" Markdown preview support
+Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
 " Vim Easy Align
 Plug 'junegunn/vim-easy-align'
 " fugitive.vim: a Git wrappe
@@ -613,5 +625,14 @@ function! ProcessFileChangedShell()
         let v:fcs_choice = 'ask'
     endif
 endfunction
+
+"----------------------------------------------------------------------
+" Markdown
+"----------------------------------------------------------------------
+let g:markdown_composer_browser='epiphany'
+let g:markdown_composer_open_browser=0
+let g:markdown_composer_refresh_rate=0
+let g:markdown_composer_syntax_theme='solarized-dark'
+let g:markdown_composer_external_renderer='pandoc -f markdown -t html'
 
 autocmd FileChangedShell <buffer> call ProcessFileChangedShell()
