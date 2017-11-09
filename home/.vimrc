@@ -114,6 +114,10 @@ Plug 'liuchengxu/space-vim-dark'
 Plug 'elzr/vim-json', {'for': 'json'}
 " Jedi-vim
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+" Change working direcotry to open buffer
+Plug 'yssl/AutoCWD.vim'
+" A Vim plugin which shows a git diff in the 'gutter'
+Plug 'airblade/vim-gitgutter'
 
 " Plugins that will only work under linux
 if has("unix")
@@ -146,6 +150,8 @@ cd %:p:h
 "----------------------------------------------------------------------
 " Diverse options
 "----------------------------------------------------------------------
+set title           " Toggle title on
+set titlestring=%t%(\ %M%)%(\ %y%)  " Set the title string
 set scrolloff=3     " When scrolling, keep cursor 3 lines away from screen border
 set autoread        " Files are read as soon as they are changed
 set noswapfile      " Don't use swapfile for the buffers
@@ -480,7 +486,7 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 let g:ale_linters = {
             \   'python': ['flake8','pylint'],
-            \   'tex': ['chktex', 'proselint'],
+            \   'tex': ['chktex', 'proselint', 'write-good'],
             \   'fortran': ['gcc'],
             \}
 
@@ -636,3 +642,19 @@ let g:markdown_composer_syntax_theme='solarized-dark'
 let g:markdown_composer_external_renderer='pandoc -f markdown -t html'
 
 autocmd FileChangedShell <buffer> call ProcessFileChangedShell()
+
+"----------------------------------------------------------------------
+" AutCWD
+"----------------------------------------------------------------------
+" Auto-change working directory to current buffer
+let g:autocwd_patternwd_pairs = [
+            \['*.vim', '%:p:h'],
+            \['*.py', '%:p:h'],
+            \['*.tex', '%:p:h'],
+            \['*', '%:p:h'],
+            \]
+
+"----------------------------------------------------------------------
+" Gitgutter
+"----------------------------------------------------------------------
+let g:gitgutter_max_signs = 500     " default value

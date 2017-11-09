@@ -46,4 +46,3 @@ endfunction
 autocmd FileType python nnoremap <LocalLeader>i :!isort %<CR><CR>
 autocmd FileType python nnoremap <LocalLeader>= :0,$!yapf --style="{based_on_style: pep8; SPLIT_BEFORE_NAMED_ASSIGNS: False, DEDENT_CLOSING_BRACKETS: False}"<CR>
 " autocmd FileType python nnoremap <LocalLeader>= :0,$!yapf --style=H:/.config/yapf/format<CR>
-"
