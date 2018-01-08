@@ -45,7 +45,8 @@ Plug 'rhysd/vim-grammarous'
 Plug 'ervandew/supertab'
 " Virtualenv support
 " Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
-Plug 'tpict/vim-virtualenv', { 'for': 'python', 'commit': 'c9a52e5' }
+" Plug 'tpict/vim-virtualenv', { 'for': 'python', 'commit': 'c9a52e5' }
+Plug 'cristobaltapia/vim-virtualenv', { 'for': 'python' }
 " Pydoc
 Plug 'fs111/pydoc.vim', { 'for': 'python' }
 " Markdown preview support
@@ -103,7 +104,7 @@ Plug 'mhartington/oceanic-next'
 " Base16 colorscheme
 Plug 'chriskempson/base16-vim'
 " ALE
-Plug 'w0rp/ale', { 'for': ['python', 'tex', 'fortran'] }
+Plug 'w0rp/ale', { 'for': ['python', 'tex', 'fortran', 'javascript'] }
 " Asyncrun
 Plug 'skywind3000/asyncrun.vim'
 " Dispatch
@@ -118,6 +119,8 @@ Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'yssl/AutoCWD.vim'
 " A Vim plugin which shows a git diff in the 'gutter'
 Plug 'airblade/vim-gitgutter'
+" GPG integration
+Plug 'jamessan/vim-gnupg'
 
 " Plugins that will only work under linux
 if has("unix")
@@ -488,6 +491,7 @@ let g:ale_linters = {
             \   'python': ['flake8','pylint'],
             \   'tex': ['chktex', 'proselint', 'write-good'],
             \   'fortran': ['gcc'],
+            \   'javascript': ['javac'],
             \}
 
 " Run linters on save
