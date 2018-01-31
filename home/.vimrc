@@ -253,6 +253,19 @@ nmap <leader>bl :ls<CR>
 " Show pending tasks list
 noremap <F2> :TaskList<CR>
 "----------------------------------------------------------------------
+"
+"----------------------------------------------------------------------
+" Functions
+"----------------------------------------------------------------------
+" Copy all matches
+function! CopyMatches(reg)
+  let hits = []
+  %s//\=len(add(hits, submatch(0))) ? submatch(0) : ''/gne
+  let reg = empty(a:reg) ? '+' : a:reg
+  execute 'let @'.reg.' = join(hits, "\n") . "\n"'
+endfunction
+command! -register CopyMatches call CopyMatches(<q-reg>)
+"----------------------------------------------------------------------
 
 "----------------------------------------------------------------------
 " Tablength exceptions
@@ -642,7 +655,7 @@ endfunction
 let g:markdown_composer_browser='epiphany'
 let g:markdown_composer_open_browser=0
 let g:markdown_composer_refresh_rate=0
-let g:markdown_composer_syntax_theme='solarized-dark'
+" let g:markdown_composer_syntax_theme='solarized_dark'
 let g:markdown_composer_external_renderer='pandoc -f markdown -t html'
 
 autocmd FileChangedShell <buffer> call ProcessFileChangedShell()

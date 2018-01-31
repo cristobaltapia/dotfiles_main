@@ -68,6 +68,12 @@ endif
 "let g:Tex_CompileRule_pdf = 'pdflatex -synctex=-1 -src-specials -interaction=nonstopmode $*'
 let g:Tex_CompileRule_pdf = 'latexmk -pdf -pdflatex="pdflatex -shell-escape -src-specials -interaction=nonstopmode" $*'
 
+function! GitLatexDiff(old, new)
+    !git-latexdiff --bibtex --latexmk --latexopt="-shell-escape -src-specials -interaction=nonstopmode" --tmpdirprefix="latex-diff" --ln-untracked --main $* a:old a:new
+endfunction
+
+command! -nargs=* -complete=file GitLatexDiff :call GitLatexDiff(<f-args>)
+
 " Latex + siunitx
 call IMAP('ESI','\SI{<++>}{<++>}<++>','tex')
 call IMAP('ESR','\SIrange{<++>}{<++>}{<++>}<++>','tex')
