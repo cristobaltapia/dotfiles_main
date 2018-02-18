@@ -103,6 +103,8 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'mhartington/oceanic-next'
 " Base16 colorscheme
 Plug 'chriskempson/base16-vim'
+" Seoul256 color theme
+Plug 'junegunn/seoul256.vim'
 " ALE
 Plug 'w0rp/ale', { 'for': ['python', 'tex', 'fortran', 'javascript'] }
 " Asyncrun
@@ -121,6 +123,8 @@ Plug 'yssl/AutoCWD.vim'
 Plug 'airblade/vim-gitgutter'
 " GPG integration
 Plug 'jamessan/vim-gnupg'
+" Wavefront format support
+Plug 'vim-scripts/Wavefronts-obj'
 
 " Plugins that will only work under linux
 if has("unix")
@@ -209,10 +213,14 @@ endif
 " Colors for GVim
 if has('gui_running')
     " colorscheme space-vim-dark
-    colorscheme OceanicNext
+    " colorscheme OceanicNext
+    let g:seoul256_background=234
+    colorscheme seoul256
 elseif has('nvim')
     " colorscheme space-vim-dark
-    colorscheme OceanicNext
+    " colorscheme OceanicNext
+    let g:seoul256_background=234
+    colorscheme seoul256
 endif
 
 "----------------------------------------------------------------------
@@ -261,7 +269,7 @@ augroup file_type
     autocmd!
     "autocmd FileType python colorscheme wombat-mod
     " autocmd FileType python colorscheme space-vim-dark
-    autocmd FileType python colorscheme OceanicNext
+    " autocmd FileType python colorscheme OceanicNext
     autocmd FileType python AirlineRefresh
     autocmd FileType python setlocal shiftwidth=4
                 \ tabstop=4

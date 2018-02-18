@@ -109,3 +109,5 @@ fi
 
 # F*EX
 export PATH="$HOME/.fex/bin:$PATH"
+
+eval $(dircolors ~/.dircolors)
