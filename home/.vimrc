@@ -125,7 +125,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'jamessan/vim-gnupg'
 " Wavefront format support
 Plug 'vim-scripts/Wavefronts-obj'
-
+" Distraction-free writing in Vim.
+Plug 'junegunn/goyo.vim'
 " Plugins that will only work under linux
 if has("unix")
     " Codi, an interactive scratchpad for vim
@@ -670,3 +671,22 @@ let g:autocwd_patternwd_pairs = [
 " Gitgutter
 "----------------------------------------------------------------------
 let g:gitgutter_max_signs = 500     " default value
+
+"----------------------------------------------------------------------
+" Goyo
+"----------------------------------------------------------------------
+function! s:goyo_enter()
+  NumbersToggle
+  set nonumber
+  " ...
+endfunction
+
+function! s:goyo_leave()
+  NumbersToggle
+  set nu
+  " ...
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
