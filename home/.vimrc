@@ -103,6 +103,8 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'mhartington/oceanic-next'
 " Base16 colorscheme
 Plug 'chriskempson/base16-vim'
+" Seoul256 color theme
+Plug 'junegunn/seoul256.vim'
 " ALE
 Plug 'w0rp/ale', { 'for': ['python', 'tex', 'fortran', 'javascript'] }
 " Asyncrun
@@ -121,7 +123,10 @@ Plug 'yssl/AutoCWD.vim'
 Plug 'airblade/vim-gitgutter'
 " GPG integration
 Plug 'jamessan/vim-gnupg'
-
+" Wavefront format support
+Plug 'vim-scripts/Wavefronts-obj'
+" Distraction-free writing in Vim.
+Plug 'junegunn/goyo.vim'
 " Plugins that will only work under linux
 if has("unix")
     " Codi, an interactive scratchpad for vim
@@ -209,10 +214,14 @@ endif
 " Colors for GVim
 if has('gui_running')
     " colorscheme space-vim-dark
-    colorscheme OceanicNext
+    " colorscheme OceanicNext
+    let g:seoul256_background=234
+    colorscheme seoul256
 elseif has('nvim')
     " colorscheme space-vim-dark
-    colorscheme OceanicNext
+    " colorscheme OceanicNext
+    let g:seoul256_background=234
+    colorscheme seoul256
 endif
 
 "----------------------------------------------------------------------
@@ -274,7 +283,7 @@ augroup file_type
     autocmd!
     "autocmd FileType python colorscheme wombat-mod
     " autocmd FileType python colorscheme space-vim-dark
-    autocmd FileType python colorscheme OceanicNext
+    " autocmd FileType python colorscheme OceanicNext
     autocmd FileType python AirlineRefresh
     autocmd FileType python setlocal shiftwidth=4
                 \ tabstop=4
@@ -675,3 +684,22 @@ let g:autocwd_patternwd_pairs = [
 " Gitgutter
 "----------------------------------------------------------------------
 let g:gitgutter_max_signs = 500     " default value
+
+"----------------------------------------------------------------------
+" Goyo
+"----------------------------------------------------------------------
+function! s:goyo_enter()
+  NumbersToggle
+  set nonumber
+  " ...
+endfunction
+
+function! s:goyo_leave()
+  NumbersToggle
+  set nu
+  " ...
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
