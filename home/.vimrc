@@ -661,7 +661,7 @@ endfunction
 "----------------------------------------------------------------------
 " Markdown
 "----------------------------------------------------------------------
-let g:markdown_composer_browser='epiphany'
+let g:markdown_composer_browser='epiphany --new-window'
 let g:markdown_composer_open_browser=0
 let g:markdown_composer_refresh_rate=0
 " let g:markdown_composer_syntax_theme='solarized_dark'
