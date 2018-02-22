@@ -665,7 +665,7 @@ let g:markdown_composer_browser='epiphany'
 let g:markdown_composer_open_browser=0
 let g:markdown_composer_refresh_rate=0
 " let g:markdown_composer_syntax_theme='solarized_dark'
-let g:markdown_composer_external_renderer='pandoc -f markdown -t html'
+let g:markdown_composer_external_renderer='pandoc --filter pandoc-citeproc -f markdown -t html'
 
 autocmd FileChangedShell <buffer> call ProcessFileChangedShell()
 
