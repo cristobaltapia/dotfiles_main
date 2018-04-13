@@ -66,7 +66,8 @@ else
     nnoremap <buffer> <LocalLeader>lk :call SyncTex()<CR>
 endif
 "let g:Tex_CompileRule_pdf = 'pdflatex -synctex=-1 -src-specials -interaction=nonstopmode $*'
-let g:Tex_CompileRule_pdf = 'latexmk -pdf -pdflatex="pdflatex -shell-escape -src-specials -interaction=nonstopmode" $*'
+" let g:Tex_CompileRule_pdf = 'latexmk -pdf -pdflatex="pdflatex -shell-escape -src-specials -interaction=nonstopmode" $*'
+let g:Tex_CompileRule_pdf = 'latexmk -pdf -pdflatex="lualatex --shell-escape --interaction=nonstopmode" $*'
 
 function! GitLatexDiff(old, new)
     !git-latexdiff --bibtex --latexmk --latexopt="-shell-escape -src-specials -interaction=nonstopmode" --tmpdirprefix="latex-diff" --ln-untracked --main $* a:old a:new
