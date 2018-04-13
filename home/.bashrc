@@ -77,7 +77,7 @@ shopt -s checkwinsize
 
 # Virtual Environment
 export WORKON_HOME=~/.virtualenvs
-source /usr/bin/virtualenvwrapper.sh
+source $HOME/.local/bin/virtualenvwrapper.sh
 
 #PYTHONPATH="${PYTHONPATH}:/home/tapia/salomei/appli_V7_7_1/bin/salome"
 #export PYTHONPATH
@@ -111,3 +111,9 @@ fi
 export PATH="$HOME/.fex/bin:$PATH"
 
 eval $(dircolors ~/.dircolors)
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
