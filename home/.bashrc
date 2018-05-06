@@ -112,12 +112,8 @@ export PATH="$HOME/.fex/bin:$PATH"
 
 eval $(dircolors ~/.dircolors)
 
-<<<<<<< HEAD
-export PATH="$HOME/bin:$PATH"
-=======
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
->>>>>>> c75d6745b630fb3c2e83c979d5f843c6a6acfe2f
