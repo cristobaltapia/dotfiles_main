@@ -3,20 +3,20 @@
 " Author: Cristóbal Tapia Camú
 "
 " Load vim-plug
-if has('win32')
-    " this does not work, but I leave it here just to remember what I need to do
-    if empty(glob("~/vimfiles/autoload/plug.vim"))
-        execute 'md ~\vimfiles\autoload'
-        execute "$uri = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'"
-        execute '(New-Object Net.WebClient).DownloadFile($uri, $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath("~\vimfiles\autoload\plug.vim"))'
-    endif
-endif
-
-if has('vim')
-    if empty(glob("~/.vim/autoload/plug.vim"))
-        execute '!curl -fLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim'
-    endif
-endif
+" if has('win32')
+"     " this does not work, but I leave it here just to remember what I need to do
+"     if empty(glob("~/vimfiles/autoload/plug.vim"))
+"         execute 'md ~\vimfiles\autoload'
+"         execute "$uri = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'"
+"         execute '(New-Object Net.WebClient).DownloadFile($uri, $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath("~\vimfiles\autoload\plug.vim"))'
+"     endif
+" endif
+"
+" if has('vim')
+"     if empty(glob("~/.vim/autoload/plug.vim"))
+"         execute '!curl -fLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim'
+"     endif
+" endif
 
 function! BuildComposer(info)
   if a:info.status != 'unchanged' || a:info.force
@@ -64,23 +64,23 @@ Plug 'scrooloose/nerdcommenter'
 " Emmet
 Plug 'mattn/emmet-vim'
 " Tab list panel
-Plug 'kien/tabman.vim'
+" Plug 'kien/tabman.vim'
 " Vim-Airline
 Plug 'bling/vim-airline'
 " Pending tasks list
 Plug 'fisadev/FixedTaskList.vim'
 " Surround
 Plug 'tpope/vim-surround'
-" Autoclose
+" Autoclose (autocloses parenthesis)
 Plug 'Townk/vim-autoclose'
 " Indent text object
-Plug 'michaeljsmith/vim-indent-object'
+Plug 'michaeljsmith/vim-indent-object', { 'for': 'python' }
 " Fix white spaces at end of lines
 Plug 'bronson/vim-trailing-whitespace'
 " Matlab
-Plug 'vim-scripts/MatlabFilesEdition'
+Plug 'vim-scripts/MatlabFilesEdition', { 'for': 'matlab' }
 " Conda Environment
-Plug 'cjrh/vim-conda'
+" Plug 'cjrh/vim-conda'
 " Latex
 Plug 'vim-latex/vim-latex', {'for': 'tex' }
 " Rename. Rename a buffer within Vim and on disk
@@ -88,7 +88,7 @@ Plug 'vim-scripts/Rename'
 " Search results counter
 Plug 'vim-scripts/IndexedSearch'
 " XML/HTML tags navigation
-Plug 'vim-scripts/matchit.zip'
+Plug 'vim-scripts/matchit.zip', { 'for': ['html', 'xml'] }
 " " Numbers (relative numbers)
 Plug 'myusuf3/numbers.vim'
 " Ctrl P
@@ -110,7 +110,7 @@ Plug 'w0rp/ale', { 'for': ['python', 'tex', 'fortran', 'javascript'] }
 " Asyncrun
 Plug 'skywind3000/asyncrun.vim'
 " Dispatch
-Plug 'tpope/vim-dispatch'
+" Plug 'tpope/vim-dispatch'
 " Space-vim-dark colorscheme
 Plug 'liuchengxu/space-vim-dark'
 " vim-jason: a better json
@@ -126,13 +126,13 @@ Plug 'jamessan/vim-gnupg'
 " Wavefront format support
 Plug 'vim-scripts/Wavefronts-obj'
 " Distraction-free writing in Vim.
-Plug 'junegunn/goyo.vim'
+Plug 'junegunn/goyo.vim', { 'for': ['tex', 'txt', 'md'] }
 " Plugins that will only work under linux
 if has("unix")
     " Codi, an interactive scratchpad for vim
     Plug 'metakirby5/codi.vim', { 'for': 'python' }
     " Game code-break
-    Plug 'johngrib/vim-game-code-break'
+    " Plug 'johngrib/vim-game-code-break'
 endif
 
 if  has("vim")
@@ -223,6 +223,12 @@ elseif has('nvim')
     let g:seoul256_background=234
     colorscheme seoul256
 endif
+
+"----------------------------------------------------------
+" Neovim's Python provider
+"----------------------------------------------------------
+let g:python_host_prog  = '/home/tapiac/.virtualenvs/py2neovim/bin/python'
+let g:python3_host_prog = '/home/tapiac/.virtualenvs/py3neovim/bin/python3'
 
 "----------------------------------------------------------------------
 " Mappings

@@ -67,7 +67,7 @@ else
 endif
 "let g:Tex_CompileRule_pdf = 'pdflatex -synctex=-1 -src-specials -interaction=nonstopmode $*'
 " let g:Tex_CompileRule_pdf = 'latexmk -pdf -pdflatex="pdflatex -shell-escape -src-specials -interaction=nonstopmode" $*'
-let g:Tex_CompileRule_pdf = 'latexmk -pdf -pdflatex="lualatex --shell-escape --interaction=nonstopmode" $*'
+let g:Tex_CompileRule_pdf = 'latexmk -aux-directory=aux_files --output-directory=aux_files -pdf -pdflatex="lualatex --shell-escape --interaction=nonstopmode" $* && mv aux_files/%:r.pdf %:t:r.pdf'
 
 function! GitLatexDiff(old, new)
     !git-latexdiff --bibtex --latexmk --latexopt="-shell-escape -src-specials -interaction=nonstopmode" --tmpdirprefix="latex-diff" --ln-untracked --main $* a:old a:new
