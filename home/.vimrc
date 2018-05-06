@@ -224,11 +224,30 @@ elseif has('nvim')
     colorscheme seoul256
 endif
 
+" Function to get OS
+function! GetRunningOS()
+  if has("win32")
+    return "win"
+  endif
+  if has("unix")
+    if system('uname -r')=~# 'ARCH'
+      return "Arch"
+    else
+      return "Ubuntu"
+    endif
+  endif
+endfunction
+
+let curr_os = GetRunningOS()
+
+
 "----------------------------------------------------------
 " Neovim's Python provider
 "----------------------------------------------------------
-let g:python_host_prog  = '/home/tapiac/.virtualenvs/py2neovim/bin/python'
-let g:python3_host_prog = '/home/tapiac/.virtualenvs/py3neovim/bin/python3'
+if curr_os =~ 'Ubuntu'
+    let g:python_host_prog  = '/home/tapiac/.virtualenvs/py2neovim/bin/python'
+    let g:python3_host_prog = '/home/tapiac/.virtualenvs/py3neovim/bin/python3'
+endif
 
 "----------------------------------------------------------------------
 " Mappings

@@ -77,7 +77,7 @@ shopt -s checkwinsize
 
 # Virtual Environment
 export WORKON_HOME=~/.virtualenvs
-source $HOME/.local/bin/virtualenvwrapper.sh
+source /usr/bin/virtualenvwrapper.sh
 
 #PYTHONPATH="${PYTHONPATH}:/home/tapia/salomei/appli_V7_7_1/bin/salome"
 #export PYTHONPATH
