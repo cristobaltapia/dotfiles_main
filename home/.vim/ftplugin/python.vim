@@ -1,16 +1,4 @@
-" Execute file being edited with <Shift> + e:
-" set makeprg=python\ -c\ \"import\ py_compile,sys;\ sys.stderr=sys.stdout;\ py_compile.compile(r'%')\"
-" set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
-" nmap <F5> :!python "%:p" <CR>
-"
-" cd %:p:h
-
 set expandtab
-"set textwidth=79
-"set tabstop=8
-"set softtabstop=4
-"set shiftwidth=4
-"set autoindent
 
 " Set the folding method
 set foldmethod=indent
@@ -43,6 +31,4 @@ function! s:GetCurrentTextWidth()
 endfunction
 
 " Sort imports
-autocmd FileType python nnoremap <LocalLeader>i :!isort %<CR><CR>
-autocmd FileType python nnoremap <LocalLeader>= :0,$!yapf --style="{based_on_style: pep8; SPLIT_BEFORE_NAMED_ASSIGNS: False, DEDENT_CLOSING_BRACKETS: False}"<CR>
-" autocmd FileType python nnoremap <LocalLeader>= :0,$!yapf --style=H:/.config/yapf/format<CR>
+" autocmd FileType python nnoremap <LocalLeader>= :0,$!yapf --style="{based_on_style: pep8; SPLIT_BEFORE_NAMED_ASSIGNS: False, DEDENT_CLOSING_BRACKETS: False}"<CR>
