@@ -69,8 +69,11 @@ endif
 " let g:Tex_CompileRule_pdf = 'latexmk -pdf -pdflatex="pdflatex -shell-escape -src-specials -interaction=nonstopmode" $*'
 let g:Tex_CompileRule_pdf = 'latexmk -aux-directory=aux_files --output-directory=aux_files -pdf -pdflatex="lualatex --shell-escape --interaction=nonstopmode" $* && mv aux_files/%:r.pdf %:t:r.pdf'
 
+" Run a latexdiff
 function! GitLatexDiff(old, new)
-    !git-latexdiff --bibtex --latexmk --latexopt="-shell-escape -src-specials -interaction=nonstopmode" --tmpdirprefix="latex-diff" --ln-untracked --main $* a:old a:new
+    echo a:old
+    execute '!mkdir latex-diff'
+    execute '!git latexdiff --biber --latexmk --latexopt "-pdf -pdflatex=lualatex" --tmpdirprefix "latex-diff" --output "latex-diff/diff-output" --no-view --main ' .'%:t '. a:old .' '. a:new
 endfunction
 
 command! -nargs=* -complete=file GitLatexDiff :call GitLatexDiff(<f-args>)
