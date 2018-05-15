@@ -552,7 +552,7 @@ let g:ale_fixers = {
             \   'python': ['yapf', 'isort'],
             \   'tex': ['remove_trailing_lines'],
             \}
-let g:ale_python_yapf_executable = 'yapf --style="{based_on_style: pep8; SPLIT_BEFORE_NAMED_ASSIGNS: False, DEDENT_CLOSING_BRACKETS: False}"'
+" let g:ale_python_yapf_executable = 'yapf --style="{based_on_style: pep8; SPLIT_BEFORE_NAMED_ASSIGNS: False, DEDENT_CLOSING_BRACKETS: False}"'
 
 " Define map for the Fix function
 noremap <LocalLeader>= :ALEFix<cr>
