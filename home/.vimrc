@@ -536,8 +536,9 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 let g:ale_linters = {
             \   'python': ['flake8','pylint'],
-            \   'tex': ['chktex', 'proselint', 'write-good'],
+            \   'tex': ['chktex', 'proselint', 'lacheck', 'write-good'],
             \   'fortran': ['gcc'],
+            \   'markdown': ['alex', 'proselint'],
             \   'javascript': ['javac'],
             \}
 
@@ -548,8 +549,13 @@ let g:ale_lint_on_text_changed = 0
 let g:ale_lint_on_enter = 1
 
 let g:ale_fixers = {
-            \   'python': ['yapf'],
+            \   'python': ['yapf', 'isort'],
+            \   'tex': ['remove_trailing_lines'],
             \}
+let g:ale_python_yapf_executable = 'yapf --style="{based_on_style: pep8; SPLIT_BEFORE_NAMED_ASSIGNS: False, DEDENT_CLOSING_BRACKETS: False}"'
+
+" Define map for the Fix function
+noremap <LocalLeader>= :ALEFix<cr>
 
 " Change default symbols for ALE
 " let g:ale_sign_error = "✗"
