@@ -106,7 +106,7 @@ Plug 'chriskempson/base16-vim'
 " Seoul256 color theme
 Plug 'junegunn/seoul256.vim'
 " ALE
-Plug 'w0rp/ale', { 'for': ['python', 'tex', 'fortran', 'javascript'] }
+Plug 'w0rp/ale', { 'for': ['python', 'tex', 'fortran', 'javascript', 'dockerfile', 'markdown'] }
 " Asyncrun
 Plug 'skywind3000/asyncrun.vim'
 " Dispatch
@@ -417,10 +417,13 @@ let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 let g:UltiSnipsSnippetDirectories=[
-            \'~/.vim/plugged/MySnippets/'
             \'~/.vim/plugged/vim-snippets/snippets',
-            \'Ultisnips',
+            \'~/.vim/plugged/vim-snippets/UltiSnips',
+            \'~/.vim/plugged/MySnippets/'
             \]
+            " \'Ultisnips',
+" Set the smart function definition to use numpy style for docstrings
+let g:ultisnips_python_style="numpy"
 
 "----------------------------------------------------------------------
 " Deoplete
@@ -540,6 +543,7 @@ let g:ale_linters = {
             \   'fortran': ['gcc'],
             \   'markdown': ['alex', 'proselint'],
             \   'javascript': ['javac'],
+            \   'dockerfile': ['hadolint'],
             \}
 
 " Run linters on save
@@ -551,6 +555,7 @@ let g:ale_lint_on_enter = 1
 let g:ale_fixers = {
             \   'python': ['yapf', 'isort'],
             \   'tex': ['remove_trailing_lines'],
+            \   'markdown': ['prettier'],
             \}
 " let g:ale_python_yapf_executable = 'yapf --style="{based_on_style: pep8; SPLIT_BEFORE_NAMED_ASSIGNS: False, DEDENT_CLOSING_BRACKETS: False}"'
 
@@ -692,7 +697,7 @@ endfunction
 "----------------------------------------------------------------------
 " Markdown
 "----------------------------------------------------------------------
-let g:markdown_composer_browser='epiphany --new-window'
+let g:markdown_composer_browser='epiphany --private-instance'
 let g:markdown_composer_open_browser=0
 let g:markdown_composer_refresh_rate=0
 " let g:markdown_composer_syntax_theme='solarized_dark'
