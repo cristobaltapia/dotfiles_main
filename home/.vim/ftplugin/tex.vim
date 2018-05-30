@@ -65,8 +65,8 @@ else
     endfunction
     nnoremap <buffer> <LocalLeader>lk :call SyncTex()<CR>
 endif
-"let g:Tex_CompileRule_pdf = 'pdflatex -synctex=-1 -src-specials -interaction=nonstopmode $*'
-" let g:Tex_CompileRule_pdf = 'latexmk -pdf -pdflatex="pdflatex -shell-escape -src-specials -interaction=nonstopmode" $*'
+"
+" Compile rule for pdf
 let g:Tex_CompileRule_pdf = 'latexmk -aux-directory=aux_files --output-directory=aux_files -pdf -pdflatex="lualatex --shell-escape --interaction=nonstopmode" $* && mv aux_files/%:r.pdf %:t:r.pdf'
 
 " Run a latexdiff

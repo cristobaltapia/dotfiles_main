@@ -83,6 +83,8 @@ Plug 'vim-scripts/MatlabFilesEdition', { 'for': 'matlab' }
 " Plug 'cjrh/vim-conda'
 " Latex
 Plug 'vim-latex/vim-latex', {'for': 'tex' }
+" Convert latex expressions into unicode equivalents
+Plug 'joom/latex-unicoder.vim'
 " Rename. Rename a buffer within Vim and on disk
 Plug 'vim-scripts/Rename'
 " Search results counter
