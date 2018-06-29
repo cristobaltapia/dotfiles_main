@@ -183,7 +183,6 @@ set laststatus=2    " Always show status bar
 set incsearch       " Incremental search
 set hlsearch        " Highlighted search results
 set nu              " Line numbers
-set hidden          " Preference when using buffers
 
 if (has("termguicolors"))
     set termguicolors
@@ -239,7 +238,6 @@ function! GetRunningOS()
 endfunction
 
 let curr_os = GetRunningOS()
-
 
 "----------------------------------------------------------
 " Neovim's Python provider
@@ -326,6 +324,7 @@ augroup file_type
                 \ tabstop=3
                 \ softtabstop=3
                 \ expandtab
+    autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 augroup END
 
 "----------------------------------------------------------------------
@@ -694,6 +693,8 @@ function! ProcessFileChangedShell()
     endif
 endfunction
 
+" autocmd FileChangedShell <buffer> call ProcessFileChangedShell()
+
 "----------------------------------------------------------------------
 " Markdown
 "----------------------------------------------------------------------
@@ -702,8 +703,6 @@ let g:markdown_composer_open_browser=0
 let g:markdown_composer_refresh_rate=0
 " let g:markdown_composer_syntax_theme='solarized_dark'
 let g:markdown_composer_external_renderer='pandoc --filter pandoc-citeproc -f markdown -t html'
-
-autocmd FileChangedShell <buffer> call ProcessFileChangedShell()
 
 "----------------------------------------------------------------------
 " AutCWD
