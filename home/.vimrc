@@ -182,7 +182,6 @@ set laststatus=2    " Always show status bar
 set incsearch       " Incremental search
 set hlsearch        " Highlighted search results
 set nu              " Line numbers
-set hidden          " Preference when using buffers
 
 if (has("termguicolors"))
     set termguicolors
@@ -341,6 +340,7 @@ augroup file_type
                 \ tabstop=3
                 \ softtabstop=3
                 \ expandtab
+    autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 augroup END
 
 "}}}
@@ -722,6 +722,8 @@ function! ProcessFileChangedShell()
         let v:fcs_choice = 'ask'
     endif
 endfunction
+
+" autocmd FileChangedShell <buffer> call ProcessFileChangedShell()
 
 "----------------------------------------------------------------------
 " Markdown
