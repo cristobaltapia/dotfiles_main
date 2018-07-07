@@ -28,6 +28,8 @@ function! BuildComposer(info)
   endif
 endfunction
 
+" Pluggins
+"{{{
 "----------------------------------------------------------------------
 call plug#begin('~/.vim/plugged')
 "
@@ -129,27 +131,21 @@ Plug 'jamessan/vim-gnupg'
 Plug 'vim-scripts/Wavefronts-obj'
 " Distraction-free writing in Vim.
 Plug 'junegunn/goyo.vim', { 'for': ['tex', 'txt', 'md'] }
+" Deoplete (completion)
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Jedi for deoplete
+Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+" Ipython terminal
+Plug 'hkupty/iron.nvim', { 'for': 'python' }
+
 " Plugins that will only work under linux
 if has("unix")
     " Codi, an interactive scratchpad for vim
     Plug 'metakirby5/codi.vim', { 'for': 'python' }
-    " Game code-break
-    " Plug 'johngrib/vim-game-code-break'
-endif
-
-if  has("vim")
-    " Neocomplete + snippets
-    Plug 'Shougo/neocomplete.vim'
-elseif has("nvim")
-    " Deoplete (completion)
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    " Jedi for deoplete
-    Plug 'zchee/deoplete-jedi'
-    " Ipython terminal
-    Plug 'hkupty/iron.nvim', {'for': 'python'}
 endif
 
 call plug#end()
+"}}}
 
 " Latex options
 let g:tex_flavor='latex'
@@ -158,8 +154,9 @@ let g:tex_flavor='latex'
 cd %:p:h
 
 "----------------------------------------------------------------------
-" Diverse options
+" Options and mappings
 "----------------------------------------------------------------------
+"{{{
 set title           " Toggle title on
 set titlestring=%t%(\ %M%)%(\ %y%)  " Set the title string
 set scrolloff=3     " When scrolling, keep cursor 3 lines away from screen border
@@ -213,7 +210,15 @@ else
     set guioptions-=T  " Remove toolbar
 endif
 
+" Edit commands for the navifation in help documents
+nnoremap <C-9> <C-]>
+
+"}}}
+
+"----------------------------------------------------------------------
 " Colors for GVim
+"----------------------------------------------------------------------
+"{{{
 if has('gui_running')
     " colorscheme space-vim-dark
     " colorscheme OceanicNext
@@ -225,8 +230,12 @@ elseif has('nvim')
     let g:seoul256_background=234
     colorscheme seoul256
 endif
+"}}}
 
+"----------------------------------------------------------------------
 " Function to get OS
+"----------------------------------------------------------------------
+"{{{
 function! GetRunningOS()
   if has("win32")
     return "win"
@@ -241,7 +250,7 @@ function! GetRunningOS()
 endfunction
 
 let curr_os = GetRunningOS()
-
+"}}}
 
 "----------------------------------------------------------
 " Neovim's Python provider
@@ -254,6 +263,7 @@ endif
 "----------------------------------------------------------------------
 " Mappings
 "----------------------------------------------------------------------
+"{{{
 " Map to stop highlighting of last search
 nnoremap <leader>pp :nohlsearch<cr>
 
@@ -288,11 +298,12 @@ nmap <leader>bq :bp <BAR> bd #<CR>
 nmap <leader>bl :ls<CR>
 " Show pending tasks list
 noremap <F2> :TaskList<CR>
-"----------------------------------------------------------------------
-"
+"}}}
+
 "----------------------------------------------------------------------
 " Functions
 "----------------------------------------------------------------------
+"{{{
 " Copy all matches
 function! CopyMatches(reg)
   let hits = []
@@ -301,11 +312,13 @@ function! CopyMatches(reg)
   execute 'let @'.reg.' = join(hits, "\n") . "\n"'
 endfunction
 command! -register CopyMatches call CopyMatches(<q-reg>)
-"----------------------------------------------------------------------
+"}}}
+"
 
 "----------------------------------------------------------------------
 " Tablength exceptions
 "----------------------------------------------------------------------
+"{{{
 augroup file_type
     autocmd!
     "autocmd FileType python colorscheme wombat-mod
@@ -330,14 +343,18 @@ augroup file_type
                 \ expandtab
 augroup END
 
+"}}}
+
 "----------------------------------------------------------------------
 " Toggle Tagbar display
+"----------------------------------------------------------------------
 noremap <F4> :TagbarToggle<CR>
 " Autofocus on Tagbar open
 let g:tagbar_autofocus = 1
 
 "----------------------------------------------------------------------
 " Automatically close autocompletion window
+"----------------------------------------------------------------------
 augroup autocompl_window
     autocmd!
     autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
@@ -347,6 +364,7 @@ augroup END
 "----------------------------------------------------------------------
 " Rainbow parentheses
 "----------------------------------------------------------------------
+"{{{
 let g:rainbow_active = 1
 let g:rainbow_conf = {
             \'guifgs': ['darkorange', 'seagreen', 'royalblue', 'firebrick'],
@@ -370,7 +388,7 @@ let g:rainbow_conf = {
             \    'css': 0,
             \   }
             \}
-"----------------------------------------------------------------------
+"}}}
 
 "----------------------------------------------------------------------
 " NERDTree (better file browser) toggle
@@ -382,6 +400,7 @@ let NERDTreeIgnore = ['\.pyc$', '\.pyo$']
 "----------------------------------------------------------------------
 " Powerline configurations
 "----------------------------------------------------------------------
+"{{{
 "let g:Powerline_symbols = 'fancy'
 let g:airline_powerline_fonts = 1
 if has('win32')
@@ -398,11 +417,12 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#virtualenv#enabled = 1
 " Cooperation with Asyncrun
 let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
+"}}}
 
 "----------------------------------------------------------------------
-
+" Snippets and autocompletion
 "----------------------------------------------------------------------
-
+"{{{
 if has('vim')
     " Neocomplete configuration
     "let g:neocomplete#enable_at_startup = 1
@@ -418,12 +438,16 @@ let g:UltiSnipsExpandTrigger="<c-k>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-let g:UltiSnipsSnippetDirectories=[
-            \'~/.vim/plugged/vim-snippets/snippets',
-            \'~/.vim/plugged/vim-snippets/UltiSnips',
+let g:UltiSnipsSnippetDir=[
             \'~/.vim/plugged/MySnippets/'
             \]
-            " \'Ultisnips',
+
+let g:UltiSnipsSnippetDirectories=[
+            \'UltiSnips',
+            \'~/.vim/plugged/MySnippets/UltiSnips'
+            \]
+            " \'~/.vim/plugged/vim-snippets/snippets',
+            " \'~/.vim/plugged/vim-snippets/UltiSnips',
 " Set the smart function definition to use numpy style for docstrings
 let g:ultisnips_python_style="numpy"
 
@@ -445,9 +469,12 @@ function! s:my_cr_function() abort
     return deoplete#close_popup() . "\<CR>"
 endfunction
 
-"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-" PYTHON CONFIGURATION
-"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+"}}}
+
+"----------------------------------------------------------------------
+" Python configuration
+"----------------------------------------------------------------------
+"{{{
 let g:deoplete#sources#jedi#server_timeout = 30
 
 syntax on
@@ -494,11 +521,12 @@ let g:pymode_syntax_all = 1
 let g:jedi#popup_on_dot = 0
 let g:jedi#completions_enabled = 0
 
-"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+"}}}
 
 "----------------------------------------------------------------------
 " Configuration for vim-easy-align
 "----------------------------------------------------------------------
+"{{{
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
 vmap <Enter> <Plug>(EasyAlign)
 
@@ -531,7 +559,7 @@ let g:easy_align_delimiters = {
             \     'right_margin': 0
             \   }
             \ }
-"----------------------------------------------------------------------
+"}}}
 
 "----------------------------------------------------------------------
 " Ale configurations
@@ -596,6 +624,8 @@ let g:NERDTrimTrailingWhitespace = 1
 
 "----------------------------------------------------------------------
 " Redefine Diff function
+"----------------------------------------------------------------------
+"{{{
 if has('win32')
     set diffexpr=MyDiff()
     function! MyDiff()
@@ -627,10 +657,7 @@ if has('win32')
         endif
     endfunction
 endif
-
-" Latex-Suite Template folder
-" Edit commands for the navifation in help documents
-nnoremap <C-9> <C-]>
+"}}}
 
 " Suppress message of vim-conda
 let g:conda_startup_msg_suppress = 1
@@ -699,6 +726,7 @@ endfunction
 "----------------------------------------------------------------------
 " Markdown
 "----------------------------------------------------------------------
+"{{{
 let g:markdown_composer_browser='epiphany --private-instance'
 let g:markdown_composer_open_browser=0
 let g:markdown_composer_refresh_rate=0
@@ -706,6 +734,7 @@ let g:markdown_composer_refresh_rate=0
 let g:markdown_composer_external_renderer='pandoc --filter pandoc-citeproc -f markdown -t html'
 
 autocmd FileChangedShell <buffer> call ProcessFileChangedShell()
+"}}}
 
 "----------------------------------------------------------------------
 " AutCWD
