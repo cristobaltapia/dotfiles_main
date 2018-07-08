@@ -28,6 +28,37 @@ function! BuildComposer(info)
   endif
 endfunction
 
+"----------------------------------------------------------------------
+" Function to get OS
+"----------------------------------------------------------------------
+"{{{
+function! GetRunningOS()
+  if has("win32")
+    return "win"
+  endif
+  if has("unix")
+    if system('uname -r')=~# 'ARCH'
+      return "Arch"
+    else
+      return "Ubuntu"
+    endif
+  endif
+endfunction
+
+let curr_os = GetRunningOS()
+"}}}
+
+"----------------------------------------------------------
+" Neovim's Python provider
+"----------------------------------------------------------
+if curr_os =~ 'Ubuntu'
+    let g:python_host_prog  = '/home/tapiac/.virtualenvs/py2neovim/bin/python'
+    let g:python3_host_prog = '/home/tapiac/.virtualenvs/py3neovim/bin/python3'
+    let g:deoplete#sources#jedi#python_path = '/home/tapiac/.virtualenvs/py3neovim/bin/python3'
+else
+    let g:deoplete#sources#jedi#python_path = '/home/tapia/.virtualenvs/py3neovim/bin/python3'
+endif
+
 " Pluggins
 "{{{
 "----------------------------------------------------------------------
@@ -132,9 +163,11 @@ Plug 'vim-scripts/Wavefronts-obj'
 " Distraction-free writing in Vim.
 Plug 'junegunn/goyo.vim', { 'for': ['tex', 'txt', 'md'] }
 " Deoplete (completion)
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'}
 " Jedi for deoplete
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+" Plug 'zchee/deoplete-jedi', { 'for': 'python', 'commit': '00eff70' }
+" Plug 'blueyed/deoplete-jedi', { 'for': 'python', 'commit': '23da53c' }
 " Ipython terminal
 Plug 'hkupty/iron.nvim', { 'for': 'python' }
 
@@ -231,33 +264,6 @@ elseif has('nvim')
 endif
 "}}}
 
-"----------------------------------------------------------------------
-" Function to get OS
-"----------------------------------------------------------------------
-"{{{
-function! GetRunningOS()
-  if has("win32")
-    return "win"
-  endif
-  if has("unix")
-    if system('uname -r')=~# 'ARCH'
-      return "Arch"
-    else
-      return "Ubuntu"
-    endif
-  endif
-endfunction
-
-let curr_os = GetRunningOS()
-"}}}
-
-"----------------------------------------------------------
-" Neovim's Python provider
-"----------------------------------------------------------
-if curr_os =~ 'Ubuntu'
-    let g:python_host_prog  = '/home/tapiac/.virtualenvs/py2neovim/bin/python'
-    let g:python3_host_prog = '/home/tapiac/.virtualenvs/py3neovim/bin/python3'
-endif
 
 "----------------------------------------------------------------------
 " Mappings
@@ -438,13 +444,20 @@ let g:UltiSnipsExpandTrigger="<c-k>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-let g:UltiSnipsSnippetDir=[
-            \'~/.vim/plugged/MySnippets/'
-            \]
+" let g:UltiSnipsSnippetDir=[
+"             \'~/.vim/plugged/MySnippets/UltiSnips'
+"             \]
+
+" Fix for UltiSnips (we need absolute paths)
+if curr_os =~ 'Ubuntu'
+    let g:tapia_home='/home/tapiac/'
+else
+    let g:tapia_home='/home/tapia/'
+endif
 
 let g:UltiSnipsSnippetDirectories=[
             \'UltiSnips',
-            \'~/.vim/plugged/MySnippets/UltiSnips'
+            \g:tapia_home . '.vim/plugged/MySnippets/Ultisnips'
             \]
             " \'~/.vim/plugged/vim-snippets/snippets',
             " \'~/.vim/plugged/vim-snippets/UltiSnips',
