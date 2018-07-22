@@ -7,7 +7,7 @@ endif
 
 source ~/.vimrc
 
-" Moevements in term-mode
+" Movements in term-mode
 
 " Escape terminal mode with <Esc>
 tnoremap <Esc> <C-\><C-n>
@@ -24,4 +24,5 @@ nnoremap <A-l> <C-w>l
 set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
             \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
             \,sm:block-blinkwait175-blinkoff150-blinkon175
+
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
