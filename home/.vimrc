@@ -277,9 +277,12 @@ nnoremap <space> za
 vnoremap <space> zf
 
 " Map <Esc> to Shift-Space. Its more confortable
-inoremap <S-Space> <Esc>
-vnoremap <S-Space> <Esc>
-snoremap <S-Space> <Esc>
+" inoremap <S-Space> <Esc>
+" vnoremap <S-Space> <Esc>
+" snoremap <S-Space> <Esc>
+imap ii <Esc>
+vmap ii <Esc>
+smap ii <Esc>
 
 " Mapping to Open Vimrc
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
