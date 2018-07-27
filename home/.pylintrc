@@ -1,0 +1,3 @@
+[VARIABLES]
+# Good variable names,which should always be accepted
+good-names=i,j,k,ix,ij,ik,x,y,z
