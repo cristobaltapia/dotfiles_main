@@ -37,7 +37,7 @@ function! GetRunningOS()
     return "win"
   endif
   if has("unix")
-    if system('uname -r')=~# 'ARCH'
+    if system('uname -r')=~# 'arch'
       return "Arch"
     else
       return "Ubuntu"
@@ -56,6 +56,8 @@ if curr_os =~ 'Ubuntu'
     let g:python3_host_prog = '/home/tapiac/.virtualenvs/py3neovim/bin/python3'
     let g:deoplete#sources#jedi#python_path = '/home/tapiac/.virtualenvs/py3neovim/bin/python3'
 else
+    " let g:python_host_prog  = '/usr/bin/python2'
+    let g:python3_host_prog = '/home/tapia/.virtualenvs/py3neovim/bin/python3'
     let g:deoplete#sources#jedi#python_path = '/home/tapia/.virtualenvs/py3neovim/bin/python3'
 endif
 
@@ -277,12 +279,12 @@ nnoremap <space> za
 vnoremap <space> zf
 
 " Map <Esc> to Shift-Space. Its more confortable
-" inoremap <S-Space> <Esc>
-" vnoremap <S-Space> <Esc>
-" snoremap <S-Space> <Esc>
-imap ii <Esc>
-vmap ii <Esc>
-smap ii <Esc>
+inoremap <S-Space> <Esc>
+vnoremap <S-Space> <Esc>
+snoremap <S-Space> <Esc>
+inoremap <C-Space> <Esc>
+vnoremap <C-Space> <Esc>
+snoremap <C-Space> <Esc>
 
 " Mapping to Open Vimrc
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
