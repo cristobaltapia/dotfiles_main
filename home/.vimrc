@@ -284,6 +284,10 @@ inoremap <S-Space> <Esc>
 vnoremap <S-Space> <Esc>
 snoremap <S-Space> <Esc>
 
+inoremap <M-Space> <Esc>
+vnoremap <M-Space> <Esc>
+snoremap <M-Space> <Esc>
+
 " Mapping to Open Vimrc
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 " ...and to Source Vimrc
