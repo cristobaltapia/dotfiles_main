@@ -282,9 +282,6 @@ vnoremap <space> zf
 inoremap <S-Space> <Esc>
 vnoremap <S-Space> <Esc>
 snoremap <S-Space> <Esc>
-inoremap <C-Space> <Esc>
-vnoremap <C-Space> <Esc>
-snoremap <C-Space> <Esc>
 
 " Mapping to Open Vimrc
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
@@ -604,6 +601,7 @@ let g:ale_fixers = {
             \   'python': ['yapf', 'isort'],
             \   'tex': ['remove_trailing_lines'],
             \   'markdown': ['prettier'],
+            \   'javascript': ['prettier'],
             \}
 " let g:ale_python_yapf_executable = 'yapf --style="{based_on_style: pep8; SPLIT_BEFORE_NAMED_ASSIGNS: False, DEDENT_CLOSING_BRACKETS: False}"'
 
