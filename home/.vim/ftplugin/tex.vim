@@ -34,6 +34,7 @@ let g:Tex_AutoFolding = 1
 " Define Custom template folder
 let g:Tex_CustomTemplateDirectory = '~/Templates/latex'
 let g:Imap_FreezeImap = 0
+let g:Tex_FoldedEnvironments = 'verbatim,comment,eq,gather,align,figure,table,thebibliography,keywords,abstract,titlepage,frame'
 
 "let g:Tex_BibtexFlavor = 'biber'
 "
