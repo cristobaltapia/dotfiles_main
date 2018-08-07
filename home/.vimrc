@@ -217,6 +217,7 @@ set laststatus=2    " Always show status bar
 set incsearch       " Incremental search
 set hlsearch        " Highlighted search results
 set nu              " Line numbers
+set diffopt+=vertical " Set vertical split as default for diff
 
 if (has("termguicolors"))
     set termguicolors
