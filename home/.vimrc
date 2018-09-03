@@ -168,6 +168,8 @@ Plug 'junegunn/goyo.vim', { 'for': ['tex', 'txt', 'md'] }
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'}
 " Jedi for deoplete
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+" Vala plugin
+Plug 'arrufat/vala.vim'
 " Plug 'zchee/deoplete-jedi', { 'for': 'python', 'commit': '00eff70' }
 " Plug 'blueyed/deoplete-jedi', { 'for': 'python', 'commit': '23da53c' }
 " Ipython terminal
