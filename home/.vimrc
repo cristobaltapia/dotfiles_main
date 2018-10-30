@@ -333,29 +333,46 @@ command! -register CopyMatches call CopyMatches(<q-reg>)
 " Tablength exceptions
 "----------------------------------------------------------------------
 "{{{
+augroup spell_group
+    autocmd!
+    autocmd BufEnter,BufNewFile,BufNew *.tex syntax spell toplevel
+    autocmd BufEnter,BufNewFile,BufNew *.tex setlocal spell
+    autocmd BufEnter,BufNewFile,BufNew *.md setlocal spell
+augroup END
+
 augroup file_type
     autocmd!
-    "autocmd FileType python colorscheme wombat-mod
-    " autocmd FileType python colorscheme space-vim-dark
-    " autocmd FileType python colorscheme OceanicNext
     autocmd FileType python AirlineRefresh
-    autocmd FileType python setlocal shiftwidth=4
+    autocmd FileType python setlocal
+                \ shiftwidth=4
                 \ tabstop=4
                 \ softtabstop=4
                 \ expandtab
-    autocmd FileType html setlocal shiftwidth=2 tabstop=2
-    autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2
-    autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
+    autocmd FileType html setlocal 
+                \ shiftwidth=2 
+                \ tabstop=2
+    autocmd FileType htmldjango setlocal 
+                \ shiftwidth=2
+                \ tabstop=2
+    autocmd FileType javascript setlocal
+                \ shiftwidth=2
+                \ tabstop=2
     autocmd FileType tex AirlineRefresh
-    autocmd FileType tex setlocal shiftwidth=2
+    autocmd FileType tex setlocal
+                \ shiftwidth=2
                 \ tabstop=2
                 \ softtabstop=2
                 \ expandtab
-    autocmd FileType fortran setlocal shiftwidth=3
+    autocmd FileType fortran setlocal 
+                \ shiftwidth=3
                 \ tabstop=3
                 \ softtabstop=3
                 \ expandtab
-    autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+    autocmd FileType yaml setlocal 
+                \ts=2
+                \ sts=2
+                \ sw=2
+                \ expandtab
 augroup END
 
 "}}}
@@ -466,10 +483,11 @@ endif
 
 let g:UltiSnipsSnippetDirectories=[
             \'UltiSnips',
-            \g:tapia_home . '.vim/plugged/MySnippets/Ultisnips'
+            \g:tapia_home . '.vim/plugged/MySnippets/Ultisnips',
+            \g:tapia_home . 'Templates/ultisnips-templates'
             \]
-            " \'~/.vim/plugged/vim-snippets/snippets',
-            " \'~/.vim/plugged/vim-snippets/UltiSnips',
+" \'~/.vim/plugged/vim-snippets/snippets',
+" \'~/.vim/plugged/vim-snippets/UltiSnips',
 " Set the smart function definition to use numpy style for docstrings
 let g:ultisnips_python_style="numpy"
 
@@ -781,15 +799,15 @@ let g:gitgutter_max_signs = 500     " default value
 " Goyo
 "----------------------------------------------------------------------
 function! s:goyo_enter()
-  NumbersToggle
-  set nonumber
-  " ...
+    NumbersToggle
+    set nonumber
+    " ...
 endfunction
 
 function! s:goyo_leave()
-  NumbersToggle
-  set nu
-  " ...
+    NumbersToggle
+    set nu
+    " ...
 endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
