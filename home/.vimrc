@@ -125,7 +125,7 @@ Plug 'vim-scripts/Rename'
 " Search results counter
 Plug 'vim-scripts/IndexedSearch'
 " XML/HTML tags navigation
-Plug 'vim-scripts/matchit.zip', { 'for': ['html', 'xml'] }
+Plug 'andymass/vim-matchup'
 " " Numbers (relative numbers)
 Plug 'myusuf3/numbers.vim'
 " Ctrl P
@@ -249,6 +249,9 @@ endif
 
 " Edit commands for the navifation in help documents
 nnoremap <C-9> <C-]>
+
+" For the matchup plugin
+let g:matchup_surround_enabled = 1
 
 "}}}
 
@@ -508,6 +511,15 @@ inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function() abort
     return deoplete#close_popup() . "\<CR>"
 endfunction
+
+inoremap <silent><expr> <TAB>
+            \ pumvisible() ? "\<C-n>" :
+            \ <SID>check_back_space() ? "\<TAB>" :
+            \ deoplete#mappings#manual_complete()
+function! s:check_back_space() abort "{{{
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+endfunction"}}}
 
 "}}}
 

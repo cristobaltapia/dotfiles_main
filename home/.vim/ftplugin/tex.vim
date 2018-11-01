@@ -5,18 +5,6 @@ filetype plugin on
 
 let g:tex_flavor = 'latex'
 
-function! GetVisual() range
-    let reg_save = getreg('"')
-    let regtype_save = getregtype('"')
-    let cb_save = &clipboard
-    set clipboard&
-    normal! ""gvy
-    let selection = getreg('"')
-    call setreg('"', reg_save, regtype_save)
-    let &clipboard = cb_save
-    return selection
-endfunction
-
 let g:vimtex_compiler_latexmk = {
             \ 'backend' : 'nvim',
             \ 'background' : 1,
@@ -50,13 +38,16 @@ let g:vimtex_complete_close_braces = 1
 let g:vimtex_fold_enabled = 1
 
 let g:vimtex_indent_enabled = 0
-let g:vimtex_indent_bib_enabled = 1
-let g:vimtex_indent_delims = 1
-let g:vimtex_indent_ignored_envs = 1
-let g:vimtex_indent_lists = 1
-let g:vimtex_indent_on_ampersands = 1
+let g:vimtex_indent_bib_enabled = 0
+let g:vimtex_indent_delims = 0
+let g:vimtex_indent_ignored_envs = 0
+let g:vimtex_indent_lists = 0
+let g:vimtex_indent_on_ampersands = 0
+
 let g:vimtex_imaps_leader = '#'
 let g:vimtex_quickfix_method = 'latexlog'
+let g:matchup_override_vimtex = 1
+let g:matchup_matchparen_deferred = 1
 
 " Configure deoplete to use vimtex
 if !exists('g:deoplete#omni#input_patterns')
@@ -91,4 +82,16 @@ function! GitLatexDiff(old, new)
 endfunction
 
 command! -nargs=* -complete=file GitLatexDiff :call GitLatexDiff(<f-args>)
+
+function! GetVisual() range
+    let reg_save = getreg('"')
+    let regtype_save = getregtype('"')
+    let cb_save = &clipboard
+    set clipboard&
+    normal! ""gvy
+    let selection = getreg('"')
+    call setreg('"', reg_save, regtype_save)
+    let &clipboard = cb_save
+    return selection
+endfunction
 
