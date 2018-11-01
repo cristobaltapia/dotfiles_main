@@ -35,7 +35,7 @@ let g:vimtex_indent_bib_enabled = 1
 let g:vimtex_imaps_leader = '#'
 let g:vimtex_quickfix_method = 'latexlog'
 let g:matchup_override_vimtex = 1
-let g:matchup_matchparen_deferred = 1
+" let g:matchup_matchparen_deferred = 1
 
 " Configure deoplete to use vimtex
 if !exists('g:deoplete#omni#input_patterns')
