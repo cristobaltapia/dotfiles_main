@@ -21,28 +21,16 @@ let g:vimtex_compiler_latexmk = {
             \ ],
             \}
 
-let g:vimtex_compiler_latexmk_engines = {
-            \ '_'                : '-lualatex',
-            \ 'pdflatex'         : '-pdf',
-            \ 'dvipdfex'         : '-pdfdvi',
-            \ 'lualatex'         : '-lualatex',
-            \ 'xelatex'          : '-xelatex',
-            \ 'context (pdftex)' : '-pdf -pdflatex=texexec',
-            \ 'context (luatex)' : '-pdf -pdflatex=context',
-            \ 'context (xetex)'  : '-pdf -pdflatex=''texexec --xtx''',
-            \}
+let g:vimtex_compiler_latexmk_engines = {'_' : '-lualatex'}
 
 " Set variables
 let g:vimtex_complete_enabled = 1
 let g:vimtex_complete_close_braces = 1
 let g:vimtex_fold_enabled = 1
 
-let g:vimtex_indent_enabled = 0
-let g:vimtex_indent_bib_enabled = 0
-let g:vimtex_indent_delims = 0
-let g:vimtex_indent_ignored_envs = 0
-let g:vimtex_indent_lists = 0
-let g:vimtex_indent_on_ampersands = 0
+let g:vimtex_indent_enabled = 1
+let g:vimtex_indent_on_ampersands = 1
+let g:vimtex_indent_bib_enabled = 1
 
 let g:vimtex_imaps_leader = '#'
 let g:vimtex_quickfix_method = 'latexlog'
@@ -57,17 +45,10 @@ let g:deoplete#omni#input_patterns.tex = g:vimtex#re#deoplete
 
 " Mappings
 nmap <localleader>ll <Plug>(vimtex-compile-ss)
-imap <localleader>ll <Plug>(vimtex-compile-ss)
 vmap <localleader>ll <Plug>(vimtex-compile-selected)
-
 nmap <localleader>lv <Plug>(vimtex-view)
-imap <localleader>lv <Plug>(vimtex-view)
-
 nmap <localleader>lo <Plug>(vimtex-compile-output)
-imap <localleader>lo <Plug>(vimtex-compile-output)
-
 nmap <localleader>rf :VimtexRefreshFolds<CR>
-
 nmap <localleader>lt <Plug>(vimtex-toc-open)
 
 "----------------------------------------------------------------------
