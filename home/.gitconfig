@@ -3,3 +3,5 @@
 	name = Cristóbal Tapia Camú
 [core]
     editor = "nvim"
+[submodule]
+	recurse = true
