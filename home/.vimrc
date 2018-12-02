@@ -222,6 +222,7 @@ set incsearch       " Incremental search
 set hlsearch        " Highlighted search results
 set nu              " Line numbers
 set diffopt+=vertical " Set vertical split as default for diff
+let $PYTHONUNBUFFERED=1 " See python real-time output
 
 if (has("termguicolors"))
     set termguicolors

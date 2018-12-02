@@ -9,7 +9,7 @@ let g:vimtex_compiler_latexmk = {
             \ 'backend' : 'nvim',
             \ 'background' : 1,
             \ 'build_dir' : 'aux-folder',
-            \ 'callback' : 1,
+            \ 'callback' : 0,
             \ 'continuous' : 0,
             \ 'executable' : 'latexmk',
             \ 'options' : [
