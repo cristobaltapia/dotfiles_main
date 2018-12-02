@@ -78,6 +78,8 @@ Plug 'luochen1990/rainbow', { 'for': 'python' }
 Plug 'rhysd/vim-grammarous'
 "SuperTab
 Plug 'ervandew/supertab'
+" CSV files
+Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 " Virtualenv support
 " Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
 " Plug 'tpict/vim-virtualenv', { 'for': 'python', 'commit': 'c9a52e5' }
