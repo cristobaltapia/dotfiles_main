@@ -36,6 +36,13 @@ let g:vimtex_imaps_leader = '#'
 let g:vimtex_quickfix_method = 'latexlog'
 let g:matchup_override_vimtex = 1
 " let g:matchup_matchparen_deferred = 1
+"
+" Add custom mapping through vimtex#imap#add_map
+call vimtex#imaps#add_map({
+            \ 'lhs' : '%',
+            \ 'rhs' : '\percent',
+            \ 'wrapper' : 'vimtex#imaps#wrap_trivial'
+            \})
 
 " Configure deoplete to use vimtex
 if !exists('g:deoplete#omni#input_patterns')
