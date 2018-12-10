@@ -44,6 +44,25 @@ call vimtex#imaps#add_map({
             \ 'wrapper' : 'vimtex#imaps#wrap_trivial'
             \})
 
+" Delimiter modifiers
+let g:vimtex_delim_list = {'mods' : {}}   
+let g:vimtex_delim_list.mods.name = [     
+      \ ['\left', '\right'],              
+      \ ['\mleft', '\mright'],            
+      \ ['\bigl', '\bigr'],               
+      \ ['\Bigl', '\Bigr'],               
+      \ ['\biggl', '\biggr'],             
+      \ ['\Biggl', '\Biggr'],             
+      \ ['\big', '\big'],                 
+      \ ['\Big', '\Big'],                 
+      \ ['\bigg', '\bigg'],               
+      \ ['\Bigg', '\Bigg'],               
+      \]                                  
+let g:vimtex_delim_toggle_mod_list = [    
+  \ ['\left', '\right'],                  
+  \ ['\mleft', '\mright'],                
+  \]                                      
+
 " Configure deoplete to use vimtex
 if !exists('g:deoplete#omni#input_patterns')
     let g:deoplete#omni#input_patterns = {}
