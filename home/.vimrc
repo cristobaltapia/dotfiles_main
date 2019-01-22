@@ -66,6 +66,9 @@ endif
 "----------------------------------------------------------------------
 call plug#begin('~/.vim/plugged')
 "
+" Hexeditor
+" Plug 'd0c-s4vage/pfp-vim'
+Plug 'fidian/hexmode'
 " Track the engine.
 Plug 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
@@ -156,6 +159,7 @@ Plug 'liuchengxu/space-vim-dark'
 Plug 'elzr/vim-json', {'for': 'json'}
 " Jedi-vim
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+" Plug 'blueyed/jedi-vim', { 'branch': 'envs', 'for': 'python' }
 " Change working direcotry to open buffer
 Plug 'yssl/AutoCWD.vim'
 " A Vim plugin which shows a git diff in the 'gutter'
@@ -167,7 +171,7 @@ Plug 'vim-scripts/Wavefronts-obj'
 " Distraction-free writing in Vim.
 Plug 'junegunn/goyo.vim', { 'for': ['tex', 'txt', 'md'] }
 " Deoplete (completion)
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'}
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Jedi for deoplete
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 " Vala plugin
@@ -524,6 +528,8 @@ function! s:check_back_space() abort "{{{
     return !col || getline('.')[col - 1]  =~ '\s'
 endfunction"}}}
 
+set completeopt="menu,preview"
+
 "}}}
 
 "----------------------------------------------------------------------
@@ -642,6 +648,7 @@ let g:ale_fixers = {
             \   'tex': ['remove_trailing_lines'],
             \   'markdown': ['prettier'],
             \   'javascript': ['prettier'],
+            \   'bib': ['bibclean'],
             \}
 " let g:ale_python_yapf_executable = 'yapf --style="{based_on_style: pep8; SPLIT_BEFORE_NAMED_ASSIGNS: False, DEDENT_CLOSING_BRACKETS: False}"'
 
