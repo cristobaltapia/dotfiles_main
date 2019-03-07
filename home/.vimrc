@@ -91,6 +91,9 @@ Plug 'cristobaltapia/vim-virtualenv', { 'for': 'python' }
 Plug 'fs111/pydoc.vim', { 'for': 'python' }
 " Markdown preview support
 Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
+" vim-pandoc: Pandoc support
+Plug 'vim-pandoc/vim-pandoc', { 'for': 'markdown' }
+Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'markdown' }
 " Vim Easy Align
 Plug 'junegunn/vim-easy-align'
 " fugitive.vim: a Git wrappe
@@ -644,7 +647,7 @@ let g:ale_lint_on_text_changed = 0
 let g:ale_lint_on_enter = 1
 
 let g:ale_fixers = {
-            \   'python': ['yapf', 'isort'],
+            \   'python': ['black', 'isort'],
             \   'tex': ['remove_trailing_lines'],
             \   'markdown': ['prettier'],
             \   'javascript': ['prettier'],
@@ -835,3 +838,47 @@ endfunction
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
+"----------------------------------------------------------------------
+" Vim-Pandoc
+"----------------------------------------------------------------------
+" let g:pandoc#modules#disabled = ["command"]
+let g:pandoc#syntax#conceal#use = 0
+
+augroup pandoc_syntax
+    au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
+augroup END
+"
+" Deoplete integration
+call deoplete#custom#var('omni', 'input_patterns', {
+            \ 'pandoc': '@'
+            \})
+
+let g:pandoc#command#custom_open = "MyPandocOpen"
+
+function! MyPandocOpen(file)
+    let file = shellescape(fnamemodify(a:file, ':p'))
+    let file_extension = fnamemodify(a:file, ':e')
+    if file_extension is? 'pdf'
+        if !empty($PDFVIEWER)
+            return expand('$PDFVIEWER') . ' ' . file
+        elseif executable('zathura')
+            return 'zathura ' . file
+        elseif executable('mupdf')
+            return 'mupdf ' . file
+        endif
+    elseif file_extension is? 'html'
+        if !empty($BROWSER)
+            return expand('$BROWSER') . ' ' . file
+        elseif executable('firefox')
+            return 'firefox ' . file
+        elseif executable('chromium')
+            return 'chromium ' . file
+        endif
+    elseif file_extension is? 'odt' && executable('okular')
+        return 'okular ' . file
+    elseif file_extension is? 'epub' && executable('okular')
+        return 'okular ' . file
+    else
+        return 'xdg-open ' . file
+    endif
+endfunction

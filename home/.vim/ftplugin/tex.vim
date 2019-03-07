@@ -44,6 +44,18 @@ call vimtex#imaps#add_map({
             \ 'wrapper' : 'vimtex#imaps#wrap_trivial'
             \})
 
+call vimtex#imaps#add_map({
+            \ 'lhs' : '_',
+            \ 'rhs' : '\textsubscript',
+            \ 'wrapper' : 'vimtex#imaps#wrap_trivial'
+            \})
+
+call vimtex#imaps#add_map({
+            \ 'lhs' : '^',
+            \ 'rhs' : '\textsuperscript',
+            \ 'wrapper' : 'vimtex#imaps#wrap_trivial'
+            \})
+
 " Delimiter modifiers
 let g:vimtex_delim_list = {'mods' : {}}   
 let g:vimtex_delim_list.mods.name = [     
