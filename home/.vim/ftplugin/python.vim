@@ -7,7 +7,7 @@ set foldnestmax=4
 " Implements different textwidth for comments and normal code
 if !exists('g:pep8_text_width')
     " Code textwidth.
-    let g:pep8_text_width = 79
+    let g:pep8_text_width = 88
 endif
 
 if !exists('g:pep8_comment_text_width')

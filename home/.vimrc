@@ -66,6 +66,9 @@ endif
 "----------------------------------------------------------------------
 call plug#begin('~/.vim/plugged')
 "
+" Hexeditor
+" Plug 'd0c-s4vage/pfp-vim'
+Plug 'fidian/hexmode'
 " Track the engine.
 Plug 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
@@ -88,6 +91,9 @@ Plug 'cristobaltapia/vim-virtualenv', { 'for': 'python' }
 Plug 'fs111/pydoc.vim', { 'for': 'python' }
 " Markdown preview support
 Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
+" vim-pandoc: Pandoc support
+Plug 'vim-pandoc/vim-pandoc', { 'for': 'markdown' }
+Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'markdown' }
 " Vim Easy Align
 Plug 'junegunn/vim-easy-align'
 " fugitive.vim: a Git wrappe
@@ -156,6 +162,7 @@ Plug 'liuchengxu/space-vim-dark'
 Plug 'elzr/vim-json', {'for': 'json'}
 " Jedi-vim
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+" Plug 'blueyed/jedi-vim', { 'branch': 'envs', 'for': 'python' }
 " Change working direcotry to open buffer
 Plug 'yssl/AutoCWD.vim'
 " A Vim plugin which shows a git diff in the 'gutter'
@@ -167,7 +174,7 @@ Plug 'vim-scripts/Wavefronts-obj'
 " Distraction-free writing in Vim.
 Plug 'junegunn/goyo.vim', { 'for': ['tex', 'txt', 'md'] }
 " Deoplete (completion)
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'}
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Jedi for deoplete
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 " Vala plugin
@@ -642,7 +649,6 @@ let g:ale_fixers = {
             \   'tex': ['remove_trailing_lines'],
             \   'markdown': ['prettier'],
             \   'javascript': ['prettier'],
-            \   'yaml': ['prettier'],
             \}
 " let g:ale_python_yapf_executable = 'yapf --style="{based_on_style: pep8; SPLIT_BEFORE_NAMED_ASSIGNS: False, DEDENT_CLOSING_BRACKETS: False}"'
 
@@ -829,3 +835,47 @@ endfunction
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
+"----------------------------------------------------------------------
+" Vim-Pandoc
+"----------------------------------------------------------------------
+" let g:pandoc#modules#disabled = ["command"]
+let g:pandoc#syntax#conceal#use = 0
+
+augroup pandoc_syntax
+    au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
+augroup END
+"
+" Deoplete integration
+call deoplete#custom#var('omni', 'input_patterns', {
+            \ 'pandoc': '@'
+            \})
+
+let g:pandoc#command#custom_open = "MyPandocOpen"
+
+function! MyPandocOpen(file)
+    let file = shellescape(fnamemodify(a:file, ':p'))
+    let file_extension = fnamemodify(a:file, ':e')
+    if file_extension is? 'pdf'
+        if !empty($PDFVIEWER)
+            return expand('$PDFVIEWER') . ' ' . file
+        elseif executable('zathura')
+            return 'zathura ' . file
+        elseif executable('mupdf')
+            return 'mupdf ' . file
+        endif
+    elseif file_extension is? 'html'
+        if !empty($BROWSER)
+            return expand('$BROWSER') . ' ' . file
+        elseif executable('firefox')
+            return 'firefox ' . file
+        elseif executable('chromium')
+            return 'chromium ' . file
+        endif
+    elseif file_extension is? 'odt' && executable('okular')
+        return 'okular ' . file
+    elseif file_extension is? 'epub' && executable('okular')
+        return 'okular ' . file
+    else
+        return 'xdg-open ' . file
+    endif
+endfunction
