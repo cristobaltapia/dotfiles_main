@@ -354,10 +354,10 @@ augroup file_type
                 \ tabstop=4
                 \ softtabstop=4
                 \ expandtab
-    autocmd FileType html setlocal 
-                \ shiftwidth=2 
+    autocmd FileType html setlocal
+                \ shiftwidth=2
                 \ tabstop=2
-    autocmd FileType htmldjango setlocal 
+    autocmd FileType htmldjango setlocal
                 \ shiftwidth=2
                 \ tabstop=2
     autocmd FileType javascript setlocal
@@ -369,13 +369,13 @@ augroup file_type
                 \ tabstop=2
                 \ softtabstop=2
                 \ expandtab
-    autocmd FileType fortran setlocal 
+    autocmd FileType fortran setlocal
                 \ shiftwidth=3
                 \ tabstop=3
                 \ softtabstop=3
                 \ expandtab
-    autocmd FileType yaml setlocal 
-                \ts=2
+    autocmd FileType yaml setlocal
+                \ ts=2
                 \ sts=2
                 \ sw=2
                 \ expandtab
@@ -642,6 +642,7 @@ let g:ale_fixers = {
             \   'tex': ['remove_trailing_lines'],
             \   'markdown': ['prettier'],
             \   'javascript': ['prettier'],
+            \   'yaml': ['prettier'],
             \}
 " let g:ale_python_yapf_executable = 'yapf --style="{based_on_style: pep8; SPLIT_BEFORE_NAMED_ASSIGNS: False, DEDENT_CLOSING_BRACKETS: False}"'
 
