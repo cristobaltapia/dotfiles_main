@@ -3,3 +3,4 @@ set font "Noto Mono for Powerline 11"
 set recolor-darkcolor "#D9D9D9"
 set recolor-lightcolor "#252525"
 set synctex true
+set synctex-editor-command "nvr --remote-silent %f -c %l"
