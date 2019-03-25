@@ -263,6 +263,8 @@ nnoremap <C-9> <C-]>
 " For the matchup plugin
 let g:matchup_surround_enabled = 1
 
+inoremap <C-s> <c-g>u<Esc>[s1z=`]a<c-g>u
+
 "}}}
 
 "----------------------------------------------------------------------
@@ -799,7 +801,9 @@ let g:markdown_composer_browser='epiphany --private-instance'
 let g:markdown_composer_open_browser=0
 let g:markdown_composer_refresh_rate=0
 " let g:markdown_composer_syntax_theme='solarized_dark'
-let g:markdown_composer_external_renderer='pandoc --filter pandoc-citeproc -f markdown -t html'
+let g:markdown_composer_external_renderer='pandoc '
+            " \.'--filter pandoc-citeproc '
+            \.'-f markdown -t html'
 
 autocmd FileChangedShell <buffer> call ProcessFileChangedShell()
 "}}}
