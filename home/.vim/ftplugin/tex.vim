@@ -27,6 +27,9 @@ let g:vimtex_compiler_latexmk_engines = {'_' : '-lualatex'}
 let g:vimtex_complete_enabled = 1
 let g:vimtex_complete_close_braces = 1
 let g:vimtex_fold_enabled = 1
+setlocal conceallevel=1
+let g:tex_conceal='abdmg'
+setlocal concealcursor=
 
 let g:vimtex_indent_enabled = 1
 let g:vimtex_indent_on_ampersands = 1
@@ -35,6 +38,20 @@ let g:vimtex_indent_bib_enabled = 1
 let g:vimtex_imaps_leader = '#'
 let g:vimtex_quickfix_method = 'latexlog'
 let g:matchup_override_vimtex = 1
+let g:vimtex_view_method = 'zathura'
+let g:vimtex_compiler_progname = 'nvr'
+
+" Function to autofocus zathura after each \lv call
+function! VimtexHookZathura() abort
+  let xwin_id = get(b:vimtex.viewer, 'xwin_id')
+  if xwin_id > 0
+    silent call system('xdotool windowactivate ' . xwin_id . ' --sync')
+    silent call system('xdotool windowraise ' . xwin_id)
+  endif
+endfunction
+
+let g:vimtex_view_zathura_hook_view = 'VimtexHookZathura'
+
 " let g:matchup_matchparen_deferred = 1
 "
 " Add custom mapping through vimtex#imap#add_map
