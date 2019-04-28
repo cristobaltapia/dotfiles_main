@@ -152,6 +152,8 @@ Plug 'chriskempson/base16-vim'
 Plug 'junegunn/seoul256.vim'
 " ALE
 Plug 'w0rp/ale', { 'for': ['python', 'tex', 'fortran', 'javascript', 'dockerfile', 'markdown'] }
+" Nginx support
+Plug 'chr4/nginx.vim'
 " Asyncrun
 Plug 'skywind3000/asyncrun.vim'
 " Dispatch
