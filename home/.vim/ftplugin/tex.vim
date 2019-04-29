@@ -1,7 +1,8 @@
-syntax enable
+" syntax off
+" filetype plugin indent on
+" syntax on
 syntax spell toplevel
 "
-filetype plugin on
 
 let g:tex_flavor = 'latex'
 

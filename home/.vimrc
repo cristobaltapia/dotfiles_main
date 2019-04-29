@@ -179,10 +179,8 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 " Vala plugin
 Plug 'arrufat/vala.vim'
-" Plug 'zchee/deoplete-jedi', { 'for': 'python', 'commit': '00eff70' }
-" Plug 'blueyed/deoplete-jedi', { 'for': 'python', 'commit': '23da53c' }
 " Ipython terminal
-Plug 'hkupty/iron.nvim', { 'for': 'python' }
+" Plug 'hkupty/iron.nvim', { 'for': 'python' }
 
 " Plugins that will only work under linux
 if has("unix")
@@ -543,8 +541,8 @@ set completeopt="menu,preview"
 "{{{
 let g:deoplete#sources#jedi#server_timeout = 30
 
-syntax on
 filetype on
+syntax on
 let python_highlight_all=1
 
 " Pydoc
@@ -654,6 +652,7 @@ let g:ale_fixers = {
             \   'markdown': ['prettier'],
             \   'javascript': ['prettier'],
             \   'bib': ['bibclean'],
+            \   'json': ['prettier'],
             \}
 " let g:ale_python_yapf_executable = 'yapf --style="{based_on_style: pep8; SPLIT_BEFORE_NAMED_ASSIGNS: False, DEDENT_CLOSING_BRACKETS: False}"'
 
