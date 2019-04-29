@@ -152,6 +152,8 @@ Plug 'chriskempson/base16-vim'
 Plug 'junegunn/seoul256.vim'
 " ALE
 Plug 'w0rp/ale', { 'for': ['python', 'tex', 'fortran', 'javascript', 'dockerfile', 'markdown'] }
+" Nginx support
+Plug 'chr4/nginx.vim'
 " Asyncrun
 Plug 'skywind3000/asyncrun.vim'
 " Dispatch
@@ -361,10 +363,10 @@ augroup file_type
                 \ tabstop=4
                 \ softtabstop=4
                 \ expandtab
-    autocmd FileType html setlocal 
-                \ shiftwidth=2 
+    autocmd FileType html setlocal
+                \ shiftwidth=2
                 \ tabstop=2
-    autocmd FileType htmldjango setlocal 
+    autocmd FileType htmldjango setlocal
                 \ shiftwidth=2
                 \ tabstop=2
     autocmd FileType javascript setlocal
@@ -376,13 +378,13 @@ augroup file_type
                 \ tabstop=2
                 \ softtabstop=2
                 \ expandtab
-    autocmd FileType fortran setlocal 
+    autocmd FileType fortran setlocal
                 \ shiftwidth=3
                 \ tabstop=3
                 \ softtabstop=3
                 \ expandtab
-    autocmd FileType yaml setlocal 
-                \ts=2
+    autocmd FileType yaml setlocal
+                \ ts=2
                 \ sts=2
                 \ sw=2
                 \ expandtab
