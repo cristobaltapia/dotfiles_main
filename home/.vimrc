@@ -281,8 +281,9 @@ if has('gui_running')
 elseif has('nvim')
     " colorscheme space-vim-dark
     " colorscheme OceanicNext
-    let g:seoul256_background=234
-    colorscheme seoul256
+    " let g:seoul256_background=234
+    " colorscheme seoul256
+    colorscheme nord
 endif
 "}}}
 
