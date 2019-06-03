@@ -160,6 +160,8 @@ Plug 'skywind3000/asyncrun.vim'
 " Plug 'tpope/vim-dispatch'
 " Space-vim-dark colorscheme
 Plug 'liuchengxu/space-vim-dark'
+" Nord colorscheme
+Plug 'arcticicestudio/nord-vim'
 " vim-jason: a better json
 Plug 'elzr/vim-json', {'for': 'json'}
 " Jedi-vim
@@ -454,6 +456,8 @@ if has('win32')
     set guifont=Source\ Code\ Pro\ for\ Powerline:h10
 elseif has('vim')
     set guifont=Noto\ Mono\ for\ Powerline
+elseif has('nvim')
+    set guifont=Fira\ Code:h11
 endif
 
 " Enable the list of buffers
