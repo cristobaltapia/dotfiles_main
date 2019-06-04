@@ -85,8 +85,8 @@ Plug 'ervandew/supertab'
 " CSV files
 Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 " Language Server Protocol
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/vim-lsp'
+" Plug 'prabirshrestha/async.vim'
+" Plug 'prabirshrestha/vim-lsp'
 " Plug 'ryanolsonx/vim-lsp-python'
 " Virtualenv support
 " Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
