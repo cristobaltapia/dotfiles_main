@@ -52,12 +52,13 @@ let curr_os = GetRunningOS()
 " Neovim's Python provider
 "----------------------------------------------------------
 if curr_os =~ 'Ubuntu'
-    let g:python_host_prog  = '/home/tapiac/.virtualenvs/py2neovim/bin/python'
-    let g:python3_host_prog = '/home/tapiac/.virtualenvs/py3neovim/bin/python3'
+    let g:python_host_prog  = $HOME.'/.virtualenvs/py2neovim/bin/python'
+    let g:python3_host_prog = $HOME.'/.virtualenvs/py3neovim/bin/python3'
     let g:deoplete#sources#jedi#python_path = '/home/tapiac/.virtualenvs/py3neovim/bin/python3'
+    " let g:deoplete#sources#jedi#python_path = $VIRTUAL_ENV.'/bin/python3'
 else
     " let g:python_host_prog  = '/usr/bin/python2'
-    let g:python3_host_prog = '/home/tapia/.virtualenvs/py3neovim/bin/python3'
+    let g:python3_host_prog = $HOME.'/.virtualenvs/py3neovim/bin/python3'
     let g:deoplete#sources#jedi#python_path = '/home/tapia/.virtualenvs/py3neovim/bin/python3'
 endif
 
@@ -644,7 +645,7 @@ nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 let g:ale_linters = {
-            \   'python': ['flake8','pylint'],
+            \   'python': ['black','pyls'],
             \   'tex': ['chktex', 'proselint', 'lacheck', 'write-good'],
             \   'fortran': ['gcc'],
             \   'markdown': ['alex', 'proselint'],
