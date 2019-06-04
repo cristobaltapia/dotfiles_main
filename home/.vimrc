@@ -650,7 +650,7 @@ let g:ale_lint_on_enter = 1
 
 let g:ale_fixers = {
             \   'python': ['black', 'isort'],
-            \   'tex': ['remove_trailing_lines'],
+            \   'tex': ['remove_trailing_lines', 'latexindent'],
             \   'markdown': ['prettier'],
             \   'javascript': ['prettier'],
             \   'bib': ['bibclean'],
