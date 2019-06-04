@@ -83,6 +83,10 @@ Plug 'rhysd/vim-grammarous'
 Plug 'ervandew/supertab'
 " CSV files
 Plug 'chrisbra/csv.vim', { 'for': 'csv' }
+" Language Server Protocol
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+" Plug 'ryanolsonx/vim-lsp-python'
 " Virtualenv support
 " Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
 " Plug 'tpict/vim-virtualenv', { 'for': 'python', 'commit': 'c9a52e5' }
@@ -151,7 +155,7 @@ Plug 'chriskempson/base16-vim'
 " Seoul256 color theme
 Plug 'junegunn/seoul256.vim'
 " ALE
-Plug 'w0rp/ale', { 'for': ['python', 'tex', 'fortran', 'javascript', 'dockerfile', 'markdown'] }
+Plug 'w0rp/ale', { 'for': ['python', 'tex', 'fortran', 'javascript', 'dockerfile', 'markdown', 'vim'] }
 " Nginx support
 Plug 'chr4/nginx.vim'
 " Asyncrun
@@ -467,6 +471,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 " Enable virtualenv integration
 let g:airline#extensions#virtualenv#enabled = 1
+let g:ale_virtualenv_dir_names = ['.env', '.venv', 'env', 've-py3', 've', 'virtualenv', 'venv', '.virtualenv']
 " Cooperation with Asyncrun
 let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
 "}}}
@@ -892,3 +897,12 @@ function! MyPandocOpen(file)
         return 'xdg-open ' . file
     endif
 endfunction
+
+" if executable($HOME.'/.virtualenvs/py3neovim/bin/pyls')
+"     " pip install python-language-server
+"     au User lsp_setup call lsp#register_server({
+"         \ 'name': 'pyls',
+"         \ 'cmd': {server_info->[$HOME.'/.virtualenvs/py3neovim/bin/pyls']},
+"         \ 'whitelist': ['python'],
+"         \ })
+" endif
