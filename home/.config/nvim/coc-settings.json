@@ -1,0 +1,9 @@
+{
+    "snippets.ultisnips.enable": true,
+    "snippets.loadFromExtensions": true,
+    "snippets.ultisnips.directories": ["UltiSnips","plugged/MySnippets/Ultisnips"],
+    // Python
+    "python.formatting.provider": "black",
+    "python.linting.pylintEnabled": true,
+    "python.venvFolders": [".virtualenvs"],
+}
