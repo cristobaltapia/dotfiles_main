@@ -92,8 +92,6 @@ Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 " Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
 " Plug 'tpict/vim-virtualenv', { 'for': 'python', 'commit': 'c9a52e5' }
 Plug 'cristobaltapia/vim-virtualenv', { 'for': 'python' }
-" Pydoc
-Plug 'fs111/pydoc.vim', { 'for': 'python' }
 " Markdown preview support
 Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
 " vim-pandoc: Pandoc support
@@ -143,8 +141,6 @@ Plug 'andymass/vim-matchup'
 Plug 'myusuf3/numbers.vim'
 " Ctrl P
 Plug 'kien/ctrlp.vim', { 'for': 'python' }
-" Python mode
-Plug 'python-mode/python-mode', { 'for': 'python' }
 " Vim indent guides (colors!)
 Plug 'nathanaelkane/vim-indent-guides'
 " Solirized colorscheme
@@ -156,7 +152,7 @@ Plug 'chriskempson/base16-vim'
 " Seoul256 color theme
 Plug 'junegunn/seoul256.vim'
 " ALE
-Plug 'w0rp/ale', { 'for': ['python', 'tex', 'fortran', 'javascript', 'dockerfile', 'markdown', 'vim'] }
+Plug 'w0rp/ale'
 " Nginx support
 Plug 'chr4/nginx.vim'
 " Asyncrun
@@ -558,40 +554,6 @@ filetype on
 syntax on
 let python_highlight_all=1
 
-" Pydoc
-"----------------------------------------------------------------------
-let g:pydoc_cmd = 'python -m pydoc'
-
-" pydoc to switch to an already open tab with pydoc page
-let g:pydoc_use_drop=1
-" lines to show doc
-"let g:pydoc_window_lines=20
-let g:pydoc_window_lines=0.5
-" Highlight search term
-let g:pydoc_highlight=1
-"
-"-------------------------------------------------------------
-" Python-mode
-"-------------------------------------------------------------
-" Deactivate everything except the syntax
-let g:pymode_rope = 0
-"" Documentation
-let g:pymode_doc = 0
-" Linting
-let g:pymode_lint = 0
-" Support virtualenv
-let g:pymode_virtualenv = 0
-" breakpoints plugin
-let g:pymode_breakpoint = 0
-" folding
-let g:pymode_folding = 0
-" syntax highlighting
-let g:pymode_syntax = 1
-let g:pymode_syntax_all = 1
-"
-" let g:pymode_syntax_indent_errors = g:pymode_syntax_all
-" let g:pymode_syntax_space_errors = g:pymode_syntax_all
-"
 "-------------------------------------------------------------
 " Jedi-vim
 "-------------------------------------------------------------
@@ -645,7 +607,7 @@ nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 let g:ale_linters = {
-            \   'python': ['pyls'],
+            \   'python': ['pyls','pylint'],
             \   'tex': ['chktex', 'proselint', 'lacheck', 'write-good'],
             \   'fortran': ['gcc'],
             \   'markdown': ['alex', 'proselint'],

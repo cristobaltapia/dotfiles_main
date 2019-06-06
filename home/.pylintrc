@@ -1,3 +1,7 @@
+[MESSAGES CONTROL]
+
+disable=too-many-locals
+
 [VARIABLES]
 # Good variable names,which should always be accepted
 good-names=i,j,k,ix,ij,ik,x,y,z
