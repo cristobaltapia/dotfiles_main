@@ -146,6 +146,10 @@ Plug 'neoclide/coc-vimtex', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-git', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-yank', {'do': 'yarn install --frozen-lockfile'}
+Plug 'iamcco/coc-vimlsp', {'do': 'yarn install --frozen-lockfile'}
 
 " Nginx support
 Plug 'chr4/nginx.vim'
@@ -903,6 +907,9 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " " Resume latest coc list
 " nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+"
+" Call CocCommands
+nnoremap <silent> <leader>c  :<C-u>CocCommand<CR>
 
 " Use <C-l> for trigger snippet expand.
 imap <C-k> <Plug>(coc-snippets-expand)
@@ -919,3 +926,5 @@ imap <C-n> <Plug>(coc-snippets-expand-jump)
 
 nnoremap <F5> :call CocAction('runCommand',
             \ 'python.execInTerminal')<CR>
+
+nnoremap <silent> <leader>y  :<C-u>CocList -A --normal yank<cr>

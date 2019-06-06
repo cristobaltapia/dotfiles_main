@@ -10,9 +10,11 @@
     "python.linting.pylintEnabled": true,
     "python.venvFolders": [".virtualenvs"],
     "python.jediEnabled": true,
-    "suggest.enablePreview": false,
-    "suggest.minTriggerInputLength": 2,
+    "suggest.enablePreview": true,
+    "suggest.minTriggerInputLength": 1,
     "coc.source.file.enable": true,
     "coc.source.vimtex.enable": true,
-    "coc.source.around.enable": true
+    "coc.source.around.enable": true,
+    "highlight.colors.enable": true,
+    "highlight.document.enable": false
 }
