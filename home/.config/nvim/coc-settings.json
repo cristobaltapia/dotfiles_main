@@ -1,9 +1,18 @@
 {
     "snippets.ultisnips.enable": true,
     "snippets.loadFromExtensions": true,
-    "snippets.ultisnips.directories": ["UltiSnips","plugged/MySnippets/Ultisnips"],
+    "snippets.ultisnips.directories": [
+        "UltiSnips",
+        "plugged/MySnippets/Ultisnips",
+        "~/Templates/ultisnips-templates"],
     // Python
     "python.formatting.provider": "black",
     "python.linting.pylintEnabled": true,
     "python.venvFolders": [".virtualenvs"],
+    "python.jediEnabled": true,
+    "suggest.enablePreview": false,
+    "suggest.minTriggerInputLength": 2,
+    "coc.source.file.enable": true,
+    "coc.source.vimtex.enable": true,
+    "coc.source.around.enable": true
 }
