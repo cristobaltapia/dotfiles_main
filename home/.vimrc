@@ -51,16 +51,8 @@ let curr_os = GetRunningOS()
 "----------------------------------------------------------
 " Neovim's Python provider
 "----------------------------------------------------------
-if curr_os =~ 'Ubuntu'
-    let g:python_host_prog  = $HOME.'/.virtualenvs/py2neovim/bin/python'
-    let g:python3_host_prog = $HOME.'/.virtualenvs/py3neovim/bin/python3'
-    let g:deoplete#sources#jedi#python_path = '/home/tapiac/.virtualenvs/py3neovim/bin/python3'
-    " let g:deoplete#sources#jedi#python_path = $VIRTUAL_ENV.'/bin/python3'
-else
-    " let g:python_host_prog  = '/usr/bin/python2'
-    let g:python3_host_prog = $HOME.'/.virtualenvs/py3neovim/bin/python3'
-    let g:deoplete#sources#jedi#python_path = '/home/tapia/.virtualenvs/py3neovim/bin/python3'
-endif
+let g:python_host_prog  = $HOME.'/.virtualenvs/py2neovim/bin/python'
+let g:python3_host_prog = $HOME.'/.virtualenvs/py3neovim/bin/python3'
 
 " Pluggins
 "{{{
@@ -84,10 +76,6 @@ Plug 'rhysd/vim-grammarous'
 Plug 'ervandew/supertab'
 " CSV files
 Plug 'chrisbra/csv.vim', { 'for': 'csv' }
-" Language Server Protocol
-" Plug 'prabirshrestha/async.vim'
-" Plug 'prabirshrestha/vim-lsp'
-" Plug 'ryanolsonx/vim-lsp-python'
 " Virtualenv support
 " Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
 " Plug 'tpict/vim-virtualenv', { 'for': 'python', 'commit': 'c9a52e5' }
@@ -108,9 +96,7 @@ Plug 'scrooloose/nerdtree'
 " Code commenter
 Plug 'scrooloose/nerdcommenter'
 " Emmet
-Plug 'mattn/emmet-vim'
-" Tab list panel
-" Plug 'kien/tabman.vim'
+" Plug 'mattn/emmet-vim'
 " Vim-Airline
 Plug 'bling/vim-airline'
 " Pending tasks list
@@ -125,8 +111,6 @@ Plug 'michaeljsmith/vim-indent-object', { 'for': 'python' }
 Plug 'bronson/vim-trailing-whitespace'
 " Matlab
 Plug 'vim-scripts/MatlabFilesEdition', { 'for': 'matlab' }
-" Conda Environment
-" Plug 'cjrh/vim-conda'
 " Latex
 Plug 'lervag/vimtex', {'for': 'tex' }
 " Convert latex expressions into unicode equivalents
@@ -139,8 +123,6 @@ Plug 'vim-scripts/IndexedSearch'
 Plug 'andymass/vim-matchup'
 " " Numbers (relative numbers)
 Plug 'myusuf3/numbers.vim'
-" Ctrl P
-Plug 'kien/ctrlp.vim', { 'for': 'python' }
 " Vim indent guides (colors!)
 Plug 'nathanaelkane/vim-indent-guides'
 " Solirized colorscheme
@@ -157,16 +139,12 @@ Plug 'w0rp/ale'
 Plug 'chr4/nginx.vim'
 " Asyncrun
 Plug 'skywind3000/asyncrun.vim'
-" Dispatch
-" Plug 'tpope/vim-dispatch'
-" Space-vim-dark colorscheme
-Plug 'liuchengxu/space-vim-dark'
 " Nord colorscheme
 Plug 'arcticicestudio/nord-vim'
 " vim-jason: a better json
 Plug 'elzr/vim-json', {'for': 'json'}
 " Jedi-vim
-Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+" Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 " Plug 'blueyed/jedi-vim', { 'branch': 'envs', 'for': 'python' }
 " Change working direcotry to open buffer
 Plug 'yssl/AutoCWD.vim'
@@ -180,18 +158,16 @@ Plug 'vim-scripts/Wavefronts-obj'
 Plug 'junegunn/goyo.vim', { 'for': ['tex', 'txt', 'md'] }
 " Deoplete (completion)
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"
+Plug 'Shougo/echodoc.vim'
+"
+" Plug 'ncm2/float-preview.nvim'
 " Jedi for deoplete
-Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+Plug 'deoplete-plugins/deoplete-jedi', { 'for': 'python' }
 " Vala plugin
 Plug 'arrufat/vala.vim'
 " Ipython terminal
 " Plug 'hkupty/iron.nvim', { 'for': 'python' }
-
-" Plugins that will only work under linux
-if has("unix")
-    " Codi, an interactive scratchpad for vim
-    Plug 'metakirby5/codi.vim', { 'for': 'python' }
-endif
 
 call plug#end()
 "}}}
@@ -492,24 +468,12 @@ let g:UltiSnipsExpandTrigger="<c-k>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-" let g:UltiSnipsSnippetDir=[
-"             \'~/.vim/plugged/MySnippets/UltiSnips'
-"             \]
-
-" Fix for UltiSnips (we need absolute paths)
-if curr_os =~ 'Ubuntu'
-    let g:tapia_home='/home/tapiac/'
-else
-    let g:tapia_home='/home/tapia/'
-endif
-
 let g:UltiSnipsSnippetDirectories=[
             \'UltiSnips',
-            \g:tapia_home . '.vim/plugged/MySnippets/Ultisnips',
-            \g:tapia_home . 'Templates/ultisnips-templates'
+            \$HOME.'/.vim/plugged/MySnippets/Ultisnips',
+            \$HOME.'/Templates/ultisnips-templates'
             \]
-" \'~/.vim/plugged/vim-snippets/snippets',
-" \'~/.vim/plugged/vim-snippets/UltiSnips',
+"
 " Set the smart function definition to use numpy style for docstrings
 let g:ultisnips_python_style="numpy"
 
@@ -526,10 +490,10 @@ inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
 
 " <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function() abort
-    return deoplete#close_popup() . "\<CR>"
-endfunction
+" inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+" function! s:my_cr_function() abort
+"     return deoplete#close_popup() . "\<CR>"
+" endfunction
 
 inoremap <silent><expr> <TAB>
             \ pumvisible() ? "\<C-n>" :
@@ -540,7 +504,11 @@ function! s:check_back_space() abort "{{{
     return !col || getline('.')[col - 1]  =~ '\s'
 endfunction"}}}
 
-set completeopt="menu,preview"
+set completeopt="menu,preview,menuone"
+set cmdheight=2
+let g:echodoc_enable_at_startup = 1
+
+" let g:float_preview#docked = 1
 
 "}}}
 
@@ -548,7 +516,12 @@ set completeopt="menu,preview"
 " Python configuration
 "----------------------------------------------------------------------
 "{{{
-let g:deoplete#sources#jedi#server_timeout = 30
+"
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function() abort
+    return deoplete#close_popup() . "\<CR>"
+endfunction
 
 filetype on
 syntax on
@@ -557,9 +530,12 @@ let python_highlight_all=1
 "-------------------------------------------------------------
 " Jedi-vim
 "-------------------------------------------------------------
-let g:jedi#popup_on_dot = 0
-let g:jedi#completions_enabled = 0
+" let g:deoplete#sources#jedi#extra_path = ""
+let g:deoplete#sources#jedi#server_timeout = 30
+let g:deoplete#sources#jedi#show_docstring=0
+let g:deoplete#sources#jedi#python_path = $HOME.'/.virtualenvs/py3neovim/bin/python3'
 
+set shortmess+=c
 "}}}
 
 "----------------------------------------------------------------------
@@ -607,7 +583,7 @@ nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 let g:ale_linters = {
-            \   'python': ['pyls','pylint'],
+            \   'python': ['pylint'],
             \   'tex': ['chktex', 'proselint', 'lacheck', 'write-good'],
             \   'fortran': ['gcc'],
             \   'markdown': ['alex', 'proselint'],
@@ -620,6 +596,9 @@ let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 0
 " linters run on opening a file
 let g:ale_lint_on_enter = 1
+let g:ale_linters_explicit = 1
+" let g:ale_completion_enabled = 1
+let g:ale_virtualtext_cursor = 0
 
 let g:ale_fixers = {
             \   'python': ['black', 'isort'],
@@ -635,8 +614,8 @@ let g:ale_fixers = {
 noremap <LocalLeader>= :ALEFix<cr>
 
 " Change default symbols for ALE
-" let g:ale_sign_error = "✗"
-" let g:ale_sign_warning = "⚠"
+let g:ale_sign_error = ">>"
+let g:ale_sign_warning = ">>"
 "----------------------------------------------------------------------
 
 "----------------------------------------------------------------------
@@ -776,7 +755,7 @@ let g:markdown_composer_open_browser=0
 let g:markdown_composer_refresh_rate=0
 " let g:markdown_composer_syntax_theme='solarized_dark'
 let g:markdown_composer_external_renderer='pandoc '
-            " \.'--filter pandoc-citeproc '
+" \.'--filter pandoc-citeproc '
             \.'-f markdown -t html'
 
 autocmd FileChangedShell <buffer> call ProcessFileChangedShell()
