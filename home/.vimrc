@@ -144,7 +144,9 @@ Plug 'arcticicestudio/nord-vim'
 " vim-jason: a better json
 Plug 'elzr/vim-json', {'for': 'json'}
 " Jedi-vim
-" Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+" Pydoc
+Plug 'fs111/pydoc.vim', { 'for': 'python' }
 " Plug 'blueyed/jedi-vim', { 'branch': 'envs', 'for': 'python' }
 " Change working direcotry to open buffer
 Plug 'yssl/AutoCWD.vim'
@@ -509,6 +511,7 @@ set cmdheight=2
 let g:echodoc_enable_at_startup = 1
 
 " let g:float_preview#docked = 1
+"
 
 "}}}
 
@@ -534,6 +537,10 @@ let python_highlight_all=1
 let g:deoplete#sources#jedi#server_timeout = 30
 let g:deoplete#sources#jedi#show_docstring=0
 let g:deoplete#sources#jedi#python_path = $HOME.'/.virtualenvs/py3neovim/bin/python3'
+
+let g:jedi#auto_close_doc=1
+let g:jedi#popup_on_dot=0
+let g:jedi#show_call_signatures=0
 
 set shortmess+=c
 "}}}
@@ -616,6 +623,7 @@ noremap <LocalLeader>= :ALEFix<cr>
 " Change default symbols for ALE
 let g:ale_sign_error = ">>"
 let g:ale_sign_warning = ">>"
+
 "----------------------------------------------------------------------
 
 "----------------------------------------------------------------------
@@ -806,45 +814,31 @@ augroup pandoc_syntax
 augroup END
 "
 " Deoplete integration
-call deoplete#custom#var('omni', 'input_patterns', {
-            \ 'pandoc': '@'
-            \})
+" call deoplete#custom#var('omni', 'input_patterns', { \ 'pandoc': '@' \}) let g:pandoc#command#custom_open = "MyPandocOpen" function! MyPandocOpen(file)
+"     let file = shellescape(fnamemodify(a:file, ':p'))
+"     let file_extension = fnamemodify(a:file, ':e')
+"     if file_extension is? 'pdf'
+"         if !empty($PDFVIEWER)
+"             return expand('$PDFVIEWER') . ' ' . file
+"         elseif executable('zathura')
+"             return 'zathura ' . file
+"         elseif executable('mupdf')
+"             return 'mupdf ' . file
+"         endif
+"     elseif file_extension is? 'html'
+"         if !empty($BROWSER)
+"             return expand('$BROWSER') . ' ' . file
+"         elseif executable('firefox')
+"             return 'firefox ' . file
+"         elseif executable('chromium')
+"             return 'chromium ' . file
+"         endif
+"     elseif file_extension is? 'odt' && executable('okular')
+"         return 'okular ' . file
+"     elseif file_extension is? 'epub' && executable('okular')
+"         return 'okular ' . file
+"     else
+"         return 'xdg-open ' . file
+"     endif
+" endfunction
 
-let g:pandoc#command#custom_open = "MyPandocOpen"
-
-function! MyPandocOpen(file)
-    let file = shellescape(fnamemodify(a:file, ':p'))
-    let file_extension = fnamemodify(a:file, ':e')
-    if file_extension is? 'pdf'
-        if !empty($PDFVIEWER)
-            return expand('$PDFVIEWER') . ' ' . file
-        elseif executable('zathura')
-            return 'zathura ' . file
-        elseif executable('mupdf')
-            return 'mupdf ' . file
-        endif
-    elseif file_extension is? 'html'
-        if !empty($BROWSER)
-            return expand('$BROWSER') . ' ' . file
-        elseif executable('firefox')
-            return 'firefox ' . file
-        elseif executable('chromium')
-            return 'chromium ' . file
-        endif
-    elseif file_extension is? 'odt' && executable('okular')
-        return 'okular ' . file
-    elseif file_extension is? 'epub' && executable('okular')
-        return 'okular ' . file
-    else
-        return 'xdg-open ' . file
-    endif
-endfunction
-
-" if executable($HOME.'/.virtualenvs/py3neovim/bin/pyls')
-"     " pip install python-language-server
-"     au User lsp_setup call lsp#register_server({
-"         \ 'name': 'pyls',
-"         \ 'cmd': {server_info->[$HOME.'/.virtualenvs/py3neovim/bin/pyls']},
-"         \ 'whitelist': ['python'],
-"         \ })
-" endif

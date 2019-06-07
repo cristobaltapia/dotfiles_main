@@ -75,29 +75,28 @@ call vimtex#imaps#add_map({
             \})
 
 " Delimiter modifiers
-let g:vimtex_delim_list = {'mods' : {}}   
-let g:vimtex_delim_list.mods.name = [     
-      \ ['\left', '\right'],              
-      \ ['\mleft', '\mright'],            
-      \ ['\bigl', '\bigr'],               
-      \ ['\Bigl', '\Bigr'],               
-      \ ['\biggl', '\biggr'],             
-      \ ['\Biggl', '\Biggr'],             
-      \ ['\big', '\big'],                 
-      \ ['\Big', '\Big'],                 
-      \ ['\bigg', '\bigg'],               
-      \ ['\Bigg', '\Bigg'],               
-      \]                                  
-let g:vimtex_delim_toggle_mod_list = [    
-  \ ['\left', '\right'],                  
-  \ ['\mleft', '\mright'],                
-  \]                                      
+let g:vimtex_delim_list = {'mods' : {}}
+let g:vimtex_delim_list.mods.name = [
+      \ ['\left', '\right'],
+      \ ['\mleft', '\mright'],
+      \ ['\bigl', '\bigr'],
+      \ ['\Bigl', '\Bigr'],
+      \ ['\biggl', '\biggr'],
+      \ ['\Biggl', '\Biggr'],
+      \ ['\big', '\big'],
+      \ ['\Big', '\Big'],
+      \ ['\bigg', '\bigg'],
+      \ ['\Bigg', '\Bigg'],
+      \]
+let g:vimtex_delim_toggle_mod_list = [
+  \ ['\left', '\right'],
+  \ ['\mleft', '\mright'],
+  \]
 
-" Configure deoplete to use vimtex
-if !exists('g:deoplete#omni#input_patterns')
-    let g:deoplete#omni#input_patterns = {}
-endif
-let g:deoplete#omni#input_patterns.tex = g:vimtex#re#deoplete
+" Vimtex support for deoplete
+call deoplete#custom#var('omni', 'input_patterns', {
+      \ 'tex': g:vimtex#re#deoplete
+      \})
 
 " Mappings
 nmap <localleader>ll <Plug>(vimtex-compile-ss)
