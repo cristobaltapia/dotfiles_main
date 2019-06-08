@@ -173,6 +173,8 @@ Plug 'arrufat/vala.vim'
 " Fuzzy finder
 Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+" Devicons
+Plug 'ryanoasis/vim-devicons'
 " Ipython terminal
 " Plug 'hkupty/iron.nvim', { 'for': 'python' }
 
@@ -442,7 +444,8 @@ if has('win32')
 elseif has('vim')
     set guifont=Noto\ Mono\ for\ Powerline
 elseif has('nvim')
-    set guifont=Fira\ Code:h11
+    " set guifont=Fira\ Code:h11
+    set guifont=FuraCode\ Nerd\ Font\ Mono:h11
 endif
 
 " Enable the list of buffers
@@ -807,6 +810,11 @@ endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
+"----------------------------------------------------------------------
+" Emoji
+"----------------------------------------------------------------------
+call deoplete#custom#source('emoji', 'converters', ['converter_emoji'])
 
 "----------------------------------------------------------------------
 " Vim-Pandoc
