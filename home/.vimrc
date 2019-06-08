@@ -164,10 +164,15 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/echodoc.vim'
 "
 " Plug 'ncm2/float-preview.nvim'
+" Emoji support
+Plug 'fszymanski/deoplete-emoji'
 " Jedi for deoplete
 Plug 'deoplete-plugins/deoplete-jedi', { 'for': 'python' }
 " Vala plugin
 Plug 'arrufat/vala.vim'
+" Fuzzy finder
+Plug 'junegunn/fzf', { 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 " Ipython terminal
 " Plug 'hkupty/iron.nvim', { 'for': 'python' }
 
