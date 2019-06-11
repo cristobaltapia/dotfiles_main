@@ -176,13 +176,15 @@ Plug 'junegunn/fzf.vim'
 " Devicons
 Plug 'ryanoasis/vim-devicons'
 " Ipython terminal
-" Plug 'hkupty/iron.nvim', { 'for': 'python' }
+Plug 'hkupty/iron.nvim', { 'for': 'python' }
 
 call plug#end()
 "}}}
 
 " Latex options (I need this or nothing works... but don't ask why :/)
 let g:tex_flavor='latex'
+filetype plugin on
+syntax on
 
 " Change direcotry to folder of opened file
 cd %:p:h
@@ -509,6 +511,7 @@ inoremap <silent><expr> <TAB>
             \ pumvisible() ? "\<C-n>" :
             \ <SID>check_back_space() ? "\<TAB>" :
             \ deoplete#mappings#manual_complete()
+
 function! s:check_back_space() abort "{{{
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~ '\s'
@@ -614,6 +617,7 @@ let g:ale_lint_on_enter = 1
 let g:ale_linters_explicit = 1
 " let g:ale_completion_enabled = 1
 let g:ale_virtualtext_cursor = 0
+let g:ale_completion_enabled = 0
 
 let g:ale_fixers = {
             \   'python': ['black', 'isort'],
@@ -622,8 +626,10 @@ let g:ale_fixers = {
             \   'javascript': ['prettier'],
             \   'bib': ['bibclean'],
             \   'json': ['prettier'],
+            \   'vim': ['trim_whitespace'],
             \}
-" let g:ale_python_yapf_executable = 'yapf --style="{based_on_style: pep8; SPLIT_BEFORE_NAMED_ASSIGNS: False, DEDENT_CLOSING_BRACKETS: False}"'
+
+" call deoplete#custom#source('ale', 'rank', 999)
 
 " Define map for the Fix function
 noremap <LocalLeader>= :ALEFix<cr>
