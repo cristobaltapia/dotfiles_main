@@ -147,7 +147,6 @@ Plug 'elzr/vim-json', {'for': 'json'}
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 " Pydoc
 Plug 'fs111/pydoc.vim', { 'for': 'python' }
-" Plug 'blueyed/jedi-vim', { 'branch': 'envs', 'for': 'python' }
 " Change working direcotry to open buffer
 Plug 'yssl/AutoCWD.vim'
 " A Vim plugin which shows a git diff in the 'gutter'
@@ -447,7 +446,7 @@ elseif has('vim')
     set guifont=Noto\ Mono\ for\ Powerline
 elseif has('nvim')
     " set guifont=Fira\ Code:h11
-    set guifont=FuraCode\ Nerd\ Font\ Mono:h11
+    set guifont=FuraCode\ Nerd\ Font\ Medium:h11
 endif
 
 " Enable the list of buffers
@@ -545,13 +544,15 @@ let python_highlight_all=1
 " Jedi-vim
 "-------------------------------------------------------------
 " let g:deoplete#sources#jedi#extra_path = ""
-let g:deoplete#sources#jedi#server_timeout = 30
+let g:deoplete#sources#jedi#server_timeout=30
 let g:deoplete#sources#jedi#show_docstring=0
-let g:deoplete#sources#jedi#python_path = $HOME.'/.virtualenvs/py3neovim/bin/python3'
+let g:deoplete#sources#jedi#python_path=$HOME.'/.virtualenvs/py3neovim/bin/python3'
+let g:deoplete#sources#jedi#enable_typeinfo=0
 
 let g:jedi#auto_close_doc=1
 let g:jedi#popup_on_dot=0
-let g:jedi#show_call_signatures=0
+let g:jedi#show_call_signatures=1
+let g:jedi#completions_enable=0
 
 set shortmess+=c
 "}}}
@@ -861,3 +862,7 @@ augroup END
 "     endif
 " endfunction
 
+" let $NVIM_PYTHON_LOG_FILE = '/home/tapiac/nvim-log'
+" let $NVIM_PYTHON_LOG_LEVEL = 'DEBUG'
+" let g:deoplete#enable_profile = 1
+" call deoplete#enable_logging('DEBUG', '/home/tapiac/deoplete.log')
