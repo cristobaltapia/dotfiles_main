@@ -554,6 +554,7 @@ let g:jedi#popup_on_dot=0
 let g:jedi#show_call_signatures=1
 let g:jedi#completions_enable=0
 
+inoremap <silent> <buffer> <C-k> :call jedi#configure_call_signatures()<cr>
 set shortmess+=c
 "}}}
 
@@ -822,6 +823,10 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 " Emoji
 "----------------------------------------------------------------------
 call deoplete#custom#source('emoji', 'converters', ['converter_emoji'])
+"----------------------------------------------------------------------
+" Vimtex
+"----------------------------------------------------------------------
+let g:vimtex_compiler_progname=$HOME.'/.virtualenvs/py3neovim/bin/nvr'
 
 "----------------------------------------------------------------------
 " Vim-Pandoc
