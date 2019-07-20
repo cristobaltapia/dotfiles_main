@@ -176,6 +176,9 @@ Plug 'junegunn/fzf.vim'
 Plug 'ryanoasis/vim-devicons'
 " Ipython terminal
 Plug 'hkupty/iron.nvim', { 'for': 'python' }
+" Vim-sessions
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-session'
 
 call plug#end()
 "}}}
@@ -596,6 +599,12 @@ let g:easy_align_delimiters = {
             \ }
 "}}}
 
+"----------------------------------------------------------------------
+" Vim-session
+"----------------------------------------------------------------------
+let g:session_autoload="no"
+let g:session_autosave="no"
+"
 "----------------------------------------------------------------------
 " Ale configurations
 "----------------------------------------------------------------------
