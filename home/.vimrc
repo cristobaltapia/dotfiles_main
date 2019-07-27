@@ -95,8 +95,6 @@ Plug 'cristobaltapia/apdl.vim'
 Plug 'scrooloose/nerdtree'
 " Code commenter
 Plug 'scrooloose/nerdcommenter'
-" Emmet
-" Plug 'mattn/emmet-vim'
 " Vim-Airline
 Plug 'bling/vim-airline'
 " Pending tasks list
@@ -162,7 +160,6 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 "
 Plug 'Shougo/echodoc.vim'
 "
-" Plug 'ncm2/float-preview.nvim'
 " Emoji support
 Plug 'fszymanski/deoplete-emoji'
 " Jedi for deoplete
@@ -179,6 +176,8 @@ Plug 'hkupty/iron.nvim', { 'for': 'python' }
 " Vim-sessions
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
+" Colors
+Plug 'chrisbra/Colorizer'
 
 call plug#end()
 "}}}
