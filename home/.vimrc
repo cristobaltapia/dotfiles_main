@@ -17,6 +17,8 @@
 "         execute '!curl -fLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim'
 "     endif
 " endif
+"
+let $PATH = $HOME.'/bin:' . $PATH
 
 function! BuildComposer(info)
   if a:info.status != 'unchanged' || a:info.force
@@ -81,7 +83,8 @@ Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 " Plug 'tpict/vim-virtualenv', { 'for': 'python', 'commit': 'c9a52e5' }
 Plug 'cristobaltapia/vim-virtualenv', { 'for': 'python' }
 " Markdown preview support
-Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
+" Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
 " vim-pandoc: Pandoc support
 Plug 'vim-pandoc/vim-pandoc', { 'for': 'markdown' }
 Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'markdown' }
@@ -155,8 +158,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'jamessan/vim-gnupg'
 " Wavefront format support
 Plug 'vim-scripts/Wavefronts-obj'
-" Distraction-free writing in Vim.
-Plug 'junegunn/goyo.vim', { 'for': ['tex', 'txt', 'md'] }
 " Deoplete (completion)
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 "
@@ -783,13 +784,10 @@ endfunction
 " Markdown
 "----------------------------------------------------------------------
 "{{{
-let g:markdown_composer_browser='epiphany --private-instance'
-let g:markdown_composer_open_browser=0
-let g:markdown_composer_refresh_rate=0
-" let g:markdown_composer_syntax_theme='solarized_dark'
-let g:markdown_composer_external_renderer='pandoc '
-" \.'--filter pandoc-citeproc '
-            \.'-f markdown -t html'
+function! g:Open_browser(url)
+    silent exe 'silent !epiphany --private-instance ' . a:url . " &"
+endfunction
+let g:mkdp_browserfunc = 'g:Open_browser'
 
 autocmd FileChangedShell <buffer> call ProcessFileChangedShell()
 "}}}
@@ -811,24 +809,6 @@ let g:autocwd_patternwd_pairs = [
 let g:gitgutter_max_signs = 500     " default value
 
 "----------------------------------------------------------------------
-" Goyo
-"----------------------------------------------------------------------
-function! s:goyo_enter()
-    NumbersToggle
-    set nonumber
-    " ...
-endfunction
-
-function! s:goyo_leave()
-    NumbersToggle
-    set nu
-    " ...
-endfunction
-
-autocmd! User GoyoEnter nested call <SID>goyo_enter()
-autocmd! User GoyoLeave nested call <SID>goyo_leave()
-
-"----------------------------------------------------------------------
 " Emoji
 "----------------------------------------------------------------------
 call deoplete#custom#source('emoji', 'converters', ['converter_emoji'])
@@ -847,36 +827,3 @@ augroup pandoc_syntax
     au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
 augroup END
 "
-" Deoplete integration
-" call deoplete#custom#var('omni', 'input_patterns', { \ 'pandoc': '@' \}) let g:pandoc#command#custom_open = "MyPandocOpen" function! MyPandocOpen(file)
-"     let file = shellescape(fnamemodify(a:file, ':p'))
-"     let file_extension = fnamemodify(a:file, ':e')
-"     if file_extension is? 'pdf'
-"         if !empty($PDFVIEWER)
-"             return expand('$PDFVIEWER') . ' ' . file
-"         elseif executable('zathura')
-"             return 'zathura ' . file
-"         elseif executable('mupdf')
-"             return 'mupdf ' . file
-"         endif
-"     elseif file_extension is? 'html'
-"         if !empty($BROWSER)
-"             return expand('$BROWSER') . ' ' . file
-"         elseif executable('firefox')
-"             return 'firefox ' . file
-"         elseif executable('chromium')
-"             return 'chromium ' . file
-"         endif
-"     elseif file_extension is? 'odt' && executable('okular')
-"         return 'okular ' . file
-"     elseif file_extension is? 'epub' && executable('okular')
-"         return 'okular ' . file
-"     else
-"         return 'xdg-open ' . file
-"     endif
-" endfunction
-
-" let $NVIM_PYTHON_LOG_FILE = '/home/tapiac/nvim-log'
-" let $NVIM_PYTHON_LOG_LEVEL = 'DEBUG'
-" let g:deoplete#enable_profile = 1
-" call deoplete#enable_logging('DEBUG', '/home/tapiac/deoplete.log')

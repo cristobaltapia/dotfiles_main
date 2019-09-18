@@ -39,7 +39,6 @@ let g:vimtex_indent_bib_enabled = 1
 let g:vimtex_imaps_leader = '#'
 let g:vimtex_quickfix_method = 'latexlog'
 let g:matchup_override_vimtex = 1
-let g:vimtex_view_method = 'zathura'
 let g:vimtex_compiler_progname = 'nvr'
 
 " Function to autofocus zathura after each \lv call
@@ -51,7 +50,9 @@ function! VimtexHookZathura() abort
   endif
 endfunction
 
+let g:vimtex_view_method = 'zathura'
 let g:vimtex_view_zathura_hook_view = 'VimtexHookZathura'
+let g:vimtex_view_forward_search_on_start = 1
 
 " let g:matchup_matchparen_deferred = 1
 "
