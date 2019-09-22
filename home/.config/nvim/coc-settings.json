@@ -7,8 +7,14 @@
         "~/Templates/ultisnips-templates"],
     // Python
     "python.formatting.provider": "black",
+    "python.formatting.blackPath": "black",
+    "python.linting.enabled": true,
     "python.linting.pylintEnabled": true,
+    "python.linting.lintOnSave": true,
+    "python.sortImports.path": "",
+    "python.terminal.executeInFileDir": true,
     "python.venvFolders": [".virtualenvs"],
+    "python.venvPath": "~/.virtualenvs",
     "python.jediEnabled": true,
     "suggest.enablePreview": true,
     "suggest.minTriggerInputLength": 1,
@@ -16,5 +22,11 @@
     "coc.source.vimtex.enable": true,
     "coc.source.around.enable": true,
     "highlight.colors.enable": true,
-    "highlight.document.enable": false
+    "highlight.document.enable": false,
+    "git.addedSign.hlGroup": "GitGutterAdd",
+    "git.changedSign.hlGroup": "GitGutterChange",
+    "git.removedSign.hlGroup": "GitGutterDelete",
+    "git.topRemovedSign.hlGroup": "GitGutterDelete",
+    "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
+    "session.directory": "~/.vim/sessions"
 }
