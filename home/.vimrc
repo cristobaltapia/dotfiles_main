@@ -17,6 +17,8 @@
 "         execute '!curl -fLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim'
 "     endif
 " endif
+"
+let $PATH = $HOME.'/bin:' . $PATH
 
 function! BuildComposer(info)
   if a:info.status != 'unchanged' || a:info.force
@@ -51,13 +53,8 @@ let curr_os = GetRunningOS()
 "----------------------------------------------------------
 " Neovim's Python provider
 "----------------------------------------------------------
-if curr_os =~ 'Ubuntu'
-    let g:python_host_prog  = $HOME.'/.virtualenvs/py2neovim/bin/python'
-    let g:python3_host_prog = $HOME.'/.virtualenvs/py3neovim/bin/python3'
-else
-    " let g:python_host_prog  = '/usr/bin/python2'
-    let g:python3_host_prog = $HOME.'/.virtualenvs/py3neovim/bin/python3'
-endif
+let g:python_host_prog  = $HOME.'/.virtualenvs/py2neovim/bin/python'
+let g:python3_host_prog = $HOME.'/.virtualenvs/py3neovim/bin/python3'
 
 " Pluggins
 "{{{
@@ -79,19 +76,16 @@ Plug 'rhysd/vim-grammarous'
 " Plug 'ervandew/supertab'
 " CSV files
 Plug 'chrisbra/csv.vim', { 'for': 'csv' }
-" Virtualenv support
-" Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
-" Plug 'tpict/vim-virtualenv', { 'for': 'python', 'commit': 'c9a52e5' }
-Plug 'cristobaltapia/vim-virtualenv', { 'for': 'python' }
 " Markdown preview support
-Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
+" Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
 " vim-pandoc: Pandoc support
 Plug 'vim-pandoc/vim-pandoc', { 'for': 'markdown' }
 Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'markdown' }
 " Vim Easy Align
 Plug 'junegunn/vim-easy-align'
 " fugitive.vim: a Git wrappe
-" Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 "APDL Syntax
 Plug 'cristobaltapia/apdl.vim'
 " Better file browser
@@ -137,19 +131,22 @@ Plug 'chriskempson/base16-vim'
 " Seoul256 color theme
 Plug 'junegunn/seoul256.vim'
 " COC
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-sources', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-vimtex', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-git', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-yank', {'do': 'yarn install --frozen-lockfile'}
 Plug 'iamcco/coc-vimlsp', {'do': 'yarn install --frozen-lockfile'}
+
+Plug 'neoclide/coc-neco'
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 
 " Nginx support
 Plug 'chr4/nginx.vim'
@@ -161,7 +158,6 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'elzr/vim-json', {'for': 'json'}
 " Jedi-vim
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
-" Plug 'blueyed/jedi-vim', { 'branch': 'envs', 'for': 'python' }
 " Change working direcotry to open buffer
 Plug 'yssl/AutoCWD.vim'
 " A Vim plugin which shows a git diff in the 'gutter'
@@ -172,6 +168,11 @@ Plug 'jamessan/vim-gnupg'
 Plug 'vim-scripts/Wavefronts-obj'
 " Vala plugin
 Plug 'arrufat/vala.vim'
+" Vim-sessions
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-session'
+" Colors
+Plug 'chrisbra/Colorizer'
 
 call plug#end()
 "}}}
@@ -439,7 +440,8 @@ if has('win32')
 elseif has('vim')
     set guifont=Noto\ Mono\ for\ Powerline
 elseif has('nvim')
-    set guifont=Fira\ Code:h11
+    " set guifont=Fira\ Code:h11
+    set guifont=FuraCode\ Nerd\ Font\ Medium:h11
 endif
 
 " Enable the list of buffers
@@ -468,9 +470,10 @@ endif
 
 "
 " Ultisnip configuration
-let g:UltiSnipsExpandTrigger="<c-k>"
+" let g:UltiSnipsExpandTrigger="<c-k>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsExpandTrigger = "<nop>"
 
 " let g:UltiSnipsSnippetDir=[
 "             \'~/.vim/plugged/MySnippets/UltiSnips'
@@ -485,31 +488,13 @@ endif
 
 let g:UltiSnipsSnippetDirectories=[
             \'UltiSnips',
-            \g:tapia_home . '.vim/plugged/MySnippets/Ultisnips',
-            \g:tapia_home . 'Templates/ultisnips-templates'
+            \$HOME.'/.vim/plugged/MySnippets/Ultisnips',
+            \$HOME.'/Templates/ultisnips-templates'
             \]
-" \'~/.vim/plugged/vim-snippets/snippets',
-" \'~/.vim/plugged/vim-snippets/UltiSnips',
+"
 " Set the smart function definition to use numpy style for docstrings
 let g:ultisnips_python_style="numpy"
 
-"----------------------------------------------------------------------
-" Deoplete
-"----------------------------------------------------------------------
-" Use deoplete.
-" let g:deoplete#enable_at_startup = 1
-" Use smartcase.
-" let g:deoplete#enable_smart_case = 1
-
-" <C-h>, <BS>: close popup and delete backword char.
-" inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
-" inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
-
-" <CR>: close popup and save indent.
-" inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-" function! s:my_cr_function() abort
-"     return deoplete#close_popup() . "\<CR>"
-" endfunction
 "
 " inoremap <silent><expr> <TAB>
 "             \ pumvisible() ? "\<C-n>" :
@@ -573,6 +558,12 @@ let g:easy_align_delimiters = {
             \ }
 "}}}
 
+"----------------------------------------------------------------------
+" Vim-session
+"----------------------------------------------------------------------
+let g:session_autoload="no"
+let g:session_autosave="no"
+"
 
 "----------------------------------------------------------------------
 " NERD Commenter configurations
@@ -706,13 +697,10 @@ endfunction
 " Markdown
 "----------------------------------------------------------------------
 "{{{
-let g:markdown_composer_browser='epiphany --private-instance'
-let g:markdown_composer_open_browser=0
-let g:markdown_composer_refresh_rate=0
-" let g:markdown_composer_syntax_theme='solarized_dark'
-let g:markdown_composer_external_renderer='pandoc '
-            " \.'--filter pandoc-citeproc '
-            \.'-f markdown -t html'
+function! g:Open_browser(url)
+    silent exe 'silent !epiphany --private-instance ' . a:url . " &"
+endfunction
+let g:mkdp_browserfunc = 'g:Open_browser'
 
 autocmd FileChangedShell <buffer> call ProcessFileChangedShell()
 "}}}
@@ -734,22 +722,10 @@ let g:autocwd_patternwd_pairs = [
 let g:gitgutter_max_signs = 500     " default value
 
 "----------------------------------------------------------------------
-" Goyo
 "----------------------------------------------------------------------
-function! s:goyo_enter()
-    NumbersToggle
-    set nonumber
-    " ...
-endfunction
-
-function! s:goyo_leave()
-    NumbersToggle
-    set nu
-    " ...
-endfunction
-
-autocmd! User GoyoEnter nested call <SID>goyo_enter()
-autocmd! User GoyoLeave nested call <SID>goyo_leave()
+" Vimtex
+"----------------------------------------------------------------------
+let g:vimtex_compiler_progname=$HOME.'/.virtualenvs/py3neovim/bin/nvr'
 
 "----------------------------------------------------------------------
 " Vim-Pandoc
