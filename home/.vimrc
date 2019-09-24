@@ -131,7 +131,7 @@ Plug 'chriskempson/base16-vim'
 " Seoul256 color theme
 Plug 'junegunn/seoul256.vim'
 " COC
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-sources', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
@@ -168,13 +168,13 @@ Plug 'jamessan/vim-gnupg'
 Plug 'vim-scripts/Wavefronts-obj'
 " Vala plugin
 Plug 'arrufat/vala.vim'
-" Devicons
-Plug 'ryanoasis/vim-devicons'
 " Vim-sessions
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 " Colors
 Plug 'chrisbra/Colorizer'
+" Devicons
+Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 "}}}
@@ -452,9 +452,6 @@ endif
 let g:airline#extensions#tabline#enabled = 1
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
-" Enable virtualenv integration
-let g:airline#extensions#virtualenv#enabled = 1
-let g:ale_virtualenv_dir_names = ['.env', '.venv', 'env', 've-py3', 've', 'virtualenv', 'venv', '.virtualenv']
 " Cooperation with Asyncrun
 let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
 "}}}
