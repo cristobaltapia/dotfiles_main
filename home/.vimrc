@@ -168,6 +168,8 @@ Plug 'jamessan/vim-gnupg'
 Plug 'vim-scripts/Wavefronts-obj'
 " Vala plugin
 Plug 'arrufat/vala.vim'
+" Devicons
+Plug 'ryanoasis/vim-devicons'
 " Vim-sessions
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
@@ -179,6 +181,8 @@ call plug#end()
 
 " Latex options (I need this or nothing works... but don't ask why :/)
 let g:tex_flavor='latex'
+filetype plugin on
+syntax on
 
 " Change direcotry to folder of opened file
 cd %:p:h
@@ -475,22 +479,6 @@ let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsExpandTrigger = "<nop>"
 
-" let g:UltiSnipsSnippetDir=[
-"             \'~/.vim/plugged/MySnippets/UltiSnips'
-"             \]
-
-" Fix for UltiSnips (we need absolute paths)
-if curr_os =~ 'Ubuntu'
-    let g:tapia_home='/home/tapiac/'
-else
-    let g:tapia_home='/home/tapia/'
-endif
-
-let g:UltiSnipsSnippetDirectories=[
-            \'UltiSnips',
-            \$HOME.'/.vim/plugged/MySnippets/Ultisnips',
-            \$HOME.'/Templates/ultisnips-templates'
-            \]
 "
 " Set the smart function definition to use numpy style for docstrings
 let g:ultisnips_python_style="numpy"

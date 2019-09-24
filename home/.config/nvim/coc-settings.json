@@ -1,4 +1,5 @@
 {
+    "coc.preferences.diagnostic.displayByAle": true,
     "snippets.ultisnips.enable": true,
     "snippets.loadFromExtensions": true,
     "snippets.ultisnips.directories": [
