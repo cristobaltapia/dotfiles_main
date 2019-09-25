@@ -131,7 +131,7 @@ Plug 'chriskempson/base16-vim'
 " Seoul256 color theme
 Plug 'junegunn/seoul256.vim'
 " COC
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-sources', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
@@ -166,6 +166,9 @@ Plug 'jamessan/vim-gnupg'
 Plug 'vim-scripts/Wavefronts-obj'
 " Vala plugin
 Plug 'arrufat/vala.vim'
+" Fuzzy finder
+Plug 'junegunn/fzf', { 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 " Devicons
 Plug 'ryanoasis/vim-devicons'
 " Vim-sessions
