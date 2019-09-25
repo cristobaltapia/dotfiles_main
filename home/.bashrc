@@ -121,3 +121,5 @@ fi
 
 # Enable tab-completion for directories after variables
 shopt -s direxpand
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

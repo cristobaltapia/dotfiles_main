@@ -93,7 +93,7 @@ Plug 'scrooloose/nerdtree'
 " Code commenter
 Plug 'scrooloose/nerdcommenter'
 " Emmet
-Plug 'mattn/emmet-vim'
+" Plug 'mattn/emmet-vim'
 " Vim-Airline
 Plug 'bling/vim-airline'
 " Pending tasks list
@@ -131,22 +131,20 @@ Plug 'chriskempson/base16-vim'
 " Seoul256 color theme
 Plug 'junegunn/seoul256.vim'
 " COC
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-sources', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-vimtex', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-git', {'do': 'yarn install --frozen-lockfile'}
-" Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-yank', {'do': 'yarn install --frozen-lockfile'}
 Plug 'iamcco/coc-vimlsp', {'do': 'yarn install --frozen-lockfile'}
-
 Plug 'neoclide/coc-neco'
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+" Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
 
 " Nginx support
 Plug 'chr4/nginx.vim'
@@ -168,6 +166,8 @@ Plug 'jamessan/vim-gnupg'
 Plug 'vim-scripts/Wavefronts-obj'
 " Vala plugin
 Plug 'arrufat/vala.vim'
+" Devicons
+Plug 'ryanoasis/vim-devicons'
 " Vim-sessions
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
@@ -475,26 +475,11 @@ let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsExpandTrigger = "<nop>"
 
-" let g:UltiSnipsSnippetDir=[
-"             \'~/.vim/plugged/MySnippets/UltiSnips'
-"             \]
-
-" Fix for UltiSnips (we need absolute paths)
-if curr_os =~ 'Ubuntu'
-    let g:tapia_home='/home/tapiac/'
-else
-    let g:tapia_home='/home/tapia/'
-endif
-
-let g:UltiSnipsSnippetDirectories=[
-            \'UltiSnips',
-            \$HOME.'/.vim/plugged/MySnippets/Ultisnips',
-            \$HOME.'/Templates/ultisnips-templates'
-            \]
 "
 " Set the smart function definition to use numpy style for docstrings
 let g:ultisnips_python_style="numpy"
 
+set cmdheight=2
 "
 " inoremap <silent><expr> <TAB>
 "             \ pumvisible() ? "\<C-n>" :
@@ -899,8 +884,7 @@ let g:coc_snippet_next = '<c-j>'
 " Use <C-j> for both expand and jump (make expand higher priority.)
 imap <C-n> <Plug>(coc-snippets-expand-jump)
 
-
-nnoremap <F5> :call CocAction('runCommand',
+autocmd FileType python nnoremap <F5> :call CocAction('runCommand',
             \ 'python.execInTerminal')<CR>
 
 nnoremap <silent> <leader>y  :<C-u>CocList -A --normal yank<cr>
