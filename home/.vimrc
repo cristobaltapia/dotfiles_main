@@ -93,7 +93,7 @@ Plug 'scrooloose/nerdtree'
 " Code commenter
 Plug 'scrooloose/nerdcommenter'
 " Emmet
-Plug 'mattn/emmet-vim'
+" Plug 'mattn/emmet-vim'
 " Vim-Airline
 Plug 'bling/vim-airline'
 " Pending tasks list
@@ -131,7 +131,7 @@ Plug 'chriskempson/base16-vim'
 " Seoul256 color theme
 Plug 'junegunn/seoul256.vim'
 " COC
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-sources', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
@@ -166,6 +166,8 @@ Plug 'jamessan/vim-gnupg'
 Plug 'vim-scripts/Wavefronts-obj'
 " Vala plugin
 Plug 'arrufat/vala.vim'
+" Devicons
+Plug 'ryanoasis/vim-devicons'
 " Vim-sessions
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
@@ -478,6 +480,7 @@ let g:UltiSnipsExpandTrigger = "<nop>"
 " Set the smart function definition to use numpy style for docstrings
 let g:ultisnips_python_style="numpy"
 
+set cmdheight=2
 "
 " inoremap <silent><expr> <TAB>
 "             \ pumvisible() ? "\<C-n>" :
@@ -882,8 +885,7 @@ let g:coc_snippet_next = '<c-j>'
 " Use <C-j> for both expand and jump (make expand higher priority.)
 imap <C-n> <Plug>(coc-snippets-expand-jump)
 
-
-nnoremap <F5> :call CocAction('runCommand',
+autocmd FileType python nnoremap <F5> :call CocAction('runCommand',
             \ 'python.execInTerminal')<CR>
 
 nnoremap <silent> <leader>y  :<C-u>CocList -A --normal yank<cr>

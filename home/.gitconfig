@@ -5,3 +5,5 @@
     editor = "nvim"
 [submodule]
 	recurse = true
+[status]
+    submoduleSummary = true
