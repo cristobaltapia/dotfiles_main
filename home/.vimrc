@@ -169,6 +169,9 @@ Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 " Colors
 Plug 'chrisbra/Colorizer'
+" Follow symlinks
+Plug 'moll/vim-bbye' " optional dependency
+Plug 'aymericbeaumet/vim-symlink'
 
 call plug#end()
 "}}}
@@ -624,7 +627,7 @@ let g:grammarous#use_vim_spelllang = 1
 "----------------------------------------------------------------------
 " nnoremap <F5> :call <SID>compile_and_run()<CR>
 " close quickfix window
-nnoremap <Leader>cq :ccl<CR>
+" nnoremap <Leader>cq :ccl<CR>
 
 augroup SPACEVIM_ASYNCRUN
     autocmd!
@@ -883,5 +886,8 @@ imap <C-n> <Plug>(coc-snippets-expand-jump)
 
 autocmd FileType python nnoremap <F5> :call CocAction('runCommand',
             \ 'python.execInTerminal')<CR>
+
+" Close the terminal split below after the execution of the file
+autocmd FileType python nnoremap <Leader>cq <C-w>j i<C-d>
 
 nnoremap <silent> <leader>y  :<C-u>CocList -A --normal yank<cr>
