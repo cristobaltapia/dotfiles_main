@@ -29,5 +29,7 @@
     "git.removedSign.hlGroup": "GitGutterDelete",
     "git.topRemovedSign.hlGroup": "GitGutterDelete",
     "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
-    "session.directory": "~/.vim/sessions"
+    "session.directory": "~/.vim/sessions",
+    "yank.highlight.enable": false,
+    "yank.enableCompletion": false
 }

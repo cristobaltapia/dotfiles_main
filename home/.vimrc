@@ -72,12 +72,9 @@ Plug 'cristobaltapia/MySnippets'
 Plug 'luochen1990/rainbow', { 'for': 'python' }
 " vim-Grammarous
 Plug 'rhysd/vim-grammarous'
-"SuperTab
-" Plug 'ervandew/supertab'
 " CSV files
 Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 " Markdown preview support
-" Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
 " vim-pandoc: Pandoc support
 Plug 'vim-pandoc/vim-pandoc', { 'for': 'markdown' }
@@ -92,8 +89,6 @@ Plug 'cristobaltapia/apdl.vim'
 Plug 'scrooloose/nerdtree'
 " Code commenter
 Plug 'scrooloose/nerdcommenter'
-" Emmet
-" Plug 'mattn/emmet-vim'
 " Vim-Airline
 Plug 'bling/vim-airline'
 " Pending tasks list
@@ -154,8 +149,6 @@ Plug 'skywind3000/asyncrun.vim'
 Plug 'arcticicestudio/nord-vim'
 " vim-jason: a better json
 Plug 'elzr/vim-json', {'for': 'json'}
-" Jedi-vim
-Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 " Change working direcotry to open buffer
 Plug 'yssl/AutoCWD.vim'
 " A Vim plugin which shows a git diff in the 'gutter'
@@ -176,8 +169,6 @@ Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 " Colors
 Plug 'chrisbra/Colorizer'
-" Devicons
-Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 "}}}
@@ -757,7 +748,9 @@ function! MyPandocOpen(file)
     endif
 endfunction
 "
+"----------------------------------------------------------------------
 "COC configurations
+"----------------------------------------------------------------------
 "
 "" if hidden is not set, TextEdit might fail.
 set hidden
