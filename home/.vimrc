@@ -167,8 +167,6 @@ Plug 'ryanoasis/vim-devicons'
 " Vim-sessions
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
-" Colors
-Plug 'chrisbra/Colorizer'
 " Follow symlinks
 Plug 'moll/vim-bbye' " optional dependency
 Plug 'aymericbeaumet/vim-symlink'
