@@ -106,7 +106,7 @@ Plug 'vim-scripts/MatlabFilesEdition', { 'for': 'matlab' }
 " Latex
 Plug 'lervag/vimtex', {'for': 'tex' }
 " Convert latex expressions into unicode equivalents
-" Plug 'joom/latex-unicoder.vim'
+Plug 'joom/latex-unicoder.vim'
 " Rename. Rename a buffer within Vim and on disk
 Plug 'vim-scripts/Rename'
 " Search results counter
@@ -686,6 +686,8 @@ endfunction
 let g:mkdp_browserfunc = 'g:Open_browser'
 
 autocmd FileChangedShell <buffer> call ProcessFileChangedShell()
+
+let g:mkdp_auto_close = 0
 "}}}
 
 "----------------------------------------------------------------------
@@ -888,6 +890,6 @@ autocmd FileType python nnoremap <F5> :call CocAction('runCommand',
             \ 'python.execInTerminal')<CR>
 
 " Close the terminal split below after the execution of the file
-autocmd FileType python nnoremap <Leader>cq <C-w>j i<C-d>
+autocmd FileType python nnoremap <Leader>cq <C-w>j i<C-d><cr>
 
 nnoremap <silent> <leader>y  :<C-u>CocList -A --normal yank<cr>
