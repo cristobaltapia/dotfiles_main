@@ -66,6 +66,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'fidian/hexmode'
 " Snippets are separated from the engine. Add this if you want them:
 Plug 'honza/vim-snippets'
+" Ultisnips
+Plug 'SirVer/ultisnips'
 " Own snippets
 Plug 'cristobaltapia/MySnippets'
 " Rainbow parentheses
