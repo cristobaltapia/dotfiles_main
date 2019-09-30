@@ -128,3 +128,5 @@ function! GetVisual() range
     return selection
 endfunction
 
+" Close quickfix window
+autocmd FileType tex nnoremap <Leader>cq :ccl<cr>
