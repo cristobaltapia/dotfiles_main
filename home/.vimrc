@@ -339,6 +339,7 @@ augroup spell_group
     autocmd BufEnter,BufNewFile,BufNew *.tex syntax spell toplevel
     autocmd BufEnter,BufNewFile,BufNew *.tex setlocal spell
     autocmd BufEnter,BufNewFile,BufNew *.md setlocal spell
+    autocmd BufEnter,BufNewFile,BufNew *.py setlocal nospell
 augroup END
 
 augroup file_type
@@ -893,4 +894,9 @@ autocmd FileType python nnoremap <F5> :call CocAction('runCommand',
 nnoremap <silent> <leader>y  :<C-u>CocList -A --normal yank<cr>
 
 " Close the terminal split below after the execution of the file
-autocmd FileType python nnoremap <Leader>cq <C-w>j i<C-d><cr>
+" autocmd TermOpen * startinsert
+augroup close_lower_window
+    autocmd!
+    autocmd FileType,BufEnter,BufNewFile,BufNew python nnoremap <Leader>cq <C-w>j:bd!<cr>
+    autocmd FileType,BufEnter,BufNewFile,BufNew tex nnoremap <Leader>cq :ccl<cr>
+augroup END
