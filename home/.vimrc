@@ -67,7 +67,7 @@ Plug 'fidian/hexmode'
 " Snippets are separated from the engine. Add this if you want them:
 Plug 'honza/vim-snippets'
 " Ultisnips
-Plug 'SirVer/ultisnips'
+" Plug 'SirVer/ultisnips'
 " Own snippets
 Plug 'cristobaltapia/MySnippets'
 " Rainbow parentheses
@@ -106,7 +106,7 @@ Plug 'bronson/vim-trailing-whitespace'
 " Matlab
 Plug 'vim-scripts/MatlabFilesEdition', { 'for': 'matlab' }
 " Latex
-Plug 'lervag/vimtex', {'for': 'tex' }
+Plug 'lervag/vimtex', {'for': 'tex', 'commit': 'da5989131a9dc61df4bb63e818ec7ab2b68a408d' }
 " Convert latex expressions into unicode equivalents
 Plug 'joom/latex-unicoder.vim'
 " Rename. Rename a buffer within Vim and on disk
@@ -339,6 +339,7 @@ augroup spell_group
     autocmd BufEnter,BufNewFile,BufNew *.tex syntax spell toplevel
     autocmd BufEnter,BufNewFile,BufNew *.tex setlocal spell
     autocmd BufEnter,BufNewFile,BufNew *.md setlocal spell
+    autocmd BufEnter,BufNewFile,BufNew *.py setlocal nospell
 augroup END
 
 augroup file_type
@@ -752,6 +753,14 @@ function! MyPandocOpen(file)
         return 'xdg-open ' . file
     endif
 endfunction
+
+"----------------------------------------------------------------------
+" NertComment
+"----------------------------------------------------------------------
+let g:NERDCreateDefaultMappings = 0
+nmap <Leader>c<space> <plug>NERDCommenterToggle('n', 'Toggle')<Cr>
+vmap <Leader>c<space> <plug>NERDCommenterToggle('n', 'Toggle')<Cr>
+
 "
 "----------------------------------------------------------------------
 "COC configurations
@@ -759,13 +768,6 @@ endfunction
 "
 "" if hidden is not set, TextEdit might fail.
 set hidden
-
-" Some servers have issues with backup files, see #649
-set nobackup
-set nowritebackup
-
-" Better display for messages
-set cmdheight=2
 
 " Smaller updatetime for CursorHold & CursorHoldI
 set updatetime=300
@@ -872,7 +874,7 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 "
 " Call CocCommands
-nnoremap <silent> <leader>c  :<C-u>CocCommand<CR>
+nnoremap <silent> <leader>cc  :<C-u>CocCommand<CR>
 
 " Use <C-l> for trigger snippet expand.
 imap <C-k> <Plug>(coc-snippets-expand)
@@ -889,7 +891,12 @@ imap <C-n> <Plug>(coc-snippets-expand-jump)
 autocmd FileType python nnoremap <F5> :call CocAction('runCommand',
             \ 'python.execInTerminal')<CR>
 
-" Close the terminal split below after the execution of the file
-autocmd FileType python nnoremap <Leader>cq <C-w>j i<C-d><cr>
-
 nnoremap <silent> <leader>y  :<C-u>CocList -A --normal yank<cr>
+
+" Close the terminal split below after the execution of the file
+" autocmd TermOpen * startinsert
+augroup close_lower_window
+    autocmd!
+    autocmd FileType,BufEnter,BufNewFile,BufNew python nnoremap <Leader>cq <C-w>j:bd!<cr>
+    autocmd FileType,BufEnter,BufNewFile,BufNew tex nnoremap <Leader>cq :ccl<cr>
+augroup END
