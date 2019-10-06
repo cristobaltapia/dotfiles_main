@@ -106,7 +106,7 @@ Plug 'bronson/vim-trailing-whitespace'
 " Matlab
 Plug 'vim-scripts/MatlabFilesEdition', { 'for': 'matlab' }
 " Latex
-Plug 'lervag/vimtex', {'for': 'tex', 'commit': 'da5989131a9dc61df4bb63e818ec7ab2b68a408d' }
+Plug 'lervag/vimtex', {'for': 'tex'}
 " Convert latex expressions into unicode equivalents
 Plug 'joom/latex-unicoder.vim'
 " Rename. Rename a buffer within Vim and on disk
@@ -127,6 +127,8 @@ Plug 'mhartington/oceanic-next'
 Plug 'chriskempson/base16-vim'
 " Seoul256 color theme
 Plug 'junegunn/seoul256.vim'
+" ALE
+Plug 'dense-analysis/ale'
 " COC
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
@@ -141,6 +143,8 @@ Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-yank', {'do': 'yarn install --frozen-lockfile'}
 Plug 'iamcco/coc-vimlsp', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-neco'
+" Julia support
+Plug 'JuliaEditorSupport/julia-vim'
 " Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
 
 " Nginx support
@@ -548,6 +552,41 @@ let g:easy_align_delimiters = {
 let g:session_autoload="no"
 let g:session_autosave="no"
 "
+"----------------------------------------------------------------------
+" Ale configurations
+"----------------------------------------------------------------------
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+let g:ale_linters = {
+            \   'python': ['pylint'],
+            \   'tex': ['chktex', 'proselint', 'lacheck', 'write-good'],
+            \   'fortran': ['gcc'],
+            \   'markdown': ['alex', 'proselint'],
+            \   'javascript': ['javac'],
+            \   'dockerfile': ['hadolint'],
+            \}
+
+let g:ale_fixers = {
+            \   'python': ['black', 'isort'],
+            \   'tex': ['remove_trailing_lines', 'latexindent'],
+            \   'markdown': ['prettier'],
+            \   'javascript': ['prettier'],
+            \   'bib': ['bibclean'],
+            \   'json': ['prettier'],
+            \   'vim': ['trim_whitespace'],
+            \}
+
+" call deoplete#custom#source('ale', 'rank', 999)
+
+" Define map for the Fix function
+noremap <LocalLeader>= :ALEFix<cr>
+
+" Change default symbols for ALE
+let g:ale_sign_error = ">>"
+let g:ale_sign_warning = ">>"
+
+"----------------------------------------------------------------------
 
 "----------------------------------------------------------------------
 " NERD Commenter configurations
@@ -892,6 +931,9 @@ autocmd FileType python nnoremap <F5> :call CocAction('runCommand',
             \ 'python.execInTerminal')<CR>
 
 nnoremap <silent> <leader>y  :<C-u>CocList -A --normal yank<cr>
+
+" Correct highlight of comments in json files
+autocmd FileType json syntax match Comment +\/\/.\+$+
 
 " Close the terminal split below after the execution of the file
 " autocmd TermOpen * startinsert
