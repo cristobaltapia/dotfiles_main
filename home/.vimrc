@@ -949,7 +949,7 @@ augroup END
 
 "----------------------------------------------------------------------
 " Julia
-autocmd FileType julia nnoremap <F5> :call <SID>compile_and_run()<CR>
+" autocmd FileType julia nnoremap <F5> :call <SID>compile_and_run()<CR>
 let latex_to_unicode_tab = 0
 
 "
@@ -958,4 +958,6 @@ let latex_to_unicode_tab = 0
 "
 luafile $HOME/.config/nvim/plugins.lua
 
-autocmd FileType,BufEnter julia nmap <F6> <Plug>(iron-send-motion)
+autocmd FileType,BufEnter julia nmap <F6> <Plug>(iron-send-motion)<cr><Esc>
+autocmd FileType,BufEnter julia vmap <F6> <Plug>(iron-send-motion)<cr><Esc>
+autocmd FileType,BufEnter julia nmap <F5> ggVG<Plug>(iron-send-motion)<cr><Esc>
