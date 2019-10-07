@@ -143,10 +143,11 @@ Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-yank', {'do': 'yarn install --frozen-lockfile'}
 Plug 'iamcco/coc-vimlsp', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-neco'
+" Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
 " Julia support
 Plug 'JuliaEditorSupport/julia-vim'
-" Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
-
+" REPL
+Plug 'sillybun/vim-repl'
 " Nginx support
 Plug 'chr4/nginx.vim'
 " Asyncrun
@@ -687,6 +688,8 @@ function! s:compile_and_run()
         exec "AsyncRun! time bash %"
     elseif &filetype == 'python'
         exec "AsyncRun python %:p"
+    elseif &filetype == 'julia'
+        exec "AsyncRun julia %:p"
     endif
 endfunction
 
@@ -941,4 +944,28 @@ augroup close_lower_window
     autocmd!
     autocmd FileType,BufEnter,BufNewFile,BufNew python nnoremap <Leader>cq <C-w>j:bd!<cr>
     autocmd FileType,BufEnter,BufNewFile,BufNew tex nnoremap <Leader>cq :ccl<cr>
+    autocmd FileType,BufEnter,BufNewFile,BufNew julia nnoremap <Leader>cq :ccl<cr>
 augroup END
+
+"----------------------------------------------------------------------
+" Julia
+autocmd FileType julia nnoremap <F5> :call <SID>compile_and_run()<CR>
+"
+"----------------------------------------------------------------------
+"REPL
+"
+let g:repl_program = {
+            \   'python': 'ipython',
+            \   'default': 'zsh',
+            \   'r': 'R',
+            \   'lua': 'lua',
+            \   'vim': 'vim -e',
+            \   'julia': 'julia',
+            \   }
+let g:repl_predefine_python = {
+            \   'numpy': 'import numpy as np',
+            \   'matplotlib': 'from matplotlib import pyplot as plt'
+            \   }
+let g:repl_cursor_down = 1
+let g:repl_python_automerge = 1
+let g:repl_ipython_version = '7'
