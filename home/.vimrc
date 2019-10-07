@@ -147,7 +147,7 @@ Plug 'neoclide/coc-neco'
 " Julia support
 Plug 'JuliaEditorSupport/julia-vim'
 " REPL
-Plug 'sillybun/vim-repl'
+Plug 'Vigemus/iron.nvim'
 " Nginx support
 Plug 'chr4/nginx.vim'
 " Asyncrun
@@ -797,7 +797,7 @@ function! MyPandocOpen(file)
 endfunction
 
 "----------------------------------------------------------------------
-" NertComment
+" NerdComment
 "----------------------------------------------------------------------
 let g:NERDCreateDefaultMappings = 0
 nmap <Leader>c<space> <plug>NERDCommenterToggle('n', 'Toggle')<Cr>
@@ -950,22 +950,12 @@ augroup END
 "----------------------------------------------------------------------
 " Julia
 autocmd FileType julia nnoremap <F5> :call <SID>compile_and_run()<CR>
+let latex_to_unicode_tab = 0
+
 "
 "----------------------------------------------------------------------
 "REPL
 "
-let g:repl_program = {
-            \   'python': 'ipython',
-            \   'default': 'zsh',
-            \   'r': 'R',
-            \   'lua': 'lua',
-            \   'vim': 'vim -e',
-            \   'julia': 'julia',
-            \   }
-let g:repl_predefine_python = {
-            \   'numpy': 'import numpy as np',
-            \   'matplotlib': 'from matplotlib import pyplot as plt'
-            \   }
-let g:repl_cursor_down = 1
-let g:repl_python_automerge = 1
-let g:repl_ipython_version = '7'
+luafile $HOME/.config/nvim/plugins.lua
+
+autocmd FileType,BufEnter julia nmap <F6> <Plug>(iron-send-motion)
