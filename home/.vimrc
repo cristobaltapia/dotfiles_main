@@ -960,4 +960,4 @@ luafile $HOME/.config/nvim/plugins.lua
 
 autocmd FileType,BufEnter julia nmap <F6> <Plug>(iron-send-motion)<cr><Esc>
 autocmd FileType,BufEnter julia vmap <F6> <Plug>(iron-send-motion)<cr><Esc>
-autocmd FileType,BufEnter julia nmap <F5> ggVG<Plug>(iron-send-motion)<cr><Esc>
+autocmd FileType,BufEnter julia nmap <F5> mpggVG<Plug>(iron-send-motion)<cr><Esc>'p
