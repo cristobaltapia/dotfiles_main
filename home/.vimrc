@@ -949,7 +949,7 @@ augroup END
 
 "----------------------------------------------------------------------
 " Julia
-" autocmd FileType julia nnoremap <F5> :call <SID>compile_and_run()<CR>
+autocmd FileType julia nnoremap <S-F5> :call <SID>compile_and_run()<CR>
 let latex_to_unicode_tab = 0
 
 "
