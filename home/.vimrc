@@ -67,7 +67,7 @@ Plug 'fidian/hexmode'
 " Snippets are separated from the engine. Add this if you want them:
 Plug 'honza/vim-snippets'
 " Ultisnips
-" Plug 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips'
 " Own snippets
 Plug 'cristobaltapia/MySnippets'
 " Rainbow parentheses
@@ -132,8 +132,8 @@ Plug 'dense-analysis/ale'
 " COC
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-sources', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc-sources', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-vimtex', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-git', {'do': 'yarn install --frozen-lockfile'}
@@ -556,6 +556,7 @@ let g:session_autosave="no"
 "----------------------------------------------------------------------
 " Ale configurations
 "----------------------------------------------------------------------
+" {{{ "
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
@@ -586,12 +587,12 @@ noremap <LocalLeader>= :ALEFix<cr>
 " Change default symbols for ALE
 let g:ale_sign_error = ">>"
 let g:ale_sign_warning = ">>"
-
-"----------------------------------------------------------------------
+" }}} "
 
 "----------------------------------------------------------------------
 " NERD Commenter configurations
 "----------------------------------------------------------------------
+" {{{ "
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
 
@@ -612,6 +613,7 @@ let g:NERDCommentEmptyLines = 1
 
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
+" }}} "
 "----------------------------------------------------------------------
 
 "----------------------------------------------------------------------
@@ -736,6 +738,7 @@ let g:mkdp_auto_close = 0
 "----------------------------------------------------------------------
 " AutCWD
 "----------------------------------------------------------------------
+"{{{
 " Auto-change working directory to current buffer
 let g:autocwd_patternwd_pairs = [
             \['*.vim', '%:p:h'],
@@ -744,11 +747,14 @@ let g:autocwd_patternwd_pairs = [
             \['*', '%:p:h'],
             \]
 
+"}}}
 "----------------------------------------------------------------------
 " Gitgutter
 "----------------------------------------------------------------------
+"{{{
 let g:gitgutter_max_signs = 500     " default value
 
+"}}}
 "----------------------------------------------------------------------
 "----------------------------------------------------------------------
 " Vimtex
@@ -758,6 +764,7 @@ let g:vimtex_compiler_progname=$HOME.'/.virtualenvs/py3neovim/bin/nvr'
 "----------------------------------------------------------------------
 " Vim-Pandoc
 "----------------------------------------------------------------------
+"{{{
 " let g:pandoc#modules#disabled = ["command"]
 let g:pandoc#syntax#conceal#use = 0
 
@@ -796,6 +803,7 @@ function! MyPandocOpen(file)
     endif
 endfunction
 
+"}}}
 "----------------------------------------------------------------------
 " NerdComment
 "----------------------------------------------------------------------
@@ -803,10 +811,28 @@ let g:NERDCreateDefaultMappings = 0
 nmap <Leader>c<space> <plug>NERDCommenterToggle('n', 'Toggle')<Cr>
 vmap <Leader>c<space> <plug>NERDCommenterToggle('n', 'Toggle')<Cr>
 
+"----------------------------------------------------------------------
+" UltiSnips
+"----------------------------------------------------------------------
+" {{{ "
+let g:UltiSnipsExpandTrigger="<c-k>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsSnippetDirectories=[
+            \'UltiSnips',
+            \$HOME.'/.vim/plugged/MySnippets/Ultisnips',
+            \$HOME.'/Templates/ultisnips-templates'
+            \]
+
+" Set the smart function definition to use numpy style for docstrings
+let g:ultisnips_python_style="numpy"
+let g:UltisnipsUsePythonVersion = 3
+" }}} "
 "
 "----------------------------------------------------------------------
 "COC configurations
 "----------------------------------------------------------------------
+" {{{ "
 "
 "" if hidden is not set, TextEdit might fail.
 set hidden
@@ -919,16 +945,14 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 nnoremap <silent> <leader>cc  :<C-u>CocCommand<CR>
 
 " Use <C-l> for trigger snippet expand.
-imap <C-k> <Plug>(coc-snippets-expand)
-
+" imap <C-k> <Plug>(coc-snippets-expand)
 " Use <C-j> for select text for visual placeholder of snippet.
-vmap <C-j> <Plug>(coc-snippets-select)
-
+" vmap <C-j> <Plug>(coc-snippets-select)
 " Use <C-j> for jump to next placeholder, it's default of coc.nvim
-let g:coc_snippet_next = '<c-j>'
+" let g:coc_snippet_next = '<c-j>'
 
 " Use <C-j> for both expand and jump (make expand higher priority.)
-imap <C-n> <Plug>(coc-snippets-expand-jump)
+" imap <C-n> <Plug>(coc-snippets-expand-jump)
 
 autocmd FileType python nnoremap <F5> :call CocAction('runCommand',
             \ 'python.execInTerminal')<CR>
@@ -938,14 +962,7 @@ nnoremap <silent> <leader>y  :<C-u>CocList -A --normal yank<cr>
 " Correct highlight of comments in json files
 autocmd FileType json syntax match Comment +\/\/.\+$+
 
-" Close the terminal split below after the execution of the file
-" autocmd TermOpen * startinsert
-augroup close_lower_window
-    autocmd!
-    autocmd FileType,BufEnter,BufNewFile,BufNew python nnoremap <Leader>cq <C-w>j:bd!<cr>
-    autocmd FileType,BufEnter,BufNewFile,BufNew tex nnoremap <Leader>cq :ccl<cr>
-    autocmd FileType,BufEnter,BufNewFile,BufNew julia nnoremap <Leader>cq :ccl<cr>
-augroup END
+" }}} "
 
 "----------------------------------------------------------------------
 " Julia
@@ -971,3 +988,13 @@ endfunction
 command! IronSendInclude call <SID>send_wrapper_mod()
 
 autocmd FileType,BufEnter julia nnoremap <F5> :IronSendInclude<CR><Esc>
+"
+" Close the terminal split below after the execution of the file
+" autocmd TermOpen * startinsert
+augroup close_lower_window
+    autocmd!
+    autocmd FileType,BufEnter,BufNewFile,BufNew python nnoremap <Leader>cq <C-w>j:bd!<cr>
+    autocmd FileType,BufEnter,BufNewFile,BufNew tex nnoremap <Leader>cq :ccl<cr>
+    autocmd FileType,BufEnter,BufNewFile,BufNew julia nnoremap <Leader>cq :ccl<cr>
+augroup END
+

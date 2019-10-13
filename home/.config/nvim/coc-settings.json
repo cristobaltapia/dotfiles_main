@@ -25,6 +25,14 @@
     "coc.source.file.enable": true,
     "coc.source.vimtex.enable": true,
     "coc.source.around.enable": true,
+    "coc.source.ultisnips.enable": true,
+    "coc.source.ultisnips.filetypes": [
+        "python",
+        "tex",
+        "julia",
+        "bash",
+        "vim"
+    ],
     "highlight.colors.enable": true,
     "highlight.document.enable": false,
     "git.addedSign.hlGroup": "GitGutterAdd",
@@ -39,8 +47,11 @@
     "languageserver": {
         "julia": {
             "command": "/usr/bin/julia",
-            "args": ["--startup-file=no", "--history-file=no", "-e",
-            "using LanguageServer; using Pkg; import StaticLint; import SymbolServer; env_path = dirname(Pkg.Types.Context().env.project_file); debug = false; server = LanguageServer.LanguageServerInstance(stdin, stdout, debug, env_path, \"\", Dict()); server.runlinter = true; run(server);"
+            "args": [
+                "--startup-file=no",
+                "--history-file=no",
+                "-e",
+                "using LanguageServer; using Pkg; import StaticLint; import SymbolServer; env_path = dirname(Pkg.Types.Context().env.project_file); debug = false; server = LanguageServer.LanguageServerInstance(stdin, stdout, debug, env_path, \"\", Dict()); server.runlinter = true; run(server);"
             ],
             "filetypes": [
                 "julia"
