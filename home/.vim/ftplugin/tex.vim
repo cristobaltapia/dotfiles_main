@@ -94,10 +94,6 @@ let g:vimtex_delim_toggle_mod_list = [
   \ ['\mleft', '\mright'],
   \]
 
-" Vimtex support for deoplete
-call deoplete#custom#var('omni', 'input_patterns', {
-      \ 'tex': g:vimtex#re#deoplete
-      \})
 
 " Mappings
 nmap <localleader>ll <Plug>(vimtex-compile-ss)

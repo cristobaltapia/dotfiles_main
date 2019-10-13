@@ -64,26 +64,19 @@ call plug#begin('~/.vim/plugged')
 " Hexeditor
 " Plug 'd0c-s4vage/pfp-vim'
 Plug 'fidian/hexmode'
-" Track the engine.
-Plug 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
 Plug 'honza/vim-snippets'
+" Ultisnips
+Plug 'SirVer/ultisnips'
 " Own snippets
 Plug 'cristobaltapia/MySnippets'
 " Rainbow parentheses
 Plug 'luochen1990/rainbow', { 'for': 'python' }
 " vim-Grammarous
 Plug 'rhysd/vim-grammarous'
-"SuperTab
-Plug 'ervandew/supertab'
 " CSV files
 Plug 'chrisbra/csv.vim', { 'for': 'csv' }
-" Virtualenv support
-" Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
-" Plug 'tpict/vim-virtualenv', { 'for': 'python', 'commit': 'c9a52e5' }
-Plug 'cristobaltapia/vim-virtualenv', { 'for': 'python' }
 " Markdown preview support
-" Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
 " vim-pandoc: Pandoc support
 Plug 'vim-pandoc/vim-pandoc', { 'for': 'markdown' }
@@ -113,7 +106,7 @@ Plug 'bronson/vim-trailing-whitespace'
 " Matlab
 Plug 'vim-scripts/MatlabFilesEdition', { 'for': 'matlab' }
 " Latex
-Plug 'lervag/vimtex', {'for': 'tex' }
+Plug 'lervag/vimtex', {'for': 'tex'}
 " Convert latex expressions into unicode equivalents
 Plug 'joom/latex-unicoder.vim'
 " Rename. Rename a buffer within Vim and on disk
@@ -135,7 +128,26 @@ Plug 'chriskempson/base16-vim'
 " Seoul256 color theme
 Plug 'junegunn/seoul256.vim'
 " ALE
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
+" COC
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc-sources', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-vimtex', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-git', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-yank', {'do': 'yarn install --frozen-lockfile'}
+Plug 'iamcco/coc-vimlsp', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-neco'
+" Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
+" Julia support
+Plug 'JuliaEditorSupport/julia-vim'
+" REPL
+Plug 'Vigemus/iron.nvim'
 " Nginx support
 Plug 'chr4/nginx.vim'
 " Asyncrun
@@ -144,10 +156,6 @@ Plug 'skywind3000/asyncrun.vim'
 Plug 'arcticicestudio/nord-vim'
 " vim-jason: a better json
 Plug 'elzr/vim-json', {'for': 'json'}
-" Jedi-vim
-Plug 'davidhalter/jedi-vim', { 'for': 'python' }
-" Pydoc
-Plug 'fs111/pydoc.vim', { 'for': 'python' }
 " Change working direcotry to open buffer
 Plug 'yssl/AutoCWD.vim'
 " A Vim plugin which shows a git diff in the 'gutter'
@@ -156,15 +164,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'jamessan/vim-gnupg'
 " Wavefront format support
 Plug 'vim-scripts/Wavefronts-obj'
-" Deoplete (completion)
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"
-Plug 'Shougo/echodoc.vim'
-"
-" Emoji support
-Plug 'fszymanski/deoplete-emoji'
-" Jedi for deoplete
-Plug 'deoplete-plugins/deoplete-jedi', { 'for': 'python' }
 " Vala plugin
 Plug 'arrufat/vala.vim'
 " Fuzzy finder
@@ -172,13 +171,12 @@ Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 " Devicons
 Plug 'ryanoasis/vim-devicons'
-" Ipython terminal
-Plug 'hkupty/iron.nvim', { 'for': 'python' }
 " Vim-sessions
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
-" Colors
-Plug 'chrisbra/Colorizer'
+" Follow symlinks
+Plug 'moll/vim-bbye' " optional dependency
+Plug 'aymericbeaumet/vim-symlink'
 
 call plug#end()
 "}}}
@@ -346,6 +344,7 @@ augroup spell_group
     autocmd BufEnter,BufNewFile,BufNew *.tex syntax spell toplevel
     autocmd BufEnter,BufNewFile,BufNew *.tex setlocal spell
     autocmd BufEnter,BufNewFile,BufNew *.md setlocal spell
+    autocmd BufEnter,BufNewFile,BufNew *.py setlocal nospell
 augroup END
 
 augroup file_type
@@ -456,9 +455,6 @@ endif
 let g:airline#extensions#tabline#enabled = 1
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
-" Enable virtualenv integration
-let g:airline#extensions#virtualenv#enabled = 1
-let g:ale_virtualenv_dir_names = ['.env', '.venv', 'env', 've-py3', 've', 'virtualenv', 'venv', '.virtualenv']
 " Cooperation with Asyncrun
 let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
 "}}}
@@ -478,53 +474,30 @@ endif
 
 "
 " Ultisnip configuration
-let g:UltiSnipsExpandTrigger="<c-k>"
+" let g:UltiSnipsExpandTrigger="<c-k>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsExpandTrigger = "<nop>"
 
-let g:UltiSnipsSnippetDirectories=[
-            \'UltiSnips',
-            \$HOME.'/.vim/plugged/MySnippets/Ultisnips',
-            \$HOME.'/Templates/ultisnips-templates'
-            \]
 "
 " Set the smart function definition to use numpy style for docstrings
 let g:ultisnips_python_style="numpy"
 
-"----------------------------------------------------------------------
-" Deoplete
-"----------------------------------------------------------------------
-" Use deoplete.
-let g:deoplete#enable_at_startup = 1
-" Use smartcase.
-let g:deoplete#enable_smart_case = 1
-
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
-
-" <CR>: close popup and save indent.
-" inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-" function! s:my_cr_function() abort
-"     return deoplete#close_popup() . "\<CR>"
-" endfunction
-
-inoremap <silent><expr> <TAB>
-            \ pumvisible() ? "\<C-n>" :
-            \ <SID>check_back_space() ? "\<TAB>" :
-            \ deoplete#mappings#manual_complete()
-
-function! s:check_back_space() abort "{{{
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~ '\s'
-endfunction"}}}
-
-set completeopt="menu,preview,menuone"
 set cmdheight=2
 let g:echodoc_enable_at_startup = 1
 
 " let g:float_preview#docked = 1
 "
+" inoremap <silent><expr> <TAB>
+"             \ pumvisible() ? "\<C-n>" :
+"             \ <SID>check_back_space() ? "\<TAB>" :
+"             \ deoplete#mappings#manual_complete()
+" function! s:check_back_space() abort "{{{
+"     let col = col('.') - 1
+"     return !col || getline('.')[col - 1]  =~ '\s'
+" endfunction"}}}
+"
+" set completeopt="menu,preview"
 
 "}}}
 
@@ -532,33 +505,11 @@ let g:echodoc_enable_at_startup = 1
 " Python configuration
 "----------------------------------------------------------------------
 "{{{
-"
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function() abort
-    return deoplete#close_popup() . "\<CR>"
-endfunction
 
 filetype on
 syntax on
 let python_highlight_all=1
 
-"-------------------------------------------------------------
-" Jedi-vim
-"-------------------------------------------------------------
-" let g:deoplete#sources#jedi#extra_path = ""
-let g:deoplete#sources#jedi#server_timeout=30
-let g:deoplete#sources#jedi#show_docstring=0
-let g:deoplete#sources#jedi#python_path=$HOME.'/.virtualenvs/py3neovim/bin/python3'
-let g:deoplete#sources#jedi#enable_typeinfo=0
-
-let g:jedi#auto_close_doc=1
-let g:jedi#popup_on_dot=0
-let g:jedi#show_call_signatures=1
-let g:jedi#completions_enable=0
-
-inoremap <silent> <buffer> <C-k> :call jedi#configure_call_signatures()<cr>
-set shortmess+=c
 "}}}
 
 "----------------------------------------------------------------------
@@ -608,6 +559,7 @@ let g:session_autosave="no"
 "----------------------------------------------------------------------
 " Ale configurations
 "----------------------------------------------------------------------
+" {{{ "
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
@@ -619,16 +571,6 @@ let g:ale_linters = {
             \   'javascript': ['javac'],
             \   'dockerfile': ['hadolint'],
             \}
-
-" Run linters on save
-let g:ale_lint_on_save = 1
-let g:ale_lint_on_text_changed = 0
-" linters run on opening a file
-let g:ale_lint_on_enter = 1
-let g:ale_linters_explicit = 1
-" let g:ale_completion_enabled = 1
-let g:ale_virtualtext_cursor = 0
-let g:ale_completion_enabled = 0
 
 let g:ale_fixers = {
             \   'python': ['black', 'isort'],
@@ -648,12 +590,12 @@ noremap <LocalLeader>= :ALEFix<cr>
 " Change default symbols for ALE
 let g:ale_sign_error = ">>"
 let g:ale_sign_warning = ">>"
-
-"----------------------------------------------------------------------
+" }}} "
 
 "----------------------------------------------------------------------
 " NERD Commenter configurations
 "----------------------------------------------------------------------
+" {{{ "
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
 
@@ -674,6 +616,7 @@ let g:NERDCommentEmptyLines = 1
 
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
+" }}} "
 "----------------------------------------------------------------------
 
 "----------------------------------------------------------------------
@@ -728,9 +671,9 @@ let g:grammarous#use_vim_spelllang = 1
 "----------------------------------------------------------------------
 " Quick run
 "----------------------------------------------------------------------
-nnoremap <F5> :call <SID>compile_and_run()<CR>
+" nnoremap <F5> :call <SID>compile_and_run()<CR>
 " close quickfix window
-nnoremap <Leader>cq :ccl<CR>
+" nnoremap <Leader>cq :ccl<CR>
 
 augroup SPACEVIM_ASYNCRUN
     autocmd!
@@ -750,6 +693,8 @@ function! s:compile_and_run()
         exec "AsyncRun! time bash %"
     elseif &filetype == 'python'
         exec "AsyncRun python %:p"
+    elseif &filetype == 'julia'
+        exec "AsyncRun julia %:p"
     endif
 endfunction
 
@@ -789,11 +734,14 @@ endfunction
 let g:mkdp_browserfunc = 'g:Open_browser'
 
 autocmd FileChangedShell <buffer> call ProcessFileChangedShell()
+
+let g:mkdp_auto_close = 0
 "}}}
 
 "----------------------------------------------------------------------
 " AutCWD
 "----------------------------------------------------------------------
+"{{{
 " Auto-change working directory to current buffer
 let g:autocwd_patternwd_pairs = [
             \['*.vim', '%:p:h'],
@@ -802,15 +750,15 @@ let g:autocwd_patternwd_pairs = [
             \['*', '%:p:h'],
             \]
 
+"}}}
 "----------------------------------------------------------------------
 " Gitgutter
 "----------------------------------------------------------------------
+"{{{
 let g:gitgutter_max_signs = 500     " default value
 
+"}}}
 "----------------------------------------------------------------------
-" Emoji
-"----------------------------------------------------------------------
-call deoplete#custom#source('emoji', 'converters', ['converter_emoji'])
 "----------------------------------------------------------------------
 " Vimtex
 "----------------------------------------------------------------------
@@ -819,6 +767,7 @@ let g:vimtex_compiler_progname=$HOME.'/.virtualenvs/py3neovim/bin/nvr'
 "----------------------------------------------------------------------
 " Vim-Pandoc
 "----------------------------------------------------------------------
+"{{{
 " let g:pandoc#modules#disabled = ["command"]
 let g:pandoc#syntax#conceal#use = 0
 
@@ -826,3 +775,229 @@ augroup pandoc_syntax
     au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
 augroup END
 "
+
+let g:pandoc#command#custom_open = "MyPandocOpen"
+
+function! MyPandocOpen(file)
+    let file = shellescape(fnamemodify(a:file, ':p'))
+    let file_extension = fnamemodify(a:file, ':e')
+    if file_extension is? 'pdf'
+        if !empty($PDFVIEWER)
+            return expand('$PDFVIEWER') . ' ' . file
+        elseif executable('zathura')
+            return 'zathura ' . file
+        elseif executable('mupdf')
+            return 'mupdf ' . file
+        endif
+    elseif file_extension is? 'html'
+        if !empty($BROWSER)
+            return expand('$BROWSER') . ' ' . file
+        elseif executable('firefox')
+            return 'firefox ' . file
+        elseif executable('chromium')
+            return 'chromium ' . file
+        endif
+    elseif file_extension is? 'odt' && executable('okular')
+        return 'okular ' . file
+    elseif file_extension is? 'epub' && executable('okular')
+        return 'okular ' . file
+    else
+        return 'xdg-open ' . file
+    endif
+endfunction
+
+"}}}
+"----------------------------------------------------------------------
+" NerdComment
+"----------------------------------------------------------------------
+let g:NERDCreateDefaultMappings = 0
+nmap <Leader>c<space> <plug>NERDCommenterToggle('n', 'Toggle')<Cr>
+vmap <Leader>c<space> <plug>NERDCommenterToggle('n', 'Toggle')<Cr>
+
+"----------------------------------------------------------------------
+" UltiSnips
+"----------------------------------------------------------------------
+" {{{ "
+let g:UltiSnipsExpandTrigger="<c-k>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsSnippetDirectories=[
+            \'UltiSnips',
+            \$HOME.'/.vim/plugged/MySnippets/Ultisnips',
+            \$HOME.'/Templates/ultisnips-templates'
+            \]
+
+" Set the smart function definition to use numpy style for docstrings
+let g:ultisnips_python_style="numpy"
+let g:UltisnipsUsePythonVersion = 3
+" }}} "
+"
+"----------------------------------------------------------------------
+"COC configurations
+"----------------------------------------------------------------------
+" {{{ "
+"
+"" if hidden is not set, TextEdit might fail.
+set hidden
+
+" Smaller updatetime for CursorHold & CursorHoldI
+set updatetime=300
+
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+
+" always show signcolumns
+set signcolumn=yes
+
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+" inoremap <silent><expr> <TAB>
+"       \ pumvisible() ? "\<C-n>" :
+"       \ <SID>check_back_space() ? "\<TAB>" :
+"       \ coc#refresh()
+" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+"
+" function! s:check_back_space() abort
+"   let col = col('.') - 1
+"   return !col || getline('.')[col - 1]  =~# '\s'
+" endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Use `[c` and `]c` to navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Remap for format selected region
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap for do codeAction of current line
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Fix autofix problem of current line
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Use `:Format` to format current buffer
+command! -nargs=0 Format :call CocAction('format')
+
+" Use `:Fold` to fold current buffer
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" use `:OR` for organize import of current buffer
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+" Using CocList
+" Show all diagnostics
+" nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+" " Manage extensions
+" nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+" " Show commands
+" nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+" " Find symbol of current document
+" nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+" " Search workspace symbols
+" nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+" " Do default action for next item.
+" nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+" " Do default action for previous item.
+" nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+" " Resume latest coc list
+" nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+"
+" Call CocCommands
+nnoremap <silent> <leader>cc  :<C-u>CocCommand<CR>
+
+" Use <C-l> for trigger snippet expand.
+" imap <C-k> <Plug>(coc-snippets-expand)
+" Use <C-j> for select text for visual placeholder of snippet.
+" vmap <C-j> <Plug>(coc-snippets-select)
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+" let g:coc_snippet_next = '<c-j>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+" imap <C-n> <Plug>(coc-snippets-expand-jump)
+
+autocmd FileType python nnoremap <F5> :call CocAction('runCommand',
+            \ 'python.execInTerminal')<CR>
+
+nnoremap <silent> <leader>y  :<C-u>CocList -A --normal yank<cr>
+
+" Correct highlight of comments in json files
+autocmd FileType json syntax match Comment +\/\/.\+$+
+
+" }}} "
+
+"----------------------------------------------------------------------
+" Julia
+autocmd FileType julia nnoremap <S-F5> :call <SID>compile_and_run()<CR>
+autocmd FileType,BufEnter,BufNewFile,BufNew julia set foldmethod=syntax
+let latex_to_unicode_tab = 0
+
+"
+"----------------------------------------------------------------------
+"REPL (mostly for julia)
+"
+luafile $HOME/.config/nvim/plugins.lua
+
+autocmd FileType,BufEnter julia nmap <F6> V<Plug>(iron-send-motion)<cr><Esc>
+autocmd FileType,BufEnter julia vmap <F6> <Plug>(iron-send-motion)<cr><Esc>
+
+function! s:send_wrapper_mod()
+  let s:file_path = expand('%:p')
+  let s:ft = &ft
+  exec 'lua require("iron").core.send("'.s:ft.'", "include(\"'.s:file_path.'\")")'
+endfunction
+
+command! IronSendInclude call <SID>send_wrapper_mod()
+
+autocmd FileType,BufEnter julia nnoremap <F5> :IronSendInclude<CR><Esc>
+"
+" Close the terminal split below after the execution of the file
+" autocmd TermOpen * startinsert
+augroup close_lower_window
+    autocmd!
+    autocmd FileType,BufEnter,BufNewFile,BufNew python nnoremap <Leader>cq <C-w>j:bd!<cr>
+    autocmd FileType,BufEnter,BufNewFile,BufNew tex nnoremap <Leader>cq :ccl<cr>
+    autocmd FileType,BufEnter,BufNewFile,BufNew julia nnoremap <Leader>cq :ccl<cr>
+augroup END
+

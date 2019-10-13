@@ -1,0 +1,61 @@
+{
+    "coc.preferences.diagnostic.displayByAle": false,
+    "snippets.ultisnips.enable": true,
+    "snippets.loadFromExtensions": true,
+    "snippets.ultisnips.directories": [
+        "UltiSnips",
+        "plugged/MySnippets/Ultisnips",
+        "~/Templates/ultisnips-templates"
+    ],
+    // Python
+    "python.formatting.provider": "black",
+    "python.formatting.blackPath": "black",
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
+    "python.linting.lintOnSave": true,
+    "python.sortImports.path": "",
+    "python.terminal.executeInFileDir": true,
+    "python.venvFolders": [
+        ".virtualenvs"
+    ],
+    "python.venvPath": "~/.virtualenvs",
+    "python.jediEnabled": true,
+    "suggest.enablePreview": true,
+    "suggest.minTriggerInputLength": 1,
+    "coc.source.file.enable": true,
+    "coc.source.vimtex.enable": true,
+    "coc.source.around.enable": true,
+    "coc.source.ultisnips.enable": true,
+    "coc.source.ultisnips.filetypes": [
+        "python",
+        "tex",
+        "julia",
+        "bash",
+        "vim"
+    ],
+    "highlight.colors.enable": true,
+    "highlight.document.enable": false,
+    "git.addedSign.hlGroup": "GitGutterAdd",
+    "git.changedSign.hlGroup": "GitGutterChange",
+    "git.removedSign.hlGroup": "GitGutterDelete",
+    "git.topRemovedSign.hlGroup": "GitGutterDelete",
+    "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
+    "session.directory": "~/.vim/sessions",
+    "yank.highlight.enable": false,
+    "yank.enableCompletion": false,
+    "coc.preferences.diagnostics.displayByAle": true,
+    "languageserver": {
+        "julia": {
+            "command": "/usr/bin/julia",
+            "args": [
+                "--startup-file=no",
+                "--history-file=no",
+                "-e",
+                "using LanguageServer; using Pkg; import StaticLint; import SymbolServer; env_path = dirname(Pkg.Types.Context().env.project_file); debug = false; server = LanguageServer.LanguageServerInstance(stdin, stdout, debug, env_path, \"\", Dict()); server.runlinter = true; run(server);"
+            ],
+            "filetypes": [
+                "julia"
+            ]
+        }
+    }
+}
