@@ -115,6 +115,16 @@ window#waybar.chromium {
     animation-direction: alternate;
 }
 
+#battery.warning:not(.charging) {
+    background-color: #f1c40f;
+    color: #000000;
+    animation-name: blink;
+    animation-duration: 2.0s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
 label:focus {
     background-color: #000000;
 }
