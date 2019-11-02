@@ -4,3 +4,4 @@ set recolor-darkcolor "#e5e9f0"
 set recolor-lightcolor "#2e3440"
 set synctex true
 set synctex-editor-command "nvr --remote-silent %f -c %l"
+set guioptions none
