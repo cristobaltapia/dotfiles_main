@@ -17,7 +17,8 @@ set $right l
 set $term termite
 # Your preferred application launcher
 # Note: it's recommended that you pass the final command to sway
-set $menu rofi -lines 12 -padding 18 -width 60 -location 0 -show drun -sidebar-mode -columns 3 -font 'Noto Sans 12'
+# set $menu rofi -lines 12 -padding 18 -width 60 -location 0 -show drun -sidebar-mode -columns 3 -font 'Noto Sans 12'
+set $menu wofi --show drun
 
 # set $passmenu passmenu -fn "pango:DejaVu Sans 12":
 set $passmenu rofi-pass -fn "pango:Noto Sans 12":
@@ -177,6 +178,7 @@ focus_follows_mouse no
 
     # move focus to the parent container
     bindsym $mod+a focus parent
+    bindsym $mod+Shift+a focus child
 
     # Make screenshots: (requires grim)
     # - Of the whole screen
@@ -205,16 +207,16 @@ mode "resize" {
     # right will grow the containers width
     # up will shrink the containers height
     # down will grow the containers height
-    bindsym $left resize shrink width 10px
-    bindsym $down resize grow height 10px
-    bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
+    bindsym $left resize shrink width 20px
+    bindsym $down resize grow height 20px
+    bindsym $up resize shrink height 20px
+    bindsym $right resize grow width 20px
 
     # ditto, with arrow keys
-    bindsym Left resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
+    bindsym Left resize shrink width 20px
+    bindsym Down resize grow height 20px
+    bindsym Up resize shrink height 20px
+    bindsym Right resize grow width 20px
 
     # return to default mode
     bindsym Return mode "default"
@@ -269,6 +271,15 @@ bindsym --locked XF86AudioNext exec playerctl next
 bindsym --locked XF86AudioPrev exec playerctl previous
 
 # ------------------------------------------
+# Window aspect
+default_border pixel 5
+default_floating_border pixel 5
+hide_edge_borders smart
+
+# class        border  backgr. text    indicator child_border
+client.focused #859900 #859900 #fdf6e3 #268bd2 #859900
+
+# ------------------------------------------
 # Status Bar:
 # Read `man 5 sway-bar` for more information about this section.
 
@@ -282,6 +293,8 @@ include /etc/sway/config.d/*
 # Start at boot
 exec_always mako
 exec --no-startup-id redshift -m wayland
+# Always mute mic at boot
+exec --no-startup-id pactl set-source-mute alsa_input.pci-0000_00_1b.0.analog-stereo 1
 
 # exec --no-startup-id "eval `ssh-agent -s -t 6000`"
 # exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
