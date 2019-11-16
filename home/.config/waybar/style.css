@@ -85,7 +85,7 @@ window#waybar.chromium {
 }
 
 #clock {
-    background-color: #64727D;
+    background-color: #d33682;
 }
 
 #battery {
@@ -138,8 +138,32 @@ label:focus {
     color: #000000;
 }
 
+#cpu.idle {
+    background-color: #2ecc71;
+    color: #000000;
+}
+
+#cpu.low {
+    background-color: #FF8F00;
+    color: #000000;
+}
+
+#cpu.medium {
+    background-color: #f1c40f;
+    color: #000000;
+}
+
+#cpu.high {
+    background-color: #f53c3c;
+    color: #000000;
+}
+
 #memory {
     background-color: #9b59b6;
+}
+
+#memory.high {
+    background-color: #f53c3c;
 }
 
 #backlight {
