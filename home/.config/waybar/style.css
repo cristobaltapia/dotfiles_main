@@ -145,18 +145,18 @@ label:focus {
 }
 
 #cpu.low {
-    background-color: #FF8F00;
+    background-color: #f1c40f;
     color: #000000;
 }
 
 #cpu.medium {
-    background-color: #f1c40f;
+    background-color: #FF8F00;
     color: #000000;
 }
 
 #cpu.high {
     background-color: #f53c3c;
-    color: #000000;
+    color: #FFFFFF;
 }
 
 #memory {
