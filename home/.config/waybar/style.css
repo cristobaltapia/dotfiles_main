@@ -32,8 +32,8 @@ window#waybar.termite {
     background-color: #3F3F3F;
 }
 
-window#waybar.chromium {
-    background-color: #000000;
+window#waybar.firefox {
+    background-color: #BF360C;
     border: none;
 }
 
@@ -131,6 +131,7 @@ label:focus {
 
 #disk {
     background-color: #51a37a;
+    border-bottom: 3px solid #75a40a;
 }
 
 #cpu {
