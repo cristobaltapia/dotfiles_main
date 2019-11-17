@@ -55,7 +55,9 @@
     },
     "memory": {
         "format": "{}% ",
-        "states": {"high": 90}
+        "states": {
+            "high": 90
+        }
     },
     "backlight": {
         // "device": "acpi_video1",
@@ -136,6 +138,9 @@
         "format": "{format_source}",
         "format-source": "{volume}% ",
         "format-source-muted": "",
+        "states": {
+            "muted": 0
+        },
         "format-icons": {
             "headphones": "",
             "handsfree": "",
