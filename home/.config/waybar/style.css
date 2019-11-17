@@ -30,10 +30,18 @@ window#waybar.solo {
 
 window#waybar.termite {
     background-color: #3F3F3F;
+    border-bottom: 3px solid #585858;
 }
 
 window#waybar.firefox {
     background-color: #733f00;
+    border-bottom: 3px solid #a65b00;
+    border: none;
+}
+
+window#waybar.NeovimGtk {
+    background-color: #285327;
+    border-bottom: 3px solid #397637;
     border: none;
 }
 
