@@ -36,13 +36,11 @@ window#waybar.termite {
 window#waybar.firefox {
     background-color: #733f00;
     border-bottom: 3px solid #a65b00;
-    border: none;
 }
 
 window#waybar.NeovimGtk {
     background-color: #285327;
     border-bottom: 3px solid #397637;
-    border: none;
 }
 
 #workspaces button {
@@ -172,7 +170,7 @@ label:focus {
 
 #cpu.medium {
     background-color: #FF8F00;
-    border-bottom: 3px solid #FF8F00;
+    border-bottom: 3px solid #ffa533;
     color: #000000;
 }
 

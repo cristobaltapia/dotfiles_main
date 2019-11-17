@@ -48,15 +48,15 @@
         "interval": 5,
         "states": {
             "idle": 5,
-            "low": 25,
-            "medium": 50,
-            "high": 75
+            "low": 26,
+            "medium": 51,
+            "high": 76
         }
     },
     "memory": {
         "format": "{}% ",
         "states": {
-            "high": 90
+            "high": 95
         }
     },
     "backlight": {
