@@ -87,8 +87,6 @@ source /usr/bin/virtualenvwrapper.sh
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 source "$HOME/.homesick/repos/homeshick/completions/homeshick-completion.bash"
 
-export PATH="/opt/anaconda/bin:$PATH"
-
 PROG=gopass
 
 _cli_bash_autocomplete() {
