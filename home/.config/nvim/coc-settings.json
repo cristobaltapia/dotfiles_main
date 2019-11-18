@@ -31,6 +31,11 @@
         "tex",
         "julia",
         "bash",
+        "markdown",
+        "markdown.pandoc",
+        "css",
+        "bib",
+        "javascript",
         "vim"
     ],
     "highlight.colors.enable": true,
