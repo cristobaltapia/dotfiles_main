@@ -35,6 +35,7 @@
         "markdown.pandoc",
         "css",
         "bib",
+        "make",
         "javascript",
         "vim"
     ],
