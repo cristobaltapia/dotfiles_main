@@ -16,7 +16,8 @@
     "python.sortImports.path": "",
     "python.terminal.executeInFileDir": true,
     "python.venvFolders": [
-        ".virtualenvs"
+        ".virtualenvs",
+        "venv"
     ],
     "python.venvPath": "~/.virtualenvs",
     "python.jediEnabled": true,
