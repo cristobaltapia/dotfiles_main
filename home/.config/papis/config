@@ -1,0 +1,11 @@
+[papers]
+dir = ~/Documents/papers_repo
+
+[settings]
+editor = nvim
+default-library = papers
+opentool = zathura
+add-edit = True
+
+[tui]
+editmode = vi
