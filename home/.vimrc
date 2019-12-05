@@ -120,7 +120,7 @@ Plug 'myusuf3/numbers.vim'
 " Vim indent guides (colors!)
 Plug 'nathanaelkane/vim-indent-guides'
 " Solirized colorscheme
-Plug 'altercation/vim-colors-solarized'
+Plug 'lifepillar/vim-solarized8'
 " Oceanic-next colorscheme
 Plug 'mhartington/oceanic-next'
 " Base16 colorscheme
@@ -177,6 +177,7 @@ Plug 'xolox/vim-session'
 " Follow symlinks
 Plug 'moll/vim-bbye' " optional dependency
 Plug 'aymericbeaumet/vim-symlink'
+Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 
 call plug#end()
 "}}}
@@ -238,6 +239,7 @@ if has('win32')
     set directory=.,$TMP,$TEMP      " ...
 else
     " Visual selection automatically copies to the clipboard
+    set clipboard+=unnamedplus
     nnoremap y "+y
     vnoremap y "+y
     snoremap y "+y
@@ -343,8 +345,10 @@ augroup spell_group
     autocmd!
     autocmd BufEnter,BufNewFile,BufNew *.tex syntax spell toplevel
     autocmd BufEnter,BufNewFile,BufNew *.tex setlocal spell
-    autocmd BufEnter,BufNewFile,BufNew *.md setlocal spell
+    autocmd BufEnter,BufNewFile,BufNew markdown setlocal spell
+    autocmd BufEnter,BufNewFile,BufNew pandoc-markdown setlocal spell
     autocmd BufEnter,BufNewFile,BufNew *.py setlocal nospell
+    autocmd BufRead,BufEnter,BufNewFile */Notes/* setlocal nospell
 augroup END
 
 augroup file_type
@@ -457,48 +461,6 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 " Cooperation with Asyncrun
 let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
-"}}}
-
-"----------------------------------------------------------------------
-" Snippets and autocompletion
-"----------------------------------------------------------------------
-"{{{
-if has('vim')
-    " Neocomplete configuration
-    "let g:neocomplete#enable_at_startup = 1
-    " Use smartcase.
-    let g:neocomplete#enable_smart_case = 1
-    " Set minimum syntax keyword length.
-    let g:neocomplete#sources#syntax#min_keyword_length = 3
-endif
-
-"
-" Ultisnip configuration
-" let g:UltiSnipsExpandTrigger="<c-k>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-let g:UltiSnipsExpandTrigger = "<nop>"
-
-"
-" Set the smart function definition to use numpy style for docstrings
-let g:ultisnips_python_style="numpy"
-
-set cmdheight=2
-let g:echodoc_enable_at_startup = 1
-
-" let g:float_preview#docked = 1
-"
-" inoremap <silent><expr> <TAB>
-"             \ pumvisible() ? "\<C-n>" :
-"             \ <SID>check_back_space() ? "\<TAB>" :
-"             \ deoplete#mappings#manual_complete()
-" function! s:check_back_space() abort "{{{
-"     let col = col('.') - 1
-"     return !col || getline('.')[col - 1]  =~ '\s'
-" endfunction"}}}
-"
-" set completeopt="menu,preview"
-
 "}}}
 
 "----------------------------------------------------------------------
@@ -658,7 +620,6 @@ endif
 
 " Suppress message of vim-conda
 let g:conda_startup_msg_suppress = 1
-let g:UltisnipsUsePythonVersion = 3
 
 " Setting for grammar check (Grammarous)
 let g:grammarous#disabled_rules = {
@@ -814,6 +775,9 @@ let g:NERDCreateDefaultMappings = 0
 nmap <Leader>c<space> <plug>NERDCommenterToggle('n', 'Toggle')<Cr>
 vmap <Leader>c<space> <plug>NERDCommenterToggle('n', 'Toggle')<Cr>
 
+"
+
+
 "----------------------------------------------------------------------
 " UltiSnips
 "----------------------------------------------------------------------
@@ -831,6 +795,10 @@ let g:UltiSnipsSnippetDirectories=[
 let g:ultisnips_python_style="numpy"
 let g:UltisnipsUsePythonVersion = 3
 " }}} "
+
+set cmdheight=2
+let g:echodoc_enable_at_startup = 1
+
 "
 "----------------------------------------------------------------------
 "COC configurations
@@ -1004,3 +972,27 @@ augroup END
 " Refresh the syntax highlighting
 noremap <F12> <Esc>:syntax sync fromstart<CR>
 inoremap <F12> <C-o>:syntax sync fromstart<CR>
+
+"----------------------------------------------------------------------
+" Notes with vimwiki
+let g:vimwiki_list = [{ 'path': '~/Notes/',
+       \ 'syntax':'markdown', 'ext': '.md' }]
+autocmd FileType vimwiki set ft=markdown
+
+let g:colors_name = get(g:, 'colors_name', 'default')
+let s:saved_colorscheme = g:colors_name
+function! s:check_colorscheme_on_bufenter() abort
+    if &ft == 'vimwiki' && g:colors_name != 'solarized8_high'
+        let s:saved_colorscheme = g:colors_name
+        set background=light
+        colorscheme solarized8_high
+    elseif &ft != 'vimwiki' && g:colors_name == 'solarized8_high'
+        exe 'colorscheme '.s:saved_colorscheme
+    endif
+endfunction
+
+augroup WikiColorScheme
+    au!
+    au FileType,BufNew vimwiki call s:check_colorscheme_on_bufenter()
+augroup END
+

@@ -26,14 +26,16 @@ let g:vimtex_compiler_latexmk_engines = {'_' : '-lualatex'}
 
 " Set variables
 let g:vimtex_complete_enabled = 1
-let g:vimtex_complete_close_braces = 1
+let g:vimtex_complete_close_braces = 0
+let g:vimtex_complete_ignore_case = 1
+let g:vimtex_complete_smart_case = 1
 let g:vimtex_fold_enabled = 1
 setlocal conceallevel=1
 let g:tex_conceal='abdmg'
 setlocal concealcursor=
 
 let g:vimtex_indent_enabled = 1
-let g:vimtex_indent_on_ampersands = 1
+let g:vimtex_indent_on_ampersands = 0
 let g:vimtex_indent_bib_enabled = 1
 
 let g:vimtex_imaps_leader = '#'
@@ -51,7 +53,7 @@ function! VimtexHookZathura() abort
 endfunction
 
 let g:vimtex_view_method = 'zathura'
-let g:vimtex_view_zathura_hook_view = 'VimtexHookZathura'
+" let g:vimtex_view_zathura_hook_view = 'VimtexHookZathura'
 let g:vimtex_view_forward_search_on_start = 1
 
 " let g:matchup_matchparen_deferred = 1

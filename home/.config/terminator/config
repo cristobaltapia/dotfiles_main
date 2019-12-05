@@ -1,6 +1,7 @@
 [global_config]
   enabled_plugins = LaunchpadBugURLHandler, LaunchpadCodeURLHandler, APTURLHandler, TerminatorThemes
   title_font = FuraCode Nerd Font Bold 11
+  inactive_color_offset = 1.0
 [keybindings]
 [profiles]
   [[default]]
