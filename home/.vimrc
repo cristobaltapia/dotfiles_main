@@ -797,7 +797,6 @@ let g:echodoc_enable_at_startup = 1
 " Install all coc-extensions
 let g:coc_global_extensions = [
             \ 'coc-texlab',
-            \ 'coc-vimtex',
             \ 'coc-python',
             \ 'coc-tsserver',
             \ 'coc-highlight',
