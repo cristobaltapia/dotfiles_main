@@ -33,7 +33,7 @@
     "suggest.fixInsertedWord": true,
     "suggest.autoTrigger": "always",
     "coc.source.file.enable": true,
-    "coc.source.vimtex.enable": true,
+    "coc.source.vimtex.enable": false,
     "coc.source.around.enable": true,
     "coc.source.ultisnips.enable": true,
     "coc.source.ultisnips.filetypes": [
@@ -100,7 +100,7 @@
           "args": [],
           // custom config path
           // "args": ["-c", "/path/to/your/config.yaml"],
-          "filetypes": ["vim", "eruby", "markdown", "yaml"]
+          "filetypes": ["vim", "eruby"]
         }
     }
 }
