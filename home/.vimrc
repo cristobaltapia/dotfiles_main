@@ -131,19 +131,8 @@ Plug 'junegunn/seoul256.vim'
 Plug 'dense-analysis/ale'
 " COC
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 " Plug 'neoclide/coc-sources', {'do': 'yarn install --frozen-lockfile'}
-" Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-vimtex', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-git', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-yank', {'do': 'yarn install --frozen-lockfile'}
-Plug 'iamcco/coc-vimlsp', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-neco'
-" Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
 " Julia support
 Plug 'JuliaEditorSupport/julia-vim'
 " REPL
@@ -804,6 +793,24 @@ let g:echodoc_enable_at_startup = 1
 "COC configurations
 "----------------------------------------------------------------------
 " {{{ "
+
+" Install all coc-extensions
+let g:coc_global_extensions = [
+            \ 'coc-texlab',
+            \ 'coc-python',
+            \ 'coc-tsserver',
+            \ 'coc-highlight',
+            \ 'coc-html',
+            \ 'coc-ultisnips',
+            \ 'coc-yank',
+            \ 'coc-lists',
+            \ 'coc-git',
+            \ 'coc-json',
+            \ 'coc-vimlsp',
+            \ 'coc-yaml',
+            \ 'coc-css',
+            \ 'coc-markdownlint'
+            \ ]
 "
 "" if hidden is not set, TextEdit might fail.
 set hidden
