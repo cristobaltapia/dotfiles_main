@@ -20,7 +20,7 @@
     "python.linting.pydocstyleArgs": ["--convention=numpy"],
     "python.linting.lintOnSave": true,
     "python.linting.maxNumberOfProblems": 200,
-    "python.sortImports.path": "",
+    "python.sortImports.path": "isort",
     "python.terminal.executeInFileDir": true,
     "python.venvFolders": [
         ".virtualenvs",
