@@ -1,0 +1,89 @@
+#! /usr/bin/env python3
+# -*- coding: utf-8 -*-
+# papis-short-help: Convert zotero library to papis library
+# Copyright 2017 Alejandro Gallo. GPLv3
+import os
+import sys
+
+from bibtexparser.bparser import BibTexParser
+
+import papis.api
+import papis.bibtex
+import papis.commands
+import papis.commands.add as papis_add
+import papis.config
+import papis.utils
+
+import argparse
+
+pars = argparse.ArgumentParser(description="Import bibfile to papis library")
+pars.add_argument("bibfile", type=str)
+pars.add_argument("--lib", type=str)
+
+argumetns = pars.parse_args()
+bib_file = argumetns.bibfile
+
+
+def usage():
+    print("Usage: papis bibfile bibfile --lib")
+
+
+if not os.path.exists(bib_file):
+    print("ERROR: Bib file (%s) not found!" % bib_file)
+    usage()
+    sys.exit(1)
+
+parser = BibTexParser()
+parser.ignore_nonstandard_types = False
+
+#  entries = parser.parse(bib_file)
+with open(bib_file) as bibtex_file:
+    bib_obj = parser.parse_file(bibtex_file)
+
+entries = bib_obj.entries
+
+
+def add(ref_data, pdf=None):
+
+    if pdf_file is not None:
+        papis_add.run(paths=[pdf], data=ref_data, git=True)
+    else:
+        papis_add.run(paths=[], data=ref_data, git=True)
+
+
+cwd = os.getcwd()
+
+# Set the library
+if argumetns.lib:
+    papis.api.set_lib_from_name(argumetns.lib)
+    print(f"library {argumetns.lib}")
+
+for entry in entries:
+    for basic_field in ["ref", "author", "title"]:
+        if basic_field not in entry.keys():
+            if basic_field == "ref":
+                entry[basic_field] = entry["ID"]
+            elif basic_field == "author":
+                entry[basic_field] = entry["editor"]
+            else:
+                entry[basic_field] = papis.utils.input(
+                    "%s Not found, please insert" % basic_field, default="???????"
+                )
+
+    print("INFO: Processing  |   bibkey: %s" % entry.get("ref"))
+    print("                  |Author: %s" % entry.get("author"))
+    print("                  | Title: %s" % entry.get("title"))
+    print("                  |")
+
+    pdf_file = None
+
+    if "file" in entry.keys():
+        pdf_file = entry.get("file").split(":")[1]
+        pdf_file = os.path.join(cwd, pdf_file)
+        print("\tINFO: File field detected (%s)" % pdf_file)
+        if not os.path.exists(pdf_file):
+            print("\tWARNING: Path (%s) not found! Ignoring it" % pdf_file)
+            del entry["file"]
+            pdf_file = None
+
+    add(entry, pdf_file)

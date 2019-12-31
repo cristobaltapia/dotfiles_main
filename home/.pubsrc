@@ -83,6 +83,7 @@ active = alias,git,
 # print = open --with lp
 # evince = open --with evince
 ls = !pubs --force-colors list | less -r
+docarxiv = !wget -U 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1.6) Gecko/20070802 SeaMonkey/1.1.4' -O /tmp/temp_pubs.pdf $1 && pubs doc add /tmp/temp_pubs.pdf $2
 
 # shell commands can also be defined, by prefixing them with a bang `!`, e.g:
 # count = !pubs list -k | wc -l

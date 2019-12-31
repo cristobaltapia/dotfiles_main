@@ -1,11 +1,22 @@
-[papers]
-dir = ~/Documents/papers_repo
-
 [settings]
 editor = nvim
 default-library = papers
 opentool = zathura
 add-edit = True
+database-backend = whoosh
+whoosh-schema-fields = ['ref', 'author', 'title', 'year', 'publisher']
+add-confirm = False
+use-git = True
 
 [tui]
 editmode = vi
+
+[papers]
+dir = ~/Literature/papers_main
+use-git = True
+extra-bibtex-types = ["subtitle"]
+ref-format = {doc[author_list][0][surname]}{doc[year]}
+
+[economics]
+dir = ~/Literature/papers_economics
+use-git = True
