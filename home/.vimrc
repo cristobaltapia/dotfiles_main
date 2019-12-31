@@ -363,6 +363,11 @@ augroup file_type
                 \ tabstop=2
                 \ softtabstop=2
                 \ expandtab
+    autocmd FileType markdown setlocal
+                \ shiftwidth=2
+                \ tabstop=2
+                \ softtabstop=2
+                \ expandtab
     autocmd FileType fortran setlocal
                 \ shiftwidth=3
                 \ tabstop=3

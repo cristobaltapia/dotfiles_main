@@ -9,15 +9,21 @@
     ],
     // Python
     "python.formatting.provider": "black",
+    "markdownlint.config": {
+        "default": true,
+        "MD013": false,
+        "MD003": false
+    },
     "python.formatting.blackPath": "black",
     "python.linting.enabled": true,
     "python.linting.pylintEnabled": true,
-    "python.linting.pylintArgs": ["-j 2"],
     "python.linting.flake8Enabled": false,
     "python.linting.mypyEnabled": false,
     "python.linting.prospectorEnabled": false,
     "python.linting.pydocstyleEnabled": true,
-    "python.linting.pydocstyleArgs": ["--convention=numpy"],
+    "python.linting.pydocstyleArgs": [
+        "--convention=numpy"
+    ],
     "python.linting.lintOnSave": true,
     "python.linting.maxNumberOfProblems": 200,
     "python.sortImports.path": "isort",
@@ -96,11 +102,14 @@
             ]
         },
         "efm": {
-          "command": "efm-langserver",
-          "args": [],
-          // custom config path
-          // "args": ["-c", "/path/to/your/config.yaml"],
-          "filetypes": ["vim", "eruby"]
+            "command": "efm-langserver",
+            "args": [],
+            // custom config path
+            // "args": ["-c", "/path/to/your/config.yaml"],
+            "filetypes": [
+                "vim",
+                "eruby"
+            ]
         }
     }
 }
