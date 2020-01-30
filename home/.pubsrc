@@ -2,17 +2,19 @@
 [main]
 
 # Where the pubs repository files (bibtex, metadata, notes) are located
-pubsdir = ~/.pubs
+pubsdir = /home/tapia/Literature/papers_misc
+# pubsdir = ~/.pubstest
 
 # Where the documents files are located (default: $(pubsdir)/doc/)
-docsdir = ~/.pubs/doc
+docsdir = /home/tapia/Literature/papers_misc/doc
+# docsdir = ~/.pubstest/doc
 
 # Specify if a document should be copied or moved in the docdir, or only
 # linked when adding a publication.
 doc_add = copy
 
 # the command to use when opening document files
-open_cmd = zathura
+open_cmd = xdg-open
 
 # which editor to use when editing bibtex files.
 # if using a graphical editor, use the --wait or --block option, i.e.:
@@ -20,7 +22,7 @@ open_cmd = zathura
 # "kate --block"
 # If set to an empty string (default) pubs uses the value of the environment
 # variable $EDITOR.
-edit_cmd = "nvim"
+edit_cmd = nvim
 
 # Which default extension to use when creating a note file.
 note_extension = md
@@ -76,7 +78,7 @@ pages = ""
 [plugins]
 # Comma-separated list of the plugins to load.
 # Currently pubs comes with built-in plugins alias and git.
-active = alias,git,
+active = alias, git
 
 [[alias]]
 # new subcommands can be defined, e.g.:
@@ -84,6 +86,9 @@ active = alias,git,
 # evince = open --with evince
 ls = !pubs --force-colors list | less -r
 docarxiv = !wget -U 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1.6) Gecko/20070802 SeaMonkey/1.1.4' -O /tmp/temp_pubs.pdf $1 && pubs doc add /tmp/temp_pubs.pdf $2
+# new subcommands can be defined, e.g.:
+# print = open --with lp
+# evince = open --with evince
 
 # shell commands can also be defined, by prefixing them with a bang `!`, e.g:
 # count = !pubs list -k | wc -l
