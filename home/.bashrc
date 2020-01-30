@@ -122,3 +122,5 @@ shopt -s direxpand
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
+
+source /home/tapia/.config/broot/launcher/bash/br
