@@ -75,7 +75,7 @@ Plug 'luochen1990/rainbow', { 'for': 'python' }
 " vim-Grammarous
 Plug 'rhysd/vim-grammarous'
 " CSV files
-Plug 'chrisbra/csv.vim', { 'for': 'csv' }
+" Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 " Markdown preview support
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
 " vim-pandoc: Pandoc support
@@ -711,6 +711,8 @@ let g:autocwd_patternwd_pairs = [
 "----------------------------------------------------------------------
 "{{{
 let g:gitgutter_max_signs = 500     " default value
+
+nnoremap <Leader>dc :GitGutterPreviewHunk<CR>
 
 "}}}
 "----------------------------------------------------------------------

@@ -26,7 +26,6 @@
     ],
     "python.linting.lintOnSave": true,
     "python.linting.maxNumberOfProblems": 200,
-    "python.sortImports.path": "isort",
     "python.terminal.executeInFileDir": true,
     "python.venvFolders": [
         ".virtualenvs",
