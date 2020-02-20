@@ -88,9 +88,10 @@ Plug 'tpope/vim-fugitive'
 "APDL Syntax
 Plug 'cristobaltapia/apdl.vim'
 " Better file browser
-Plug 'scrooloose/nerdtree'
+Plug 'preservim/nerdtree'
 " Code commenter
-Plug 'scrooloose/nerdcommenter'
+"Plug 'preservim/nerdcommenter'
+Plug 'tpope/vim-commentary'
 " Vim-Airline
 Plug 'bling/vim-airline'
 " Pending tasks list
@@ -548,32 +549,6 @@ let g:ale_sign_error = ">>"
 let g:ale_sign_warning = ">>"
 " }}} "
 
-"----------------------------------------------------------------------
-" NERD Commenter configurations
-"----------------------------------------------------------------------
-" {{{ "
-" Add spaces after comment delimiters by default
-let g:NERDSpaceDelims = 1
-
-" Use compact syntax for prettified multi-line comments
-let g:NERDCompactSexyComs = 1
-
-" Align line-wise comment delimiters flush left instead of following code indentation
-let g:NERDDefaultAlign = 'left'
-
-" Set a language to use its alternate delimiters by default
-let g:NERDAltDelims_java = 1
-
-" Add your own custom formats or override the defaults
-let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
-
-" Allow commenting and inverting empty lines (useful when commenting a region)
-let g:NERDCommentEmptyLines = 1
-
-" Enable trimming of trailing whitespace when uncommenting
-let g:NERDTrimTrailingWhitespace = 1
-" }}} "
-"----------------------------------------------------------------------
 
 "----------------------------------------------------------------------
 " Redefine Diff function
@@ -764,13 +739,6 @@ function! MyPandocOpen(file)
 endfunction
 
 "}}}
-"----------------------------------------------------------------------
-" NerdComment
-"----------------------------------------------------------------------
-let g:NERDCreateDefaultMappings = 0
-nmap <Leader>c<space> <plug>NERDCommenterToggle('n', 'Toggle')<Cr>
-vmap <Leader>c<space> <plug>NERDCommenterToggle('n', 'Toggle')<Cr>
-
 "
 
 
