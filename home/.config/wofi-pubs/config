@@ -1,0 +1,12 @@
+PDFVIEWER=zathura
+WOFI=wofi
+PUBS=pubs
+CONFIGS_DIR=$HOME/.config/pubs
+DEFAULT_LIB=$HOME/.config/pubs/main_library.conf
+CACHE=$HOME/.local/tmp/pubs_wofi
+CACHE_AUTH=$HOME/.local/tmp/pubs_wofi_auth
+CACHE_LIBS=$HOME/.local/tmp/pubs_wofi_libs
+TERMINAL_EDIT=termite
+BIB_PARSE=$HOME/.local/bin/parse-bib-file
+PUBS_TO_DPT=$HOME/.local/bin/pubs_to_dptrp1
+

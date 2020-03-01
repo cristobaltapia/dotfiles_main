@@ -90,7 +90,6 @@ Plug 'cristobaltapia/apdl.vim'
 " Better file browser
 Plug 'preservim/nerdtree'
 " Code commenter
-"Plug 'preservim/nerdcommenter'
 Plug 'tpope/vim-commentary'
 " Vim-Airline
 Plug 'bling/vim-airline'
