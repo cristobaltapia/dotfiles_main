@@ -65,7 +65,7 @@
     "session.directory": "~/.vim/sessions",
     "yank.highlight.enable": false,
     "yank.enableCompletion": false,
-    "coc.preferences.diagnostics.displayByAle": true,
+    "coc.preferences.diagnostics.displayByAle": false,
     "languageserver": {
         "julia": {
             "command": "/usr/bin/julia",
