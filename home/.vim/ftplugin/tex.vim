@@ -25,7 +25,7 @@ let g:vimtex_compiler_latexmk = {
 let g:vimtex_compiler_latexmk_engines = {'_' : '-lualatex'}
 
 " Set variables
-let g:vimtex_complete_enabled = 1
+let g:vimtex_complete_enabled = 0
 let g:vimtex_complete_close_braces = 0
 let g:vimtex_complete_ignore_case = 1
 let g:vimtex_complete_smart_case = 1
@@ -55,6 +55,12 @@ endfunction
 let g:vimtex_view_method = 'zathura'
 " let g:vimtex_view_zathura_hook_view = 'VimtexHookZathura'
 let g:vimtex_view_forward_search_on_start = 1
+
+let g:vimtex_echo_verbose_input = 0
+" let g:vimtex_quickfix_enabled = 0
+
+let g:vimtex_quickfix_autoclose_after_keystrokes = 2
+let g:vimtex_quickfix_open_on_warning = 0
 
 " let g:matchup_matchparen_deferred = 1
 "
