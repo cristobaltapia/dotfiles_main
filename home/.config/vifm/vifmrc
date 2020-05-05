@@ -231,6 +231,8 @@ fileviewer *.[1-8] man ./%c | col -b
 
 " Images
 filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
+        \ {View in imv}
+        \ imv %f,
         \ {View in sxiv}
         \ sxiv %f,
         \ {View in gpicview}
@@ -512,3 +514,4 @@ endif
 
 " yank current directory path into the clipboard
 nnoremap yd :!echo -n %d | wl-copy %i<cr>
+

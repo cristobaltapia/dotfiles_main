@@ -124,3 +124,6 @@ shopt -s direxpand
 
 
 source /home/tapia/.config/broot/launcher/bash/br
+
+# Force xterm-color on ssh sessions
+alias ssh='TERM=xterm-color ssh'

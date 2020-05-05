@@ -9,4 +9,6 @@ CACHE_LIBS=$HOME/.local/tmp/pubs_wofi_libs
 TERMINAL_EDIT=termite
 BIB_PARSE=$HOME/.local/bin/parse-bib-file
 PUBS_TO_DPT=$HOME/.local/bin/pubs_to_dptrp1
-
+update_metadata=$HOME/.local/bin/update_pdf_meta
+remove_protection=$HOME/.local/bin/remove_write_protection
+seat=seat0

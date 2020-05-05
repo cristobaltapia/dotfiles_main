@@ -131,8 +131,6 @@ Plug 'junegunn/seoul256.vim'
 Plug 'dense-analysis/ale'
 " COC
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-" Plug 'neoclide/coc-sources', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-neco'
 " Julia support
 Plug 'JuliaEditorSupport/julia-vim'
 " REPL
@@ -167,6 +165,8 @@ Plug 'xolox/vim-session'
 Plug 'moll/vim-bbye' " optional dependency
 Plug 'aymericbeaumet/vim-symlink'
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
+" Semshi: semantic highlight for python
+Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for': 'python'}
 
 call plug#end()
 "}}}
@@ -220,23 +220,15 @@ if has('conceal')
   set conceallevel=0 concealcursor=niv
 endif
 
-if has('win32')
-    set go+=a                       " Visual selection automatically copies to the clipboard
-    set backspace=indent,eol,start  " Solve Backspace problem in Windows
-    set guioptions=egrt             " Solve problem of repositioning of the GUI
-    let $TMP="c:/Temp"              " Change temp directory
-    set directory=.,$TMP,$TEMP      " ...
-else
-    " Visual selection automatically copies to the clipboard
-    set clipboard+=unnamedplus
-    nnoremap y "+y
-    vnoremap y "+y
-    snoremap y "+y
-    nnoremap <S-Insert> "+p
-    " More space to write! :)
-    set guioptions-=m  " Remove menu bar
-    set guioptions-=T  " Remove toolbar
-endif
+" Visual selection automatically copies to the clipboard
+set clipboard+=unnamedplus
+nnoremap y "+y
+vnoremap y "+y
+snoremap y "+y
+nnoremap <S-Insert> "+p
+" More space to write! :)
+set guioptions-=m  " Remove menu bar
+set guioptions-=T  " Remove toolbar
 
 " Edit commands for the navifation in help documents
 nnoremap <C-9> <C-]>
