@@ -8,12 +8,13 @@
         "~/Templates/ultisnips-templates"
     ],
     // Python
-    "python.formatting.provider": "black",
+    "python.formatting.provider": "yapf",
     "markdownlint.config": {
         "default": true,
         "MD013": false,
         "MD003": false
     },
+    "python.formatting.yapfPath": "yapf",
     "python.formatting.blackPath": "black",
     "python.linting.enabled": true,
     "python.linting.pylintEnabled": true,

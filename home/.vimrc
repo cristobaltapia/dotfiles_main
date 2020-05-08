@@ -165,6 +165,8 @@ Plug 'xolox/vim-session'
 Plug 'moll/vim-bbye' " optional dependency
 Plug 'aymericbeaumet/vim-symlink'
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
+" Tmux integration
+Plug 'christoomey/vim-tmux-navigator'
 " Semshi: semantic highlight for python
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for': 'python'}
 
@@ -301,6 +303,7 @@ nmap <leader>bq :bp <BAR> bd #<CR>
 nmap <leader>bl :ls<CR>
 " Show pending tasks list
 noremap <F2> :TaskList<CR>
+
 "}}}
 
 "----------------------------------------------------------------------
@@ -961,3 +964,11 @@ augroup WikiColorScheme
     au FileType,BufNew vimwiki call s:check_colorscheme_on_bufenter()
 augroup END
 
+" Tmux integration
+let g:tmux_navigator_no_mappings = 1
+
+nnoremap <silent> <A-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <A-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <A-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <A-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <A-\> :TmuxNavigatePrevious<cr>
