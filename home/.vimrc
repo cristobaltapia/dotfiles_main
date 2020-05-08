@@ -92,7 +92,8 @@ Plug 'preservim/nerdtree'
 " Code commenter
 Plug 'tpope/vim-commentary'
 " Vim-Airline
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 " Pending tasks list
 Plug 'fisadev/FixedTaskList.vim'
 " Surround
@@ -257,6 +258,7 @@ elseif has('nvim')
     " let g:seoul256_background=234
     " colorscheme seoul256
     colorscheme nord
+    let g:airline_theme='nord'
 endif
 "}}}
 
