@@ -117,6 +117,7 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
+
 # Enable tab-completion for directories after variables
 shopt -s direxpand
 
@@ -127,3 +128,6 @@ source /home/tapia/.config/broot/launcher/bash/br
 
 # Force xterm-color on ssh sessions
 alias ssh='TERM=xterm-color ssh'
+
+# set PROMPT_COMMAND
+PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }'printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/\~}"'

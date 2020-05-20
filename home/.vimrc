@@ -766,23 +766,24 @@ let g:echodoc_enable_at_startup = 1
 " {{{ "
 
 " Install all coc-extensions
-let g:coc_global_extensions = [
-            \ 'coc-texlab',
-            \ 'coc-python',
-            \ 'coc-tsserver',
-            \ 'coc-highlight',
-            \ 'coc-html',
-            \ 'coc-ultisnips',
-            \ 'coc-yank',
-            \ 'coc-lists',
-            \ 'coc-git',
-            \ 'coc-json',
-            \ 'coc-vimlsp',
-            \ 'coc-yaml',
-            \ 'coc-css',
-            \ 'coc-markdownlint',
-            \ 'coc-omnisharp'
-            \ ]
+" let g:coc_global_extensions = [
+"             \ 'coc-texlab',
+"             \ 'coc-python',
+"             \ 'coc-tsserver',
+"             \ 'coc-highlight',
+"             \ 'coc-html',
+"             \ 'coc-ultisnips',
+"             \ 'coc-yank',
+"             \ 'coc-lists',
+"             \ 'coc-git',
+"             \ 'coc-json',
+"             \ 'coc-vimlsp',
+"             \ 'coc-yaml',
+"             \ 'coc-css',
+"             \ 'coc-markdownlint',
+"             \ 'coc-omnisharp'
+"             \ ]
+
 "
 "" if hidden is not set, TextEdit might fail.
 set hidden

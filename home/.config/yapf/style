@@ -2,3 +2,5 @@
 based_on_style = pep8
 split_before_named_assigns = false
 dedent_closing_brackets = false
+column_limit = 92
+allow_split_before_dict_value = false
