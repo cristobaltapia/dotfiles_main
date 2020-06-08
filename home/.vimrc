@@ -375,6 +375,12 @@ augroup file_type
                 \ sts=2
                 \ sw=2
                 \ expandtab
+    autocmd FileType bash setlocal
+                \ shiftwidth=2
+                \ tabstop=2
+    autocmd FileType sh setlocal
+                \ shiftwidth=2
+                \ tabstop=2
 augroup END
 
 "}}}
@@ -820,6 +826,9 @@ nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+" Solves double 'Enter' needed for a new line
+inoremap <silent><expr> <CR> pumvisible() ? "\<C-y><CR>" : "\<CR>"
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)

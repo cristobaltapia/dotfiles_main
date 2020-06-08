@@ -1,7 +1,9 @@
 {
-    "coc.preferences.diagnostic.displayByAle": false,
-    "snippets.ultisnips.enable": true,
-    "snippets.loadFromExtensions": true,
+    "diagnostic.displayByAle": false,
+    "diagnostic.virtualText": false,
+    "suggest.labelMaxLength": 25,
+    "suggest.detailMaxLength": 100,
+    "diagnostic.maxWindowWidth": 80,
     "snippets.ultisnips.directories": [
         "UltiSnips",
         "plugged/MySnippets/Ultisnips",
@@ -41,6 +43,8 @@
     "coc.source.file.enable": true,
     "coc.source.vimtex.enable": false,
     "coc.source.around.enable": true,
+    "latex.lint.onChange": false,
+    "latex.build.onSave": false,
     "yaml.format.enable": true,
     "yaml.format.bracketSpacing": true,
     "yaml.completion": true,
@@ -70,7 +74,6 @@
     "session.directory": "~/.vim/sessions",
     "yank.highlight.enable": false,
     "yank.enableCompletion": false,
-    "coc.preferences.diagnostics.displayByAle": false,
     "languageserver": {
         "julia": {
             "command": "/usr/bin/julia",
