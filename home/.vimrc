@@ -167,6 +167,7 @@ Plug 'moll/vim-bbye' " optional dependency
 Plug 'aymericbeaumet/vim-symlink'
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'powerman/vim-plugin-AnsiEsc'
+Plug 'tbabej/taskwiki'
 " Tmux integration
 Plug 'christoomey/vim-tmux-navigator'
 " Semshi: semantic highlight for python
