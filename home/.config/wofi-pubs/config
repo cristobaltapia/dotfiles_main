@@ -3,4 +3,4 @@ wofi=wofi
 pubs=pubs
 configs_dir=$HOME/.config/pubs
 default_lib=$HOME/.config/pubs/main_library.conf
-terminal_edit=termite
+terminal_edit=alacritty
