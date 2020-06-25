@@ -1,17 +1,18 @@
 [global_config]
+  inactive_color_offset = 1.0
   enabled_plugins = LaunchpadBugURLHandler, LaunchpadCodeURLHandler, APTURLHandler, TerminatorThemes
   title_font = FuraCode Nerd Font Bold 11
-  inactive_color_offset = 1.0
 [keybindings]
+  layout_launcher = None
 [profiles]
   [[default]]
     background_color = "#272822"
     cursor_color = "#ffffff"
     font = FuraCode Nerd Font Medium 11
     foreground_color = "#f8f8f2"
+    show_titlebar = False
     palette = "#75715e:#f92672:#a6e22e:#f4bf75:#66d9ef:#ae81ff:#2aa198:#f9f8f5:#272822:#f92672:#a6e22e:#f4bf75:#66d9ef:#ae81ff:#2aa198:#f9f8f5"
     use_system_font = False
-    show_titlebar = false
   [[Batman]]
     background_color = "#1b1d1e"
     cursor_color = "#fcef0c"

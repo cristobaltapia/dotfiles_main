@@ -166,6 +166,7 @@ Plug 'xolox/vim-session'
 Plug 'moll/vim-bbye' " optional dependency
 Plug 'aymericbeaumet/vim-symlink'
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
+Plug 'powerman/vim-plugin-AnsiEsc'
 " Tmux integration
 Plug 'christoomey/vim-tmux-navigator'
 " Semshi: semantic highlight for python
@@ -955,8 +956,9 @@ inoremap <F12> <C-o>:syntax sync fromstart<CR>
 
 "----------------------------------------------------------------------
 " Notes with vimwiki
-let g:vimwiki_list = [{ 'path': '~/Notes/',
-       \ 'syntax':'markdown', 'ext': '.md' }]
+" let g:vimwiki_list = [{ 'path': '~/Notes/',
+"        \ 'syntax':'markdown', 'ext': '.md' }]
+let g:vimwiki_list = [{ 'path': '~/Notes/' }]
 autocmd FileType vimwiki set ft=markdown
 
 let g:colors_name = get(g:, 'colors_name', 'default')
