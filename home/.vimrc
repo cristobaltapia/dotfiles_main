@@ -959,7 +959,7 @@ inoremap <F12> <C-o>:syntax sync fromstart<CR>
 " let g:vimwiki_list = [{ 'path': '~/Notes/',
 "        \ 'syntax':'markdown', 'ext': '.md' }]
 let g:vimwiki_list = [{ 'path': '~/Notes/' }]
-autocmd FileType vimwiki set ft=markdown
+" autocmd FileType vimwiki set ft=markdown
 
 let g:colors_name = get(g:, 'colors_name', 'default')
 let s:saved_colorscheme = g:colors_name
