@@ -383,6 +383,11 @@ augroup file_type
     autocmd FileType sh setlocal
                 \ shiftwidth=2
                 \ tabstop=2
+    autocmd FileType vimwiki setlocal
+                \ shiftwidth=4
+                \ tabstop=4
+                \ softtabstop=4
+                \ expandtab
 augroup END
 
 "}}}
@@ -976,7 +981,10 @@ endfunction
 
 augroup WikiColorScheme
     au!
-    au FileType,BufNew vimwiki call s:check_colorscheme_on_bufenter()
+    " au FileType vimwiki call s:check_colorscheme_on_bufenter()
+    autocmd FileType vimwiki set background=light
+    autocmd FileType vimwiki colorscheme solarized8_high
+    autocmd FileType vimwiki set foldlevel=10
 augroup END
 
 " Tmux integration
