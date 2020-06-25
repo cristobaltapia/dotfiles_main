@@ -985,6 +985,7 @@ augroup WikiColorScheme
     autocmd FileType vimwiki set background=light
     autocmd FileType vimwiki colorscheme solarized8_high
     autocmd FileType vimwiki set foldlevel=10
+    autocmd FileType vimwiki AirlineTheme solarized
 augroup END
 
 " Tmux integration
