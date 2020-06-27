@@ -697,6 +697,8 @@ let g:autocwd_patternwd_pairs = [
 let g:gitgutter_max_signs = 500     " default value
 
 nnoremap <Leader>dc :GitGutterPreviewHunk<CR>
+nnoremap <Leader>gs :GitGutterStageHunk<CR>
+nnoremap <Leader>gn :GitGutterNextHunk<CR>
 
 "}}}
 "----------------------------------------------------------------------
@@ -979,16 +981,6 @@ function! s:check_colorscheme_on_bufenter() abort
     endif
 endfunction
 
-augroup WikiColorScheme
-    au!
-    " au FileType vimwiki call s:check_colorscheme_on_bufenter()
-    autocmd FileType vimwiki set background=light
-    autocmd FileType vimwiki colorscheme solarized8_high
-    autocmd FileType vimwiki set foldlevel=10
-    autocmd FileType vimwiki AirlineTheme solarized
-augroup END
-
-" Tmux integration
 let g:tmux_navigator_no_mappings = 1
 
 nnoremap <silent> <A-h> :TmuxNavigateLeft<cr>
@@ -996,3 +988,4 @@ nnoremap <silent> <A-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <A-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <A-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <A-\> :TmuxNavigatePrevious<cr>
+
