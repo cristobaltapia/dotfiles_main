@@ -62,6 +62,7 @@
         "make",
         "javascript",
         "vim",
+        "vimwiki",
         "snippets"
     ],
     "highlight.colors.enable": true,

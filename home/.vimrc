@@ -168,6 +168,7 @@ Plug 'aymericbeaumet/vim-symlink'
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'powerman/vim-plugin-AnsiEsc'
 Plug 'tbabej/taskwiki'
+Plug 'matt-snider/vim-tagquery', { 'do': 'bash install.sh' }
 " Tmux integration
 Plug 'christoomey/vim-tmux-navigator'
 " Semshi: semantic highlight for python
@@ -963,23 +964,16 @@ noremap <F12> <Esc>:syntax sync fromstart<CR>
 inoremap <F12> <C-o>:syntax sync fromstart<CR>
 
 "----------------------------------------------------------------------
+" Vimwiki configuration {{{ "
 " Notes with vimwiki
 " let g:vimwiki_list = [{ 'path': '~/Notes/',
 "        \ 'syntax':'markdown', 'ext': '.md' }]
-let g:vimwiki_list = [{ 'path': '~/Notes/' }]
+let g:vimwiki_list = [{ 'path': '~/Notes/', 'auto_tags': 1 }]
 " autocmd FileType vimwiki set ft=markdown
+let g:vimwiki_pubs_config = $HOME."/.config/pubs/main_library.conf"
+let g:vimwiki_dir_link = 'index'
 
-let g:colors_name = get(g:, 'colors_name', 'default')
-let s:saved_colorscheme = g:colors_name
-function! s:check_colorscheme_on_bufenter() abort
-    if &ft == 'vimwiki' && g:colors_name != 'solarized8_high'
-        let s:saved_colorscheme = g:colors_name
-        set background=light
-        colorscheme solarized8_high
-    elseif &ft != 'vimwiki' && g:colors_name == 'solarized8_high'
-        exe 'colorscheme '.s:saved_colorscheme
-    endif
-endfunction
+" }}} Vimwiki configuration "
 
 let g:tmux_navigator_no_mappings = 1
 

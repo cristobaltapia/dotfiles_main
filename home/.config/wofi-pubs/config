@@ -4,3 +4,4 @@ pubs=pubs
 configs_dir=$HOME/.config/pubs
 default_lib=$HOME/.config/pubs/main_library.conf
 terminal_edit=alacritty
+editor=alacritty -t 'Pubs edit' -e nvim
