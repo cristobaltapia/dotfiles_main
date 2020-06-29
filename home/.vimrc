@@ -122,6 +122,8 @@ Plug 'myusuf3/numbers.vim'
 Plug 'nathanaelkane/vim-indent-guides'
 " Solirized colorscheme
 Plug 'lifepillar/vim-solarized8'
+" Gruvbox colorscheme
+Plug 'morhetz/gruvbox'
 " Oceanic-next colorscheme
 Plug 'mhartington/oceanic-next'
 " Base16 colorscheme

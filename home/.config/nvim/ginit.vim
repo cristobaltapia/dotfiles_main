@@ -6,7 +6,7 @@ if exists('g:GtkGuiLoaded')
     call rpcnotify(1, 'Gui', 'Option', 'Popupmenu', 0)
 else
     " Guifont Noto\ Mono\ for\ Powerline:h10
-    " Guifont Fira\ Code:h11
-    Guifont Fura\ Code:h11
+    " Guifont Fira Code:h11
+    " Guifont FuraCode\ Nerd\ Font:h11
     call rpcnotify(1, 'Gui', 'Option', 'Tabline', 0)
 endif
