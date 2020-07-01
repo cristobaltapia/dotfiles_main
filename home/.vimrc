@@ -973,6 +973,8 @@ inoremap <F12> <C-o>:syntax sync fromstart<CR>
 let g:vimwiki_list = [{ 'path': '~/Notes/', 'auto_tags': 1 }]
 " autocmd FileType vimwiki set ft=markdown
 let g:vimwiki_pubs_config = $HOME."/.config/pubs/main_library.conf"
+let g:vimwiki_folding = 'syntax'
+
 let g:vimwiki_dir_link = 'index'
 
 " }}} Vimwiki configuration "
