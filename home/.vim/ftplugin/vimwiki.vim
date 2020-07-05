@@ -12,3 +12,19 @@ colorscheme gruvbox
 AirlineTheme gruvbox
 
 noremap <C-t> :FzfTagQuery
+
+function! VimwikiFindIncompleteTasks()
+  lvimgrep /\([0-9]\+\.\|-\|\*\) \[ \]/ %:p
+  lopen
+endfunction
+
+function! VimwikiFindAllIncompleteTasks()
+  VimwikiSearch /\([0-9]\+\.\|-\|\*\) \[ \]/
+  lopen
+endfunction
+
+nmap <Leader>wa :call VimwikiFindAllIncompleteTasks()<CR>
+nmap <Leader>wx :call VimwikiFindIncompleteTasks()<CR>
+
+set conceallevel=3
+set concealcursor=n

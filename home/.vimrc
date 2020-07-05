@@ -169,7 +169,7 @@ Plug 'moll/vim-bbye' " optional dependency
 Plug 'aymericbeaumet/vim-symlink'
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'powerman/vim-plugin-AnsiEsc'
-Plug 'tbabej/taskwiki'
+" Plug 'tbabej/taskwiki'
 Plug 'matt-snider/vim-tagquery', { 'do': 'bash install.sh' }
 " Tmux integration
 Plug 'christoomey/vim-tmux-navigator'
