@@ -52,7 +52,6 @@ function parse_git_dirty {
 	fi
 }
 
-alias ls='ls --color=auto'
 export PS1="[\[\e[32m\]\u\[\e[m\]\[\e[32m\]@\[\e[m\]\[\e[32m\]\h\[\e[m\]]:\[\e[36m\]\W\[\e[m\]\[\e[31m\]\`parse_git_branch\`\[\e[m\]$ "
 
 # Set language for the console
@@ -61,28 +60,13 @@ export LANG="en_US.UTF-8"
 export EDITORCMD="nvim-qt"
 export EDITOR="nvim"
 
-#export VIM="/usr/share/nvim"
-#export VIMRUNTIME="/usr/share/nvim/runtime"
-
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS
 shopt -s checkwinsize
 
-#export VDPAU_DRIVER=va_gl
-# Powertop
-#echo 'on' > '/sys/bus/usb/devices/usb1/power/control';
-#echo 'on' > '/sys/bus/usb/devices/usb2/power/control';
-#echo 'on' > '/sys/bus/usb/devices/usb3/power/control';
-#echo 'on' > '/sys/bus/pci/devices/0000:02:00.0/power/control';
-
 # Virtual Environment
 export WORKON_HOME=~/.virtualenvs
 source /usr/bin/virtualenvwrapper.sh
-
-#PYTHONPATH="${PYTHONPATH}:/home/tapia/salomei/appli_V7_7_1/bin/salome"
-#export PYTHONPATH
-
-#. /home/tapia/torch/install/bin/torch-activate
 
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 source "$HOME/.homesick/repos/homeshick/completions/homeshick-completion.bash"
@@ -117,17 +101,25 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
-
 # Enable tab-completion for directories after variables
 shopt -s direxpand
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-
+# br
 source /home/tapia/.config/broot/launcher/bash/br
+
+# Generic colourizer
+[[ -s "/etc/profile.d/grc.bashrc" ]] && source /etc/profile.d/grc.bashrc
+
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+alias diff='diff --color=auto'
 
 # Force xterm-color on ssh sessions
 alias ssh='TERM=xterm-color ssh'
 
 # set PROMPT_COMMAND
 PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }'printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/\~}"'
+
+eval "$(starship init bash)"
