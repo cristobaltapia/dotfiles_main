@@ -27,4 +27,4 @@ nmap <Leader>wa :call VimwikiFindAllIncompleteTasks()<CR>
 nmap <Leader>wx :call VimwikiFindIncompleteTasks()<CR>
 
 set conceallevel=3
-set concealcursor=n
+set concealcursor=v

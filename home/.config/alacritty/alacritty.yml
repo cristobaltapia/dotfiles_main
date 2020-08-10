@@ -47,3 +47,7 @@ colors:
     magenta: '#FFEE99'
     cyan: '#95E6CB'
     white: '#FFFFFF'
+
+key_bindings:
+  - { key: Return,   mods: Control|Shift, action: SpawnNewInstance }
+

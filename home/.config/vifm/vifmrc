@@ -233,6 +233,8 @@ fileviewer *.[1-8] man ./%c | col -b
 filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
         \ {View in imv}
         \ imv %f,
+        \ {View in imvr}
+        \ imvr %f,
         \ {View in sxiv}
         \ sxiv %f,
         \ {View in gpicview}
