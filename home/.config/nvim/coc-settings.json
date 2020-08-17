@@ -140,6 +140,16 @@
                 "eruby"
             ]
         },
+        "fortran": {
+            "command": "fortls",
+            "filetypes": [
+                "fortran"
+            ],
+            "rootPatterns": [
+                ".fortls",
+                ".git/"
+            ]
+        },
         "vimls": {
             "module": "/usr/lib/vim-language-server/out/index.js",
             "args": [
