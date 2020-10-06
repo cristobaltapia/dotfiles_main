@@ -136,6 +136,8 @@ Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 " Julia support
 Plug 'JuliaEditorSupport/julia-vim'
+" OpenScad support
+Plug 'sirtaj/vim-openscad'
 " REPL
 Plug 'Vigemus/iron.nvim'
 " Nginx support
