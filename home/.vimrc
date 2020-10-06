@@ -78,6 +78,8 @@ Plug 'rhysd/vim-grammarous'
 " Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 " Markdown preview support
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
+" reStructuredText preview
+Plug 'Rykka/InstantRst', { 'for': 'rst' }
 " vim-pandoc: Pandoc support
 Plug 'vim-pandoc/vim-pandoc', { 'for': 'markdown' }
 Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'markdown' }
@@ -142,6 +144,8 @@ Plug 'sirtaj/vim-openscad'
 Plug 'Vigemus/iron.nvim'
 " Nginx support
 Plug 'chr4/nginx.vim'
+" Toml file support
+Plug 'cespare/vim-toml'
 " Asyncrun
 Plug 'skywind3000/asyncrun.vim'
 " Nord colorscheme
@@ -158,6 +162,8 @@ Plug 'jamessan/vim-gnupg'
 Plug 'vim-scripts/Wavefronts-obj'
 " Vala plugin
 Plug 'arrufat/vala.vim'
+" SCAD support
+Plug 'sirtaj/vim-openscad'
 " Fuzzy finder
 Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
