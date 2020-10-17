@@ -20,36 +20,6 @@
 "
 let $PATH = $HOME.'/bin:' . $PATH
 
-function! BuildComposer(info)
-  if a:info.status != 'unchanged' || a:info.force
-    if has('nvim')
-      !cargo build --release
-    else
-      !cargo build --release --no-default-features --features json-rpc
-    endif
-  endif
-endfunction
-
-"----------------------------------------------------------------------
-" Function to get OS
-"----------------------------------------------------------------------
-"{{{
-function! GetRunningOS()
-  if has("win32")
-    return "win"
-  endif
-  if has("unix")
-    if system('uname -r')=~# 'arch'
-      return "Arch"
-    else
-      return "Ubuntu"
-    endif
-  endif
-endfunction
-
-let curr_os = GetRunningOS()
-"}}}
-
 "----------------------------------------------------------
 " Neovim's Python provider
 "----------------------------------------------------------
@@ -102,8 +72,6 @@ Plug 'fisadev/FixedTaskList.vim'
 Plug 'tpope/vim-surround'
 " Autoclose (autocloses parenthesis)
 Plug 'Townk/vim-autoclose'
-" Indent text object
-Plug 'michaeljsmith/vim-indent-object', { 'for': 'python' }
 " Fix white spaces at end of lines
 Plug 'bronson/vim-trailing-whitespace'
 " Matlab
@@ -122,33 +90,20 @@ Plug 'andymass/vim-matchup'
 Plug 'myusuf3/numbers.vim'
 " Vim indent guides (colors!)
 Plug 'nathanaelkane/vim-indent-guides'
-" Solirized colorscheme
-Plug 'lifepillar/vim-solarized8'
-" Gruvbox colorscheme
-Plug 'morhetz/gruvbox'
-" Oceanic-next colorscheme
-Plug 'mhartington/oceanic-next'
-" Base16 colorscheme
-Plug 'chriskempson/base16-vim'
-" Seoul256 color theme
-Plug 'junegunn/seoul256.vim'
 " ALE
 Plug 'dense-analysis/ale'
 " COC
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', { 'do': 'yarn install --frozen-lockfile' }
 " Julia support
 Plug 'JuliaEditorSupport/julia-vim'
-" REPL
-Plug 'Vigemus/iron.nvim'
+" OpenScad support
+Plug 'sirtaj/vim-openscad'
 " Nginx support
 Plug 'chr4/nginx.vim'
 " Toml file support
 Plug 'cespare/vim-toml'
 " Asyncrun
 Plug 'skywind3000/asyncrun.vim'
-" Nord colorscheme
-Plug 'arcticicestudio/nord-vim'
-" vim-jason: a better json
 Plug 'elzr/vim-json', {'for': 'json'}
 " Change working direcotry to open buffer
 Plug 'yssl/AutoCWD.vim'
@@ -175,14 +130,40 @@ Plug 'xolox/vim-session'
 " Follow symlinks
 Plug 'moll/vim-bbye' " optional dependency
 Plug 'aymericbeaumet/vim-symlink'
+" Vimwiki
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'powerman/vim-plugin-AnsiEsc'
 " Plug 'tbabej/taskwiki'
 Plug 'matt-snider/vim-tagquery', { 'do': 'bash install.sh' }
 " Tmux integration
 Plug 'christoomey/vim-tmux-navigator'
+
+"--------
+" Python:
+"--------
 " Semshi: semantic highlight for python
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for': 'python'}
+" REPL
+Plug 'Vigemus/iron.nvim'
+" Indent text object
+Plug 'michaeljsmith/vim-indent-object', { 'for': 'python' }
+
+"--------
+" Colors:
+"--------
+" Solirized colorscheme
+Plug 'lifepillar/vim-solarized8'
+" Gruvbox colorscheme
+Plug 'morhetz/gruvbox'
+" Oceanic-next colorscheme
+Plug 'mhartington/oceanic-next'
+" Base16 colorscheme
+Plug 'chriskempson/base16-vim'
+" Seoul256 color theme
+Plug 'junegunn/seoul256.vim'
+" Nord colorscheme
+Plug 'arcticicestudio/nord-vim'
+" vim-jason: a better json
 
 call plug#end()
 "}}}
@@ -920,7 +901,7 @@ nnoremap <silent> <leader>cc  :<C-u>CocCommand<CR>
 " Use <C-j> for both expand and jump (make expand higher priority.)
 " imap <C-n> <Plug>(coc-snippets-expand-jump)
 
-autocmd FileType python nnoremap <F5> :call CocAction('runCommand',
+autocmd FileType python nnoremap <F5> :call CocActionAsync('runCommand',
             \ 'python.execInTerminal')<CR>
 
 nnoremap <silent> <leader>y  :<C-u>CocList -A --normal yank<cr>
