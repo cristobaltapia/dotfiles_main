@@ -162,6 +162,8 @@ Plug 'vim-scripts/Wavefronts-obj'
 Plug 'arrufat/vala.vim'
 " SCAD support
 Plug 'sirtaj/vim-openscad'
+" Context
+Plug 'wellle/context.vim'
 " Fuzzy finder
 Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -236,11 +238,6 @@ endif
 
 " Visual selection automatically copies to the clipboard
 set clipboard+=unnamedplus
-nnoremap y "+y
-vnoremap y "+y
-snoremap y "+y
-nnoremap <S-Insert> "+p
-" More space to write! :)
 set guioptions-=m  " Remove menu bar
 set guioptions-=T  " Remove toolbar
 
@@ -993,3 +990,9 @@ nnoremap <silent> <A-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <A-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <A-\> :TmuxNavigatePrevious<cr>
 
+"----------------------------------------------------------------------
+" Context
+let g:context_add_mappings = 1
+let g:context_nvim_no_redraw = 1
+let g:context_highlight_normal = 'PMenu'
+"----------------------------------------------------------------------
