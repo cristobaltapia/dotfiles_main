@@ -37,11 +37,12 @@ setlocal concealcursor=
 let g:vimtex_indent_enabled = 1
 let g:vimtex_indent_on_ampersands = 0
 let g:vimtex_indent_bib_enabled = 1
+" let g:vimtex_parser_bib_backend = "bibparse"
 
 let g:vimtex_imaps_leader = '#'
 let g:vimtex_quickfix_method = 'latexlog'
 let g:matchup_override_vimtex = 1
-let g:vimtex_compiler_progname = 'nvr'
+let g:vimtex_compiler_progname = $HOME.'/.virtualenvs/py3neovim/bin/nvr'
 
 " Function to autofocus zathura after each \lv call
 function! VimtexHookZathura() abort

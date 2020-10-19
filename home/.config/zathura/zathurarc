@@ -1,4 +1,4 @@
-set default-bg "#151515"
+set default-bg "#4c566a"
 set font "Noto Mono for Powerline 11"
 set recolor-darkcolor "#e5e9f0"
 set recolor-lightcolor "#2e3440"
@@ -6,9 +6,9 @@ set synctex true
 set synctex-editor-command "nvr --remote-silent %f -c %l"
 set guioptions none
 set completion-fg "#e5e9f0"
-set completion-highlight-bg "#9FBC00"
+set completion-highlight-bg "#8fbcbb"
 set completion-highlight-fg "#232323"
-set highlight-color "#9FBC00"
-set highlight-active-color "#00BC00"
+set highlight-color "#8fbcbb"
+set highlight-active-color "#5e81ac"
 set index-fg "#e5e9f0"
 set index-bg "#2e3440"
