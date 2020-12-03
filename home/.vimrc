@@ -85,7 +85,7 @@ Plug 'vim-scripts/Rename'
 " Search results counter
 Plug 'vim-scripts/IndexedSearch'
 " XML/HTML tags navigation
-Plug 'andymass/vim-matchup'
+Plug 'andymass/vim-matchup', { 'commit': '9e0b6f37113e21fecd42ef6b04762de4aafe2cf3'}
 " " Numbers (relative numbers)
 Plug 'myusuf3/numbers.vim'
 " Vim indent guides (colors!)
@@ -118,7 +118,7 @@ Plug 'arrufat/vala.vim'
 " SCAD support
 Plug 'sirtaj/vim-openscad'
 " Context
-Plug 'wellle/context.vim'
+" Plug 'wellle/context.vim'
 " Fuzzy finder
 Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
