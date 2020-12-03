@@ -118,7 +118,7 @@ Plug 'arrufat/vala.vim'
 " SCAD support
 Plug 'sirtaj/vim-openscad'
 " Context
-Plug 'wellle/context.vim'
+" Plug 'wellle/context.vim'
 " Fuzzy finder
 Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
