@@ -916,6 +916,9 @@ autocmd FileType json syntax match Comment +\/\/.\+$+
 autocmd FileType julia nnoremap <S-F5> :call <SID>compile_and_run()<CR>
 autocmd FileType,BufEnter,BufNewFile,BufNew julia set foldmethod=syntax
 let latex_to_unicode_tab = 0
+let g:latex_to_unicode_suggestions = 1
+let g:latex_to_unicode_eager = 1
+let g:latex_to_unicode_auto = 1
 
 "
 "----------------------------------------------------------------------

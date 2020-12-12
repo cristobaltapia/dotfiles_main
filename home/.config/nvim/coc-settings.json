@@ -1,190 +1,156 @@
 {
-    "diagnostic.displayByAle": false,
-    "diagnostic.virtualText": false,
-    "diagnostic.maxWindowWidth": 80,
-    "snippets.ultisnips.directories": [
-        "UltiSnips",
-        "plugged/MySnippets/Ultisnips",
-        "~/Templates/ultisnips-templates"
-    ],
-    // Python
-    "python.formatting.provider": "yapf",
-    "markdownlint.config": {
-        "default": true,
-        "MD013": false,
-        "MD003": false
+  "diagnostic.displayByAle": false,
+  "diagnostic.virtualText": false,
+  "diagnostic.maxWindowWidth": 80,
+  "snippets.ultisnips.directories": [
+    "UltiSnips",
+    "plugged/MySnippets/Ultisnips",
+    "~/Templates/ultisnips-templates"
+  ],
+  // Python
+  "python.formatting.provider": "yapf",
+  "markdownlint.config": {
+    "default": true,
+    "MD013": false,
+    "MD003": false
+  },
+  "python.formatting.yapfPath": "yapf",
+  "python.formatting.blackPath": "black",
+  "python.linting.enabled": true,
+  "python.linting.pylintEnabled": true,
+  "python.linting.flake8Enabled": false,
+  "python.linting.mypyEnabled": false,
+  "python.linting.prospectorEnabled": false,
+  "python.linting.pydocstyleEnabled": true,
+  "python.linting.pydocstyleArgs": ["--convention=numpy"],
+  "python.linting.lintOnSave": true,
+  "python.linting.maxNumberOfProblems": 200,
+  "python.terminal.executeInFileDir": true,
+  "python.venvFolders": [".virtualenvs", "venv"],
+  "python.venvPath": "/home/tapia/.virtualenvs",
+  "python.jediEnabled": false,
+  "suggest.labelMaxLength": 25,
+  "suggest.detailMaxLength": 100,
+  "suggest.enablePreview": true,
+  "suggest.minTriggerInputLength": 2,
+  "suggest.fixInsertedWord": true,
+  "suggest.autoTrigger": "always",
+  "suggest.snippetIndicator": "[+]",
+  "suggest.timeout": 1000,
+  "suggest.removeDuplicateItems": true,
+  "coc.source.file.enable": true,
+  "coc.source.vimtex.enable": true,
+  "coc.source.around.enable": true,
+  "coc.preferences.useQuickfixForLocations": true,
+  "latex.lint.onChange": true,
+  "latex.build.onSave": false,
+  "yaml.format.enable": true,
+  "yaml.format.bracketSpacing": true,
+  "yaml.completion": true,
+  "yaml.hover": true,
+  "coc.source.ultisnips.enable": true,
+  "coc.source.ultisnips.filetypes": [
+    "python",
+    "tex",
+    "julia",
+    "bash",
+    "markdown",
+    "markdown.pandoc",
+    "css",
+    "bib",
+    "make",
+    "javascript",
+    "vim",
+    "vimwiki",
+    "snippets"
+  ],
+  "highlight.colors.enable": true,
+  "highlight.document.enable": false,
+  "git.addedSign.hlGroup": "GitGutterAdd",
+  "git.changedSign.hlGroup": "GitGutterChange",
+  "git.removedSign.hlGroup": "GitGutterDelete",
+  "git.topRemovedSign.hlGroup": "GitGutterDelete",
+  "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
+  "session.directory": "~/.vim/sessions",
+  "yank.highlight.enable": false,
+  "yank.enableCompletion": false,
+  "languageserver": {
+    "julia": {
+      "command": "/usr/bin/julia",
+      "args": [
+        "--startup-file=no",
+        "--history-file=no",
+        "-e",
+        "using LanguageServer;\n       using Pkg;\n       import StaticLint;\n       import SymbolServer;\n       env_path = dirname(Pkg.Types.Context().env.project_file);\n       debug = false;\n       server = LanguageServer.LanguageServerInstance(stdin, stdout, debug, env_path, \"\");\n       server.runlinter = true;\n       run(server);"
+      ],
+      "filetypes": ["julia"]
     },
-    "python.formatting.yapfPath": "yapf",
-    "python.formatting.blackPath": "black",
-    "python.linting.enabled": true,
-    "python.linting.pylintEnabled": true,
-    "python.linting.flake8Enabled": false,
-    "python.linting.mypyEnabled": false,
-    "python.linting.prospectorEnabled": false,
-    "python.linting.pydocstyleEnabled": true,
-    "python.linting.pydocstyleArgs": [
-        "--convention=numpy"
-    ],
-    "python.linting.lintOnSave": true,
-    "python.linting.maxNumberOfProblems": 200,
-    "python.terminal.executeInFileDir": true,
-    "python.venvFolders": [
-        ".virtualenvs",
-        "venv"
-    ],
-    "python.venvPath": "/home/tapia/.virtualenvs",
-    "python.jediEnabled": false,
-    "suggest.labelMaxLength": 25,
-    "suggest.detailMaxLength": 100,
-    "suggest.enablePreview": true,
-    "suggest.minTriggerInputLength": 2,
-    "suggest.fixInsertedWord": true,
-    "suggest.autoTrigger": "always",
-    "suggest.snippetIndicator": "[+]",
-    "suggest.timeout": 1000,
-    "suggest.removeDuplicateItems": true,
-    "coc.source.file.enable": true,
-    "coc.source.vimtex.enable": true,
-    "coc.source.around.enable": true,
-    "coc.preferences.useQuickfixForLocations": true,
-    "latex.lint.onChange": true,
-    "latex.build.onSave": false,
-    "yaml.format.enable": true,
-    "yaml.format.bracketSpacing": true,
-    "yaml.completion": true,
-    "yaml.hover": true,
-    "coc.source.ultisnips.enable": true,
-    "coc.source.ultisnips.filetypes": [
-        "python",
-        "tex",
-        "julia",
-        "bash",
-        "markdown",
-        "markdown.pandoc",
-        "css",
-        "bib",
-        "make",
-        "javascript",
-        "vim",
-        "vimwiki",
-        "snippets"
-    ],
-    "highlight.colors.enable": true,
-    "highlight.document.enable": false,
-    "git.addedSign.hlGroup": "GitGutterAdd",
-    "git.changedSign.hlGroup": "GitGutterChange",
-    "git.removedSign.hlGroup": "GitGutterDelete",
-    "git.topRemovedSign.hlGroup": "GitGutterDelete",
-    "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
-    "session.directory": "~/.vim/sessions",
-    "yank.highlight.enable": false,
-    "yank.enableCompletion": false,
-    "languageserver": {
-        "julia": {
-            "command": "/usr/bin/julia",
-            "args": [
-                "--startup-file=no",
-                "--history-file=no",
-                "-e",
-                "using LanguageServer; using Pkg; import StaticLint; import SymbolServer; env_path = dirname(Pkg.Types.Context().env.project_file); debug = false; server = LanguageServer.LanguageServerInstance(stdin, stdout, debug, env_path, \"\", Dict()); server.runlinter = true; run(server);"
-            ],
-            "filetypes": [
-                "julia"
-            ]
-        },
-        "dockerfile": {
-            "command": "docker-langserver",
-            "filetypes": [
-                "dockerfile"
-            ],
-            "args": [
-                "--stdio"
-            ]
-        },
-        "bash": {
-            "command": "bash-language-server",
-            "args": [
-                "start"
-            ],
-            "filetypes": [
-                "sh",
-                "make"
-            ],
-            "ignoredRootPaths": [
-                "~"
-            ]
-        },
-        "ccls": {
-            "command": "ccls",
-            "filetypes": [
-                "c",
-                "cpp",
-                "objc",
-                "objcpp"
-            ],
-            "rootPatterns": [
-                ".ccls",
-                "compile_commands.json",
-                ".vim/",
-                ".git/",
-                ".hg/"
-            ],
-            "initializationOptions": {
-                "cache": {
-                    "directory": "/tmp/ccls"
-                }
-            }
-        },
-        "efm": {
-            "command": "efm-langserver",
-            "args": [],
-            // custom config path
-            // "args": ["-c", "/path/to/your/config.yaml"],
-            "filetypes": [
-                "eruby"
-            ]
-        },
-        "fortran": {
-            "command": "fortls",
-            "filetypes": [
-                "fortran"
-            ],
-            "rootPatterns": [
-                ".fortls",
-                ".git/"
-            ]
-        },
-        "vimls": {
-            "module": "/usr/lib/vim-language-server/out/index.js",
-            "args": [
-                "--node-ipc"
-            ],
-            "initializationOptions": {
-                "iskeyword": "@,48-57,_,192-255,-#", // vim iskeyword option
-                "vimruntime": "", // $VIMRUNTIME option
-                "runtimepath": "", // vim runtime path separate by `,`
-                "diagnostic": {
-                    "enable": true
-                },
-                "indexes": {
-                    "runtimepath": true, // if index runtimepath's vim files this will effect the suggest
-                    "gap": 100, // index time gap between next file
-                    "count": 3, // count of files index at the same time
-                    "projectRootPatterns": [
-                        "strange-root-pattern",
-                        ".git",
-                        "autoload",
-                        "plugin"
-                    ] // Names of files used as the mark of project root. If empty, the default value [".git", "autoload", "plugin"] will be used
-                },
-                "suggest": {
-                    "fromVimruntime": true, // completionItems from vimruntime's vim files
-                    "fromRuntimepath": false // completionItems from runtimepath's vim files, if this is true that fromVimruntime is true
-                }
-            },
-            "filetypes": [
-                "vim"
-            ]
+    "dockerfile": {
+      "command": "docker-langserver",
+      "filetypes": ["dockerfile"],
+      "args": ["--stdio"]
+    },
+    "bash": {
+      "command": "bash-language-server",
+      "args": ["start"],
+      "filetypes": ["sh", "make"],
+      "ignoredRootPaths": ["~"]
+    },
+    "ccls": {
+      "command": "ccls",
+      "filetypes": ["c", "cpp", "objc", "objcpp"],
+      "rootPatterns": [
+        ".ccls",
+        "compile_commands.json",
+        ".vim/",
+        ".git/",
+        ".hg/"
+      ],
+      "initializationOptions": {
+        "cache": {
+          "directory": "/tmp/ccls"
         }
+      }
+    },
+    "efm": {
+      "command": "efm-langserver",
+      "args": [],
+      // custom config path
+      // "args": ["-c", "/path/to/your/config.yaml"],
+      "filetypes": ["eruby"]
+    },
+    "fortran": {
+      "command": "fortls",
+      "filetypes": ["fortran"],
+      "rootPatterns": [".fortls", ".git/"]
+    },
+    "vimls": {
+      "module": "/usr/lib/vim-language-server/out/index.js",
+      "args": ["--node-ipc"],
+      "initializationOptions": {
+        "iskeyword": "@,48-57,_,192-255,-#", // vim iskeyword option
+        "vimruntime": "", // $VIMRUNTIME option
+        "runtimepath": "", // vim runtime path separate by `,`
+        "diagnostic": {
+          "enable": true
+        },
+        "indexes": {
+          "runtimepath": true, // if index runtimepath's vim files this will effect the suggest
+          "gap": 100, // index time gap between next file
+          "count": 3, // count of files index at the same time
+          "projectRootPatterns": [
+            "strange-root-pattern",
+            ".git",
+            "autoload",
+            "plugin"
+          ] // Names of files used as the mark of project root. If empty, the default value [".git", "autoload", "plugin"] will be used
+        },
+        "suggest": {
+          "fromVimruntime": true, // completionItems from vimruntime's vim files
+          "fromRuntimepath": false // completionItems from runtimepath's vim files, if this is true that fromVimruntime is true
+        }
+      },
+      "filetypes": ["vim"]
     }
+  }
 }
