@@ -212,6 +212,14 @@ if (has("termguicolors"))
     set termguicolors
 endif
 
+" Fix colors within tmux
+if exists("$TMUX")
+    set t_Co=256
+    set notermguicolors
+else
+    set termguicolors
+endif
+
 " For conceal markers.
 if has('conceal')
   set conceallevel=0 concealcursor=niv
