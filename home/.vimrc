@@ -945,8 +945,16 @@ endfunction
 
 command! IronSendInclude call <SID>send_wrapper_mod()
 
-autocmd FileType,BufEnter julia nnoremap <F5> :IronSendInclude<CR><Esc>
-"
+autocmd FileType,BufEnter julia nnoremap <F5> :SlimeSend0 'include("' . expand('%:p') . '")' . "\r"<CR>
+
+"----------------------------------------------------------------------
+" Vim -slime
+" set slime target (tmux instead of screen)
+let g:slime_target = "tmux"
+" set target pane that code is sent to (optional)
+let g:slime_default_config = {"socket_name": "default", "target_pane": "0.1"}
+
+
 " Close the terminal split below after the execution of the file
 " autocmd TermOpen * startinsert
 augroup close_lower_window
