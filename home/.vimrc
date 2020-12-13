@@ -96,6 +96,8 @@ Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', { 'do': 'yarn install --frozen-lockfile' }
 " Julia support
 Plug 'JuliaEditorSupport/julia-vim'
+" Vim-slime (for REPL of julia)
+Plug 'jpalardy/vim-slime', { 'branch': 'main' }
 " OpenScad support
 Plug 'sirtaj/vim-openscad'
 " Nginx support
@@ -921,7 +923,7 @@ autocmd FileType json syntax match Comment +\/\/.\+$+
 
 "----------------------------------------------------------------------
 " Julia
-autocmd FileType julia nnoremap <S-F5> :call <SID>compile_and_run()<CR>
+" autocmd FileType julia nnoremap <S-F5> :call <SID>compile_and_run()<CR>
 autocmd FileType,BufEnter,BufNewFile,BufNew julia set foldmethod=syntax
 let latex_to_unicode_tab = 0
 let g:latex_to_unicode_suggestions = 1
@@ -996,3 +998,4 @@ let g:context_add_mappings = 1
 let g:context_nvim_no_redraw = 1
 let g:context_highlight_normal = 'PMenu'
 "----------------------------------------------------------------------
+
