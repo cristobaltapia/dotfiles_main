@@ -96,6 +96,8 @@ Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', { 'do': 'yarn install --frozen-lockfile' }
 " Julia support
 Plug 'JuliaEditorSupport/julia-vim'
+" Vim-slime (for REPL of julia)
+Plug 'jpalardy/vim-slime', { 'branch': 'main' }
 " OpenScad support
 Plug 'sirtaj/vim-openscad'
 " Nginx support
@@ -209,6 +211,14 @@ set diffopt+=vertical " Set vertical split as default for diff
 let $PYTHONUNBUFFERED=1 " See python real-time output
 
 if (has("termguicolors"))
+    set termguicolors
+endif
+
+" Fix colors within tmux
+if exists("$TMUX")
+    set t_Co=256
+    set notermguicolors
+else
     set termguicolors
 endif
 
@@ -913,9 +923,12 @@ autocmd FileType json syntax match Comment +\/\/.\+$+
 
 "----------------------------------------------------------------------
 " Julia
-autocmd FileType julia nnoremap <S-F5> :call <SID>compile_and_run()<CR>
+" autocmd FileType julia nnoremap <S-F5> :call <SID>compile_and_run()<CR>
 autocmd FileType,BufEnter,BufNewFile,BufNew julia set foldmethod=syntax
 let latex_to_unicode_tab = 0
+let g:latex_to_unicode_suggestions = 1
+let g:latex_to_unicode_eager = 1
+let g:latex_to_unicode_auto = 1
 
 "
 "----------------------------------------------------------------------
@@ -934,8 +947,16 @@ endfunction
 
 command! IronSendInclude call <SID>send_wrapper_mod()
 
-autocmd FileType,BufEnter julia nnoremap <F5> :IronSendInclude<CR><Esc>
-"
+autocmd FileType,BufEnter julia nnoremap <F5> :SlimeSend0 'include("' . expand('%:p') . '")' . "\r"<CR>
+
+"----------------------------------------------------------------------
+" Vim -slime
+" set slime target (tmux instead of screen)
+let g:slime_target = "tmux"
+" set target pane that code is sent to (optional)
+let g:slime_default_config = {"socket_name": "default", "target_pane": "0.1"}
+
+
 " Close the terminal split below after the execution of the file
 " autocmd TermOpen * startinsert
 augroup close_lower_window
@@ -977,3 +998,4 @@ let g:context_add_mappings = 1
 let g:context_nvim_no_redraw = 1
 let g:context_highlight_normal = 'PMenu'
 "----------------------------------------------------------------------
+
