@@ -2,22 +2,28 @@
 font:
   # The normal (roman) font face to use.
   normal:
-    family: FuraCode Nerd Font
+    # family: FuraCode Nerd Font
+    family: JuliaMono
     # Style can be specified to pick a specific face.
     style: Medium
 
   # The bold font face
   bold:
-    family: FuraCode Nerd Font
+    #family: FuraCode Nerd Font
+    family: JuliaMono
     # Style can be specified to pick a specific face.
-    # style: Bold
+    style: ExtraBold
 
   # The italic font face
   italic:
-    family: FuraCode Nerd Font
+    #family: FuraCode Nerd Font
+    family: JuliaMono
     # Style can be specified to pick a specific face.
-    # style: Italic
-  size: 11.0
+    style: Light
+  size: 11
+  offset:
+    y: 2
+    x: 0
 
 colors:
   primary:
@@ -71,3 +77,4 @@ colors:
 key_bindings:
   - { key: Return,   mods: Control|Shift, action: SpawnNewInstance }
 
+background_opacity: 0.8
