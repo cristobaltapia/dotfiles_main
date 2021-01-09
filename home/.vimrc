@@ -47,7 +47,7 @@ Plug 'rhysd/vim-grammarous'
 " CSV files
 " Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 " Markdown preview support
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
+Plug 'iamcco/markdown-preview.nvim'
 " reStructuredText preview
 Plug 'Rykka/InstantRst', { 'for': 'rst' }
 " vim-pandoc: Pandoc support
@@ -453,7 +453,8 @@ elseif has('vim')
     set guifont=Noto\ Mono\ for\ Powerline
 elseif has('nvim')
     " set guifont=Fira\ Code:h11
-    set guifont=FuraCode\ Nerd\ Font\ Medium:h11
+    " set guifont=FuraCode\ Nerd\ Font\ Medium:h11
+    set guifont=JuliaMono\ Nerd\ Font:h11
 endif
 
 " Enable the list of buffers
@@ -462,6 +463,11 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 " Cooperation with Asyncrun
 let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
+
+let g:airline_left_sep=''
+let g:airline_left_alt_sep=''
+let g:airline_right_sep=''
+let g:airline_right_alt_sep=''
 "}}}
 
 "----------------------------------------------------------------------
@@ -947,7 +953,7 @@ endfunction
 
 command! IronSendInclude call <SID>send_wrapper_mod()
 
-autocmd FileType,BufEnter julia nnoremap <F5> :SlimeSend0 'include("' . expand('%:p') . '")' . "\r"<CR>
+autocmd FileType,BufEnter julia nnoremap <F5> :SlimeSend0 'includet("' . expand('%:p') . '")' . "\r"<CR>
 
 "----------------------------------------------------------------------
 " Vim -slime
@@ -977,7 +983,7 @@ inoremap <F12> <C-o>:syntax sync fromstart<CR>
 "        \ 'syntax':'markdown', 'ext': '.md' }]
 let g:vimwiki_list = [{ 'path': '~/Notes/', 'auto_tags': 1 }]
 " autocmd FileType vimwiki set ft=markdown
-let g:vimwiki_pubs_config = $HOME."/.config/pubs/main_library.conf"
+let g:vimwiki_pubs_config = [$HOME."/.config/pubs/main_library.conf", $HOME."/.config/pubs/misc_library.conf"]
 let g:vimwiki_folding = 'syntax'
 
 let g:vimwiki_dir_link = 'index'
