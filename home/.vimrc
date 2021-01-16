@@ -994,6 +994,8 @@ augroup MyWikiAutocmds
     autocmd!
     autocmd Filetype wiki set nofoldenable
                 \ conceallevel=0
+                \ wrap
+                \ concealcursor=nv
     autocmd Filetype wiki nmap <leader>wse <Plug>(wiki-fzf-tags)
     autocmd Filetype wiki nmap <leader>wsp <Plug>(wiki-fzf-pages)
 augroup end
