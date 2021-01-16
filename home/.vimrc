@@ -195,6 +195,7 @@ set encoding=utf-8  " Set the character encoding to utf-8
 set foldmethod=marker   " Set the default folding method
 set cursorline      " Highlight the current line
 set breakindent showbreak=..    " Linebreaks with indentation
+set breakindentopt=min:20,shift:0,sbr
 set linebreak
 set hidden          " Change buffer without saving
 set expandtab       " Use spaces to replace tabs
