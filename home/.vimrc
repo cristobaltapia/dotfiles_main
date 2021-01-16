@@ -133,8 +133,9 @@ Plug 'xolox/vim-session'
 Plug 'moll/vim-bbye' " optional dependency
 Plug 'aymericbeaumet/vim-symlink'
 " Vimwiki
-Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
-Plug 'powerman/vim-plugin-AnsiEsc'
+Plug 'lervag/wiki.vim'
+Plug 'lervag/wiki-ft.vim'
+" Plug 'powerman/vim-plugin-AnsiEsc'
 " Plug 'tbabej/taskwiki'
 Plug 'matt-snider/vim-tagquery', { 'do': 'bash install.sh' }
 " Tmux integration
@@ -978,16 +979,27 @@ noremap <F12> <Esc>:syntax sync fromstart<CR>
 inoremap <F12> <C-o>:syntax sync fromstart<CR>
 
 "----------------------------------------------------------------------
-" Vimwiki configuration {{{ "
+" wiki.vim configuration {{{ "
 " Notes with vimwiki
-" let g:vimwiki_list = [{ 'path': '~/Notes/',
-"        \ 'syntax':'markdown', 'ext': '.md' }]
-let g:vimwiki_list = [{ 'path': '~/Notes/', 'auto_tags': 1 }]
 " autocmd FileType vimwiki set ft=markdown
 let g:vimwiki_pubs_config = [$HOME."/.config/pubs/main_library.conf", $HOME."/.config/pubs/misc_library.conf"]
-let g:vimwiki_folding = 'syntax'
 
-let g:vimwiki_dir_link = 'index'
+let g:wiki_root = '~/Notes'
+let g:wiki_map_link_create = 'WikivimFile'
+
+function WikivimFile(text) abort
+  return substitute(tolower(a:text), '\s\+', '-', 'g')
+endfunction
+
+augroup MyWikiAutocmds
+    autocmd!
+    autocmd Filetype wiki set nofoldenable
+                \ conceallevel=0
+                \ wrap
+                \ concealcursor=nv
+    autocmd Filetype wiki nmap <leader>wse <Plug>(wiki-fzf-tags)
+    autocmd Filetype wiki nmap <leader>wsp <Plug>(wiki-fzf-pages)
+augroup end
 
 " }}} Vimwiki configuration "
 
