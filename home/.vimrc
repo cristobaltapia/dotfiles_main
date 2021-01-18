@@ -135,6 +135,8 @@ Plug 'aymericbeaumet/vim-symlink'
 " Vimwiki
 Plug 'lervag/wiki.vim'
 Plug 'lervag/wiki-ft.vim'
+" Bullets
+Plug 'dkarter/bullets.vim'
 " Plug 'powerman/vim-plugin-AnsiEsc'
 " Plug 'tbabej/taskwiki'
 Plug 'matt-snider/vim-tagquery', { 'do': 'bash install.sh' }
@@ -977,6 +979,20 @@ augroup END
 noremap <F12> <Esc>:syntax sync fromstart<CR>
 inoremap <F12> <C-o>:syntax sync fromstart<CR>
 
+"----------------------------------------------------------------------
+" bullets {{{ "
+let g:bullets_enabled_file_types = [
+    \ 'markdown',
+    \ 'text',
+    \ 'gitcommit',
+    \ 'scratch',
+    \ 'wiki'
+    \]
+
+let g:bullets_nested_checkboxes = 1
+
+" }}} bullets "
+"
 "----------------------------------------------------------------------
 " wiki.vim configuration {{{ "
 " Notes with vimwiki
