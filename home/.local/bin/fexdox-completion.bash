@@ -7,7 +7,7 @@ _fexdox_completions()
     if [ "${COMP_WORDS[1]}" = "-i" ]; then
       fexuser=${COMP_WORDS[2]}
       remotes=$(fexdox -i ${fexuser} -l | awk '{print $5}')
-      COMPREPLY=($(compgen -W "${remotes}" "${COMP_WORDS[-1]}"))
+      COMPREPLY=($(compgen -o dirnames -W "${remotes}" "${COMP_WORDS[-1]}"))
     else
       remotes=$(fexdox -l | awk '{print $5}')
       COMPREPLY=($(compgen -o dirnames -W "${remotes}" "${COMP_WORDS[-1]}"))
