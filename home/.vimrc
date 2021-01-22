@@ -242,6 +242,7 @@ nnoremap <C-9> <C-]>
 " For the matchup plugin
 let g:matchup_surround_enabled = 1
 
+" Correct spelling
 inoremap <C-s> <c-g>u<Esc>[s1z=`]a<c-g>u
 
 "}}}
@@ -991,6 +992,7 @@ let g:bullets_enabled_file_types = [
     \]
 
 let g:bullets_nested_checkboxes = 1
+let g:bullets_set_mappings = 1
 
 " }}} bullets "
 "
