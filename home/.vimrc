@@ -946,9 +946,6 @@ let g:latex_to_unicode_auto = 1
 "
 luafile $HOME/.config/nvim/plugins.lua
 
-autocmd FileType,BufEnter julia nmap <F6> V<Plug>(iron-send-motion)<cr><Esc>
-autocmd FileType,BufEnter julia vmap <F6> <Plug>(iron-send-motion)<cr><Esc>
-
 function! s:send_wrapper_mod()
   let s:file_path = expand('%:p')
   let s:ft = &ft
@@ -957,7 +954,17 @@ endfunction
 
 command! IronSendInclude call <SID>send_wrapper_mod()
 
-autocmd FileType,BufEnter julia nnoremap <F5> :SlimeSend0 'includet("' . expand('%:p') . '")' . "\r"<CR>
+function SendJuliaRange()
+    let l:curr_buff = getbufinfo({'curr':0})
+    let l:curr_line = curr_buff['curr'].lnum
+    execute "0," . curr_line . "SlimeSend"
+endfunction
+
+augroup juliacmd
+    autocmd!
+    autocmd FileType,BufEnter julia nnoremap <F5> :SlimeSend0 'includet("' . expand('%:p') . '")' . "\r"<CR>
+    autocmd FileType,BufEnter julia nnoremap <F6> :call SendJuliaRange()<CR>
+augroup END
 
 "----------------------------------------------------------------------
 " Vim -slime
