@@ -10,11 +10,11 @@ _fexdox_completions()
       COMPREPLY=($(compgen -W "${remotes}" "${COMP_WORDS[-1]}"))
     else
       remotes=$(fexdox -l | awk '{print $5}')
-      COMPREPLY=($(compgen -W "${remotes}" "${COMP_WORDS[-1]}"))
+      COMPREPLY=($(compgen -o dirnames -W "${remotes}" "${COMP_WORDS[-1]}"))
     fi
   else
     remotes=$(fexdox -l | awk '{print $5}')
-    COMPREPLY=($(compgen -W "${remotes}" "${COMP_WORDS[-1]}"))
+    COMPREPLY=($(compgen -o dirnames -W "${remotes}" "${COMP_WORDS[-1]}"))
   fi
 
 }
