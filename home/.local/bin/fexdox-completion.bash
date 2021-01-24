@@ -2,21 +2,27 @@
 
 _fexdox_completions()
 {
-  if [ "${#COMP_WORDS[@]}" > "3" ]; then
-    # Consider account ID if given
-    if [ "${COMP_WORDS[1]}" = "-i" ]; then
-      fexuser=${COMP_WORDS[2]}
-      remotes=$(fexdox -i ${fexuser} -l | awk '{print $5}')
-      COMPREPLY=($(compgen -o dirnames -W "${remotes}" "${COMP_WORDS[-1]}"))
-    else
-      remotes=$(fexdox -l | awk '{print $5}')
-      COMPREPLY=($(compgen -o dirnames -W "${remotes}" "${COMP_WORDS[-1]}"))
+  # Consider account ID if given
+  options=""
+  for IDX in ${!COMP_WORDS[@]}; do
+    if [[ ${COMP_WORDS[$IDX]} = "-i" ]]; then
+      # Get username
+      options="-i ${COMP_WORDS[$(($IDX+1))]}"
     fi
-  else
-    remotes=$(fexdox -l | awk '{print $5}')
-    COMPREPLY=($(compgen -o dirnames -W "${remotes}" "${COMP_WORDS[-1]}"))
-  fi
-
+  done
+  case ${COMP_WORDS[-2]} in
+    -s )
+      COMPREPLY=($(compgen -o dirnames "${COMP_WORDS[-1]}"));;
+    -r )
+      remotes=$(fexdox ${options} -l | awk '{print $5}')
+      COMPREPLY=($(compgen -W "${remotes}" "${COMP_WORDS[-1]}"));;
+    -D )
+      remotes=$(fexdox ${options} -l | awk '{print $5}')
+      COMPREPLY=($(compgen -W "${remotes}" "${COMP_WORDS[-1]}"));;
+    -l )
+      remotes=$(fexdox ${options} -l | awk '{print $5}')
+      COMPREPLY=($(compgen -W "${remotes}" "${COMP_WORDS[-1]}"));;
+  esac
 }
 
 complete -F _fexdox_completions fexdox
