@@ -47,7 +47,7 @@ Plug 'rhysd/vim-grammarous'
 " CSV files
 " Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 " Markdown preview support
-Plug 'iamcco/markdown-preview.nvim'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 " reStructuredText preview
 Plug 'Rykka/InstantRst', { 'for': 'rst' }
 " vim-pandoc: Pandoc support
@@ -679,6 +679,7 @@ function! g:Open_browser(url)
     silent exe 'silent !epiphany --private-instance ' . a:url . " &"
 endfunction
 let g:mkdp_browserfunc = 'g:Open_browser'
+let g:mkdp_filetypes = ['markdown', 'markdown.pandoc']
 
 autocmd FileChangedShell <buffer> call ProcessFileChangedShell()
 
