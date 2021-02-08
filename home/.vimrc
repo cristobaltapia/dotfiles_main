@@ -51,7 +51,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 " reStructuredText preview
 Plug 'Rykka/InstantRst', { 'for': 'rst' }
 " vim-pandoc: Pandoc support
-Plug 'vim-pandoc/vim-pandoc', { 'for': 'markdown' }
+Plug 'vim-pandoc/vim-pandoc', { 'for': ['markdown', 'markdown.pandoc'] }
 Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'markdown' }
 " Vim Easy Align
 Plug 'junegunn/vim-easy-align'
@@ -722,6 +722,7 @@ let g:vimtex_compiler_progname=$HOME.'/.virtualenvs/py3neovim/bin/nvr'
 "{{{
 " let g:pandoc#modules#disabled = ["command"]
 let g:pandoc#syntax#conceal#use = 0
+let g:pandoc#filetypes#pandoc_markdown = 1
 
 augroup pandoc_syntax
     au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
