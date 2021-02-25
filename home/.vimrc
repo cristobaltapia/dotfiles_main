@@ -64,7 +64,7 @@ Plug 'preservim/nerdtree'
 " Code commenter
 Plug 'tpope/vim-commentary'
 " Vim-Airline
-Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline', { 'commit': 'c7a633c' }
 Plug 'vim-airline/vim-airline-themes'
 " Pending tasks list
 Plug 'fisadev/FixedTaskList.vim'
@@ -618,14 +618,14 @@ let g:grammarous#use_vim_spelllang = 1
 "----------------------------------------------------------------------
 " Quick run
 "----------------------------------------------------------------------
-" nnoremap <F5> :call <SID>compile_and_run()<CR>
+nnoremap <F5> :call <SID>compile_and_run()<CR>
 " close quickfix window
 " nnoremap <Leader>cq :ccl<CR>
 
 augroup SPACEVIM_ASYNCRUN
     autocmd!
     " Automatically open the quickfix window
-    autocmd User AsyncRunStart call asyncrun#quickfix_toggle(25, 1)
+    autocmd User AsyncRunStart call asyncrun#quickfix_toggle(15, 1)
 augroup END
 
 function! s:compile_and_run()
@@ -791,7 +791,7 @@ let g:echodoc_enable_at_startup = 1
 " Install all coc-extensions
 " let g:coc_global_extensions = [
 "             \ 'coc-texlab',
-"             \ 'coc-python',
+"             \ 'coc-pyright',
 "             \ 'coc-tsserver',
 "             \ 'coc-highlight',
 "             \ 'coc-html',
@@ -922,8 +922,8 @@ nnoremap <silent> <leader>cc  :<C-u>CocCommand<CR>
 " Use <C-j> for both expand and jump (make expand higher priority.)
 " imap <C-n> <Plug>(coc-snippets-expand-jump)
 
-autocmd FileType python nnoremap <F5> :call CocActionAsync('runCommand',
-            \ 'python.execInTerminal')<CR>
+" autocmd FileType python nnoremap <F5> :call CocActionAsync('runCommand',
+"             \ 'python.execInTerminal')<CR>
 
 nnoremap <silent> <leader>y  :<C-u>CocList -A --normal yank<cr>
 
