@@ -47,11 +47,11 @@ Plug 'rhysd/vim-grammarous'
 " CSV files
 " Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 " Markdown preview support
-Plug 'iamcco/markdown-preview.nvim'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 " reStructuredText preview
 Plug 'Rykka/InstantRst', { 'for': 'rst' }
 " vim-pandoc: Pandoc support
-Plug 'vim-pandoc/vim-pandoc', { 'for': 'markdown' }
+Plug 'vim-pandoc/vim-pandoc', { 'for': ['markdown', 'markdown.pandoc'] }
 Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'markdown' }
 " Vim Easy Align
 Plug 'junegunn/vim-easy-align'
@@ -679,6 +679,7 @@ function! g:Open_browser(url)
     silent exe 'silent !epiphany --private-instance ' . a:url . " &"
 endfunction
 let g:mkdp_browserfunc = 'g:Open_browser'
+let g:mkdp_filetypes = ['markdown', 'markdown.pandoc']
 
 autocmd FileChangedShell <buffer> call ProcessFileChangedShell()
 
@@ -721,6 +722,7 @@ let g:vimtex_compiler_progname=$HOME.'/.virtualenvs/py3neovim/bin/nvr'
 "{{{
 " let g:pandoc#modules#disabled = ["command"]
 let g:pandoc#syntax#conceal#use = 0
+let g:pandoc#filetypes#pandoc_markdown = 1
 
 augroup pandoc_syntax
     au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
