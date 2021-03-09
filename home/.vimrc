@@ -64,7 +64,7 @@ Plug 'preservim/nerdtree'
 " Code commenter
 Plug 'tpope/vim-commentary'
 " Vim-Airline
-Plug 'vim-airline/vim-airline', { 'commit': 'c7a633c' }
+Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " Pending tasks list
 Plug 'fisadev/FixedTaskList.vim'
