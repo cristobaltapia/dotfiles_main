@@ -82,4 +82,4 @@ colors:
 key_bindings:
   - { key: Return,   mods: Control|Shift, action: SpawnNewInstance }
 
-background_opacity: 0.8
+background_opacity: 1.0
