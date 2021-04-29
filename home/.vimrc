@@ -53,6 +53,7 @@ Plug 'Rykka/InstantRst', { 'for': 'rst' }
 " vim-pandoc: Pandoc support
 Plug 'vim-pandoc/vim-pandoc', { 'for': ['markdown', 'markdown.pandoc'] }
 Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'markdown' }
+Plug 'godlygeek/tabular', { 'for': ['markdown', 'markdown.pandoc'] }
 " Vim Easy Align
 Plug 'junegunn/vim-easy-align'
 " fugitive.vim: a Git wrappe
@@ -999,6 +1000,7 @@ inoremap <F12> <C-o>:syntax sync fromstart<CR>
 " bullets {{{ "
 let g:bullets_enabled_file_types = [
     \ 'markdown',
+    \ 'markdown.pandoc',
     \ 'text',
     \ 'gitcommit',
     \ 'scratch',
