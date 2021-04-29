@@ -26,6 +26,9 @@ let $PATH = $HOME.'/bin:' . $PATH
 let g:python_host_prog  = $HOME.'/.virtualenvs/py2neovim/bin/python'
 let g:python3_host_prog = $HOME.'/.virtualenvs/py3neovim/bin/python3'
 
+" Disable ALE LSP features
+let g:ale_disable_lsp = 1
+
 " Pluggins
 "{{{
 "----------------------------------------------------------------------
