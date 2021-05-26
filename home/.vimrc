@@ -153,7 +153,7 @@ Plug 'christoomey/vim-tmux-navigator'
 " Semshi: semantic highlight for python
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for': 'python'}
 " REPL
-Plug 'Vigemus/iron.nvim'
+ " Plug 'Vigemus/iron.nvim'
 " Indent text object
 Plug 'michaeljsmith/vim-indent-object', { 'for': 'python' }
 
