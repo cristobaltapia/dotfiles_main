@@ -100,6 +100,8 @@ Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', { 'do': 'yarn install --frozen-lockfile' }
 " Julia support
 Plug 'JuliaEditorSupport/julia-vim'
+" Julia formatter
+Plug 'kdheepak/JuliaFormatter.vim'
 " Vim-slime (for REPL of julia)
 Plug 'jpalardy/vim-slime', { 'branch': 'main' }
 " OpenScad support
@@ -576,6 +578,7 @@ noremap <LocalLeader>= :ALEFix<cr>
 let g:ale_sign_error = ">>"
 let g:ale_sign_warning = ">>"
 " }}} "
+let g:ale_bib_bibclean_options = '-align-equals -fix-font-changes -German-style'
 
 
 "----------------------------------------------------------------------
@@ -856,6 +859,8 @@ nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
+inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm()
+      \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Solves double 'Enter' needed for a new line
 inoremap <silent><expr> <CR> pumvisible() ? "\<C-y><CR>" : "\<CR>"
@@ -954,6 +959,10 @@ let g:latex_to_unicode_suggestions = 1
 let g:latex_to_unicode_eager = 1
 let g:latex_to_unicode_auto = 1
 
+let g:JuliaFormatter_options = {
+    \ 'style' : 'blue',
+    \ }
+
 "
 "----------------------------------------------------------------------
 "REPL (mostly for julia)
@@ -978,6 +987,7 @@ augroup juliacmd
     autocmd!
     autocmd FileType,BufEnter julia nnoremap <F5> :SlimeSend0 'includet("' . expand('%:p') . '")' . "\r"<CR>
     autocmd FileType,BufEnter julia nnoremap <F6> :call SendJuliaRange()<CR>
+    autocmd FileType,BufEnter julia command! -nargs=0 Format :JuliaFormatterFormat
 augroup END
 
 "----------------------------------------------------------------------
