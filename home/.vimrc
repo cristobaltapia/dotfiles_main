@@ -130,6 +130,8 @@ Plug 'sirtaj/vim-openscad'
 " Fuzzy finder
 Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+" Goyo - distraction free writing
+Plug 'junegunn/goyo.vim'
 " Devicons
 Plug 'ryanoasis/vim-devicons'
 " Vim-sessions
@@ -1065,3 +1067,8 @@ let g:context_nvim_no_redraw = 1
 let g:context_highlight_normal = 'PMenu'
 "----------------------------------------------------------------------
 
+"----------------------------------------------------------------------
+" Goyo
+autocmd BufLeave goyo_pad setlocal norelativenumber nonumber
+let g:numbers_exclude = ['goyo_pad']
+"----------------------------------------------------------------------
