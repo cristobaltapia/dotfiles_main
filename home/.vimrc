@@ -157,7 +157,7 @@ Plug 'christoomey/vim-tmux-navigator'
 " Semshi: semantic highlight for python
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for': 'python'}
 " REPL
-Plug 'Vigemus/iron.nvim'
+ " Plug 'Vigemus/iron.nvim'
 " Indent text object
 Plug 'michaeljsmith/vim-indent-object', { 'for': 'python' }
 
@@ -343,8 +343,9 @@ augroup spell_group
     autocmd!
     autocmd BufEnter,BufNewFile,BufNew *.tex syntax spell toplevel
     autocmd BufEnter,BufNewFile,BufNew *.tex setlocal spell
-    autocmd BufEnter,BufNewFile,BufNew markdown setlocal spell
-    autocmd BufEnter,BufNewFile,BufNew pandoc-markdown setlocal spell
+    autocmd FileType markdown setlocal spell
+    autocmd FileType wiki set spell
+    autocmd FileType pandoc-markdown setlocal spell
     autocmd BufEnter,BufNewFile,BufNew *.py setlocal nospell
     autocmd BufRead,BufEnter,BufNewFile */Notes/* setlocal nospell
 augroup END
@@ -554,7 +555,8 @@ let g:ale_linters = {
             \   'python': ['pylint'],
             \   'tex': ['chktex', 'proselint', 'lacheck', 'write-good'],
             \   'fortran': ['gcc'],
-            \   'markdown': ['alex', 'proselint'],
+            \   'markdown': ['alex', 'proselint', 'languagetool'],
+            \   'wiki': ['languagetool'],
             \   'javascript': ['javac'],
             \   'dockerfile': ['hadolint'],
             \}
@@ -967,15 +969,15 @@ let g:JuliaFormatter_options = {
 "----------------------------------------------------------------------
 "REPL (mostly for julia)
 "
-luafile $HOME/.config/nvim/plugins.lua
+" luafile $HOME/.config/nvim/plugins.lua
 
-function! s:send_wrapper_mod()
-  let s:file_path = expand('%:p')
-  let s:ft = &ft
-  exec 'lua require("iron").core.send("'.s:ft.'", "include(\"'.s:file_path.'\")")'
-endfunction
+" function! s:send_wrapper_mod()
+"   let s:file_path = expand('%:p')
+"   let s:ft = &ft
+"   exec 'lua require("iron").core.send("'.s:ft.'", "include(\"'.s:file_path.'\")")'
+" endfunction
 
-command! IronSendInclude call <SID>send_wrapper_mod()
+" command! IronSendInclude call <SID>send_wrapper_mod()
 
 function SendJuliaRange()
     let l:curr_buff = getbufinfo({'curr':0})
@@ -1035,6 +1037,10 @@ let g:vimwiki_pubs_config = [$HOME."/.config/pubs/main_library.conf", $HOME."/.c
 
 let g:wiki_root = '~/Notes'
 let g:wiki_map_link_create = 'WikivimFile'
+let g:wiki_mappings_global = {
+        \ '<plug>(wiki-list-toggle)' : '<c-d>',
+        \ 'i_<plug>(wiki-list-toggle)' : '<c-d>',
+        \}
 
 function WikivimFile(text) abort
   return substitute(tolower(a:text), '\s\+', '-', 'g')
@@ -1052,6 +1058,8 @@ augroup end
 
 " }}} Vimwiki configuration "
 
+"----------------------------------------------------------------------
+" tmux configuration {{{ "
 let g:tmux_navigator_no_mappings = 1
 
 nnoremap <silent> <A-h> :TmuxNavigateLeft<cr>
@@ -1059,6 +1067,7 @@ nnoremap <silent> <A-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <A-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <A-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <A-\> :TmuxNavigatePrevious<cr>
+" }}} tmux configuration "
 
 "----------------------------------------------------------------------
 " Context
