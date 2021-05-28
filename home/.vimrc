@@ -571,6 +571,8 @@ let g:ale_fixers = {
             \   'vim': ['trim_whitespace'],
             \}
 
+let g:ale_languagetool_options="--autoDetect --languagemodel ~/.local/share/languagetool/ngrams"
+
 " call deoplete#custom#source('ale', 'rank', 999)
 
 " Define map for the Fix function
