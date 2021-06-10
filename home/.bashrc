@@ -77,15 +77,21 @@ fi
 
 # F*EX
 export PATH="$HOME/.fex/bin:$PATH"
+source $HOME/.local/bin/fexdox-completion.bash
 
 eval $(dircolors ~/.dircolors)
 
 export PATH="$HOME/bin:$PATH"
+
+# Pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
+
+export PATH="$HOME/.poetry/bin:$PATH"
 
 # Enable tab-completion for directories after variables
 shopt -s direxpand
@@ -121,3 +127,5 @@ fi
 PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }'printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/\~}"'
 
 eval "$(starship init bash)"
+
+alias obs="QT_QPA_PLATFORM=xcb obs"
