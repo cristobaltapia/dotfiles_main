@@ -7,7 +7,7 @@ show_always = true
 ssh_only = true
 
 [python]
-scan_for_pyfiles = false
+detect_extensions = []
 
 [nodejs]
 disabled = true
