@@ -58,7 +58,7 @@ Plug 'vim-pandoc/vim-pandoc', { 'for': ['markdown', 'markdown.pandoc'] }
 Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'markdown' }
 Plug 'godlygeek/tabular', { 'for': ['markdown', 'markdown.pandoc'] }
 " Vim Easy Align
-Plug 'junegunn/vim-easy-align'
+Plug 'junegunn/vim-easy-align', { 'for': ['tex'] }
 " fugitive.vim: a Git wrappe
 Plug 'tpope/vim-fugitive'
 "APDL Syntax
@@ -553,7 +553,7 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 let g:ale_linters = {
             \   'python': ['pylint'],
-            \   'tex': ['chktex', 'proselint', 'lacheck', 'write-good'],
+            \   'tex': ['chktex', 'proselint', 'lacheck', 'write-good', 'redpen'],
             \   'fortran': ['gcc'],
             \   'markdown': ['alex', 'proselint', 'languagetool'],
             \   'wiki': ['languagetool'],
@@ -991,6 +991,7 @@ augroup juliacmd
     autocmd!
     autocmd FileType,BufEnter julia nnoremap <F5> :SlimeSend0 'includet("' . expand('%:p') . '")' . "\r"<CR>
     autocmd FileType,BufEnter julia nnoremap <F6> :call SendJuliaRange()<CR>
+    autocmd FileType,BufEnter julia nnoremap <F7> :SlimeSend0 'include("' . expand('%:p') . '")' . "\r"<CR>
     autocmd FileType,BufEnter julia command! -nargs=0 Format :JuliaFormatterFormat
 augroup END
 
