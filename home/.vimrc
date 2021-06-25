@@ -780,12 +780,12 @@ endfunction
 "}}}
 "
 
-
 "----------------------------------------------------------------------
 " UltiSnips
 "----------------------------------------------------------------------
 " {{{ "
-let g:UltiSnipsExpandTrigger="<c-k>"
+" This is redifined in the coc.nvim config
+let g:UltiSnipsExpandTrigger="<nop>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsSnippetDirectories=[
@@ -840,10 +840,6 @@ set shortmess+=c
 " always show signcolumns
 set signcolumn=yes
 
-" Use Tab and S-Tab to navigate completion menu
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 
@@ -866,7 +862,7 @@ nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 " Solves double 'Enter' needed for a new line
 inoremap <silent><expr> <CR> pumvisible() ? "\<C-y><CR>" : "\<CR>"
-inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm()
+inoremap <silent><expr> <C-k> pumvisible() ? coc#_select_confirm()
       \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 function! s:show_documentation()
@@ -977,6 +973,8 @@ autocmd FileType json syntax match Comment +\/\/.\+$+
 
 "----------------------------------------------------------------------
 " Julia
+"----------------------------------------------------------------------
+" {{{ "
 " autocmd FileType julia nnoremap <S-F5> :call <SID>compile_and_run()<CR>
 autocmd FileType,BufEnter,BufNewFile,BufNew julia set foldmethod=syntax
 let latex_to_unicode_tab = 0
@@ -987,20 +985,6 @@ let g:latex_to_unicode_auto = 1
 let g:JuliaFormatter_options = {
     \ 'style' : 'blue',
     \ }
-
-"
-"----------------------------------------------------------------------
-"REPL (mostly for julia)
-"
-" luafile $HOME/.config/nvim/plugins.lua
-
-" function! s:send_wrapper_mod()
-"   let s:file_path = expand('%:p')
-"   let s:ft = &ft
-"   exec 'lua require("iron").core.send("'.s:ft.'", "include(\"'.s:file_path.'\")")'
-" endfunction
-
-" command! IronSendInclude call <SID>send_wrapper_mod()
 
 function SendJuliaRange()
     let l:curr_buff = getbufinfo({'curr':0})
@@ -1014,6 +998,7 @@ augroup juliacmd
     autocmd FileType,BufEnter julia nnoremap <F6> :call SendJuliaRange()<CR>
     autocmd FileType,BufEnter julia command! -nargs=0 Format :JuliaFormatterFormat
 augroup END
+" }}} "
 
 "----------------------------------------------------------------------
 " Vim -slime
