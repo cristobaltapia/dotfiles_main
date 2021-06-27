@@ -785,7 +785,7 @@ endfunction
 "----------------------------------------------------------------------
 " {{{ "
 " This is redifined in the coc.nvim config
-let g:UltiSnipsExpandTrigger="<nop>"
+let g:UltiSnipsExpandTrigger="<c-k>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsSnippetDirectories=[
@@ -862,7 +862,7 @@ nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 " Solves double 'Enter' needed for a new line
 inoremap <silent><expr> <CR> pumvisible() ? "\<C-y><CR>" : "\<CR>"
-inoremap <silent><expr> <C-k> pumvisible() ? coc#_select_confirm()
+inoremap <silent><expr> <C-l> pumvisible() ? coc#_select_confirm()
       \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 function! s:show_documentation()
