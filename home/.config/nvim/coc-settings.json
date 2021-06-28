@@ -1,5 +1,5 @@
 {
-  "diagnostic.displayByAle": false,
+  "diagnostic.displayByAle": true,
   "diagnostic.virtualText": false,
   "diagnostic.maxWindowWidth": 80,
   "snippets.ultisnips.directories": [

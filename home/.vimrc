@@ -554,7 +554,7 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 let g:ale_linters = {
             \   'python': ['pylint'],
-            \   'tex': ['chktex', 'proselint', 'lacheck', 'write-good'],
+            \   'tex': ['chktex', 'proselint', 'lacheck', 'write-good', 'redpen'],
             \   'fortran': ['gcc'],
             \   'markdown': ['alex', 'proselint', 'languagetool'],
             \   'wiki': ['languagetool'],
@@ -997,6 +997,7 @@ augroup juliacmd
     autocmd!
     autocmd FileType,BufEnter julia nnoremap <F5> :SlimeSend0 'includet("' . expand('%:p') . '")' . "\r"<CR>
     autocmd FileType,BufEnter julia nnoremap <F6> :call SendJuliaRange()<CR>
+    autocmd FileType,BufEnter julia nnoremap <F7> :SlimeSend0 'include("' . expand('%:p') . '")' . "\r"<CR>
     autocmd FileType,BufEnter julia command! -nargs=0 Format :JuliaFormatterFormat
 augroup END
 " }}} "
