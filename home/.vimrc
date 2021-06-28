@@ -780,11 +780,11 @@ endfunction
 "}}}
 "
 
-
 "----------------------------------------------------------------------
 " UltiSnips
 "----------------------------------------------------------------------
 " {{{ "
+" This is redifined in the coc.nvim config
 let g:UltiSnipsExpandTrigger="<c-k>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
@@ -840,10 +840,6 @@ set shortmess+=c
 " always show signcolumns
 set signcolumn=yes
 
-" Use Tab and S-Tab to navigate completion menu
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 
@@ -863,11 +859,11 @@ nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
-inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm()
-      \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Solves double 'Enter' needed for a new line
 inoremap <silent><expr> <CR> pumvisible() ? "\<C-y><CR>" : "\<CR>"
+inoremap <silent><expr> <C-l> pumvisible() ? coc#_select_confirm()
+      \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -913,6 +909,27 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 " use `:OR` for organize import of current buffer
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
+" Map function and class text objects
+" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
+
+" Remap <C-f> and <C-b> for scroll float windows/popups.
+if has('nvim-0.4.0') || has('patch-8.2.0750')
+  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+endif
+
 " Using CocList
 " Show all diagnostics
 " nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
@@ -956,6 +973,8 @@ autocmd FileType json syntax match Comment +\/\/.\+$+
 
 "----------------------------------------------------------------------
 " Julia
+"----------------------------------------------------------------------
+" {{{ "
 " autocmd FileType julia nnoremap <S-F5> :call <SID>compile_and_run()<CR>
 autocmd FileType,BufEnter,BufNewFile,BufNew julia set foldmethod=syntax
 let latex_to_unicode_tab = 0
@@ -966,20 +985,6 @@ let g:latex_to_unicode_auto = 1
 let g:JuliaFormatter_options = {
     \ 'style' : 'blue',
     \ }
-
-"
-"----------------------------------------------------------------------
-"REPL (mostly for julia)
-"
-" luafile $HOME/.config/nvim/plugins.lua
-
-" function! s:send_wrapper_mod()
-"   let s:file_path = expand('%:p')
-"   let s:ft = &ft
-"   exec 'lua require("iron").core.send("'.s:ft.'", "include(\"'.s:file_path.'\")")'
-" endfunction
-
-" command! IronSendInclude call <SID>send_wrapper_mod()
 
 function SendJuliaRange()
     let l:curr_buff = getbufinfo({'curr':0})
@@ -994,6 +999,7 @@ augroup juliacmd
     autocmd FileType,BufEnter julia nnoremap <F7> :SlimeSend0 'include("' . expand('%:p') . '")' . "\r"<CR>
     autocmd FileType,BufEnter julia command! -nargs=0 Format :JuliaFormatterFormat
 augroup END
+" }}} "
 
 "----------------------------------------------------------------------
 " Vim -slime
