@@ -58,7 +58,7 @@ Plug 'vim-pandoc/vim-pandoc', { 'for': ['markdown', 'markdown.pandoc'] }
 Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'markdown' }
 Plug 'godlygeek/tabular', { 'for': ['markdown', 'markdown.pandoc'] }
 " Vim Easy Align
-Plug 'junegunn/vim-easy-align', { 'for': ['tex'] }
+Plug 'junegunn/vim-easy-align'
 " fugitive.vim: a Git wrappe
 Plug 'tpope/vim-fugitive'
 "APDL Syntax
