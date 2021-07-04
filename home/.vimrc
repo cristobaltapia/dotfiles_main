@@ -176,8 +176,8 @@ Plug 'chriskempson/base16-vim'
 " Seoul256 color theme
 Plug 'junegunn/seoul256.vim'
 " Nord colorscheme
-Plug 'arcticicestudio/nord-vim'
-" vim-jason: a better json
+" Plug 'arcticicestudio/nord-vim'
+Plug 'mrswats/nord-vim', { 'branch': 'treesitter-support' }
 
 call plug#end()
 "}}}
@@ -261,19 +261,16 @@ inoremap <C-s> <c-g>u<Esc>[s1z=`]a<c-g>u
 " Colors for GVim
 "----------------------------------------------------------------------
 "{{{
+" configure nvcode-color-schemes
+let g:nvcode_termcolors=256
+
 if has('gui_running')
-    " colorscheme space-vim-dark
-    " colorscheme OceanicNext
-    let g:seoul256_background=234
-    colorscheme seoul256
+    colorscheme nord
 elseif has('nvim')
-    " colorscheme space-vim-dark
-    " colorscheme OceanicNext
-    " let g:seoul256_background=234
-    " colorscheme seoul256
     colorscheme nord
     let g:airline_theme='nord'
 endif
+
 "}}}
 
 

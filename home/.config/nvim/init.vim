@@ -28,6 +28,7 @@ set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
 " Treesitter {{{1 "
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
+  ensure_installed = {"python", "julia", "latex", "yaml", "bibtex", "css", "json", "javascript", "toml"},
   incremental_selection = {
     enable = true,
     keymaps = {
@@ -40,7 +41,6 @@ require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,
     custom_captures = {
-      -- Highlight the @foo.bar capture group with the "Identifier" highlight group.
       ["foo.bar"] = "Identifier",
     },
   },
@@ -51,5 +51,11 @@ require'nvim-treesitter.configs'.setup {
 EOF
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
+
+" checks if your terminal has 24-bit color support
+if (has("termguicolors"))
+    set termguicolors
+    hi LineNr ctermbg=NONE guibg=NONE
+endif
 
 " 1}}} "
