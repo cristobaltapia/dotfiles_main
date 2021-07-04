@@ -155,7 +155,8 @@ Plug 'christoomey/vim-tmux-navigator'
 " Python:
 "--------
 " Semshi: semantic highlight for python
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for': 'python'}
+" Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for': 'python'}
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " REPL
  " Plug 'Vigemus/iron.nvim'
 " Indent text object
