@@ -43,8 +43,6 @@ Plug 'honza/vim-snippets'
 Plug 'SirVer/ultisnips'
 " Own snippets
 Plug 'cristobaltapia/MySnippets'
-" Rainbow parentheses
-Plug 'luochen1990/rainbow', { 'for': 'python' }
 " vim-Grammarous
 Plug 'rhysd/vim-grammarous'
 " CSV files
@@ -157,6 +155,7 @@ Plug 'christoomey/vim-tmux-navigator'
 " Semshi: semantic highlight for python
 " Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for': 'python'}
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'p00f/nvim-ts-rainbow'
 " REPL
 " Plug 'Vigemus/iron.nvim'
 " Indent text object
@@ -416,34 +415,6 @@ augroup autocompl_window
     autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 augroup END
 
-"----------------------------------------------------------------------
-" Rainbow parentheses
-"----------------------------------------------------------------------
-"{{{
-let g:rainbow_active = 1
-let g:rainbow_conf = {
-            \'guifgs': ['darkorange', 'seagreen', 'royalblue', 'firebrick'],
-            \'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
-            \'operators': '_,_',
-            \'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
-            \'separately': {
-            \    '*': {},
-            \    'tex': {
-            \        'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
-            \    },
-            \    'lisp': {
-            \        'guifgs': ['royalblue', 'darkorange', 'seagreen', 'firebrick', 'darkorchid'],
-            \    },
-            \    'vim': {
-            \        'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
-            \       },
-            \    'html': {
-            \        'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
-            \       },
-            \    'css': 0,
-            \   }
-            \}
-"}}}
 
 "----------------------------------------------------------------------
 " NERDTree (better file browser) toggle

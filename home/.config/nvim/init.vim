@@ -44,6 +44,18 @@ require'nvim-treesitter.configs'.setup {
   indent = {
     enable = true
   },
+  rainbow = {
+    enable = true,
+    colors = {
+        "#eceff4",
+        "#88c0d0",
+        "#ebcb8b",
+        "#81a1c1",
+        "#d08770",
+        },
+    extended_mode = false, -- Highlight also non-parentheses delimiters, boolean or table: lang -> boolean
+    max_file_lines = 1000, -- Do not enable for files with more than 1000 lines, int
+  }
 }
 EOF
 set foldmethod=expr
