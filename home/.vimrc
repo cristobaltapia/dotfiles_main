@@ -158,7 +158,7 @@ Plug 'christoomey/vim-tmux-navigator'
 " Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for': 'python'}
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " REPL
- " Plug 'Vigemus/iron.nvim'
+" Plug 'Vigemus/iron.nvim'
 " Indent text object
 Plug 'michaeljsmith/vim-indent-object', { 'for': 'python' }
 
@@ -226,7 +226,7 @@ set shada+=r/mnt/intcdc
 
 " For conceal markers.
 if has('conceal')
-  set conceallevel=0 concealcursor=niv
+    set conceallevel=0 concealcursor=niv
 endif
 
 " Visual selection automatically copies to the clipboard
@@ -318,10 +318,10 @@ noremap <F2> :TaskList<CR>
 "{{{
 " Copy all matches
 function! CopyMatches(reg)
-  let hits = []
-  %s//\=len(add(hits, submatch(0))) ? submatch(0) : ''/gne
-  let reg = empty(a:reg) ? '+' : a:reg
-  execute 'let @'.reg.' = join(hits, "\n") . "\n"'
+    let hits = []
+    %s//\=len(add(hits, submatch(0))) ? submatch(0) : ''/gne
+    let reg = empty(a:reg) ? '+' : a:reg
+    execute 'let @'.reg.' = join(hits, "\n") . "\n"'
 endfunction
 command! -register CopyMatches call CopyMatches(<q-reg>)
 "}}}
@@ -855,14 +855,14 @@ nnoremap <silent> K :call <SID>show_documentation()<CR>
 " Solves double 'Enter' needed for a new line
 inoremap <silent><expr> <CR> pumvisible() ? "\<C-y><CR>" : "\<CR>"
 inoremap <silent><expr> <C-l> pumvisible() ? coc#_select_confirm()
-      \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+            \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
+    if (index(['vim','help'], &filetype) >= 0)
+        execute 'h '.expand('<cword>')
+    else
+        call CocAction('doHover')
+    endif
 endfunction
 
 " Highlight symbol under cursor on CursorHold
@@ -876,11 +876,11 @@ xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
 augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+    autocmd!
+    " Setup formatexpr specified filetype(s).
+    autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+    " Update signature help on jump placeholder
+    autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
 " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
@@ -914,12 +914,12 @@ omap ac <Plug>(coc-classobj-a)
 
 " Remap <C-f> and <C-b> for scroll float windows/popups.
 if has('nvim-0.4.0') || has('patch-8.2.0750')
-  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+    nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+    nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+    inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+    inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+    vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+    vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 endif
 
 " Using CocList
@@ -975,8 +975,8 @@ let g:latex_to_unicode_eager = 1
 let g:latex_to_unicode_auto = 1
 
 let g:JuliaFormatter_options = {
-    \ 'style' : 'blue',
-    \ }
+            \ 'style' : 'blue',
+            \ }
 
 function SendJuliaRange()
     let l:curr_buff = getbufinfo({'curr':0})
@@ -1017,13 +1017,13 @@ inoremap <F12> <C-o>:syntax sync fromstart<CR>
 "----------------------------------------------------------------------
 " bullets {{{ "
 let g:bullets_enabled_file_types = [
-    \ 'markdown',
-    \ 'markdown.pandoc',
-    \ 'text',
-    \ 'gitcommit',
-    \ 'scratch',
-    \ 'wiki'
-    \]
+            \ 'markdown',
+            \ 'markdown.pandoc',
+            \ 'text',
+            \ 'gitcommit',
+            \ 'scratch',
+            \ 'wiki'
+            \]
 
 let g:bullets_nested_checkboxes = 1
 let g:bullets_set_mappings = 1
@@ -1039,12 +1039,12 @@ let g:vimwiki_pubs_config = [$HOME."/.config/pubs/main_library.conf", $HOME."/.c
 let g:wiki_root = '~/Notes'
 let g:wiki_map_link_create = 'WikivimFile'
 let g:wiki_mappings_global = {
-        \ '<plug>(wiki-list-toggle)' : '<c-d>',
-        \ 'i_<plug>(wiki-list-toggle)' : '<c-d>',
-        \}
+            \ '<plug>(wiki-list-toggle)' : '<c-d>',
+            \ 'i_<plug>(wiki-list-toggle)' : '<c-d>',
+            \}
 
 function WikivimFile(text) abort
-  return substitute(tolower(a:text), '\s\+', '-', 'g')
+    return substitute(tolower(a:text), '\s\+', '-', 'g')
 endfunction
 
 augroup MyWikiAutocmds

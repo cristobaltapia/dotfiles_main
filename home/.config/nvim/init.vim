@@ -40,9 +40,6 @@ require'nvim-treesitter.configs'.setup {
   },
   highlight = {
     enable = true,
-    custom_captures = {
-      ["foo.bar"] = "Identifier",
-    },
   },
   indent = {
     enable = true
@@ -51,6 +48,9 @@ require'nvim-treesitter.configs'.setup {
 EOF
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
+
+hi pythonTSParameter guifg=#b48ead
+hi TSConstant guifg=#ebcb8b
 
 " checks if your terminal has 24-bit color support
 if (has("termguicolors"))
