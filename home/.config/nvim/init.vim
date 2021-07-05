@@ -28,7 +28,7 @@ set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
 " Treesitter {{{1 "
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = {"python", "julia", "latex", "yaml", "bibtex", "css", "json", "javascript", "toml"},
+  ensure_installed = {"python", "julia", "latex", "bash", "yaml", "bibtex", "css", "json", "javascript", "toml"},
   incremental_selection = {
     enable = true,
     keymaps = {
