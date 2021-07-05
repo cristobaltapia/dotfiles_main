@@ -224,18 +224,6 @@ set diffopt+=vertical " Set vertical split as default for diff
 let $PYTHONUNBUFFERED=1 " See python real-time output
 set shada+=r/mnt/intcdc
 
-if (has("termguicolors"))
-    set termguicolors
-endif
-
-" Fix colors within tmux
-if exists("$TMUX")
-    set t_Co=256
-    set notermguicolors
-else
-    set termguicolors
-endif
-
 " For conceal markers.
 if has('conceal')
   set conceallevel=0 concealcursor=niv
@@ -258,17 +246,22 @@ inoremap <C-s> <c-g>u<Esc>[s1z=`]a<c-g>u
 "}}}
 
 "----------------------------------------------------------------------
-" Colors for GVim
+" Colors for neovim
 "----------------------------------------------------------------------
 "{{{
 " configure nvcode-color-schemes
 let g:nvcode_termcolors=256
 
-if has('gui_running')
-    colorscheme nord
-elseif has('nvim')
-    colorscheme nord
-    let g:airline_theme='nord'
+set background="dark"
+colorscheme nord
+let g:airline_theme='nord'
+
+" Fix colors within tmux
+if (empty("$TMUX"))
+    " set notermguicolors
+    if (has("nvim"))
+        set termguicolors
+    endif
 endif
 
 "}}}
