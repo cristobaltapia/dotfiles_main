@@ -155,7 +155,7 @@ Plug 'christoomey/vim-tmux-navigator'
 " Semshi: semantic highlight for python
 " Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for': 'python'}
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'p00f/nvim-ts-rainbow'
+" Plug 'p00f/nvim-ts-rainbow'
 " REPL
 " Plug 'Vigemus/iron.nvim'
 " Indent text object
@@ -516,7 +516,7 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 let g:ale_linters = {
             \   'python': ['pylint'],
-            \   'tex': ['chktex', 'proselint', 'lacheck', 'write-good', 'redpen'],
+            \   'tex': ['chktex', 'proselint', 'redpen'],
             \   'fortran': ['gcc'],
             \   'markdown': ['alex', 'proselint', 'languagetool'],
             \   'wiki': ['languagetool'],
@@ -939,7 +939,6 @@ autocmd FileType json syntax match Comment +\/\/.\+$+
 "----------------------------------------------------------------------
 " {{{ "
 " autocmd FileType julia nnoremap <S-F5> :call <SID>compile_and_run()<CR>
-autocmd FileType,BufEnter,BufNewFile,BufNew julia set foldmethod=syntax
 let latex_to_unicode_tab = 0
 let g:latex_to_unicode_suggestions = 1
 let g:latex_to_unicode_eager = 1
