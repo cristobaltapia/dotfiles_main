@@ -8,6 +8,7 @@
     "~/Templates/ultisnips-templates"
   ],
   // Python
+  "pyright.enable": true,
   "python.formatting.provider": "yapf",
   "markdownlint.config": {
     "default": true,
@@ -25,8 +26,6 @@
   "python.linting.pydocstyleArgs": ["--convention=numpy"],
   "python.linting.lintOnSave": true,
   "python.linting.maxNumberOfProblems": 200,
-  "python.terminal.executeInFileDir": true,
-  "python.venvFolders": [".virtualenvs", "venv", ".venv"],
   "python.venvPath": "/home/tapia/.virtualenvs",
   "pyright.organizeimports.provider": "isort",
   "suggest.labelMaxLength": 25,
@@ -42,8 +41,8 @@
   "coc.source.vimtex.enable": true,
   "coc.source.around.enable": true,
   "coc.preferences.useQuickfixForLocations": true,
-  "latex.lint.onChange": true,
-  "latex.build.onSave": false,
+  "texlab.auxDirectory": "aux-folder",
+  "texlab.build.onSave": false,
   "yaml.format.enable": true,
   "yaml.format.bracketSpacing": true,
   "yaml.completion": true,
@@ -62,6 +61,7 @@
     "javascript",
     "vim",
     "vimwiki",
+    "wiki",
     "snippets"
   ],
   "highlight.colors.enable": true,
