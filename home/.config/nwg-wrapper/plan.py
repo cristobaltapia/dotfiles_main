@@ -1,9 +1,24 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 from datetime import date
 from textwrap import fill, wrap, shorten
 import numpy as np
 
 import pandas as pd
+
+MONTHS = {
+    "Januar": 1,
+    "Februar": 2,
+    "März": 3,
+    "April": 4,
+    "Mai": 5,
+    "Juni": 6,
+    "Juli": 7,
+    "August": 8,
+    "September": 9,
+    "Oktober": 10,
+    "November": 11,
+    "Dezember": 12
+}
 
 
 def main():
@@ -27,59 +42,57 @@ def format_output(data):
 
     """
     width = 34
-    year = date.today().year
-    next_year = year + 1
-    list_plan1 = "".ljust(5) + f"{year}".ljust(width) + "\n"
-    list_plan2 = "".ljust(5) + f"{next_year}".ljust(width) + "\n"
+    curr_year = date.today().year
+    curr_month = date.today().month
+    next_year = curr_year + 1
+    list_plan = ""
 
-    for k in data.index:
-        elements_1 = str(data.loc[k, year]).split("/")
-        elements_2 = str(data.loc[k, next_year]).split("/")
+    for year_i in [curr_year, next_year]:
+        list_plan += "\n" + "".ljust(5) + "<b>" + f"{year_i}".ljust(width) + "</b>\n"
 
-        month = shorten(f"{k}", 3, placeholder="") + "  "
+        for month_i in data.index:
+            elements_i = str(data.loc[month_i, year_i]).split("/")
 
-        list_1 = []
-        list_2 = []
-
-        for j, e in enumerate(elements_1):
-            if e == "nan":
-                m1 = "".ljust(width)
+            if MONTHS[month_i] == curr_month and year_i == curr_year:
+                color_month = "#bf616a"
             else:
-                m1 = shorten(str(e), width).ljust(width)
+                color_month = "#eceff4"
 
-            list_1.append(m1)
-
-        for j, e in enumerate(elements_2):
-            if e == "nan":
-                m2 = "".ljust(width)
+            if year_i == curr_year:
+                color_year = "#81a1c1"
             else:
-                m2 = shorten(str(e), width).ljust(width)
+                color_year = "#ebcb8b"
 
-            list_2.append(m2)
+            month_str = shorten(f"{month_i}", 3, placeholder="") + "  "
+            month_str = f'<span foreground="{color_month}">{month_str}</span>'
 
-        start = "".ljust(5)
-        for l, e in enumerate(list_1):
-            month1 = f'<span foreground="#81a1c1">{e}</span>'
-            if l > 0:
-                list_plan1 += f"{start}{month1}\n"
-            else:
-                list_plan1 += f"{month}{month1}\n"
+            list_year = []
 
-        for l, e in enumerate(list_2):
-            month2 = f'<span foreground="#ebcb8b">{e}</span>'
-            if l > 0:
-                list_plan2 += f"{start}{month2}\n"
-            else:
-                list_plan2 += f"{month}{month2}\n"
+            for ele_i in elements_i:
+                if ele_i == "nan":
+                    entry_month = "".ljust(width)
+                else:
+                    entry_month = shorten(str(ele_i), width).ljust(width)
+
+                list_year.append(entry_month)
+
+            start = "".ljust(5)
+            for l, e in enumerate(list_year):
+                month_entry = f'<span foreground="{color_year}">{e}</span>'
+                if l > 0:
+                    list_plan += f"{start}{month_entry}\n"
+                else:
+                    list_plan += f"{month_str}{month_entry}\n"
+
 
     base = f"""<span face="monospace">
-<span foreground="#eeeeee">
-{list_plan1}
-{list_plan2[:-1]}
+<span foreground="#eceff4">
+{list_plan[1:-1]}
 </span>
 </span>"""
 
     return base
+
 
 if __name__ == "__main__":
     main()
