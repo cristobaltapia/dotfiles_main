@@ -15,10 +15,10 @@ if !exists('g:pep8_comment_text_width')
     let g:pep8_comment_text_width = 72
 endif
 
-augroup pep8textwidth
-    autocmd!
-    autocmd! CursorMoved,CursorMovedI <buffer> :exe 'setlocal textwidth='.s:GetCurrentTextWidth()
-augroup END
+" augroup pep8textwidth
+"     autocmd!
+"     autocmd! CursorMoved,CursorMovedI <buffer> :exe 'setlocal textwidth='.s:GetCurrentTextWidth()
+" augroup END
 
 " Return appropriate textwidth for cursor position (leverages syntax engine).
 function! s:GetCurrentTextWidth()

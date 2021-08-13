@@ -30,7 +30,7 @@ let g:vimtex_complete_close_braces = 0
 let g:vimtex_complete_ignore_case = 1
 let g:vimtex_complete_smart_case = 1
 let g:vimtex_fold_enabled = 1
-setlocal conceallevel=1
+" setlocal conceallevel=1
 let g:tex_conceal='abdmg'
 setlocal concealcursor=
 
