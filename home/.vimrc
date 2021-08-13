@@ -159,7 +159,7 @@ Plug 'p00f/nvim-ts-rainbow'
 " REPL
 " Plug 'Vigemus/iron.nvim'
 " Indent text object
-Plug 'michaeljsmith/vim-indent-object', { 'for': 'python' }
+" Plug 'michaeljsmith/vim-indent-object', { 'for': 'python' }
 
 "--------
 " Colors:
