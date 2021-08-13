@@ -50,14 +50,14 @@ def format_output(data):
     iter_dates = [(d.year, d.month) for d in dates]
 
     prev_year = dates[0].year
-    list_plan = "".ljust(5) + "<b>" + f"{start_date.year}".ljust(width) + "</b>\n"
+    list_plan = '<tt><b>     ' + f"{start_date.year}".ljust(width) + "</b></tt>\n"
 
     num_elements = 0
     max_elements = 30
 
     for year_i, month_i in iter_dates:
         if year_i > prev_year:
-            list_plan += "\n" + "".ljust(5) + "<b>" + f"{year_i}".ljust(width) + "</b>\n"
+            list_plan += "\n" + "<tt><b>     " + f"{year_i}".ljust(width) + "</b></tt>\n"
             prev_year += 1
 
         elements_i = str(data.loc[MONTHS[month_i], year_i]).split("/")
@@ -75,20 +75,20 @@ def format_output(data):
             color_year = "#a3be8c"
 
         month_str = shorten(f"{MONTHS[month_i]}", 3, placeholder="") + "  "
-        month_str = f'<span foreground="{color_month}">{month_str}</span>'
+        month_str = f'<span face="monospace" foreground="{color_month}">{month_str}</span>'
 
         list_year = []
 
         for ele_i in elements_i:
             if ele_i == "nan":
-                entry_month = "".ljust(width)
+                entry_month = ""
             else:
-                entry_month = shorten(str(ele_i), width).ljust(width)
+                entry_month = shorten(str(ele_i), width)
 
             list_year.append(entry_month)
             num_elements += 1
 
-        start = "".ljust(5)
+        start = '<tt>     </tt>'
         for l, e in enumerate(list_year):
             month_entry = f'<span foreground="{color_year}">{e}</span>'
             if l > 0:
@@ -100,7 +100,7 @@ def format_output(data):
             break
 
 
-    base = f"""<span face="monospace">
+    base = f"""<span face="sans">
 <span foreground="#eceff4">
 {list_plan[:-1]}
 </span>
