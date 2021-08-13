@@ -12,3 +12,5 @@ set highlight-color "#8fbcbb"
 set highlight-active-color "#5e81ac"
 set index-fg "#e5e9f0"
 set index-bg "#2e3440"
+set window-title-home-tilde false
+set window-title-basename false
