@@ -57,6 +57,8 @@ Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'markdown' }
 Plug 'godlygeek/tabular', { 'for': ['markdown', 'markdown.pandoc'] }
 " Vim Easy Align
 Plug 'junegunn/vim-easy-align'
+" Instant.nvim: collaborative editiong in neovim
+Plug 'jbyuki/instant.nvim'
 " fugitive.vim: a Git wrappe
 Plug 'tpope/vim-fugitive'
 "APDL Syntax
@@ -148,6 +150,8 @@ Plug 'dkarter/bullets.vim'
 Plug 'matt-snider/vim-tagquery', { 'do': 'bash install.sh' }
 " Tmux integration
 Plug 'christoomey/vim-tmux-navigator'
+" Table mode
+Plug 'dhruvasagar/vim-table-mode', { 'for' : ['markdown', 'markdown.pandoc'] }
 
 "--------
 " Python:
@@ -1052,3 +1056,10 @@ let g:context_highlight_normal = 'PMenu'
 autocmd BufLeave goyo_pad setlocal norelativenumber nonumber
 let g:numbers_exclude = ['goyo_pad']
 "----------------------------------------------------------------------
+"
+let g:instant_username = "tapia"
+
+"----------------------------------------------------------------------
+" Table mode
+"----------------------------------------------------------------------
+let g:table_mode_corner = '|'
