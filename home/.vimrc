@@ -143,6 +143,8 @@ Plug 'aymericbeaumet/vim-symlink'
 " Vimwiki
 Plug 'lervag/wiki.vim'
 Plug 'lervag/wiki-ft.vim'
+" ASCII math equations
+Plug 'jbyuki/nabla.nvim'
 " Bullets
 Plug 'dkarter/bullets.vim'
 " Plug 'powerman/vim-plugin-AnsiEsc'
@@ -669,6 +671,16 @@ let g:mkdp_filetypes = ['markdown', 'markdown.pandoc']
 autocmd FileChangedShell <buffer> call ProcessFileChangedShell()
 
 let g:mkdp_auto_close = 0
+
+" Configuration for nabla.nvim (ASCII math)
+augroup nablanvim
+    autocmd!
+    autocmd FileType markdown nnoremap <F5> :lua require("nabla").action()<CR>
+    autocmd FileType markdown.pandoc nnoremap <F5> :lua require("nabla").action()<CR>
+    autocmd FileType wiki nnoremap <F5> :lua require("nabla").action()<CR>
+augroup END
+
+
 "}}}
 
 "----------------------------------------------------------------------
