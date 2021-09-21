@@ -66,7 +66,7 @@
   ],
   "highlight.colors.enable": true,
   "highlight.document.enable": false,
-  "highlight.colorNames.enable": true,
+  "highlight.colorNames.enable": false,
   "highlight.disableLanguages": ["tex"],
   "git.addedSign.hlGroup": "GitGutterAdd",
   "git.changedSign.hlGroup": "GitGutterChange",
