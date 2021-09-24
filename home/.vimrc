@@ -229,6 +229,9 @@ set diffopt+=vertical " Set vertical split as default for diff
 let $PYTHONUNBUFFERED=1 " See python real-time output
 set shada+=r/mnt/intcdc
 
+" Use wrap for diffing
+autocmd FilterWritePre * if &diff | setlocal wrap< | endif
+
 " For conceal markers.
 if has('conceal')
     set conceallevel=0 concealcursor=niv
