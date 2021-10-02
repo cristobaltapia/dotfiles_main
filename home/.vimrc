@@ -715,6 +715,13 @@ nnoremap <Leader>gn :GitGutterNextHunk<CR>
 " Vimtex
 "----------------------------------------------------------------------
 let g:vimtex_compiler_progname=$HOME.'/.virtualenvs/py3neovim/bin/nvr'
+let g:vimtex_grammar_vlty = {
+            \ 'lt_directory': '/usr/share/java/languagetool',
+            \ 'lt_command': 'languagetool',
+            \ 'show_suggestions': 1,
+            \ 'lt_enable': '',
+            \ 'lt_disable': 'WHITESPACE_RULE',
+            \}
 
 "----------------------------------------------------------------------
 " Vim-Pandoc
