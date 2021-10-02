@@ -549,12 +549,12 @@ let g:ale_fixers = {
 
 let g:ale_languagetool_options="--autoDetect --languagemodel ~/.local/share/languagetool/ngrams"
 
-let g:ale_tex_lty_ltdirectory = '/usr/share/languagetool/'
+" let g:ale_tex_lty_ltdirectory = '/usr/share/languagetool/'
 let g:ale_tex_lty_ltcommand = 'languagetool'
 let g:ale_tex_lty_server = 'my'
 let g:ale_tex_lty_language = 'en-US'
 let g:ale_tex_lty_disable = 'WHITESPACE_RULE'
-let g:ale_tex_lty_shelloptions = "--lt-options '~--autoDetect --languagemodel ~/.local/share/languagetool/ngrams'"
+let g:ale_tex_lty_shelloptions = "--packages '*' --lt-options '~--autoDetect --languagemodel ~/.local/share/languagetool/ngrams'"
 
 " call deoplete#custom#source('ale', 'rank', 999)
 
