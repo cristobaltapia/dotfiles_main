@@ -527,11 +527,11 @@ let g:session_autosave="no"
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 "\   'tex': ['chktex', 'proselint', 'redpen'],
+"            \   'tex': ['lty'],
+"            \   'plaintex': ['lty'],
 
 let g:ale_linters = {
             \   'python': ['pylint'],
-            \   'tex': ['lty'],
-            \   'plaintex': ['lty'],
             \   'fortran': ['gcc'],
             \   'markdown': ['alex', 'proselint', 'languagetool'],
             \   'wiki': ['languagetool'],
@@ -582,7 +582,8 @@ let g:grammarous#disabled_rules = {
             \ }
 let g:grammarous#enabled_rules = {
             \ '*' : ['PARAGRAPH_REPEAT_BEGINNING_RULE','EN_PLAIN_ENGLISH_REPLACE','EN_REDUNDANCY_REPLACE',
-            \'E_PRIME_STRICT','MISSING_VERB','TEXT_ANALYSiS','STYLE'],
+            \ 'E_PRIME_STRICT','MISSING_VERB','TEXT_ANALYSiS','STYLE','CREATIVE_WRITING','HILFESTELLUNG_KOMMASETZUNG',
+            \ 'EMPFOHLENE_RECHTSCHREIBUNG','GRAMMAR'],
             \ }
 " Use vim spellang
 let g:grammarous#use_vim_spelllang = 1
@@ -593,7 +594,8 @@ let g:grammarous#use_vim_spelllang = 1
 let g:languagetool_cmd = '~/bin/yalafi-grammarous'
 let g:languagetool_disable_categories = 'WHITESPACE_RULE,EN_QUOTES,COMMA_PARENTHESIS_WHITESPACE'
 let g:languagetool_enable_categories = 'PARAGRAPH_REPEAT_BEGINNING_RULE,EN_PLAIN_ENGLISH_REPLACE,'
-            \ . 'EN_REDUNDANCY_REPLACE,E_PRIME_STRICT,MISSING_VERB,TEXT_ANALYSiS,STYLE'
+            \ . 'EN_REDUNDANCY_REPLACE,E_PRIME_STRICT,MISSING_VERB,TEXT_ANALYSiS,STYLE,CREATIVE_WRITING,'
+            \ . 'HILFESTELLUNG_KOMMASETZUNG,EMPFOHLENE_RECHTSCHREIBUNG,GRAMMAR'
 
 "----------------------------------------------------------------------
 " Quick run
