@@ -22,6 +22,28 @@ let g:vimtex_compiler_latexmk = {
             \ ],
             \}
 
+let g:vimtex_grammar_vlty = {}
+" let g:vimtex_grammar_vlty.lt_directory = '/usr/share/languagetool'
+let g:vimtex_grammar_vlty.lt_command = 'languagetool'
+let g:vimtex_grammar_vlty.server = 'my'
+let g:vimtex_grammar_vlty.show_suggestions = 1
+let g:vimtex_grammar_vlty.shell_options =
+        \   ' --multi-language'
+        \ . ' --packages "*"'
+        \ . ' --define ~/vlty/defs.tex'
+        \ . ' --replace ~/vlty/repls.txt'
+        \ . ' --equation-punctuation display'
+        \ . ' --single-letters "i.\,A.\|z.\,B.\|\|"'
+        \ . " --lt-options '~--language en-US'"
+
+
+let g:vimtex_grammar_textidote = {
+            \ 'jar': '/opt/textidote/textidote.jar',
+            \ 'args': '',
+            \}
+
+" map <F9> :w <bar> compiler vlty <bar> make <bar> :cw <cr><esc>
+
 let g:vimtex_compiler_latexmk_engines = {'_' : '-lualatex'}
 
 " Set variables

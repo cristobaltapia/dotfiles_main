@@ -524,10 +524,12 @@ let g:session_autosave="no"
 " {{{ "
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
+"\   'tex': ['chktex', 'proselint', 'redpen'],
 
 let g:ale_linters = {
             \   'python': ['pylint'],
-            \   'tex': ['chktex', 'proselint', 'redpen'],
+            \   'tex': ['lty'],
+            \   'plaintex': ['lty'],
             \   'fortran': ['gcc'],
             \   'markdown': ['alex', 'proselint', 'languagetool'],
             \   'wiki': ['languagetool'],
@@ -547,10 +549,18 @@ let g:ale_fixers = {
 
 let g:ale_languagetool_options="--autoDetect --languagemodel ~/.local/share/languagetool/ngrams"
 
+let g:ale_tex_lty_ltdirectory = '/usr/share/languagetool/'
+let g:ale_tex_lty_ltcommand = 'languagetool'
+let g:ale_tex_lty_server = 'my'
+let g:ale_tex_lty_language = 'en-US'
+let g:ale_tex_lty_disable = 'WHITESPACE_RULE'
+let g:ale_tex_lty_shelloptions = "--lt-options '~--autoDetect --languagemodel ~/.local/share/languagetool/ngrams'"
+
 " call deoplete#custom#source('ale', 'rank', 999)
 
 " Define map for the Fix function
 noremap <LocalLeader>= :ALEFix<cr>
+noremap <F9> :ALEDetail<CR>
 
 " Change default symbols for ALE
 let g:ale_sign_error = ">>"
