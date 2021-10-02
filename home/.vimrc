@@ -55,6 +55,8 @@ Plug 'Rykka/InstantRst', { 'for': 'rst' }
 Plug 'vim-pandoc/vim-pandoc', { 'for': ['markdown', 'markdown.pandoc'] }
 Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'markdown' }
 Plug 'godlygeek/tabular', { 'for': ['markdown', 'markdown.pandoc'] }
+" Better diff
+Plug 'rickhowe/diffchar.vim', { 'for': ['markdown', 'markdown.pandoc'] }
 " Vim Easy Align
 Plug 'junegunn/vim-easy-align'
 " Instant.nvim: collaborative editiong in neovim
