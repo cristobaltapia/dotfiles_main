@@ -556,7 +556,7 @@ let g:ale_tex_lty_ltcommand = 'languagetool'
 let g:ale_tex_lty_server = 'my'
 let g:ale_tex_lty_language = 'en-US'
 let g:ale_tex_lty_disable = 'WHITESPACE_RULE'
-let g:ale_tex_lty_shelloptions = "--packages '*' --lt-options '~--autoDetect --languagemodel ~/.local/share/languagetool/ngrams'"
+let g:ale_tex_lty_shelloptions = "--packages '*' --lt-options '~--autoDetect --languagemodel " . $HOME . "/.local/share/languagetool/ngrams'"
 
 " call deoplete#custom#source('ale', 'rank', 999)
 
@@ -575,7 +575,7 @@ let g:ale_bib_bibclean_options = '-align-equals -fix-font-changes -German-style'
 let g:conda_startup_msg_suppress = 1
 
 " Setting for grammar check (Grammarous)
-let g:grammarous#languagetool_cmd = '~/bin/yalafi-grammarous --opts "--languagemodel ~/.local/share/languagetool/ngrams"'
+let g:grammarous#languagetool_cmd = '~/bin/yalafi-grammarous --opts "--languagemodel ' . $HOME . '/.local/share/languagetool/ngrams"'
 let g:grammarous#disabled_rules = {
             \ '*' : ['WHITESPACE_RULE', 'EN_QUOTES', 'COMMA_PARENTHESIS_WHITESPACE'],
             \ 'help' : ['WHITESPACE_RULE', 'EN_QUOTES', 'SENTENCE_WHITESPACE', 'UPPERCASE_SENTENCE_START'],

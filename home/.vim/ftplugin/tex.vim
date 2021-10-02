@@ -25,16 +25,17 @@ let g:vimtex_compiler_latexmk = {
 let g:vimtex_grammar_vlty = {}
 " let g:vimtex_grammar_vlty.lt_directory = '/usr/share/languagetool'
 let g:vimtex_grammar_vlty.lt_command = 'languagetool'
-let g:vimtex_grammar_vlty.server = 'my'
+" let g:vimtex_grammar_vlty.server = 'my'
+" let g:vimtex_grammar_vlty.lt_enablecategories = 'PARAGRAPH_REPEAT_BEGINNING_RULE,EN_PLAIN_ENGLISH_REPLACE,'
+"             \ . 'EN_REDUNDANCY_REPLACE,E_PRIME_STRICT,MISSING_VERB,TEXT_ANALYSiS,STYLE'
+let g:vimtex_grammar_vlty.enable = 1
 let g:vimtex_grammar_vlty.show_suggestions = 1
 let g:vimtex_grammar_vlty.shell_options =
         \   ' --multi-language'
         \ . ' --packages "*"'
-        \ . ' --define ~/vlty/defs.tex'
-        \ . ' --replace ~/vlty/repls.txt'
+        \ . " --lt-options '~--languagemodel " . $HOME . "/.local/share/languagetool/ngrams'"
         \ . ' --equation-punctuation display'
         \ . ' --single-letters "i.\,A.\|z.\,B.\|\|"'
-        \ . " --lt-options '~--language en-US'"
 
 
 let g:vimtex_grammar_textidote = {
