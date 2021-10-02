@@ -559,43 +559,6 @@ let g:ale_sign_warning = ">>"
 let g:ale_bib_bibclean_options = '-align-equals -fix-font-changes -German-style'
 
 
-"----------------------------------------------------------------------
-" Redefine Diff function
-"----------------------------------------------------------------------
-"{{{
-if has('win32')
-    set diffexpr=MyDiff()
-    function! MyDiff()
-        let opt = '-a --binary '
-        if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
-        if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
-        let arg1 = v:fname_in
-        if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
-        let arg2 = v:fname_new
-        if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
-        let arg3 = v:fname_out
-        if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-        if $VIMRUNTIME =~ ' '
-            if &sh =~ '\<cmd'
-                if empty(&shellxquote)
-                    let l:shxq_sav = ''
-                    set shellxquote&
-                endif
-                let cmd = '"' . 'C:\Program Files (x86)\GnuWin32\bin\diff"'
-            else
-                let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
-            endif
-        else
-            let cmd = 'C:\Program Files (x86)\GnuWin32\bin\diff'
-        endif
-        silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3
-        if exists('l:shxq_sav')
-            let &shellxquote=l:shxq_sav
-        endif
-    endfunction
-endif
-"}}}
-
 " Suppress message of vim-conda
 let g:conda_startup_msg_suppress = 1
 
@@ -1087,3 +1050,8 @@ let g:instant_username = "tapia"
 " Table mode
 "----------------------------------------------------------------------
 let g:table_mode_corner = '|'
+
+"----------------------------------------------------------------------
+" Trailing whitespace
+"----------------------------------------------------------------------
+let g:extra_whitespace_ignored_filetypes = ['wiki', ]
