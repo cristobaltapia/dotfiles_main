@@ -45,6 +45,8 @@ Plug 'SirVer/ultisnips'
 Plug 'cristobaltapia/MySnippets'
 " vim-Grammarous
 Plug 'rhysd/vim-grammarous'
+" vim-LanguageTool
+Plug 'dpelle/vim-LanguageTool'
 " CSV files
 " Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 " Markdown preview support
@@ -578,8 +580,20 @@ let g:grammarous#disabled_rules = {
             \ '*' : ['WHITESPACE_RULE', 'EN_QUOTES', 'COMMA_PARENTHESIS_WHITESPACE'],
             \ 'help' : ['WHITESPACE_RULE', 'EN_QUOTES', 'SENTENCE_WHITESPACE', 'UPPERCASE_SENTENCE_START'],
             \ }
+let g:grammarous#enabled_rules = {
+            \ '*' : ['PARAGRAPH_REPEAT_BEGINNING_RULE','EN_PLAIN_ENGLISH_REPLACE','EN_REDUNDANCY_REPLACE',
+            \'E_PRIME_STRICT','MISSING_VERB','TEXT_ANALYSiS'],
+            \ }
 " Use vim spellang
 let g:grammarous#use_vim_spelllang = 1
+
+"----------------------------------------------------------------------
+" Vim-LanguageTool
+"----------------------------------------------------------------------
+let g:languagetool_cmd = '~/bin/yalafi-grammarous'
+let g:languagetool_disable_categories = 'WHITESPACE_RULE,EN_QUOTES,COMMA_PARENTHESIS_WHITESPACE'
+let g:languagetool_enable_categories = 'PARAGRAPH_REPEAT_BEGINNING_RULE,EN_PLAIN_ENGLISH_REPLACE,'
+            \ . 'EN_REDUNDANCY_REPLACE,E_PRIME_STRICT,MISSING_VERB,TEXT_ANALYSiS'
 
 "----------------------------------------------------------------------
 " Quick run
