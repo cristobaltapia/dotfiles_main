@@ -27,7 +27,7 @@ call ale#Set('tex_lty_shelloptions', '')
 " displayed in status line
 call ale#Set('tex_lty_code', 'LT')
 
-call ale#Set('tex_lty_executable', 'python')
+call ale#Set('tex_lty_executable', 'python3')
 call ale#Set('tex_lty_options',
     \   ' -m yalafi.shell'
     \ . ' --output json'
@@ -57,10 +57,10 @@ endfunction
 
 function! s:check_installation(buffer) abort
     let l:pref = 'In order to use the tex/lty linter, please '
-    if !executable('python')
+    if !executable('python3')
         return l:pref . 'install Python.'
     endif
-    call system('python -c "import yalafi"')
+    call system('python3 -c "import yalafi"')
     if v:shell_error != 0
         return l:pref . 'install the Python module YaLafi.'
     endif
