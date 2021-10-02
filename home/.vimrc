@@ -573,6 +573,7 @@ let g:ale_bib_bibclean_options = '-align-equals -fix-font-changes -German-style'
 let g:conda_startup_msg_suppress = 1
 
 " Setting for grammar check (Grammarous)
+let g:grammarous#languagetool_cmd = '~/bin/yalafi-grammarous --opts "--languagemodel ~/.local/share/languagetool/ngrams"'
 let g:grammarous#disabled_rules = {
             \ '*' : ['WHITESPACE_RULE', 'EN_QUOTES', 'COMMA_PARENTHESIS_WHITESPACE'],
             \ 'help' : ['WHITESPACE_RULE', 'EN_QUOTES', 'SENTENCE_WHITESPACE', 'UPPERCASE_SENTENCE_START'],
