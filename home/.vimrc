@@ -532,6 +532,8 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 let g:ale_linters = {
             \   'python': ['pylint'],
+            \   'tex': ['chktex', 'proselint'],
+            \   'plaintex': ['chktex', 'proselint'],
             \   'fortran': ['gcc'],
             \   'markdown': ['alex', 'proselint', 'languagetool'],
             \   'wiki': ['languagetool'],
