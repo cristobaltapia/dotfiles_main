@@ -69,6 +69,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'cristobaltapia/apdl.vim'
 " Better file browser
 Plug 'preservim/nerdtree'
+" Vifm integration
+Plug 'vifm/vifm.vim'
 " Code commenter
 Plug 'tpope/vim-commentary'
 " Vim-Airline
