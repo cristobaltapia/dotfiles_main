@@ -185,8 +185,7 @@ Plug 'chriskempson/base16-vim'
 " Seoul256 color theme
 Plug 'junegunn/seoul256.vim'
 " Nord colorscheme
-" Plug 'arcticicestudio/nord-vim'
-Plug 'mrswats/nord-vim', { 'branch': 'treesitter-support' }
+Plug 'arcticicestudio/nord-vim'
 
 call plug#end()
 "}}}
