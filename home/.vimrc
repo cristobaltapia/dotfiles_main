@@ -533,18 +533,19 @@ let g:grammarous#disabled_rules = {
             \ }
 let g:grammarous#enabled_rules = {
             \ '*' : ['PARAGRAPH_REPEAT_BEGINNING_RULE','EN_PLAIN_ENGLISH_REPLACE','EN_REDUNDANCY_REPLACE',
-            \ 'E_PRIME_STRICT','MISSING_VERB','TEXT_ANALYSiS','STYLE','CREATIVE_WRITING','HILFESTELLUNG_KOMMASETZUNG',
-            \ 'EMPFOHLENE_RECHTSCHREIBUNG','GRAMMAR'],
+            \        'E_PRIME_STRICT','MISSING_VERB','TEXT_ANALYSiS','STYLE','CREATIVE_WRITING',
+            \        'EMPFOHLENE_RECHTSCHREIBUNG','GRAMMAR','HILFESTELLUNG_KOMMASETZUNG'
+            \       ],
             \ }
 " Use vim spellang
 let g:grammarous#use_vim_spelllang = 1
 
 " Settings for vim-LanguageTool
 let g:languagetool_cmd = '~/bin/yalafi-grammarous'
-let g:languagetool_disable_categories = 'WHITESPACE_RULE,EN_QUOTES,COMMA_PARENTHESIS_WHITESPACE'
-let g:languagetool_enable_categories = 'PARAGRAPH_REPEAT_BEGINNING_RULE,EN_PLAIN_ENGLISH_REPLACE,'
-            \ . 'EN_REDUNDANCY_REPLACE,E_PRIME_STRICT,MISSING_VERB,TEXT_ANALYSiS,STYLE,CREATIVE_WRITING,'
-            \ . 'HILFESTELLUNG_KOMMASETZUNG,EMPFOHLENE_RECHTSCHREIBUNG,GRAMMAR'
+
+" Inherit enable and disable rules from grammarous config
+let g:languagetool_enable_categories = join(g:grammarous#enabled_rules['*'], ',')
+let g:languagetool_disable_categories = join(g:grammarous#disabled_rules['*'], ',')
 
 "----------------------------------------------------------------------
 " Ale configurations
