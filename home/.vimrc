@@ -533,10 +533,20 @@ let g:grammarous#disabled_rules = {
             \ }
 let g:grammarous#enabled_rules = {
             \ '*' : ['PARAGRAPH_REPEAT_BEGINNING_RULE','EN_PLAIN_ENGLISH_REPLACE','EN_REDUNDANCY_REPLACE',
-            \        'E_PRIME_STRICT','MISSING_VERB','TEXT_ANALYSiS','STYLE','CREATIVE_WRITING',
-            \        'EMPFOHLENE_RECHTSCHREIBUNG','GRAMMAR','HILFESTELLUNG_KOMMASETZUNG'
+            \        'E_PRIME_STRICT','MISSING_VERB','TEXT_ANALYSiS','CREATIVE_WRITING',
+            \        'EMPFOHLENE_RECHTSCHREIBUNG','HILFESTELLUNG_KOMMASETZUNG','EN_WORD_COHERENCY',
+            \        'DE_WORD_COHERENCY'
             \       ],
             \ }
+let g:grammarous#enabled_categories = {
+            \ '*' : ['STYLE','GRAMMAR','PLAIN_ENGLISH','TYPOGRAPHY','TYPOS','REDUNDANCY',
+            \        'FALSE_FRIENDS','COMPOUNDING','SEMANTICS','REGIONALISMS'],
+            \ }
+
+let g:grammarous#disabled_categories = {
+            \ '*' : [],
+            \ }
+
 " Use vim spellang
 let g:grammarous#use_vim_spelllang = 1
 
@@ -544,8 +554,10 @@ let g:grammarous#use_vim_spelllang = 1
 let g:languagetool_cmd = '~/bin/yalafi-grammarous'
 
 " Inherit enable and disable rules from grammarous config
-let g:languagetool_enable_categories = join(g:grammarous#enabled_rules['*'], ',')
-let g:languagetool_disable_categories = join(g:grammarous#disabled_rules['*'], ',')
+let g:languagetool_enable_rules = join(g:grammarous#enabled_rules['*'], ',')
+let g:languagetool_enable_categories = join(g:grammarous#enabled_categories['*'], ',')
+let g:languagetool_disable_rules = join(g:grammarous#disabled_rules['*'], ',')
+let g:languagetool_disable_categories = join(g:grammarous#disabled_categories['*'], ',')
 
 "----------------------------------------------------------------------
 " Ale configurations
@@ -577,8 +589,9 @@ let g:ale_fixers = {
             \}
 
 let g:ale_languagetool_options="--autoDetect"
-            \ . " --enable '" . g:languagetool_enable_categories . "'"
-            \ . " --disable '" . g:languagetool_disable_categories . "'"
+            \ . " --enable '" . g:languagetool_enable_rules . "'"
+            \ . " --disable '" . g:languagetool_disable_rules . "'"
+            \ . " --enablecategories '" . g:languagetool_enable_categories . "'"
             \ . " --languagemodel ". $HOME ."/.local/share/languagetool/ngrams"
 
 " let g:ale_tex_lty_ltdirectory = '/usr/share/languagetool/'
