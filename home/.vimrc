@@ -521,6 +521,31 @@ let g:easy_align_delimiters = {
 let g:session_autoload="no"
 let g:session_autosave="no"
 "
+
+"----------------------------------------------------------------------
+" Languagetool
+"----------------------------------------------------------------------
+" Setting for grammar check (Grammarous)
+let g:grammarous#languagetool_cmd = '~/bin/yalafi-grammarous --opts "--languagemodel ' . $HOME . '/.local/share/languagetool/ngrams"'
+let g:grammarous#disabled_rules = {
+            \ '*' : ['WHITESPACE_RULE', 'EN_QUOTES', 'COMMA_PARENTHESIS_WHITESPACE'],
+            \ 'help' : ['WHITESPACE_RULE', 'EN_QUOTES', 'SENTENCE_WHITESPACE', 'UPPERCASE_SENTENCE_START'],
+            \ }
+let g:grammarous#enabled_rules = {
+            \ '*' : ['PARAGRAPH_REPEAT_BEGINNING_RULE','EN_PLAIN_ENGLISH_REPLACE','EN_REDUNDANCY_REPLACE',
+            \ 'E_PRIME_STRICT','MISSING_VERB','TEXT_ANALYSiS','STYLE','CREATIVE_WRITING','HILFESTELLUNG_KOMMASETZUNG',
+            \ 'EMPFOHLENE_RECHTSCHREIBUNG','GRAMMAR'],
+            \ }
+" Use vim spellang
+let g:grammarous#use_vim_spelllang = 1
+
+" Settings for vim-LanguageTool
+let g:languagetool_cmd = '~/bin/yalafi-grammarous'
+let g:languagetool_disable_categories = 'WHITESPACE_RULE,EN_QUOTES,COMMA_PARENTHESIS_WHITESPACE'
+let g:languagetool_enable_categories = 'PARAGRAPH_REPEAT_BEGINNING_RULE,EN_PLAIN_ENGLISH_REPLACE,'
+            \ . 'EN_REDUNDANCY_REPLACE,E_PRIME_STRICT,MISSING_VERB,TEXT_ANALYSiS,STYLE,CREATIVE_WRITING,'
+            \ . 'HILFESTELLUNG_KOMMASETZUNG,EMPFOHLENE_RECHTSCHREIBUNG,GRAMMAR'
+
 "----------------------------------------------------------------------
 " Ale configurations
 "----------------------------------------------------------------------
@@ -528,8 +553,6 @@ let g:session_autosave="no"
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 "\   'tex': ['chktex', 'proselint', 'redpen'],
-"            \   'tex': ['lty'],
-"            \   'plaintex': ['lty'],
 
 let g:ale_linters = {
             \   'python': ['pylint'],
@@ -552,7 +575,10 @@ let g:ale_fixers = {
             \   'vim': ['trim_whitespace'],
             \}
 
-let g:ale_languagetool_options="--autoDetect --languagemodel ~/.local/share/languagetool/ngrams"
+let g:ale_languagetool_options="--autoDetect"
+            \ . " --enable '" . g:languagetool_enable_categories . "'"
+            \ . " --disable '" . g:languagetool_disable_categories . "'"
+            \ . " --languagemodel ". $HOME ."/.local/share/languagetool/ngrams"
 
 " let g:ale_tex_lty_ltdirectory = '/usr/share/languagetool/'
 let g:ale_tex_lty_ltcommand = 'languagetool'
@@ -560,8 +586,6 @@ let g:ale_tex_lty_server = 'my'
 let g:ale_tex_lty_language = 'en-US'
 let g:ale_tex_lty_disable = 'WHITESPACE_RULE'
 let g:ale_tex_lty_shelloptions = "--packages '*' --lt-options '~--autoDetect --languagemodel " . $HOME . "/.local/share/languagetool/ngrams'"
-
-" call deoplete#custom#source('ale', 'rank', 999)
 
 " Define map for the Fix function
 noremap <LocalLeader>= :ALEFix<cr>
@@ -573,32 +597,6 @@ let g:ale_sign_warning = ">>"
 " }}} "
 let g:ale_bib_bibclean_options = '-align-equals -fix-font-changes -German-style'
 
-
-" Suppress message of vim-conda
-let g:conda_startup_msg_suppress = 1
-
-" Setting for grammar check (Grammarous)
-let g:grammarous#languagetool_cmd = '~/bin/yalafi-grammarous --opts "--languagemodel ' . $HOME . '/.local/share/languagetool/ngrams"'
-let g:grammarous#disabled_rules = {
-            \ '*' : ['WHITESPACE_RULE', 'EN_QUOTES', 'COMMA_PARENTHESIS_WHITESPACE'],
-            \ 'help' : ['WHITESPACE_RULE', 'EN_QUOTES', 'SENTENCE_WHITESPACE', 'UPPERCASE_SENTENCE_START'],
-            \ }
-let g:grammarous#enabled_rules = {
-            \ '*' : ['PARAGRAPH_REPEAT_BEGINNING_RULE','EN_PLAIN_ENGLISH_REPLACE','EN_REDUNDANCY_REPLACE',
-            \ 'E_PRIME_STRICT','MISSING_VERB','TEXT_ANALYSiS','STYLE','CREATIVE_WRITING','HILFESTELLUNG_KOMMASETZUNG',
-            \ 'EMPFOHLENE_RECHTSCHREIBUNG','GRAMMAR'],
-            \ }
-" Use vim spellang
-let g:grammarous#use_vim_spelllang = 1
-
-"----------------------------------------------------------------------
-" Vim-LanguageTool
-"----------------------------------------------------------------------
-let g:languagetool_cmd = '~/bin/yalafi-grammarous'
-let g:languagetool_disable_categories = 'WHITESPACE_RULE,EN_QUOTES,COMMA_PARENTHESIS_WHITESPACE'
-let g:languagetool_enable_categories = 'PARAGRAPH_REPEAT_BEGINNING_RULE,EN_PLAIN_ENGLISH_REPLACE,'
-            \ . 'EN_REDUNDANCY_REPLACE,E_PRIME_STRICT,MISSING_VERB,TEXT_ANALYSiS,STYLE,CREATIVE_WRITING,'
-            \ . 'HILFESTELLUNG_KOMMASETZUNG,EMPFOHLENE_RECHTSCHREIBUNG,GRAMMAR'
 
 "----------------------------------------------------------------------
 " Quick run
