@@ -971,7 +971,7 @@ autocmd FileType json syntax match Comment +\/\/.\+$+
 " Bibtex formatting
 "----------------------------------------------------------------------
 function FormatBibfile()
-    let l:bibopts = '--curly --align=14 --no-escape --sort-fields'
+    let l:bibopts = '--curly --align=14 --no-escape --sort-fields --sort'
     let l:bibfile = expand('%:t')
     return '!bibtex-tidy ' . l:bibopts . ' ' . l:bibfile
 endfunction
