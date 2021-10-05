@@ -526,7 +526,7 @@ let g:session_autosave="no"
 " Languagetool
 "----------------------------------------------------------------------
 " Setting for grammar check (Grammarous)
-let g:grammarous#languagetool_cmd = '~/bin/yalafi-grammarous --opts "--languagemodel ' . $HOME . '/.local/share/languagetool/ngrams"'
+let g:grammarous#languagetool_cmd = '~/bin/yalafi-grammarous --opts "--languagemodel '.$HOME.'/.local/share/languagetool/ngrams"'
 let g:grammarous#disabled_rules = {
             \ '*' : ['WHITESPACE_RULE', 'EN_QUOTES', 'COMMA_PARENTHESIS_WHITESPACE'],
             \ 'help' : ['WHITESPACE_RULE', 'EN_QUOTES', 'SENTENCE_WHITESPACE', 'UPPERCASE_SENTENCE_START'],
@@ -548,7 +548,7 @@ let g:grammarous#disabled_categories = {
             \ }
 
 " Use vim spellang
-let g:grammarous#use_vim_spelllang = 1
+let g:grammarous#use_vim_spelllang = 0
 
 " Settings for vim-LanguageTool
 let g:languagetool_cmd = '~/bin/yalafi-grammarous'
@@ -592,14 +592,14 @@ let g:ale_languagetool_options="--autoDetect"
             \ . " --enable '" . g:languagetool_enable_rules . "'"
             \ . " --disable '" . g:languagetool_disable_rules . "'"
             \ . " --enablecategories '" . g:languagetool_enable_categories . "'"
-            \ . " --languagemodel ". $HOME ."/.local/share/languagetool/ngrams"
+            \ . " --languagemodel ".$HOME."/.local/share/languagetool/ngrams"
 
 " let g:ale_tex_lty_ltdirectory = '/usr/share/languagetool/'
 let g:ale_tex_lty_ltcommand = 'languagetool'
 let g:ale_tex_lty_server = 'my'
 let g:ale_tex_lty_language = 'en-US'
 let g:ale_tex_lty_disable = 'WHITESPACE_RULE'
-let g:ale_tex_lty_shelloptions = "--packages '*' --lt-options '~--autoDetect --languagemodel " . $HOME . "/.local/share/languagetool/ngrams'"
+let g:ale_tex_lty_shelloptions = "--packages '*' --lt-options '~--autoDetect --languagemodel ".$HOME."/.local/share/languagetool/ngrams'"
 
 " Define map for the Fix function
 noremap <LocalLeader>= :ALEFix<cr>

@@ -8,7 +8,7 @@
 
 #   LT's base directory
 #
-ltdir=~/.vim/bundle/vim-grammarous/misc/LanguageTool-4.7
+ltdir=~/.vim/plugged/vim-grammarous/misc/LanguageTool-4.8
 
 #   comment out to use languagetool-commandline
 #
