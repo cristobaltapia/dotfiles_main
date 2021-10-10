@@ -10,7 +10,7 @@ fi
 
 # Key bindings
 # ------------
-source "/home/tapia/.vim/plugged/fzf/shell/key-bindings.bash"
+source "${HOME}/.vim/plugged/fzf/shell/key-bindings.bash"
 
 # -----------------------------------------------------
 
