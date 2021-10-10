@@ -6,7 +6,7 @@ fi
 
 # Auto-completion
 # ---------------
-[[ $- == *i* ]] && source "/home/tapia/.vim/plugged/fzf/shell/completion.bash" 2> /dev/null
+[[ $- == *i* ]] && source "${HOME}/.vim/plugged/fzf/shell/completion.bash" 2> /dev/null
 
 # Key bindings
 # ------------
