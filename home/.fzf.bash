@@ -72,10 +72,13 @@ _gs() {
   cut -d: -f1
 }
 
+################################################
 # Color theme
 export FZF_DEFAULT_OPTS='--color=bg+:#3B4252,bg:#2E3440,spinner:#81A1C1,hl:#616E88,fg:#D8DEE9,header:#616E88,info:#81A1C1,pointer:#81A1C1,marker:#81A1C1,fg+:#D8DEE9,prompt:#81A1C1,hl+:#81A1C1'
 export FZF_ALT_C_OPTS='--height=40% --min-height=20'
+export FZF_CTRL_T_OPTS='--height=40% --min-height=20'
 
 # Default commands
-export FZF_ALT_C_COMMAND="rg --files --no-hidden --no-messages --null | xargs -0 dirname | uniq"
-export FZF_CTRL_T_COMMAND="rg --files --no-hidden --no-messages --null | xargs -0 dirname | uniq"
+export FZF_DEFAULT_COMMAND="fdfind"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fdfind -t d"
