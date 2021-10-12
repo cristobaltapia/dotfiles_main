@@ -129,3 +129,25 @@ PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }'printf "\033]0;%s@%s:%s\007"
 eval "$(starship init bash)"
 
 alias obs="QT_QPA_PLATFORM=xcb obs"
+
+# Tmux with lf
+# alias mc='tmux new-session \; send-keys lf C-m \; split -h \; send-keys lf C-m'
+
+
+# Install packages using yay (change to pacman/AUR helper of your choice)
+function yayinstall() {
+    yay -Slq | fzf -q "$1" -m --preview 'yay -Si {1}'| xargs -ro yay -S
+}
+
+################################################
+# FZF config
+export FZF_DEFAULT_OPTS='--color=bg+:#3B4252,bg:#2E3440,spinner:#81A1C1,hl:#616E88,fg:#D8DEE9,header:#616E88,info:#81A1C1,pointer:#81A1C1,marker:#81A1C1,fg+:#D8DEE9,prompt:#81A1C1,hl+:#81A1C1'
+export FZF_ALT_C_OPTS='--height=40% --min-height=20'
+export FZF_CTRL_T_OPTS='--height=40% --min-height=20'
+
+# Default commands
+export FZF_DEFAULT_COMMAND="fd"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fd -t d"
+
+source ${HOME}/.local/share/fzf/fzf-git.bash
