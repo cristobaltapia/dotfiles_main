@@ -54,7 +54,19 @@ let g:vimtex_complete_ignore_case = 1
 let g:vimtex_complete_smart_case = 1
 let g:vimtex_fold_enabled = 1
 " setlocal conceallevel=1
-let g:tex_conceal='abdmg'
+let g:vimtex_syntax_conceal = {
+      \ 'accents': 1,
+      \ 'cites': 1,
+      \ 'fancy': 0,
+      \ 'greek': 0,
+      \ 'math_bounds': 0,
+      \ 'math_delimiters': 0,
+      \ 'math_fracs': 0,
+      \ 'math_super_sub': 0,
+      \ 'math_symbols': 1,
+      \ 'sections': 0,
+      \ 'styles': 1,
+      \}
 setlocal concealcursor=
 
 let g:vimtex_indent_enabled = 1
