@@ -65,7 +65,7 @@
     "wiki",
     "snippets"
   ],
-  "highlight.colors.enable": true,
+  "highlight.colors.enable": false,
   "highlight.document.enable": false,
   "highlight.colorNames.enable": false,
   "highlight.disableLanguages": ["tex"],

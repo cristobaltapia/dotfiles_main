@@ -22,22 +22,6 @@ let g:vimtex_compiler_latexmk = {
             \ ],
             \}
 
-let g:vimtex_grammar_vlty = {}
-" let g:vimtex_grammar_vlty.lt_directory = '/usr/share/languagetool'
-let g:vimtex_grammar_vlty.lt_command = 'languagetool'
-" let g:vimtex_grammar_vlty.server = 'my'
-" let g:vimtex_grammar_vlty.lt_enablecategories = 'PARAGRAPH_REPEAT_BEGINNING_RULE,EN_PLAIN_ENGLISH_REPLACE,'
-"             \ . 'EN_REDUNDANCY_REPLACE,E_PRIME_STRICT,MISSING_VERB,TEXT_ANALYSiS,STYLE'
-let g:vimtex_grammar_vlty.enable = 1
-let g:vimtex_grammar_vlty.show_suggestions = 1
-let g:vimtex_grammar_vlty.shell_options =
-        \   ' --multi-language'
-        \ . ' --packages "*"'
-        \ . " --lt-options '~--languagemodel " . $HOME . "/.local/share/languagetool/ngrams'"
-        \ . ' --equation-punctuation display'
-        \ . ' --single-letters "i.\,A.\|z.\,B.\|\|"'
-
-
 let g:vimtex_grammar_textidote = {
             \ 'jar': '/opt/textidote/textidote.jar',
             \ 'args': '',
@@ -104,18 +88,6 @@ let g:vimtex_quickfix_open_on_warning = 0
 call vimtex#imaps#add_map({
             \ 'lhs' : '%',
             \ 'rhs' : '\percent',
-            \ 'wrapper' : 'vimtex#imaps#wrap_trivial'
-            \})
-
-call vimtex#imaps#add_map({
-            \ 'lhs' : '_',
-            \ 'rhs' : '\textsubscript',
-            \ 'wrapper' : 'vimtex#imaps#wrap_trivial'
-            \})
-
-call vimtex#imaps#add_map({
-            \ 'lhs' : '^',
-            \ 'rhs' : '\textsuperscript',
             \ 'wrapper' : 'vimtex#imaps#wrap_trivial'
             \})
 
