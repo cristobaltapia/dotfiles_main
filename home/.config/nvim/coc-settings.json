@@ -38,7 +38,7 @@
   "suggest.timeout": 1000,
   "suggest.removeDuplicateItems": true,
   "coc.source.file.enable": true,
-  "coc.source.vimtex.enable": true,
+  "coc.source.vimtex.enable": false,
   "coc.source.around.enable": true,
   "coc.preferences.useQuickfixForLocations": true,
   "texlab.auxDirectory": "aux-folder",
@@ -64,7 +64,7 @@
     "wiki",
     "snippets"
   ],
-  "highlight.colors.enable": true,
+  "highlight.colors.enable": false,
   "highlight.document.enable": false,
   "highlight.colorNames.enable": false,
   "highlight.disableLanguages": ["tex"],

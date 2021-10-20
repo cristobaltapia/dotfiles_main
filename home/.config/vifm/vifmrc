@@ -494,3 +494,4 @@ nnoremap yd :!echo -n %d | wl-copy %i<cr>
 
 " yank current filename without path into the clipboard
 nnoremap yn :!echo -n %c | wl-copy %i<cr>:echo expand('%"c') "is yanked to clipboard"<cr>
+
