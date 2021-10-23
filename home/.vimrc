@@ -72,7 +72,8 @@ Plug 'preservim/nerdtree'
 " Vifm integration
 Plug 'vifm/vifm.vim'
 " Code commenter
-Plug 'tpope/vim-commentary'
+" Plug 'tpope/vim-commentary'
+Plug 'b3nj5m1n/kommentary', {'branch': 'main'}
 " Vim-Airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
