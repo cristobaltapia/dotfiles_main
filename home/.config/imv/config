@@ -1,8 +1,8 @@
 [options]
 background = d8dee9
 overlay_font = Inter Nerd Font:16
-overlay_text = $(basename $imv_current_file) ‒ [$(echo $imv_width)×$(echo $imv_height)]
-title_text = $(printf "[%02d/%02d]" $imv_current_index $imv_file_count) $(basename $imv_current_file) - \(Zoom: $(echo $imv_scale%)\)
+overlay_text = $(basename "${imv_current_file}") ‒ [$(echo $imv_width)×$(echo $imv_height)]
+title_text = $(printf "[%02d/%02d]" $imv_current_index $imv_file_count) $(basename "${imv_current_file}") - \(Zoom: $(echo $imv_scale%)\)
 
 [aliases]
 
