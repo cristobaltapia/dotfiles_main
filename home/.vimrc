@@ -373,6 +373,9 @@ augroup file_type
     autocmd FileType javascript setlocal
                 \ shiftwidth=2
                 \ tabstop=2
+    autocmd FileType scss setlocal
+                \ shiftwidth=2
+                \ tabstop=2
     autocmd FileType tex AirlineRefresh
     autocmd FileType tex setlocal
                 \ shiftwidth=2
