@@ -476,6 +476,9 @@ filetype on
 syntax on
 let python_highlight_all=1
 
+" Associate *.fcmacro (FreeCad macro) extensions as python files
+autocmd BufNewFile,BufRead *.fcmacro set filetype=python
+
 "}}}
 
 "----------------------------------------------------------------------
