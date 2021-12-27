@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 from datetime import date
 from textwrap import fill, wrap, shorten
-import numpy as np
-
-import pandas as pd
+from os.path import expandvars
+import ruamel.yaml as yaml
 
 MONTHS = {
     1:"Januar",
@@ -23,7 +22,8 @@ MONTHS = {
 
 def main():
     # Read plan
-    plan = pd.read_excel("~/Nextcloud/five_year_plan.xlsx", index_col=0)
+    with open(expandvars("$HOME/Nextcloud/five_year_plan.yaml"), "r") as stream:
+        plan = yaml.safe_load(stream)
 
     out = format_output(plan)
     print(out)
@@ -60,7 +60,7 @@ def format_output(data):
             list_plan += "\n" + "<tt><b>     " + f"{year_i}".ljust(width) + "</b></tt>\n"
             prev_year += 1
 
-        elements_i = str(data.loc[MONTHS[month_i], year_i]).split("/")
+        elements_i = data[year_i][month_i-1][MONTHS[month_i]]
 
         if month_i == curr_month and year_i == curr_year:
             color_month = "#bf616a"
@@ -79,14 +79,15 @@ def format_output(data):
 
         list_year = []
 
-        for ele_i in elements_i:
-            if ele_i == "nan":
-                entry_month = ""
-            else:
-                entry_month = shorten(str(ele_i), width)
+        if elements_i:
+            for ele_i in elements_i:
+                if ele_i == None:
+                    entry_month = ""
+                else:
+                    entry_month = shorten(str(ele_i), width)
 
-            list_year.append(entry_month)
-            num_elements += 1
+                list_year.append(entry_month)
+                num_elements += 1
 
         start = '<tt>     </tt>'
         for l, e in enumerate(list_year):
