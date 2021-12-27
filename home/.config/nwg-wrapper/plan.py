@@ -3,6 +3,7 @@ from datetime import date
 from textwrap import fill, wrap, shorten
 from os.path import expandvars
 import ruamel.yaml as yaml
+from pandas import DateOffset
 
 MONTHS = {
     1:"Januar",
@@ -44,9 +45,9 @@ def format_output(data):
     width = 34
     curr_year = date.today().year
     curr_month = date.today().month
-    start_date = date.today() - pd.DateOffset(months=2)
+    start_date = date.today() - DateOffset(months=2)
     start_year = start_date.year
-    dates = [start_date + pd.DateOffset(months=k) for k in range(36)]
+    dates = [start_date + DateOffset(months=k) for k in range(36)]
     iter_dates = [(d.year, d.month) for d in dates]
 
     prev_year = dates[0].year
@@ -81,13 +82,14 @@ def format_output(data):
 
         if elements_i:
             for ele_i in elements_i:
-                if ele_i == None:
-                    entry_month = ""
-                else:
-                    entry_month = shorten(str(ele_i), width)
+                entry_month = shorten(str(ele_i), width)
 
                 list_year.append(entry_month)
                 num_elements += 1
+        else:
+            entry_month = ""
+            list_year.append(entry_month)
+            num_elements += 1
 
         start = '<tt>     </tt>'
         for l, e in enumerate(list_year):
