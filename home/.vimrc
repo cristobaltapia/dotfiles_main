@@ -648,7 +648,7 @@ function! s:compile_and_run()
     elseif &filetype == 'sh'
         exec "AsyncRun! time bash %"
     elseif &filetype == 'python'
-        exec "AsyncRun python %:p"
+        exec "AsyncRun -cwd=$(VIM_FILEDIR) -mode=term -save=1 -pos=bottom -rows=15 -focus=0 python '$(VIM_FILEPATH)'"
     elseif &filetype == 'julia'
         exec "AsyncRun julia %:p"
     endif
