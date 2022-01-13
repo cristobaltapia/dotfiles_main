@@ -1,6 +1,6 @@
 if exists('g:GtkGuiLoaded')
     " call rpcnotify(1, 'Gui', 'Font', 'Noto Mono for Powerline 10')
-    call rpcnotify(1, 'Gui', 'Font', 'FuraCode Nerd Font 11')
+    call rpcnotify(1, 'Gui', 'Font', 'FuraCode Nerd Font 12')
     " call rpcnotify(1, 'Gui', 'Font', 'Fura Code Regular Nerd Font Complete.otf 11')
     call rpcnotify(1, 'Gui', 'Option', 'Tabline', 0)
     call rpcnotify(1, 'Gui', 'Option', 'Popupmenu', 0)
@@ -10,3 +10,5 @@ else
     " Guifont FuraCode\ Nerd\ Font:h11
     call rpcnotify(1, 'Gui', 'Option', 'Tabline', 0)
 endif
+
+let g:neovide_cursor_antialiasing=v:false

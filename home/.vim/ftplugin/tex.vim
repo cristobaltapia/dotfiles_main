@@ -7,10 +7,8 @@ syntax spell toplevel
 let g:tex_flavor = 'latex'
 
 let g:vimtex_compiler_latexmk = {
-            \ 'backend' : 'nvim',
-            \ 'background' : 1,
             \ 'build_dir' : 'aux-folder',
-            \ 'callback' : 0,
+            \ 'callback' : 1,
             \ 'continuous' : 0,
             \ 'executable' : 'latexmk',
             \ 'options' : [
@@ -122,22 +120,6 @@ nmap <localleader>lt <Plug>(vimtex-toc-open)
 "----------------------------------------------------------------------
 "
 map <F4> :w !detex \| wc -w<CR>
-
-" Run a latexdiff
-function! GitLatexDiff(old, new)
-    echo a:old
-    execute '!mkdir latex-diff'
-    execute '!git latexdiff --biber --latexmk --latexopt "-pdf -pdflatex=lualatex" --tmpdirprefix "latex-diff" --output "latex-diff/diff-output" --no-view --main ' .'%:t '. a:old .' '. a:new
-endfunction
-
-function! GitPDFLatexDiff(old, new)
-    echo a:old
-    execute '!mkdir -p latex-diff'
-    execute '!git latexdiff --latexmk --latexopt "-pdf" --tmpdirprefix "latex-diff" --output "latex-diff/diff-output" --no-view --main ' .'%:t '. a:old .' '. a:new
-endfunction
-
-command! -nargs=* -complete=file GitLatexDiff :call GitLatexDiff(<f-args>)
-command! -nargs=* -complete=file GitPDFLatexDiff :call GitPDFLatexDiff(<f-args>)
 
 function! GetVisual() range
     let reg_save = getreg('"')

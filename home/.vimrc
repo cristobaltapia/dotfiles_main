@@ -130,6 +130,8 @@ Plug 'jamessan/vim-gnupg'
 Plug 'vim-scripts/Wavefronts-obj'
 " Vala plugin
 Plug 'arrufat/vala.vim'
+" Irssi config syntax
+Plug 'isundil/vim-irssi-syntax'
 " SCAD support
 Plug 'sirtaj/vim-openscad'
 " Context
@@ -453,11 +455,11 @@ let g:airline_powerline_fonts = 1
 if has('win32')
     set guifont=Source\ Code\ Pro\ for\ Powerline:h10
 elseif has('vim')
-    set guifont=Noto\ Mono\ for\ Powerline
+    set guifont=FuraCode\ Nerd\ Font\ Medium
 elseif has('nvim')
     " set guifont=Fira\ Code:h11
-    " set guifont=FuraCode\ Nerd\ Font\ Medium:h11
-    set guifont=JuliaMono\ Nerd\ Font:h11
+    set guifont=FuraCode\ Nerd\ Font:h12
+    " set guifont=JuliaMono\ Nerd\ Font:h11
 endif
 
 " Enable the list of buffers
@@ -646,7 +648,7 @@ function! s:compile_and_run()
     elseif &filetype == 'sh'
         exec "AsyncRun! time bash %"
     elseif &filetype == 'python'
-        exec "AsyncRun python %:p"
+        exec "AsyncRun -cwd=$(VIM_FILEDIR) -mode=term -save=1 -pos=bottom -rows=15 -focus=0 python '$(VIM_FILEPATH)'"
     elseif &filetype == 'julia'
         exec "AsyncRun julia %:p"
     endif
@@ -988,7 +990,7 @@ endfunction
 
 augroup bibtex
     autocmd!
-    autocmd FileType,BufEnter bib command! -nargs=0 Format :execute FormatBibfile()
+    autocmd FileType,BufEnter bib command! -nargs=0 FormatBib :execute FormatBibfile()
 augroup END
 
 "----------------------------------------------------------------------
@@ -1130,3 +1132,12 @@ nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').lsp_references()<cr>
 
+"----------------------------------------------------------------------
+" Kommentary
+"----------------------------------------------------------------------
+lua << EOF
+require('kommentary.config').configure_language("julia", {
+    single_line_comment_string = "#",
+    prefer_single_line_comments = true,
+})
+EOF
