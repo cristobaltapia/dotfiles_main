@@ -648,7 +648,7 @@ function! s:compile_and_run()
     elseif &filetype == 'sh'
         exec "AsyncRun! time bash %"
     elseif &filetype == 'python'
-        exec "AsyncRun -cwd=$(VIM_FILEDIR) -mode=term -save=1 -pos=bottom -rows=15 -focus=0 python '$(VIM_FILEPATH)'"
+        exec "AsyncRun -cwd=$(VIM_FILEDIR) -save=1 -pos=bottom -rows=15 -focus=0 python '$(VIM_FILEPATH)'"
     elseif &filetype == 'julia'
         exec "AsyncRun julia %:p"
     endif
@@ -1141,3 +1141,4 @@ require('kommentary.config').configure_language("julia", {
     prefer_single_line_comments = true,
 })
 EOF
+
