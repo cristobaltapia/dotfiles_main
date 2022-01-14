@@ -317,6 +317,12 @@ nnoremap k gk
 nnoremap gj j
 nnoremap gk k
 
+augroup quickfix_move
+    autocmd!
+    autocmd FileType qf map <buffer> j j
+    autocmd FileType qf map <buffer> k k
+augroup END
+
 " Move to the next buffer
 nmap tn :bnext<CR>
 " Move to the previous buffer
