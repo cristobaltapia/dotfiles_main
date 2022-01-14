@@ -1191,3 +1191,4 @@ end
 
 vim.o.qftf = '{info -> v:lua._G.qftf(info)}'
 EOF
+
