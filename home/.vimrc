@@ -631,10 +631,10 @@ nnoremap <F5> :call <SID>compile_and_run()<CR>
 " close quickfix window
 " nnoremap <Leader>cq :ccl<CR>
 
-augroup SPACEVIM_ASYNCRUN
+augroup local-asyncrun
     autocmd!
-    " Automatically open the quickfix window
     autocmd User AsyncRunStart call asyncrun#quickfix_toggle(10, 1)
+    autocmd User AsyncRunStop copen | wincmd p
 augroup END
 
 function! s:compile_and_run()
