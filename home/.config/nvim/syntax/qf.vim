@@ -20,7 +20,7 @@ hi def link qfFileName Directory
 hi def link qfSeparatorLeft Delimiter
 hi def link qfSeparatorRight Delimiter
 hi def link qfSeparatorMid Delimiter
-hi def link qfLineNr CocWarningFloat
+hi def link qfLineNr DiagnosticWarn
 hi def link qfColNr Number
 hi def link qfTraceback CocErrorSign
 hi def link qfError CocErrorSign
