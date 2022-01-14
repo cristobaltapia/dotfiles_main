@@ -9,7 +9,7 @@ syn match qfSeparatorMid /\:/ contained nextgroup=qfColNr
 syn match qfColNr /[^│]*/ contained nextgroup=qfSeparatorRight
 syn match qfSeparatorRight '│' contained nextgroup=qfError,qfWarning,qfInfo,qfNote
 syn match qfError / E .*$/ contained
-syn match qfErrorPy /\w\{-1,}\(Error\)\@=.*$/
+syn match qfErrorPy /\%x00\w\{-1,}\(Error\)\@=.*$/
 syn match qfWarning / W .*$/ contained
 syn match qfInfo / I .*$/ contained
 syn match qfNote / [NH] .*$/ contained
