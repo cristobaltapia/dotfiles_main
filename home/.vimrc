@@ -1160,7 +1160,6 @@ function _G.qftf(info)
     else
         items = vim.fn.getloclist(info.winid, {id = info.id, items = 0}).items
     end
-    print(items)
     local limit = 31
     local fname_fmt1, fname_fmt2 = '%-' .. limit .. 's', '…%.' .. (limit - 1) .. 's'
     local valid_fmt = '%s │%5d:%2d│%s %s'
@@ -1186,6 +1185,9 @@ function _G.qftf(info)
             local lnum = e.lnum > 99999 and -1 or e.lnum
             local cnum = e.col
             local qtype = e.type == '' and '' or ' ' .. e.type:sub(1, 1):upper()
+            if qtype == '' then
+                qtype = ' ->'
+            end
             str = valid_fmt:format(fname, lnum, cnum, qtype, e.text)
         else
             str = e.text
