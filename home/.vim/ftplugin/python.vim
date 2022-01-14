@@ -26,5 +26,6 @@ function! s:GetCurrentTextWidth()
     return g:pep8_text_width
 endfunction
 
-set errorformat=%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%C\ %m,%Z%[%^\ ]%\\@=%m
+set errorformat=%A\ \ File\ \"%f\"\\,\ line\ %l%.%#
+set errorformat+=%C\ %m,%Z%[%^\ ]%\\@=%m
 set errorformat+=%W%f:%l:\ %m,%Z%m

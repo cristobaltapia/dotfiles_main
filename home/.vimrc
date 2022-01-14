@@ -634,7 +634,7 @@ nnoremap <F5> :call <SID>compile_and_run()<CR>
 augroup SPACEVIM_ASYNCRUN
     autocmd!
     " Automatically open the quickfix window
-    autocmd User AsyncRunStart call asyncrun#quickfix_toggle(15, 1)
+    autocmd User AsyncRunStart call asyncrun#quickfix_toggle(10, 1)
 augroup END
 
 function! s:compile_and_run()
@@ -1157,7 +1157,7 @@ function _G.qftf(info)
     print(items)
     local limit = 31
     local fname_fmt1, fname_fmt2 = '%-' .. limit .. 's', '…%.' .. (limit - 1) .. 's'
-    local valid_fmt = '%s │line: %5d│%s %s'
+    local valid_fmt = '%s │%5d:%2d│%s %s'
     for i = info.start_idx, info.end_idx do
         local e = items[i]
         local fname = ''
@@ -1178,8 +1178,9 @@ function _G.qftf(info)
                 end
             end
             local lnum = e.lnum > 99999 and -1 or e.lnum
+            local cnum = e.col
             local qtype = e.type == '' and '' or ' ' .. e.type:sub(1, 1):upper()
-            str = valid_fmt:format(fname, lnum, qtype, e.text)
+            str = valid_fmt:format(fname, lnum, cnum, qtype, e.text)
         else
             str = e.text
         end
