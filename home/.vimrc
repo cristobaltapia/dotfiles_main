@@ -640,7 +640,7 @@ nnoremap <F5> :call <SID>compile_and_run()<CR>
 augroup local-asyncrun
     autocmd!
     autocmd User AsyncRunStart call asyncrun#quickfix_toggle(10, 1)
-    autocmd User AsyncRunStop copen | wincmd p
+    autocmd User AsyncRunStop copen | clast | wincmd k
 augroup END
 
 function! s:compile_and_run()
