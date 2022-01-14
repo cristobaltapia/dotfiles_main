@@ -27,5 +27,5 @@ function! s:GetCurrentTextWidth()
 endfunction
 
 set errorformat=%A\ \ File\ \"%f\"\\,\ line\ %l%.%#
-set errorformat+=%C\ %m,%Z%[%^\ ]%\\@=%m
-set errorformat+=%W%f:%l:\ %m,%Z%m
+set errorformat+=%C\ %#%m,%Z%[%^\ ]%\\@=%m
+set errorformat+=%W%f:%l:\ %m,%Z\ \ %m,%Z%m

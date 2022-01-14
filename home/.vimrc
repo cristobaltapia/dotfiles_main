@@ -317,6 +317,12 @@ nnoremap k gk
 nnoremap gj j
 nnoremap gk k
 
+augroup quickfix_move
+    autocmd!
+    autocmd FileType qf map <buffer> j j
+    autocmd FileType qf map <buffer> k k
+augroup END
+
 " Move to the next buffer
 nmap tn :bnext<CR>
 " Move to the previous buffer
@@ -634,7 +640,7 @@ nnoremap <F5> :call <SID>compile_and_run()<CR>
 augroup local-asyncrun
     autocmd!
     autocmd User AsyncRunStart call asyncrun#quickfix_toggle(10, 1)
-    autocmd User AsyncRunStop copen | wincmd p
+    autocmd User AsyncRunStop copen | clast | wincmd k
 augroup END
 
 function! s:compile_and_run()
@@ -648,7 +654,7 @@ function! s:compile_and_run()
     elseif &filetype == 'sh'
         exec "AsyncRun! time bash %"
     elseif &filetype == 'python'
-        exec "AsyncRun -cwd=$(VIM_FILEDIR) -save=1 -pos=bottom -rows=15 -focus=0 python '$(VIM_FILEPATH)'"
+        exec "AsyncRun -cwd=$(VIM_FILEDIR) -save=1 -pos=bottom -rows=15 -focus=0 python3 '$(VIM_FILEPATH)'"
     elseif &filetype == 'julia'
         exec "AsyncRun julia %:p"
     endif
@@ -1154,7 +1160,6 @@ function _G.qftf(info)
     else
         items = vim.fn.getloclist(info.winid, {id = info.id, items = 0}).items
     end
-    print(items)
     local limit = 31
     local fname_fmt1, fname_fmt2 = '%-' .. limit .. 's', '…%.' .. (limit - 1) .. 's'
     local valid_fmt = '%s │%5d:%2d│%s %s'
@@ -1180,6 +1185,9 @@ function _G.qftf(info)
             local lnum = e.lnum > 99999 and -1 or e.lnum
             local cnum = e.col
             local qtype = e.type == '' and '' or ' ' .. e.type:sub(1, 1):upper()
+            if qtype == '' then
+                qtype = ' ->'
+            end
             str = valid_fmt:format(fname, lnum, cnum, qtype, e.text)
         else
             str = e.text
