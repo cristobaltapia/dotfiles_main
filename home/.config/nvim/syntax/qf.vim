@@ -23,7 +23,8 @@ hi def link qfSeparatorRight Delimiter
 hi def link qfSeparatorMid Delimiter
 hi def link qfLineNr DiagnosticWarn
 hi def link qfColNr Number
-hi def link qfTraceback CocErrorSign
+hi def link qfTraceback ErrorMsg
+hi def link qfTracebackNext DiffDelete
 hi def link qfError CocErrorSign
 hi def link qfErrorPy CocErrorSign
 hi def link qfWarning CocWarningSign
