@@ -1014,8 +1014,7 @@ let g:JuliaFormatter_options = {
             \ }
 
 function SendJuliaRange()
-    let l:curr_buff = getbufinfo({'curr':0})
-    let l:curr_line = curr_buff['curr'].lnum
+    let l:curr_line = line('.')
     execute "0," . curr_line . "SlimeSend"
 endfunction
 
