@@ -153,7 +153,9 @@ Plug 'aymericbeaumet/vim-symlink'
 Plug 'lervag/wiki.vim'
 Plug 'lervag/wiki-ft.vim'
 " ASCII math equations
-Plug 'jbyuki/nabla.nvim'
+Plug 'jbyuki/nabla.nvim', { 'for' : ['markdown', 'markdown.pandoc'] }
+" Cooklang
+Plug 'luizribeiro/vim-cooklang', { 'branch': 'main', 'for': 'cook' }
 " Bullets
 Plug 'dkarter/bullets.vim'
 " Plug 'powerman/vim-plugin-AnsiEsc'
