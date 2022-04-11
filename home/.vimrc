@@ -415,6 +415,11 @@ augroup file_type
                 \ sts=2
                 \ sw=2
                 \ expandtab
+    autocmd FileType json setlocal
+                \ ts=2
+                \ sts=2
+                \ sw=2
+                \ expandtab
     autocmd FileType bash setlocal
                 \ shiftwidth=2
                 \ tabstop=2
