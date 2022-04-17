@@ -82,13 +82,6 @@ let g:vimtex_quickfix_open_on_warning = 0
 
 " let g:matchup_matchparen_deferred = 1
 "
-" Add custom mapping through vimtex#imap#add_map
-call vimtex#imaps#add_map({
-            \ 'lhs' : '%',
-            \ 'rhs' : '\percent',
-            \ 'wrapper' : 'vimtex#imaps#wrap_trivial'
-            \})
-
 " Delimiter modifiers
 let g:vimtex_delim_list = {'mods' : {}}
 let g:vimtex_delim_list.mods.name = [
