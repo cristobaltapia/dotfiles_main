@@ -29,6 +29,7 @@ window:
   dimensions:
     columns: 0
     lines: 0
+  opacity: 1.0
 
 colors:
   primary:
@@ -82,4 +83,3 @@ colors:
 key_bindings:
   - { key: Return,   mods: Control|Shift, action: SpawnNewInstance }
 
-background_opacity: 1.0
