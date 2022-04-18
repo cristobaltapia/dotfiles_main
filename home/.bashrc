@@ -151,3 +151,4 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd -t d"
 
 source ${HOME}/.local/share/fzf/fzf-git.bash
+source ${HOME}/bin/fzf-beet.bash
