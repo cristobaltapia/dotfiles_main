@@ -339,6 +339,9 @@ nmap <leader>bl :ls<CR>
 " Show pending tasks list
 noremap <F2> :TaskList<CR>
 
+" Telescope
+nnoremap <leader>lg :Telescope live_grep<CR>
+
 "}}}
 
 "----------------------------------------------------------------------
