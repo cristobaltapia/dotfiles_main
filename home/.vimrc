@@ -65,6 +65,10 @@ Plug 'junegunn/vim-easy-align'
 Plug 'jbyuki/instant.nvim'
 " fugitive.vim: a Git wrappe
 Plug 'tpope/vim-fugitive'
+" A Vim plugin which shows a git diff in the 'gutter'
+Plug 'airblade/vim-gitgutter'
+" Git commit browser (needs fugitive)
+Plug 'junegunn/gv.vim'
 "APDL Syntax
 Plug 'cristobaltapia/apdl.vim'
 " Better file browser
@@ -122,8 +126,6 @@ Plug 'skywind3000/asyncrun.vim'
 Plug 'elzr/vim-json', {'for': 'json'}
 " Change working direcotry to open buffer
 Plug 'yssl/AutoCWD.vim'
-" A Vim plugin which shows a git diff in the 'gutter'
-Plug 'airblade/vim-gitgutter'
 " GPG integration
 Plug 'jamessan/vim-gnupg'
 " Wavefront format support

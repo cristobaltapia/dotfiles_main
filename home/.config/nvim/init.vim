@@ -71,3 +71,33 @@ if (has("termguicolors"))
 endif
 
 " 1}}} "
+"
+
+" Telescope
+lua <<EOF
+require('telescope').setup{
+    defaults = {
+        scroll_strategy = "limit",
+        winblend = 30,
+        layout_strategy = 'vertical',
+        layout_config = {
+            vertical = {
+                width = 0.85,
+                height = 0.95,
+                preview_cutoff = 10,
+                mirror = false,
+                },
+            center = {
+                width = 0.85,
+                height = 0.95,
+                preview_cutoff = 10,
+                prompt_position = 'top',
+                },
+            },
+        file_ignore_patterns = {
+            "%.pyc",
+            }
+        },
+}
+
+EOF
