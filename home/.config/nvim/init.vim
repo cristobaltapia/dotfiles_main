@@ -79,6 +79,7 @@ require('telescope').setup{
     defaults = {
         scroll_strategy = "limit",
         winblend = 30,
+        sorting_strategy = 'ascending',
         layout_strategy = 'vertical',
         layout_config = {
             vertical = {
