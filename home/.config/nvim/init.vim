@@ -97,6 +97,7 @@ require('telescope').setup{
             },
         file_ignore_patterns = {
             "%.pyc",
+            "%.rpy",
             }
         },
 }
