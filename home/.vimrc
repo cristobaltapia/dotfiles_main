@@ -339,9 +339,6 @@ nmap <leader>bl :ls<CR>
 " Show pending tasks list
 noremap <F2> :TaskList<CR>
 
-" Telescope
-nnoremap <leader>lg :Telescope live_grep<CR>
-
 "}}}
 
 "----------------------------------------------------------------------
@@ -1149,7 +1146,6 @@ let g:extra_whitespace_ignored_filetypes = ['wiki', ]
 nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
 nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
-nnoremap <leader>fh <cmd>lua require('telescope.builtin').lsp_references()<cr>
 
 "----------------------------------------------------------------------
 " Kommentary
