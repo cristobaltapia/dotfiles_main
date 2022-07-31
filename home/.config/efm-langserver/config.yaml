@@ -20,3 +20,6 @@ languages:
     lint-stdin: true
     lint-formats:
       - '%f:%l:%c: %m'
+
+  bib:
+    format-command: 'bibtex-tidy --no-backup'

@@ -108,7 +108,7 @@ vmap <localleader>ll <Plug>(vimtex-compile-selected)
 nmap <localleader>lv <Plug>(vimtex-view)
 nmap <localleader>lo <Plug>(vimtex-compile-output)
 nmap <localleader>rf :VimtexRefreshFolds<CR>
-nmap <localleader>lt <Plug>(vimtex-toc-open)
+nnoremap <localleader>lt :call vimtex#fzf#run('cl')<cr>
 
 "----------------------------------------------------------------------
 "

@@ -112,7 +112,7 @@ Plug 'neoclide/coc.nvim', { 'do': 'yarn install --frozen-lockfile' }
 " Julia support
 Plug 'JuliaEditorSupport/julia-vim'
 " Julia formatter
-Plug 'kdheepak/JuliaFormatter.vim'
+Plug 'kdheepak/JuliaFormatter.vim', { 'branch': 'main' }
 " Vim-slime (for REPL of julia)
 Plug 'jpalardy/vim-slime', { 'branch': 'main' }
 " OpenScad support
@@ -1023,7 +1023,9 @@ let g:latex_to_unicode_auto = 1
 
 let g:JuliaFormatter_options = {
             \ 'style' : 'blue',
+            \ 'remove_extra_newlines' : 'true',
             \ }
+" let g:JuliaFormatter_use_sysimage = 1
 
 function SendJuliaRange()
     let l:curr_line = line('.')

@@ -100,5 +100,4 @@ require('telescope').setup{
             }
         },
 }
-
 EOF
