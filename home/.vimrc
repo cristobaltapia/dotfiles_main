@@ -108,7 +108,7 @@ Plug 'nathanaelkane/vim-indent-guides'
 " ALE
 Plug 'dense-analysis/ale'
 " COC
-Plug 'neoclide/coc.nvim', { 'do': 'yarn install --frozen-lockfile' }
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Julia support
 Plug 'JuliaEditorSupport/julia-vim'
 " Julia formatter
@@ -473,7 +473,7 @@ elseif has('vim')
     set guifont=FuraCode\ Nerd\ Font\ Medium
 elseif has('nvim')
     " set guifont=Fira\ Code:h11
-    set guifont=FuraCode\ Nerd\ Font:h12
+    set guifont=FiraCode\ Nerd\ Font:h12
     " set guifont=JuliaMono\ Nerd\ Font:h11
 endif
 
@@ -924,7 +924,7 @@ nmap <leader>ac  <Plug>(coc-codeaction)
 nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Use `:Format` to format current buffer
-command! -nargs=0 Format :call CocAction('format')
+command! -nargs=0 Format :call CocActionAsync('format')
 
 " Use `:Fold` to fold current buffer
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
