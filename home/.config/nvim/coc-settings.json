@@ -110,7 +110,7 @@
       "args": [],
       // custom config path
       // "args": ["-c", "/path/to/your/config.yaml"],
-      "filetypes": ["eruby"]
+      "filetypes": ["eruby", "bib"]
     },
     "fortran": {
       "command": "fortls",

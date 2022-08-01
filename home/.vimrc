@@ -112,7 +112,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Julia support
 Plug 'JuliaEditorSupport/julia-vim'
 " Julia formatter
-Plug 'kdheepak/JuliaFormatter.vim'
+Plug 'kdheepak/JuliaFormatter.vim', { 'branch': 'main' }
 " Vim-slime (for REPL of julia)
 Plug 'jpalardy/vim-slime', { 'branch': 'main' }
 " OpenScad support
@@ -927,10 +927,10 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 command! -nargs=0 Format :call CocActionAsync('format')
 
 " Use `:Fold` to fold current buffer
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+command! -nargs=? Fold :call CocAction('fold', <f-args>)
 
 " use `:OR` for organize import of current buffer
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
 
 " Map function and class text objects
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
@@ -953,24 +953,6 @@ if has('nvim-0.4.0') || has('patch-8.2.0750')
     vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 endif
 
-" Using CocList
-" Show all diagnostics
-" nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-" " Manage extensions
-" nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-" " Show commands
-" nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-" " Find symbol of current document
-" nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-" " Search workspace symbols
-" nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-" " Do default action for next item.
-" nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-" " Do default action for previous item.
-" nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-" " Resume latest coc list
-" nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
-"
 " Call CocCommands
 nnoremap <silent> <leader>cc  :<C-u>CocCommand<CR>
 
@@ -1020,7 +1002,9 @@ let g:latex_to_unicode_auto = 1
 
 let g:JuliaFormatter_options = {
             \ 'style' : 'blue',
+            \ 'remove_extra_newlines' : 'true',
             \ }
+" let g:JuliaFormatter_use_sysimage = 1
 
 function SendJuliaRange()
     let l:curr_line = line('.')
