@@ -198,6 +198,8 @@ Plug 'chriskempson/base16-vim'
 Plug 'junegunn/seoul256.vim'
 " Nord colorscheme
 Plug 'arcticicestudio/nord-vim'
+" Dracula colorscheme
+Plug 'dracula/vim', { 'as': 'dracula' }
 
 call plug#end()
 "}}}
@@ -866,10 +868,6 @@ set signcolumn=yes
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
 " Use `[c` and `]c` to navigate diagnostics
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
@@ -883,10 +881,20 @@ nmap <silent> gr <Plug>(coc-references)
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
 " Solves double 'Enter' needed for a new line
-inoremap <silent><expr> <CR> pumvisible() ? "\<C-y><CR>" : "\<CR>"
-inoremap <silent><expr> <C-l> pumvisible() ? coc#_select_confirm()
+inoremap <silent><expr> <CR> coc#pum#visible() ? "\<C-y><CR>" : "\<CR>"
+inoremap <silent><expr> <C-l> coc#pum#visible() ? coc#_select_confirm()
             \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <C-n> coc#pum#visible() ? coc#pum#next(1) : "\<C-n>"
+inoremap <silent><expr> <C-p> coc#pum#visible() ? coc#pum#prev(1) : "\<C-p>"
 
 function! s:show_documentation()
     if (index(['vim','help'], &filetype) >= 0)
@@ -955,19 +963,6 @@ endif
 
 " Call CocCommands
 nnoremap <silent> <leader>cc  :<C-u>CocCommand<CR>
-
-" Use <C-l> for trigger snippet expand.
-" imap <C-k> <Plug>(coc-snippets-expand)
-" Use <C-j> for select text for visual placeholder of snippet.
-" vmap <C-j> <Plug>(coc-snippets-select)
-" Use <C-j> for jump to next placeholder, it's default of coc.nvim
-" let g:coc_snippet_next = '<c-j>'
-
-" Use <C-j> for both expand and jump (make expand higher priority.)
-" imap <C-n> <Plug>(coc-snippets-expand-jump)
-
-" autocmd FileType python nnoremap <F5> :call CocActionAsync('runCommand',
-"             \ 'python.execInTerminal')<CR>
 
 nnoremap <silent> <leader>y  :<C-u>CocList -A --normal yank<cr>
 
