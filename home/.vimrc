@@ -87,6 +87,8 @@ Plug 'fisadev/FixedTaskList.vim'
 Plug 'tpope/vim-surround'
 " Autoclose (autocloses parenthesis)
 Plug 'Townk/vim-autoclose'
+" Parinfer
+Plug 'gpanders/nvim-parinfer', {'for': 'yuck'}
 " Fix white spaces at end of lines
 Plug 'bronson/vim-trailing-whitespace'
 " Matlab
@@ -136,6 +138,8 @@ Plug 'arrufat/vala.vim'
 Plug 'isundil/vim-irssi-syntax'
 " SCAD support
 Plug 'sirtaj/vim-openscad'
+" Yuck
+Plug 'elkowar/yuck.vim'
 " Context
 " Plug 'wellle/context.vim'
 " Fuzzy finder
