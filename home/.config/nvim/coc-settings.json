@@ -30,7 +30,6 @@
   "pyright.organizeimports.provider": "isort",
   "suggest.labelMaxLength": 25,
   "suggest.detailMaxLength": 100,
-  "suggest.enablePreview": true,
   "suggest.minTriggerInputLength": 2,
   "suggest.noselect": true,
   "suggest.fixInsertedWord": true,
@@ -40,6 +39,46 @@
   "suggest.removeDuplicateItems": true,
   "coc.source.file.enable": true,
   "coc.source.vimtex.enable": false,
+  "suggest.pumFloatConfig": {
+    "border": true,
+    "rounded": true
+  },
+  "signature.floatConfig": {
+    "border": true,
+    "rounded": true
+  },
+  "hover.floatConfig": {
+    "border": true,
+    "rounded": true
+  },
+  "suggest.completionItemKindLabels": {
+    "default": "",
+    "text": "", // 
+    "method": "", // 
+    "function": "", // ƒ
+    "constructor": "", // 
+    "field": "", // 料  
+    "variable": "", //  
+    "class": "", // ﴯ  
+    "interface": "", // 
+    "module": "", // 
+    "property": "", // ﰠ
+    "unit": "", //  塞
+    "value": "",
+    "enum": "", // 
+    "keyword": "", // 
+    "snippet": "", //    
+    "color": "",
+    "file": "", // 
+    "reference": "", //  渚
+    "folder": "", // 
+    "enumMember": "", // 
+    "constant": "", // 
+    "struct": "פּ", // 
+    "event": "", // 鬒
+    "operator": "Ψ", // 
+    "typeParameter": "" //   
+  },
   "coc.source.around.enable": true,
   "coc.preferences.useQuickfixForLocations": true,
   "texlab.auxDirectory": "aux-folder",
