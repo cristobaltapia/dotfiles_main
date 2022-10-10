@@ -702,7 +702,7 @@ endfunction
 "----------------------------------------------------------------------
 "{{{
 function! g:Open_browser(url)
-    silent exe 'silent !epiphany --private-instance ' . a:url . " &"
+    silent exe 'silent !gnome-www-browser --private-instance ' . a:url . " &"
 endfunction
 let g:mkdp_browserfunc = 'g:Open_browser'
 let g:mkdp_filetypes = ['markdown', 'markdown.pandoc']
@@ -1021,6 +1021,7 @@ augroup END
 let g:slime_target = "tmux"
 " set target pane that code is sent to (optional)
 let g:slime_default_config = {"socket_name": "default", "target_pane": "0.1"}
+let g:slime_bracketed_paste = 1
 
 
 " Close the terminal split below after the execution of the file
