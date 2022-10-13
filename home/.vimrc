@@ -707,9 +707,10 @@ endfunction
 "{{{
 function! g:Open_browser(url)
     silent exe 'silent !gnome-www-browser --private-instance ' . a:url . " &"
+    silent exe 'silent !epiphany --private-instance ' . a:url . " &"
 endfunction
 let g:mkdp_browserfunc = 'g:Open_browser'
-let g:mkdp_filetypes = ['markdown', 'markdown.pandoc']
+let g:mkdp_filetypes = ['markdown', 'markdown.pandoc', 'wiki']
 
 autocmd FileChangedShell <buffer> call ProcessFileChangedShell()
 
@@ -1064,14 +1065,10 @@ let g:bullets_set_mappings = 1
 let g:vimwiki_pubs_config = [$HOME."/.config/pubs/main_library.conf", $HOME."/.config/pubs/misc_library.conf"]
 
 let g:wiki_root = '~/Notes'
-let g:wiki_map_link_create = 'WikivimFile'
-let g:wiki_mappings_global = {
-            \ '<plug>(wiki-list-toggle)' : '<c-d>',
-            \ 'i_<plug>(wiki-list-toggle)' : '<c-d>',
-            \}
+let g:wiki_map_text_to_link = 'WikivimFile'
 
 function WikivimFile(text) abort
-    return substitute(tolower(a:text), '\s\+', '-', 'g')
+    return [substitute(tolower(a:text), '\s\+', '-', 'g'), a:text]
 endfunction
 
 augroup MyWikiAutocmds
@@ -1137,6 +1134,13 @@ require('kommentary.config').configure_language("julia", {
     single_line_comment_string = "#",
     prefer_single_line_comments = true,
 })
+EOF
+
+"----------------------------------------------------------------------
+" Mini.nvim (trailspace)
+"----------------------------------------------------------------------
+lua << EOF
+require('mini.trailspace').setup()
 EOF
 
 "----------------------------------------------------------------------
