@@ -90,7 +90,7 @@ Plug 'Townk/vim-autoclose'
 " Parinfer
 Plug 'gpanders/nvim-parinfer', {'for': 'yuck'}
 " Fix white spaces at end of lines
-Plug 'bronson/vim-trailing-whitespace'
+Plug 'echasnovski/mini.nvim', {'branch': 'main'}
 " Matlab
 Plug 'vim-scripts/MatlabFilesEdition', { 'for': 'matlab' }
 " Latex
