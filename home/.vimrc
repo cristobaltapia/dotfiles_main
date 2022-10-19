@@ -711,10 +711,15 @@ function! g:Open_browser(url)
 endfunction
 let g:mkdp_browserfunc = 'g:Open_browser'
 let g:mkdp_filetypes = ['markdown', 'markdown.pandoc', 'wiki']
+let g:mkdp_auto_close = 0
+
 
 autocmd FileChangedShell <buffer> call ProcessFileChangedShell()
 
-let g:mkdp_auto_close = 0
+augroup htmlpreview
+    autocmd!
+    autocmd FileType html nnoremap <F8> :silent !firefox "file://%:p"<CR>
+augroup END
 
 " Configuration for nabla.nvim (ASCII math)
 augroup nablanvim
