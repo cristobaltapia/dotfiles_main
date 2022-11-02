@@ -159,7 +159,7 @@ Plug 'aymericbeaumet/vim-symlink'
 Plug 'lervag/wiki.vim'
 Plug 'lervag/wiki-ft.vim'
 " ASCII math equations
-Plug 'jbyuki/nabla.nvim', { 'for' : ['markdown', 'markdown.pandoc'] }
+Plug 'jbyuki/nabla.nvim', { 'for' : ['markdown', 'markdown.pandoc', 'wiki'] }
 " Cooklang
 Plug 'luizribeiro/vim-cooklang', { 'branch': 'main', 'for': 'cook' }
 " Bullets
@@ -894,7 +894,7 @@ nnoremap <silent> K :call <SID>show_documentation()<CR>
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
 " Solves double 'Enter' needed for a new line
-inoremap <silent><expr> <CR> coc#pum#visible() ? "\<C-y><CR>" : "\<CR>"
+" inoremap <silent><expr> <CR> coc#pum#visible() ? "\<C-y><CR>" : "\<CR>"
 inoremap <silent><expr> <C-l> coc#pum#visible() ? coc#_select_confirm()
             \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
