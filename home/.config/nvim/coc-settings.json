@@ -17,6 +17,7 @@
   },
   "python.formatting.yapfPath": "yapf",
   "python.formatting.blackPath": "black",
+  "pyright.inlayHints.enable": false,
   "python.linting.enabled": true,
   "python.linting.pylintEnabled": true,
   "python.linting.flake8Enabled": false,
