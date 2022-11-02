@@ -48,7 +48,7 @@ Plug 'rhysd/vim-grammarous'
 " vim-LanguageTool
 Plug 'dpelle/vim-LanguageTool'
 " CSV files
-" Plug 'chrisbra/csv.vim', { 'for': 'csv' }
+Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 " Markdown preview support
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 " reStructuredText preview
