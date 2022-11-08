@@ -174,6 +174,8 @@ Plug 'dhruvasagar/vim-table-mode', { 'for' : ['markdown', 'markdown.pandoc'] }
 " Telescope
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+" ASCII art
+Plug 'jbyuki/venn.nvim'
 
 "--------
 " Python:
