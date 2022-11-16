@@ -188,6 +188,8 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Plug 'Vigemus/iron.nvim'
 " Indent text object
 " Plug 'michaeljsmith/vim-indent-object', { 'for': 'python' }
+" PyDocstring: generate docstrings for python functions
+Plug 'heavenshell/vim-pydocstring', { 'do': 'make install', 'for': 'python' }
 
 "--------
 " Colors:
@@ -509,6 +511,10 @@ let python_highlight_all=1
 
 " Associate *.fcmacro (FreeCad macro) extensions as python files
 autocmd BufNewFile,BufRead *.fcmacro set filetype=python
+
+" Configuration for vim-pydocstring
+let g:pydocstring_formatter = 'numpy'
+let g:pydocstring_ignore_init = 1
 
 "}}}
 
@@ -1148,7 +1154,6 @@ EOF
 "----------------------------------------------------------------------
 lua << EOF
 require('mini.trailspace').setup()
-require('mini.indentscope').setup()
 EOF
 
 "----------------------------------------------------------------------
