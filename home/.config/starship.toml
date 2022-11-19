@@ -1,7 +1,26 @@
 add_newline = true
+format="""
+$username\
+$hostname\
+$directory\
+$package\
+$python\
+$julia\
+$time\
+$fill\
+$git_branch\
+$git_status\
+$shell\n\
+$character"""
+right_format = """
+$battery
+"""
 
 [username]
 show_always = true
+
+[fill]
+symbol = " "
 
 [hostname]
 ssh_only = true
