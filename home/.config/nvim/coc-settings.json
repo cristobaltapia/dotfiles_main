@@ -33,6 +33,8 @@
   "pyright.inlayHints.functionReturnTypes": false,
   "python.venvPath": "/home/tapia/.virtualenvs",
   "pyright.organizeimports.provider": "isort",
+  "pydocstring.enable": true,
+  "pydocstring.formatter": "numpy"
   "suggest.labelMaxLength": 25,
   "suggest.detailMaxLength": 100,
   "suggest.minTriggerInputLength": 2,
