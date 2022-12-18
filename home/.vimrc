@@ -854,10 +854,13 @@ let g:echodoc_enable_at_startup = 1
 " Install all coc-extensions
 " let g:coc_global_extensions = [
 "             \ 'coc-texlab',
+"             \ 'coc-ltex',
 "             \ 'coc-pyright',
 "             \ 'coc-tsserver',
 "             \ 'coc-highlight',
+"             \ 'coc-pydocstring',
 "             \ 'coc-html',
+"             \ 'coc-prettier',
 "             \ 'coc-ultisnips',
 "             \ 'coc-yank',
 "             \ 'coc-lists',
@@ -895,6 +898,10 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+" Remap for do codeAction of selected region
+nmap <silent> ga <Plug>(coc-codeaction-line)
+xmap <silent> ga <Plug>(coc-codeaction-selected)
+nmap <silent> gA <Plug>(coc-codeaction)
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -940,14 +947,6 @@ augroup mygroup
     autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
-" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-" Remap for do codeAction of current line
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Fix autofix problem of current line
-nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocActionAsync('format')
