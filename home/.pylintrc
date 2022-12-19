@@ -1,6 +1,6 @@
 [MESSAGES CONTROL]
 
-disable=too-many-locals,missing-docstring,invalid-name,C0330
+disable=too-many-locals,missing-docstring,invalid-name
 
 [VARIABLES]
 # Good variable names,which should always be accepted
