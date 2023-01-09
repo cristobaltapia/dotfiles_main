@@ -108,7 +108,7 @@ Plug 'myusuf3/numbers.vim'
 " Vim indent guides (colors!)
 Plug 'nathanaelkane/vim-indent-guides'
 " ALE
-Plug 'dense-analysis/ale'
+" Plug 'dense-analysis/ale'
 " COC
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Julia support
