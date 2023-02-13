@@ -1,6 +1,6 @@
 {
   "diagnostic.displayByAle": false,
-  "diagnostic.virtualText": false,
+  "diagnostic.virtualText": true,
   "diagnostic.maxWindowWidth": 80,
   "snippets.ultisnips.directories": [
     "UltiSnips",
@@ -21,7 +21,7 @@
   "python.formatting.blackPath": "black",
   "pyright.inlayHints.enable": false,
   "python.linting.enabled": true,
-  "python.linting.pylintEnabled": true,
+  "python.linting.pylintEnabled": false,
   "python.linting.flake8Enabled": false,
   "python.linting.mypyEnabled": false,
   "python.linting.prospectorEnabled": false,

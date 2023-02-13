@@ -1155,6 +1155,10 @@ lua << EOF
 require('mini.trailspace').setup()
 EOF
 
+" lua << EOF
+" require('mini.indentscope').setup()
+" EOF
+
 "----------------------------------------------------------------------
 " Quickfix format
 "----------------------------------------------------------------------
