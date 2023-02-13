@@ -1,6 +1,6 @@
 {
   "diagnostic.displayByAle": false,
-  "diagnostic.virtualText": false,
+  "diagnostic.virtualText": true,
   "diagnostic.maxWindowWidth": 80,
   "snippets.ultisnips.directories": [
     "UltiSnips",
