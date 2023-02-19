@@ -71,8 +71,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'junegunn/gv.vim'
 "APDL Syntax
 Plug 'cristobaltapia/apdl.vim'
-" Better file browser
-Plug 'preservim/nerdtree'
 " Vifm integration
 Plug 'vifm/vifm.vim'
 " Code commenter
@@ -172,6 +170,8 @@ Plug 'dhruvasagar/vim-table-mode', { 'for' : ['markdown', 'markdown.pandoc'] }
 " Telescope
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+" undotree: visualize undo branches
+Plug 'mbbill/undotree'
 " ASCII art
 Plug 'jbyuki/venn.nvim', { 'branch': 'main' }
 
@@ -463,10 +463,11 @@ augroup END
 
 
 "----------------------------------------------------------------------
-" NERDTree (better file browser) toggle
-map <F3> :NERDTreeToggle<CR>
-" Ignore files on NERDTree
-let NERDTreeIgnore = ['\.pyc$', '\.pyo$']
+" undotree
+map <F3> :UndotreeToggle<CR>
+
+let g:undotree_WindowLayout = 2
+let g:undotree_SetFocusWhenToggle = 1
 "----------------------------------------------------------------------
 
 "----------------------------------------------------------------------
