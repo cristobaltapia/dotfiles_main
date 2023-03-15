@@ -22,4 +22,5 @@ languages:
       - '%f:%l:%c: %m'
 
   bib:
-    format-command: 'bibtex-tidy --no-backup'
+    format-command: 'bibtex-tidy --v2 --curly --align=14 --no-escape --sort-fields --sort'
+    format-stdin: true
