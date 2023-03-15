@@ -54,7 +54,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 " reStructuredText preview
 Plug 'Rykka/InstantRst', { 'for': 'rst' }
 " vim-pandoc: Pandoc support
-Plug 'vim-pandoc/vim-pandoc', { 'for': ['markdown', 'markdown.pandoc'] }
+Plug 'vim-pandoc/vim-pandoc', { 'for': ['markdown', 'markdown.pandoc'], 'commit': '9f406d964ca70d959b7867f1b5cee3d4884d4d3c' }
 Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'markdown' }
 Plug 'godlygeek/tabular', { 'for': ['markdown', 'markdown.pandoc'] }
 " Better diff
