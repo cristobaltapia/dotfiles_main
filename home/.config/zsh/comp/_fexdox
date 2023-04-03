@@ -1,0 +1,28 @@
+#compdef fexdox
+
+_arguments \
+    "-s[send DIRECTORY (upload)]:directory:_files -/" \
+    "-r[receive FOLDER (download)]:directory:->remotefex" \
+    "-d[delete extraneous files (sync)]:directory:" \
+    "-f[upload to FOLDER]:directory:" \
+    "-l[list folders (uploaded directories) or FOLDER content]::" \
+    "-D[delete FOLDER]:directory:->remotefex" \
+    "-a[assign FOLDER name to current directory]:directory:->remotefex" \
+    "-v[verbose mode]::" \
+    "-i[use account ID from \$HOME/.fex/id]:id:->localid" \
+    "-m[limit throughput to MAX kb/s]::" \
+    "-z[force compression]::" \
+    "-H[more options, examples and help]:directory:"
+
+case "$state" in
+    remotefex)
+        local -a remote_folders
+        remote_folders=($(fexdox -i tapia -l | awk '{print $5}'))
+        _values 'fexdox' $remote_folders
+        ;;
+    localid)
+        local -a local_fexid
+        local_fexid=($(cat $HOME/.fex/id | awk '/\[.*\]/ {gsub(/\[|\]/, ""); print $0}'))
+        _values 'localid' $local_fexid
+        ;;
+esac

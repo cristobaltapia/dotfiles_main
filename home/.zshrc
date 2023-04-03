@@ -41,6 +41,11 @@ path=($HOME/bin $path)
 autoload -Uz compinit
 compinit
 
+# FEX
+compdef _gnu_generic fexsend fexget fexpush \
+    fexpull fexstore fexpack fexzip fexsync \
+    autofex xx xxx sexsend sexget sexxx
+
 autoload -Uz promptinit
 promptinit
 
@@ -123,3 +128,4 @@ export NVIM_GTK_NO_HEADERBAR=1
 export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
