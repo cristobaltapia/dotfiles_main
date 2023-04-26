@@ -95,6 +95,8 @@ Plug 'vim-scripts/MatlabFilesEdition', { 'for': 'matlab' }
 Plug 'lervag/vimtex', {'for': 'tex'}
 " Convert latex expressions into unicode equivalents
 Plug 'joom/latex-unicoder.vim'
+" Typst
+Plug 'kaarmu/typst.vim'
 " Rename. Rename a buffer within Vim and on disk
 Plug 'vim-scripts/Rename'
 " Search results counter
