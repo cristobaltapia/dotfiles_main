@@ -96,7 +96,7 @@ Plug 'lervag/vimtex', {'for': 'tex'}
 " Convert latex expressions into unicode equivalents
 Plug 'joom/latex-unicoder.vim'
 " Typst
-Plug 'kaarmu/typst.vim'
+Plug 'kaarmu/typst.vim', {'branch': 'main'}
 " Rename. Rename a buffer within Vim and on disk
 Plug 'vim-scripts/Rename'
 " Search results counter
