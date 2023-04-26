@@ -679,9 +679,9 @@ augroup END
 " Configuration for nabla.nvim (ASCII math)
 augroup nablanvim
     autocmd!
-    autocmd FileType markdown nnoremap <F5> :lua require("nabla").action()<CR>
-    autocmd FileType markdown.pandoc nnoremap <F5> :lua require("nabla").action()<CR>
-    autocmd FileType wiki nnoremap <F5> :lua require("nabla").popup()<CR>
+    autocmd FileType,BufEnter markdown nnoremap <F5> :lua require("nabla").action()<CR>
+    autocmd FileType,BufEnter markdown.pandoc nnoremap <F5> :lua require("nabla").action()<CR>
+    autocmd FileType,BufEnter wiki nnoremap <F5> :lua require("nabla").popup()<CR>
 augroup END
 
 
