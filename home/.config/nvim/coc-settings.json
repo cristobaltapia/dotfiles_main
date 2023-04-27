@@ -7,6 +7,9 @@
     "plugged/MySnippets/Ultisnips",
     "~/Templates/ultisnips-templates"
   ],
+  "ltex.language": "en-US",
+  // "ltex.language": "de-DE",
+  "ltex.additionalRules.motherTongue": "de-DE",
   // Python
   "pyright.enable": true,
   "python.formatting.provider": "yapf",
