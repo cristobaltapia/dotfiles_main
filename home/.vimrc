@@ -664,7 +664,7 @@ endfunction
 "{{{
 function! g:Open_browser(url)
     silent exe 'silent !gnome-www-browser --private-instance ' . a:url . " &"
-    silent exe 'silent !epiphany --private-instance ' . a:url . " &"
+    " silent exe 'silent !epiphany --private-instance ' . a:url . " &"
 endfunction
 let g:mkdp_browserfunc = 'g:Open_browser'
 let g:mkdp_filetypes = ['markdown', 'markdown.pandoc', 'wiki']
@@ -1011,8 +1011,12 @@ let g:bullets_set_mappings = 1
 " autocmd FileType vimwiki set ft=markdown
 let g:vimwiki_pubs_config = [$HOME."/.config/pubs/main_library.conf", $HOME."/.config/pubs/misc_library.conf"]
 
-let g:wiki_root = '~/Notes'
+let g:wiki_root = '~/Nextcloud/Notes'
 let g:wiki_map_text_to_link = 'WikivimFile'
+let g:wiki_filetypes = ['wiki']
+let g:wiki_link_target_type = 'wiki'
+let g:wiki_link_extension = ''
+let g:wiki_select_method = 'fzf'
 
 function WikivimFile(text) abort
     return [substitute(tolower(a:text), '\s\+', '-', 'g'), a:text]
