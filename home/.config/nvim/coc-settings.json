@@ -139,6 +139,11 @@
       "filetypes": ["sh", "make"],
       "ignoredRootPaths": ["~"]
     },
+    "typst": {
+      "command": "typst-lsp",
+      "filetypes": ["typst"],
+      "ignoredRootPaths": ["~"]
+    },
     "ccls": {
       "command": "ccls",
       "filetypes": ["c", "cpp", "objc", "objcpp"],

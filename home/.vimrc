@@ -96,7 +96,7 @@ Plug 'lervag/vimtex', {'for': 'tex'}
 " Convert latex expressions into unicode equivalents
 Plug 'joom/latex-unicoder.vim'
 " Typst
-Plug 'kaarmu/typst.vim'
+Plug 'kaarmu/typst.vim', {'branch': 'main'}
 " Rename. Rename a buffer within Vim and on disk
 Plug 'vim-scripts/Rename'
 " Search results counter
@@ -681,9 +681,9 @@ augroup END
 " Configuration for nabla.nvim (ASCII math)
 augroup nablanvim
     autocmd!
-    autocmd FileType markdown nnoremap <F5> :lua require("nabla").action()<CR>
-    autocmd FileType markdown.pandoc nnoremap <F5> :lua require("nabla").action()<CR>
-    autocmd FileType wiki nnoremap <F5> :lua require("nabla").popup()<CR>
+    autocmd FileType,BufEnter markdown nnoremap <F5> :lua require("nabla").action()<CR>
+    autocmd FileType,BufEnter markdown.pandoc nnoremap <F5> :lua require("nabla").action()<CR>
+    autocmd FileType,BufEnter wiki nnoremap <F5> :lua require("nabla").popup()<CR>
 augroup END
 
 
