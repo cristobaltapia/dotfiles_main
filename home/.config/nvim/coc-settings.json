@@ -113,7 +113,8 @@
     "vim",
     "vimwiki",
     "wiki",
-    "snippets"
+    "snippets",
+    "typst"
   ],
   "highlight.colors.enable": false,
   "highlight.document.enable": false,
