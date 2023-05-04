@@ -38,8 +38,10 @@ let g:vimtex_fold_enabled = 1
 " setlocal conceallevel=1
 let g:vimtex_syntax_conceal = {
       \ 'accents': 1,
+      \ 'ligatures': 0,
       \ 'cites': 1,
       \ 'fancy': 0,
+      \ 'spacing': 0,
       \ 'greek': 0,
       \ 'math_bounds': 0,
       \ 'math_delimiters': 0,
