@@ -190,6 +190,11 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Plug 'michaeljsmith/vim-indent-object', { 'for': 'python' }
 " PyDocstring: generate docstrings for python functions
 Plug 'heavenshell/vim-pydocstring', { 'do': 'make install', 'for': 'python' }
+" Jupyter ascending
+Plug 'untitled-ai/jupyter_ascending.vim'
+" Hydrogen format text objects
+Plug 'kana/vim-textobj-user'
+Plug 'GCBallesteros/vim-textobj-hydrogen'
 
 "--------
 " Colors:
