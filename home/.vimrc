@@ -138,8 +138,6 @@ Plug 'isundil/vim-irssi-syntax'
 Plug 'sirtaj/vim-openscad'
 " Yuck
 Plug 'elkowar/yuck.vim'
-" Context
-" Plug 'wellle/context.vim'
 " Fuzzy finder
 Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -151,7 +149,6 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 " Follow symlinks
-Plug 'moll/vim-bbye' " optional dependency
 Plug 'aymericbeaumet/vim-symlink'
 " Vimwiki
 Plug 'lervag/wiki.vim'
@@ -737,37 +734,6 @@ let g:pandoc#filetypes#pandoc_markdown = 1
 augroup pandoc_syntax
     au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
 augroup END
-"
-
-let g:pandoc#command#custom_open = "MyPandocOpen"
-
-function! MyPandocOpen(file)
-    let file = shellescape(fnamemodify(a:file, ':p'))
-    let file_extension = fnamemodify(a:file, ':e')
-    if file_extension is? 'pdf'
-        if !empty($PDFVIEWER)
-            return expand('$PDFVIEWER') . ' ' . file
-        elseif executable('zathura')
-            return 'zathura ' . file
-        elseif executable('mupdf')
-            return 'mupdf ' . file
-        endif
-    elseif file_extension is? 'html'
-        if !empty($BROWSER)
-            return expand('$BROWSER') . ' ' . file
-        elseif executable('firefox')
-            return 'firefox ' . file
-        elseif executable('chromium')
-            return 'chromium ' . file
-        endif
-    elseif file_extension is? 'odt' && executable('okular')
-        return 'okular ' . file
-    elseif file_extension is? 'epub' && executable('okular')
-        return 'okular ' . file
-    else
-        return 'xdg-open ' . file
-    endif
-endfunction
 
 "}}}
 "
@@ -1094,9 +1060,9 @@ lua << EOF
 require('mini.trailspace').setup()
 EOF
 
-" lua << EOF
-" require('mini.indentscope').setup()
-" EOF
+lua << EOF
+require('mini.indentscope').setup()
+EOF
 
 "----------------------------------------------------------------------
 " Quickfix format
