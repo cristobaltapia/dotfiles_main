@@ -177,18 +177,12 @@ Plug 'jbyuki/venn.nvim', { 'branch': 'main' }
 "--------
 " Python:
 "--------
-" Semshi: semantic highlight for python
-" Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for': 'python'}
+" Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-" Plug 'p00f/nvim-ts-rainbow'
-" REPL
-" Plug 'Vigemus/iron.nvim'
-" Indent text object
-" Plug 'michaeljsmith/vim-indent-object', { 'for': 'python' }
 " PyDocstring: generate docstrings for python functions
 Plug 'heavenshell/vim-pydocstring', { 'do': 'make install', 'for': 'python' }
 " Jupyter ascending
-Plug 'untitled-ai/jupyter_ascending.vim'
+Plug 'untitled-ai/jupyter_ascending.vim', {'for': 'syncpy'}
 " Hydrogen format text objects
 Plug 'kana/vim-textobj-user'
 Plug 'GCBallesteros/vim-textobj-hydrogen'
@@ -518,6 +512,18 @@ autocmd BufNewFile,BufRead *.fcmacro set filetype=python
 " Configuration for vim-pydocstring
 let g:pydocstring_formatter = 'numpy'
 let g:pydocstring_ignore_init = 1
+"}}}
+
+"----------------------------------------------------------------------
+" Jupyter Ascending
+"----------------------------------------------------------------------
+"{{{
+augroup jupyter_ascending
+  au!
+  autocmd BufNewFile,BufRead *.sync.py set filetype=syncpy
+              \ syntax=python
+              \ filetype=python
+augroup END
 
 "}}}
 
@@ -1062,11 +1068,14 @@ EOF
 " Mini.nvim (trailspace)
 "----------------------------------------------------------------------
 lua << EOF
+local animate = require('mini.animate')
 require('mini.trailspace').setup()
-EOF
-
-lua << EOF
 require('mini.indentscope').setup()
+require('mini.animate').setup({
+        cursor = {enable = false},
+        scroll = {timing = animate.gen_timing.linear({ duration = 150, unit = 'total' })}
+    }
+)
 EOF
 
 "----------------------------------------------------------------------
