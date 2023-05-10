@@ -518,6 +518,13 @@ let g:pydocstring_ignore_init = 1
 " Jupyter Ascending
 "----------------------------------------------------------------------
 "{{{
+autocmd FileType syncpy nunmap <space><space>x
+autocmd FileType syncpy nunmap <space><space>X
+autocmd FileType syncpy nunmap <space><space>r
+autocmd FileType syncpy nmap <leader><leader>x <Plug>JupyterExecute
+autocmd FileType syncpy nmap <leader><leader>X <Plug>JupyterExecuteAll
+autocmd FileType syncpy nmap <leader><leader>r <Plug>JupyterRestart
+
 augroup jupyter_ascending
   au!
   autocmd BufNewFile,BufRead *.sync.py set filetype=syncpy
