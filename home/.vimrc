@@ -525,6 +525,9 @@ autocmd FileType syncpy nmap <leader><leader>x <Plug>JupyterExecute
 autocmd FileType syncpy nmap <leader><leader>X <Plug>JupyterExecuteAll
 autocmd FileType syncpy nmap <leader><leader>r <Plug>JupyterRestart
 
+" The Jupyter Ascend plugins is only loaded for filetype 'syncpy'. For
+" everything else to work correctly (langserver, etc) I have to set the
+" correct filetype to python after the plugin is loaded.
 augroup jupyter_ascending
   au!
   autocmd BufNewFile,BufRead *.sync.py set filetype=syncpy
