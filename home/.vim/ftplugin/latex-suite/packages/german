@@ -1,2 +1,0 @@
-let g:Tex_SmartQuoteOpen = ",,"
-let g:Tex_SmartQuoteClose = "''"

@@ -1,4 +1,4 @@
-if exists("b:current_syntax")
+if exists('b:current_syntax')
     finish
 endif
 
@@ -17,19 +17,19 @@ syn match qfTraceback /^Traceback/ nextgroup=qfTraceBackNext
 syn match qfTracebackNext /.*$/ contained
 syn match qfNormal /^\(\(│ *\d*\: *\d*\|Traceback\)\@!.\)*$/
 
-hi def link qfFileName Directory
-hi def link qfSeparatorLeft Delimiter
-hi def link qfSeparatorRight Delimiter
-hi def link qfSeparatorMid Delimiter
-hi def link qfLineNr DiagnosticWarn
-hi def link qfColNr Number
-hi def link qfTraceback ErrorMsg
-hi def link qfTracebackNext DiffDelete
-hi def link qfError CocErrorSign
-hi def link qfErrorPy CocErrorSign
-hi def link qfWarning CocWarningSign
-hi def link qfInfo CocInfoSign
-hi def link qfNote CocHintSign
-hi def link qfNormal Normal
+highlight! default link qfFileName Directory
+highlight! default link qfSeparatorLeft Delimiter
+highlight! default link qfSeparatorRight Delimiter
+highlight! default link qfSeparatorMid Delimiter
+highlight! default link qfLineNr DiagnosticWarn
+highlight! default link qfColNr Number
+highlight! default link qfTraceback DiagnosticSignError
+highlight! default link qfTracebackNext DiagnosticWarn
+highlight! default link qfError DiagnosticSignError
+highlight! default link qfErrorPy DiagnosticSignError
+highlight! default link qfWarning DiagnosticWarn
+highlight! default link qfInfo DiagnosticWarn
+highlight! default link qfNote DiagnosticWarn
+highlight! default link qfNormal Normal
 
 let b:current_syntax = 'qf'
