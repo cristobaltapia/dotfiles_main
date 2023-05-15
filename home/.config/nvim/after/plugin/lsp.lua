@@ -12,7 +12,12 @@ nvim_lsp.typst_lsp.setup { single_file_support = true }
 nvim_lsp.julials.setup {}
 nvim_lsp.texlab.setup {}
 nvim_lsp.docker_compose_language_service.setup {}
-nvim_lsp.dockerls.setup {}
+-- Remove syntax from LSP
+nvim_lsp.dockerls.setup {
+    on_attach = function(client, bufnr)
+        client.server_capabilities.semanticTokensProvider = nil
+    end,
+}
 nvim_lsp.ltex.setup {
     cmd = { "/usr/bin/ltex-ls" },
     settings = {
