@@ -5,11 +5,14 @@ require("neodev").setup()
 -- Configure lua language server for neovim
 local nvim_lsp = require('lspconfig')
 
+-- Configure all the other language servers
 nvim_lsp.lua_ls.setup(lsp.nvim_lua_ls())
 nvim_lsp.pyright.setup {}
 nvim_lsp.typst_lsp.setup { single_file_support = true }
 nvim_lsp.julials.setup {}
 nvim_lsp.texlab.setup {}
+nvim_lsp.docker_compose_language_service.setup {}
+nvim_lsp.dockerls.setup {}
 nvim_lsp.ltex.setup {
     cmd = { "/usr/bin/ltex-ls" },
     settings = {
@@ -50,13 +53,13 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
         function(fallback)
             cmp_ultisnips_mappings.expand_or_jump_forwards(fallback)
         end,
-        { "i", "s", --[[ "c" (to enable the mapping in command mode) ]] }
+        { "i", "s"}
     ),
     ["<C-z>"] = cmp.mapping(
         function(fallback)
             cmp_ultisnips_mappings.jump_backwards(fallback)
         end,
-        { "i", "s", --[[ "c" (to enable the mapping in command mode) ]] }
+        { "i", "s"}
     ),
     ['<C-b>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
@@ -137,6 +140,8 @@ lsp.ensure_installed({
     'efm',
     'marksman',
     'typst_lsp',
+    'docker_compose_language_service',
+    'dockerls',
 })
 
 -- Don't show diagnostics in-line

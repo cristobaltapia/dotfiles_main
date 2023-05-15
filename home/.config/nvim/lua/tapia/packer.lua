@@ -67,7 +67,9 @@ return require('packer').startup(function(use)
             { 'cristobaltapia/MySnippets' }
         }
     }
-    -- Makde char-based diffs (usefull for latex documents and similar)
+    -- Follow symlinks
+    use { 'aymericbeaumet/vim-symlink', requires = { 'moll/vim-bbye' } }
+    -- Make char-based diffs (usefull for latex documents and similar)
     use { 'rickhowe/diffchar.vim',
         ft = { 'markdown', 'markdown.pandoc', 'tex' }
     }
@@ -122,6 +124,6 @@ return require('packer').startup(function(use)
     use({
         "iamcco/markdown-preview.nvim",
         run = function() vim.fn["mkdp#util#install"]() end,
-        ft = {'markdown', 'pandoc'}
+        ft = { 'markdown', 'pandoc' }
     })
 end)
