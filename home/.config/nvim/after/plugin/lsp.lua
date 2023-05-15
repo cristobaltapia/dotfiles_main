@@ -58,13 +58,13 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
         function(fallback)
             cmp_ultisnips_mappings.expand_or_jump_forwards(fallback)
         end,
-        { "i", "s"}
+        { "i", "s" }
     ),
     ["<C-z>"] = cmp.mapping(
         function(fallback)
             cmp_ultisnips_mappings.jump_backwards(fallback)
         end,
-        { "i", "s"}
+        { "i", "s" }
     ),
     ['<C-b>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
