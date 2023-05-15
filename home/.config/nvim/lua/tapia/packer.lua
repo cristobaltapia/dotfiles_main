@@ -119,4 +119,9 @@ return require('packer').startup(function(use)
             { 'godlygeek/tabular' }
         }
     }
+    use({
+        "iamcco/markdown-preview.nvim",
+        run = function() vim.fn["mkdp#util#install"]() end,
+        ft = {'markdown', 'pandoc'}
+    })
 end)
