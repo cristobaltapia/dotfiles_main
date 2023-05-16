@@ -41,7 +41,8 @@ nvim_lsp.efm.setup {
                 { formatCommand = "yapf", formatStdin = true }
             },
             bib = {
-                { formatCommand = "bibtex-tidy --v2", formatStdin = true }
+                { formatCommand = "bibtex-tidy --v2 --curly --align=14 --no-escape --sort-fields --sort",
+                    formatStdin = true }
             },
         }
     }
