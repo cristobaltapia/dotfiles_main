@@ -108,10 +108,10 @@ lsp.setup_nvim_cmp({
         end,
     },
     sources = {
-        { name = "ultisnips" },
-        { name = "nvim_lsp" },
+        { name = "ultisnips",               priority = 2 },
+        { name = "nvim_lsp",                priority = 1 },
         { name = "nvim_lsp_signature_help", priority = 0 },
-        { name = "path" },
+        { name = "path",                    priority = 2 },
     },
     mapping = cmp_mappings,
     preselect = 'item',
