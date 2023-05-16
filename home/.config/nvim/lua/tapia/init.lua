@@ -1,6 +1,5 @@
 require("tapia.remap")
 require("tapia.set")
-require("tapia.packer")
 require("tapia.autocmd")
 
 vim.cmd('hi pythonTSParameter guifg=#b48ead')
