@@ -23,6 +23,10 @@ vim.opt.foldenable = false
 -- Change buffer without saving
 vim.opt.hidden = true
 
+-- Atomatically change current working directory to the directory
+-- containing the file in the buffer
+vim.opt.autochdir = true
+
 -- Use spaces to replace tabs
 vim.opt.expandtab = true
 vim.opt.softtabstop = 4

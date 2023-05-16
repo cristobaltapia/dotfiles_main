@@ -36,4 +36,9 @@ telescope.setup {
             "%.fil",
         }
     },
+    pickers = {
+        find_files = {
+            follow = true,
+        }
+    }
 }

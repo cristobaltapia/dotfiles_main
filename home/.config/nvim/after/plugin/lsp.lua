@@ -33,12 +33,15 @@ nvim_lsp.efm.setup {
         debounce_text_changes = 150,
     },
     init_options = { documentFormatting = true },
-    filetypes = { "python" },
+    filetypes = { "python", "bib" },
     settings = {
         rootMarkers = { ".git/" },
         languages = {
             python = {
                 { formatCommand = "yapf", formatStdin = true }
+            },
+            bib = {
+                { formatCommand = "bibtex-tidy --v2", formatStdin = true }
             },
         }
     }
