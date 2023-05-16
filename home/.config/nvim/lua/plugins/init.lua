@@ -90,8 +90,6 @@ return {
     { 'windwp/nvim-autopairs' },
     -- Different nice improvements for neovim
     { 'echasnovski/mini.nvim',         branch = 'main' },
-    -- Change to directory of current edited file
-    { 'yssl/AutoCWD.vim' },
     -- Support for openning GNUGP excrypted files
     { 'jamessan/vim-gnupg' },
     -- FZF support
