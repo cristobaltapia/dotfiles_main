@@ -23,11 +23,11 @@ highlight! default link qfSeparatorRight Delimiter
 highlight! default link qfSeparatorMid Delimiter
 highlight! default link qfLineNr DiagnosticWarn
 highlight! default link qfColNr Number
-highlight! default link qfTraceback DiagnosticSignError
-highlight! default link qfTracebackNext DiagnosticWarn
+highlight! default link qfTraceback MiniTrailSpace
+highlight! default link qfTracebackNext MiniTrailSpace
 highlight! default link qfError DiagnosticSignError
-highlight! default link qfErrorPy DiagnosticSignError
-highlight! default link qfWarning DiagnosticWarn
+highlight! default link qfErrorPy NotifyERRORIcon
+highlight! default link qfWarning NvimStringSpecial
 highlight! default link qfInfo DiagnosticWarn
 highlight! default link qfNote DiagnosticWarn
 highlight! default link qfNormal Normal
