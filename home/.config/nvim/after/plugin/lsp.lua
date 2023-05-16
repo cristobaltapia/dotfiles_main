@@ -50,7 +50,7 @@ local cmp_select = { behavior = cmp.SelectBehavior.Insert }
 local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
 
 local cmp_mappings = lsp.defaults.cmp_mappings({
-    ['<C-j>'] = cmp.mapping.select_prev_item(cmp_select),
+    ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
     ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
     ['<C-Space>'] = cmp.mapping.confirm({ select = true, behavior = 'replace' }),
     -- ['<C-Space>'] = cmp.mapping.complete(cmp_select),
