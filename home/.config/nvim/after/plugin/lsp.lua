@@ -26,6 +26,7 @@ nvim_lsp.ltex.setup {
         },
     },
 }
+nvim_lsp.fortls.setup {}
 
 -- Define formatting for different filetypes
 nvim_lsp.efm.setup {
@@ -153,6 +154,7 @@ lsp.ensure_installed({
     'typst_lsp',
     'docker_compose_language_service',
     'dockerls',
+    'fortls',
 })
 
 -- Don't show diagnostics in-line
