@@ -3,7 +3,7 @@ vim.g.python3_host_prog = vim.env.HOME .. '/.virtualenvs/py3neovim/bin/python3'
 vim.opt.title = true
 vim.opt.titlestring = "%t %y"
 vim.opt.autoread = true
-vim.opt.swapfile = true
+vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.encoding = "utf-8"
 vim.opt.cursorline = true
@@ -12,10 +12,13 @@ vim.opt.cursorline = true
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
--- LIneabraks with indentation
+-- Lineabraks with indentation
 vim.opt.linebreak = true
 vim.opt.breakindent = true
 vim.opt.showbreak = ".."
+
+-- Foldings
+vim.opt.foldenable = false
 
 -- Change buffer without saving
 vim.opt.hidden = true
