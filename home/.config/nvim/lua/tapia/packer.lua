@@ -60,6 +60,8 @@ return require('packer').startup(function(use)
         "folke/trouble.nvim",
         requires = "nvim-tree/nvim-web-devicons",
     }
+    -- Better ui elements for nvim
+    use { 'stevearc/dressing.nvim' }
     -- Snippets
     use { 'SirVer/ultisnips',
         requires = {
