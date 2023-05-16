@@ -28,10 +28,11 @@ return {
         branch = 'v2.x',
         dependencies = {
             -- LSP Support
+            { 'mason' },
             { 'neovim/nvim-lspconfig' }, -- Required
             { "folke/neodev.nvim" },
             -- Autocompletion
-            { "nvim-cmp" }
+            { "nvim-cmp" },
         }
     },
     {
@@ -46,19 +47,14 @@ return {
             },
         }
     },
-    {
-        'hrsh7th/nvim-cmp',
-        name = "nvim-cmp",
-        dependencies = {
-            { 'hrsh7th/cmp-buffer' },
-            { 'hrsh7th/cmp-path' },
-            { 'hrsh7th/cmp-nvim-lsp' },
-            { 'hrsh7th/cmp-nvim-lsp-signature-help' },
-            { 'hrsh7th/cmp-omni' },
-            { 'quangnguyen30192/cmp-nvim-ultisnips' },
-            { 'L3MON4D3/LuaSnip' },
-        }
-    },
+    { 'hrsh7th/nvim-cmp',                     name = "nvim-cmp" },
+    { 'hrsh7th/cmp-buffer',                   dependencies = "nvim-cmp" },
+    { 'hrsh7th/cmp-path',                     dependencies = "nvim-cmp" },
+    { 'hrsh7th/cmp-nvim-lsp',                 dependencies = "nvim-cmp" },
+    { 'hrsh7th/cmp-nvim-lsp-signature-help',  dependencies = "nvim-cmp" },
+    { 'hrsh7th/cmp-omni',                     dependencies = "nvim-cmp" },
+    { 'quangnguyen30192/cmp-nvim-ultisnips',  dependencies = "nvim-cmp" },
+    { 'L3MON4D3/LuaSnip' },
     -- Snippets
     {
         'SirVer/ultisnips',
@@ -76,7 +72,7 @@ return {
     -- Better ui elements for nvim
     { 'stevearc/dressing.nvim' },
     -- Follow symlinks
-    { 'aymericbeaumet/vim-symlink',  dependencies = { 'moll/vim-bbye' } },
+    -- { 'aymericbeaumet/vim-symlink',  dependencies = { 'moll/vim-bbye' } },
     -- Make char-based diffs (usefull for latex documents and similar)
     {
         'rickhowe/diffchar.vim',
