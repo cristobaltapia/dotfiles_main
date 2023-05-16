@@ -175,6 +175,14 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set({ 'n', 'x' }, 'gq', function()
         vim.lsp.buf.format({ async = false, timeout_ms = 10000 })
     end, opts)
+    -- Format selected code only
+    vim.keymap.set({ 'v' }, 'gq', function()
+        vim.lsp.buf.format({
+            async = false,
+            timeout_ms = 10000,
+            range = { vim.fn.getpos('v'), vim.fn.getcurpos() },
+        })
+    end, opts)
     -- Go to definition
     vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
     -- Show information of element below the cursor
