@@ -1,5 +1,7 @@
 local lsp = require('lsp-zero').preset({})
 
+local Path = require("plenary.path")
+
 require("neodev").setup()
 
 -- Configure lua language server for neovim
@@ -18,8 +20,18 @@ nvim_lsp.dockerls.setup {
         client.server_capabilities.semanticTokensProvider = nil
     end,
 }
+-- For ltex-ls under archlinux I have to use the system installation, but
+-- for other systems (e.g. Ubuntu) the default cmd works good.
+local ltex_cmd
+if Path:new("/usr/bin/ltex-ls"):is_file() then
+    ltex_cmd = { "/usr/bin/ltex-ls" }
+else
+    ltex_cmd = { "" }
+end
+
 nvim_lsp.ltex.setup {
-    cmd = { "/usr/bin/ltex-ls" },
+    -- Consider the correct command for ltex-ls
+    cmd = ltex_cmd,
     settings = {
         ltex = {
             language = "en-US",
