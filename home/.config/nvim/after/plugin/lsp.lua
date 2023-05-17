@@ -142,6 +142,7 @@ lsp.setup_nvim_cmp({
 
 -- Ensure the installation of the following language servers
 lsp.ensure_installed({
+    'lua_ls',
     'tsserver',
     'eslint',
     'pyright',
