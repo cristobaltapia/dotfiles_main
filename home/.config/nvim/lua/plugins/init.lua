@@ -47,13 +47,13 @@ return {
             },
         }
     },
-    { 'hrsh7th/nvim-cmp',                     name = "nvim-cmp" },
-    { 'hrsh7th/cmp-buffer',                   dependencies = "nvim-cmp" },
-    { 'hrsh7th/cmp-path',                     dependencies = "nvim-cmp" },
-    { 'hrsh7th/cmp-nvim-lsp',                 dependencies = "nvim-cmp" },
-    { 'hrsh7th/cmp-nvim-lsp-signature-help',  dependencies = "nvim-cmp" },
-    { 'hrsh7th/cmp-omni',                     dependencies = "nvim-cmp" },
-    { 'quangnguyen30192/cmp-nvim-ultisnips',  dependencies = "nvim-cmp" },
+    { 'hrsh7th/nvim-cmp',                    name = "nvim-cmp" },
+    { 'hrsh7th/cmp-buffer',                  dependencies = "nvim-cmp" },
+    { 'hrsh7th/cmp-path',                    dependencies = "nvim-cmp" },
+    { 'hrsh7th/cmp-nvim-lsp',                dependencies = "nvim-cmp" },
+    { 'hrsh7th/cmp-nvim-lsp-signature-help', dependencies = "nvim-cmp" },
+    { 'hrsh7th/cmp-omni',                    dependencies = "nvim-cmp" },
+    { 'quangnguyen30192/cmp-nvim-ultisnips', dependencies = "nvim-cmp" },
     { 'L3MON4D3/LuaSnip' },
     -- Snippets
     {
