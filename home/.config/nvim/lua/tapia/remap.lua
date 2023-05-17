@@ -62,6 +62,7 @@ local function compile_and_run()
     local file_cwd = vim.loop.cwd()
 
     if vim.bo.filetype == 'python' then
+        vim.cmd("write")
         overseer.run_template({ name = "python_build" })
     end
 end
