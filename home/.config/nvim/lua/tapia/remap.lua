@@ -55,17 +55,14 @@ vim.keymap.set("n", "<leader>bq", "<cmd>bp <BAR> bd #<cr>")
 -- Close quickfix window
 vim.keymap.set("n", "<leader>cq", vim.cmd.cclose)
 
--- Run files
+-- Run files with overseer
+local overseer = require("overseer")
 local function compile_and_run()
     local file_path = vim.api.nvim_buf_get_name(0)
     local file_cwd = vim.loop.cwd()
 
     if vim.bo.filetype == 'python' then
-        vim.cmd("AsyncRun -cwd=" ..
-            file_cwd .. " -save=1 -pos=bottom -rows=15 -focus=0 python3 '" .. file_path .. "'")
-    elseif vim.bo.filetype == 'bash' then
-        vim.cmd("AsyncRun -cwd=" ..
-            file_cwd .. " -save=1 -pos=bottom -rows=15 -focus=0 bash '" .. file_path .. "'")
+        overseer.run_template({ name = "python_build" })
     end
 end
 

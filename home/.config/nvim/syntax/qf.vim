@@ -10,7 +10,7 @@ syn match qfColNr /[^│]*/ contained nextgroup=qfSeparatorRight
 syn match qfSeparatorRight '│' contained nextgroup=qfError,qfWarning,qfInfo,qfNote
 syn match qfError / E .*$/ contained
 syn match qfErrorPy /\%x00\w\{-1,}\(Error\)/
-syn match qfWarning / W .*$/ contained
+syn match qfWarning / W / contained
 syn match qfInfo / I .*$/ contained
 syn match qfNote / [NH] .*$/ contained
 syn match qfTraceback /^Traceback/ nextgroup=qfTraceBackNext
@@ -25,9 +25,9 @@ highlight! default link qfLineNr DiagnosticWarn
 highlight! default link qfColNr Number
 highlight! default link qfTraceback MiniTrailSpace
 highlight! default link qfTracebackNext MiniTrailSpace
-highlight! default link qfError DiagnosticSignError
-highlight! default link qfErrorPy NotifyERRORIcon
-highlight! default link qfWarning NvimStringSpecial
+highlight! default link qfError DiffDelete
+highlight! default link qfErrorPy DiffDelete
+highlight! default link qfWarning DiffChange
 highlight! default link qfInfo DiagnosticWarn
 highlight! default link qfNote DiagnosticWarn
 highlight! default link qfNormal Normal
