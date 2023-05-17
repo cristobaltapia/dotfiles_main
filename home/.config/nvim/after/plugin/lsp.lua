@@ -20,24 +20,20 @@ nvim_lsp.dockerls.setup {
         client.server_capabilities.semanticTokensProvider = nil
     end,
 }
--- For ltex-ls under archlinux I have to use the system installation, but
--- for other systems (e.g. Ubuntu) the default cmd works good.
-local ltex_cmd
-if Path:new("/usr/bin/ltex-ls"):is_file() then
-    ltex_cmd = { "/usr/bin/ltex-ls" }
-else
-    ltex_cmd = { "" }
-end
-
-nvim_lsp.ltex.setup {
-    -- Consider the correct command for ltex-ls
-    cmd = ltex_cmd,
+-- Define setup for ltex-ls
+local ltex_setup = {
     settings = {
         ltex = {
             language = "en-US",
         },
     },
 }
+-- For ltex-ls under archlinux I have to use the system installation, but
+-- for other systems (e.g. Ubuntu) the default cmd works good.
+if Path:new("/usr/bin/ltex-ls"):is_file() then
+    ltex_setup["cmd"] = { "/usr/bin/ltex-ls" }
+end
+nvim_lsp.ltex.setup(ltex_setup)
 nvim_lsp.fortls.setup {}
 
 -- Define formatting for different filetypes
