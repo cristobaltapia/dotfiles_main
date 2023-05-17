@@ -12,9 +12,9 @@ return {
             vim.cmd('colorscheme nord')
         end
     },
-    { 'rose-pine/neovim',                name = 'rose-pine' },
+    { 'rose-pine/neovim',               name = 'rose-pine' },
     -- Treesitter
-    { 'nvim-treesitter/nvim-treesitter', build = vim.cmd.TSUpdate },
+    { 'nvim-treesitter/nvim-treesitter' },
     { 'nvim-treesitter/playground' },
 
     -- Undo history
@@ -55,6 +55,8 @@ return {
     { 'hrsh7th/cmp-omni',                    dependencies = "nvim-cmp" },
     { 'quangnguyen30192/cmp-nvim-ultisnips', dependencies = "nvim-cmp" },
     { 'L3MON4D3/LuaSnip' },
+    -- Function signatures
+    { "ray-x/lsp_signature.nvim" },
     -- Snippets
     {
         'SirVer/ultisnips',

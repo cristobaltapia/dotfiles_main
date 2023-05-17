@@ -67,11 +67,20 @@ local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
 local cmp_mappings = lsp.defaults.cmp_mappings({
     ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
     ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-    ['<C-Space>'] = cmp.mapping.confirm({ select = true, behavior = 'replace' }),
+    ['<C-Space>'] = cmp.mapping(function()
+            if cmp.visible() then
+                print("here 1")
+                cmp.confirm({ select = true, behavior = 'replace' })
+            else
+                vim.fn["UltiSnips#ExpandSnippet"]()
+            end
+        end,
+        { "i", "s" }
+    ),
     -- ['<C-Space>'] = cmp.mapping.complete(cmp_select),
-    ["<C-k>"] = cmp.mapping(
+    ["<C-j>"] = cmp.mapping(
         function(fallback)
-            cmp_ultisnips_mappings.expand_or_jump_forwards(fallback)
+            cmp_ultisnips_mappings.jump_forwards(fallback)
         end,
         { "i", "s" }
     ),
@@ -123,18 +132,18 @@ lsp.setup_nvim_cmp({
         end,
     },
     sources = {
-        { name = "ultisnips",               priority = 2 },
-        { name = "nvim_lsp",                priority = 1 },
-        { name = "nvim_lsp_signature_help", priority = 0 },
-        { name = "path",                    priority = 2 },
+        { name = "nvim_lsp",  priority = 0 },
+        { name = "path",      priority = 2 },
+        { name = "ultisnips", priority = 2 },
+        { name = 'buffer',    keyword_length = 3 },
     },
     mapping = cmp_mappings,
-    preselect = 'item',
-    completion = {
-        completeopt = 'menu,menuone,noinsert',
-    },
+    -- preselect = 'item',
+    -- completion = {
+    --     completeopt = 'menu,menuone,noinsert',
+    -- },
     experimental = {
-        ghost_text = true
+        ghost_text = true,
     },
     window = {
         completion = {
@@ -168,10 +177,13 @@ lsp.ensure_installed({
 
 -- Don't show diagnostics in-line
 vim.diagnostic.config({ virtual_text = false })
+
 -- Increase update frequency of the ui
 vim.opt.updatetime = 500
+
 -- Show diagnostic in floating window when cursor is hold over the error.
 local group_diagnostic = vim.api.nvim_create_augroup("diagnostic", { clear = true })
+
 vim.api.nvim_create_autocmd("CursorHold", {
     pattern = { "*" },
     callback = function()
@@ -206,7 +218,7 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, opts)
     vim.keymap.set("n", "<leader>rr", function() vim.lsp.buf.references() end, opts)
     vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
-    vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+    -- vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end)
 
 lsp.setup()
