@@ -3,6 +3,7 @@
 -- This configures the autocompletion menu
 local cmp = require('cmp')
 local cmp_select_opts = { behavior = cmp.SelectBehavior.Select }
+local cmp_ultisnips_mappings = require('cmp_nvim_ultisnips.mappings')
 
 local border = {
     { "╭", "CmpBorder" },
@@ -16,6 +17,7 @@ local border = {
 }
 
 -- Define mappings for cmp
+local neogen = require('neogen')
 local cmp_mappings = {
     ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select_opts),
     ['<C-n>'] = cmp.mapping.select_next_item(cmp_select_opts),
@@ -32,13 +34,21 @@ local cmp_mappings = {
     -- ['<C-Space>'] = cmp.mapping.complete(cmp_select),
     ["<C-j>"] = cmp.mapping(
         function(fallback)
-            cmp_ultisnips_mappings.jump_forwards(fallback)
+            if neogen.jumpable() then
+                neogen.jump_next()
+            else
+                cmp_ultisnips_mappings.jump_forwards(fallback)
+            end
         end,
         { "i", "s" }
     ),
     ["<C-z>"] = cmp.mapping(
         function(fallback)
-            cmp_ultisnips_mappings.jump_backwards(fallback)
+            if neogen.jumpable(true) then
+                neogen.jump_prev()
+            else
+                cmp_ultisnips_mappings.jump_backwards(fallback)
+            end
         end,
         { "i", "s" }
     ),
