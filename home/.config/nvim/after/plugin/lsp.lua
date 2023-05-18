@@ -1,20 +1,123 @@
-local lsp = require('lsp-zero').preset({})
-
 local Path = require("plenary.path")
+require("neodev").setup { lspconfig = true, }
 
-require("neodev").setup()
+local lspconfig = require('lspconfig')
+local lsp_defaults = lspconfig.util.default_config
 
--- Configure lua language server for neovim
-local nvim_lsp = require('lspconfig')
+lsp_defaults.capabilities = vim.tbl_deep_extend(
+    'force',
+    lsp_defaults.capabilities,
+    require('cmp_nvim_lsp').default_capabilities()
+)
+
+vim.api.nvim_create_autocmd('LspAttach', {
+    desc = 'LSP actions',
+    callback = function(event)
+        -- Define current bufnr
+        local bufnr = event.buf
+        local map = function(m, lhs, rhs)
+            local opts = { buffer = bufnr, remap = false }
+            vim.keymap.set(m, lhs, rhs, opts)
+        end
+
+        -- LSP actions
+        map('n', 'K', vim.lsp.buf.hover)
+        map('n', 'gd', vim.lsp.buf.definition)
+        map('n', 'gD', vim.lsp.buf.declaration)
+        map('n', 'gi', vim.lsp.buf.implementation)
+        map('n', 'go', vim.lsp.buf.type_definition)
+        map('n', 'gr', vim.lsp.buf.references)
+        map('n', 'gs', vim.lsp.buf.signature_help)
+        map('n', '<leader>rn', vim.lsp.buf.rename)
+        map({ 'n', 'x' }, 'gq', function() vim.lsp.buf.format({ async = true }) end)
+        -- Format selected code only
+        vim.keymap.set('v', 'gq', function()
+            vim.lsp.buf.format({
+                async = true,
+                timeout_ms = 10000,
+                range = { vim.fn.getpos('v'), vim.fn.getcurpos() },
+            })
+        end)
+        map('n', '<leader>ca', vim.lsp.buf.code_action)
+        map('x', '<leader>ca', '<cmd>lua vim.lsp.buf.range_code_action()<cr>')
+
+        -- Diagnostics
+        map('n', 'gl', vim.diagnostic.open_float)
+        map('n', '[d', vim.diagnostic.goto_prev)
+        map('n', ']d', vim.diagnostic.goto_next)
+    end
+})
+
+local function lsp_settings()
+    vim.diagnostic.config({
+        severity_sort = true,
+        float = { border = 'rounded' },
+    })
+
+    vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
+        vim.lsp.handlers.hover,
+        { border = 'rounded' }
+    )
+
+    vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
+        vim.lsp.handlers.signature_help,
+        { border = 'rounded' }
+    )
+
+    local command = vim.api.nvim_create_user_command
+
+    command('LspWorkspaceAdd', function()
+        vim.lsp.buf.add_workspace_folder()
+    end, { desc = 'Add folder to workspace' })
+
+    command('LspWorkspaceList', function()
+        vim.notify(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    end, { desc = 'List workspace folders' })
+
+    command('LspWorkspaceRemove', function()
+        vim.lsp.buf.remove_workspace_folder()
+    end, { desc = 'Remove folder from workspace' })
+end
+
+lsp_settings()
+
+require('mason').setup({})
+require('mason-lspconfig').setup({})
 
 -- Configure all the other language servers
-nvim_lsp.lua_ls.setup(lsp.nvim_lua_ls())
-nvim_lsp.pyright.setup {}
-nvim_lsp.typst_lsp.setup { single_file_support = true }
-nvim_lsp.julials.setup {}
-nvim_lsp.texlab.setup {}
-nvim_lsp.docker_compose_language_service.setup {}
-nvim_lsp.dockerls.setup {
+lspconfig.lua_ls.setup {
+    settings = {
+        Lua = {
+            -- Disable telemetry
+            telemetry = { enable = false },
+            runtime = {
+                -- Tell the language server which version of Lua you're using
+                -- (most likely LuaJIT in the case of Neovim)
+                version = 'LuaJIT',
+                path = runtime_path,
+            },
+            diagnostics = {
+                -- Get the language server to recognize the `vim` global
+                globals = { 'vim' }
+            },
+            workspace = {
+                checkThirdParty = false,
+                library = {
+                    -- Make the server aware of Neovim runtime files
+                    vim.fn.expand('$VIMRUNTIME/lua'),
+                    vim.fn.stdpath('config') .. '/lua'
+                }
+            }
+        }
+    }
+}
+
+lspconfig.pyright.setup {}
+lspconfig.typst_lsp.setup { single_file_support = true }
+lspconfig.julials.setup {}
+lspconfig.texlab.setup {}
+lspconfig.docker_compose_language_service.setup {}
+lspconfig.dockerls.setup {
     on_attach = function(client, bufnr)
         -- Remove syntax from LSP
         client.server_capabilities.semanticTokensProvider = nil
@@ -33,11 +136,11 @@ local ltex_setup = {
 if Path:new("/usr/bin/ltex-ls"):is_file() then
     ltex_setup["cmd"] = { "/usr/bin/ltex-ls" }
 end
-nvim_lsp.ltex.setup(ltex_setup)
-nvim_lsp.fortls.setup {}
+lspconfig.ltex.setup(ltex_setup)
+lspconfig.fortls.setup {}
 
 -- Define formatting for different filetypes
-nvim_lsp.efm.setup {
+lspconfig.efm.setup {
     flags = {
         debounce_text_changes = 150,
     },
@@ -59,12 +162,12 @@ nvim_lsp.efm.setup {
     }
 }
 
--- Configure suggestions menu
+-- Autocompletion
 local cmp = require('cmp')
-local cmp_select = { behavior = cmp.SelectBehavior.Insert }
-local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
+local cmp_select_opts = { behavior = cmp.SelectBehavior.Select }
 
-local cmp_mappings = lsp.defaults.cmp_mappings({
+-- Define mappings for cmp
+local cmp_mappings = {
     ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
     ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
     ['<C-Space>'] = cmp.mapping(function()
@@ -92,7 +195,7 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
     ),
     ['<C-b>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
-})
+}
 
 -- Add parenthesis automatically after functions
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
@@ -100,17 +203,6 @@ cmp.event:on(
     'confirm_done',
     cmp_autopairs.on_confirm_done()
 )
-
-local border = {
-    { "╭", "CmpBorder" },
-    { "─", "CmpBorder" },
-    { "╮", "CmpBorder" },
-    { "│", "CmpBorder" },
-    { "╯", "CmpBorder" },
-    { "─", "CmpBorder" },
-    { "╰", "CmpBorder" },
-    { "│", "CmpBorder" },
-}
 
 -- Define colors for the suggestion menu of nvim-cmp
 local p = require('rose-pine.palette')
@@ -124,13 +216,7 @@ vim.api.nvim_set_hl(0, 'CmpItemKindSnippet', { fg = p.iris })
 vim.api.nvim_set_hl(0, 'CmpItemKindKeyword', { fg = p.subtle })
 vim.api.nvim_set_hl(0, 'CmpItemKindText', { fg = p.subtle })
 
--- Setup nvim-cmp
-lsp.setup_nvim_cmp({
-    snippet = {
-        expand = function(args)
-            vim.fn["UltiSnips#Anon"](args.body)
-        end,
-    },
+local cmp_config = {
     sources = {
         { name = "nvim_lsp",  priority = 0 },
         { name = "path",      priority = 2 },
@@ -138,12 +224,27 @@ lsp.setup_nvim_cmp({
         { name = 'buffer',    keyword_length = 3 },
     },
     mapping = cmp_mappings,
-    -- preselect = 'item',
-    -- completion = {
-    --     completeopt = 'menu,menuone,noinsert',
-    -- },
+    snippet = {
+        expand = function(args)
+            vim.fn["UltiSnips#Anon"](args.body)
+        end,
+    },
     experimental = {
         ghost_text = true,
+    },
+    formatting = {
+        fields = { 'abbr', 'menu', 'kind' },
+        format = function(entry, item)
+            local short_name = {
+                nvim_lsp = 'LSP',
+                nvim_lua = 'nvim'
+            }
+
+            local menu_name = short_name[entry.source.name] or entry.source.name
+
+            item.menu = string.format('[%s]', menu_name)
+            return item
+        end,
     },
     window = {
         completion = {
@@ -155,25 +256,9 @@ lsp.setup_nvim_cmp({
             winhighlight = 'Normal:' .. p.gold,
         }
     }
-})
+}
 
--- Ensure the installation of the following language servers
-lsp.ensure_installed({
-    'lua_ls',
-    'tsserver',
-    'eslint',
-    'pyright',
-    'ltex',
-    'texlab',
-    'julials',
-    'cssls',
-    'efm',
-    'marksman',
-    'typst_lsp',
-    'docker_compose_language_service',
-    'dockerls',
-    'fortls',
-})
+cmp.setup(cmp_config)
 
 -- Don't show diagnostics in-line
 vim.diagnostic.config({ virtual_text = false })
@@ -191,34 +276,3 @@ vim.api.nvim_create_autocmd("CursorHold", {
     end,
     group = group_diagnostic
 })
-
--- Bindings for different actions related to the LSP
-lsp.on_attach(function(client, bufnr)
-    lsp.default_keymaps({ buffer = bufnr })
-    local opts = { buffer = bufnr, remap = false }
-    -- Format code
-    vim.keymap.set({ 'n', 'x' }, 'gq', function()
-        vim.lsp.buf.format({ async = false, timeout_ms = 10000 })
-    end, opts)
-    -- Format selected code only
-    vim.keymap.set({ 'v' }, 'gq', function()
-        vim.lsp.buf.format({
-            async = false,
-            timeout_ms = 10000,
-            range = { vim.fn.getpos('v'), vim.fn.getcurpos() },
-        })
-    end, opts)
-    -- Go to definition
-    vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-    -- Show information of element below the cursor
-    vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-    vim.keymap.set("n", "<leader>ws", function() vim.lsp.buf.workspace_symbol() end, opts)
-    vim.keymap.set("n", "]d", function() vim.diagnostic.goto_next() end, opts)
-    vim.keymap.set("n", "[d", function() vim.diagnostic.goto_prev() end, opts)
-    vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, opts)
-    vim.keymap.set("n", "<leader>rr", function() vim.lsp.buf.references() end, opts)
-    vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
-    -- vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
-end)
-
-lsp.setup()

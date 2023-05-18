@@ -61,3 +61,4 @@ vim.g.mapleader = "\\"
 vim.opt.clipboard:append('unnamedplus')
 
 vim.g.completion_sorting = "none"
+vim.g.completeopt = "menu,menuone,noinsert"

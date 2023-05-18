@@ -23,18 +23,10 @@ return {
     { 'tpope/vim-fugitive' },
     { 'airblade/vim-gitgutter' },
     -- Language server and related
-    {
-        'VonHeikemen/lsp-zero.nvim',
-        branch = 'v2.x',
-        dependencies = {
-            -- LSP Support
-            { 'mason' },
-            { 'neovim/nvim-lspconfig' }, -- Required
-            { "folke/neodev.nvim" },
-            -- Autocompletion
-            { "nvim-cmp" },
-        }
-    },
+    -- LSP Support
+    { 'neovim/nvim-lspconfig' },         -- Required
+    { "folke/neodev.nvim" },
+    -- Autocompletion
     {
         'williamboman/mason-lspconfig.nvim',
         name = "mason",
