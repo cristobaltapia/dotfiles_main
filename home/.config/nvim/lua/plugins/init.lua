@@ -24,7 +24,7 @@ return {
     { 'airblade/vim-gitgutter' },
     -- Language server and related
     -- LSP Support
-    { 'neovim/nvim-lspconfig' },         -- Required
+    { 'neovim/nvim-lspconfig' }, -- Required
     { "folke/neodev.nvim" },
     -- Autocompletion
     {
@@ -45,6 +45,7 @@ return {
     { 'hrsh7th/cmp-nvim-lsp',                dependencies = "nvim-cmp" },
     { 'hrsh7th/cmp-nvim-lsp-signature-help', dependencies = "nvim-cmp" },
     { 'hrsh7th/cmp-omni',                    dependencies = "nvim-cmp" },
+    { 'hrsh7th/cmp-cmdline',                 dependencies = "nvim-cmp" },
     { 'quangnguyen30192/cmp-nvim-ultisnips', dependencies = "nvim-cmp" },
     { 'L3MON4D3/LuaSnip' },
     -- Function signatures
