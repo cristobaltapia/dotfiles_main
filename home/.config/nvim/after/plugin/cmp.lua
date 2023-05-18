@@ -67,11 +67,24 @@ vim.api.nvim_set_hl(0, 'CmpItemKindKeyword', { fg = p.subtle })
 vim.api.nvim_set_hl(0, 'CmpItemKindText', { fg = p.subtle })
 
 local cmp_config = {
+    -- Disable autocompletion for comments
+    enabled = function()
+        -- disable completion in comments
+        local context = require 'cmp.config.context'
+        -- keep command mode completion enabled when cursor is in a comment
+        if vim.api.nvim_get_mode().mode == 'c' then
+            return true
+        else
+            return not context.in_treesitter_capture("comment")
+                and not context.in_syntax_group("Comment")
+        end
+    end,
+    -- Define sources to be used
     sources = {
         { name = "nvim_lsp",  priority = 0 },
+        { name = "ultisnips", priority = 1 },
         { name = "path",      priority = 2 },
-        { name = "ultisnips", priority = 2 },
-        { name = 'buffer',    keyword_length = 3 },
+        { name = 'buffer',    keyword_length = 2 },
     },
     mapping = cmp_mappings,
     snippet = {
@@ -122,7 +135,7 @@ local cmp_config = {
         }, {
             { name = 'cmdline', keyword_length = 2 }
         })
-    })
+    }),
 }
 
 cmp.setup(cmp_config)

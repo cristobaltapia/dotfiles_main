@@ -84,6 +84,25 @@ lsp_settings()
 require('mason').setup({})
 require('mason-lspconfig').setup({})
 
+require('mason-lspconfig').setup({
+  ensure_installed = {
+    'lua_ls',
+    'tsserver',
+    'eslint',
+    'pyright',
+    'ltex',
+    'texlab',
+    'julials',
+    'cssls',
+    'efm',
+    'marksman',
+    'typst_lsp',
+    'docker_compose_language_service',
+    'dockerls',
+    'fortls',
+  }
+})
+
 -- Configure all the other language servers
 lspconfig.lua_ls.setup {
     settings = {
