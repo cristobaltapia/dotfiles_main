@@ -26,7 +26,6 @@ return {
     -- LSP Support
     { 'neovim/nvim-lspconfig' }, -- Required
     { "folke/neodev.nvim" },
-    -- Autocompletion
     {
         'williamboman/mason-lspconfig.nvim',
         name = "mason",
@@ -39,16 +38,23 @@ return {
             },
         }
     },
-    { 'hrsh7th/nvim-cmp',                      name = "nvim-cmp" },
-    { 'hrsh7th/cmp-buffer',                    dependencies = "nvim-cmp" },
-    { 'hrsh7th/cmp-path',                      dependencies = "nvim-cmp" },
-    { 'hrsh7th/cmp-nvim-lsp',                  dependencies = "nvim-cmp" },
-    { 'hrsh7th/cmp-nvim-lsp-signature-help',   dependencies = "nvim-cmp" },
-    { 'hrsh7th/cmp-omni',                      dependencies = "nvim-cmp" },
-    { 'hrsh7th/cmp-cmdline',                   dependencies = "nvim-cmp" },
-    { "davidsierradz/cmp-conventionalcommits", dependencies = "nvim-cmp" },
-    { 'quangnguyen30192/cmp-nvim-ultisnips',   dependencies = "nvim-cmp" },
-    { 'L3MON4D3/LuaSnip' },
+    -- Autocompletion
+    {
+        'hrsh7th/nvim-cmp',
+        name = "nvim-cmp"
+    },
+    { 'hrsh7th/cmp-buffer', },
+    { 'hrsh7th/cmp-path', },
+    { 'hrsh7th/cmp-nvim-lsp', },
+    { 'hrsh7th/cmp-nvim-lsp-signature-help', },
+    { 'hrsh7th/cmp-cmdline', },
+    { "davidsierradz/cmp-conventionalcommits", },
+    { 'quangnguyen30192/cmp-nvim-ultisnips', },
+    {
+        "kdheepak/cmp-latex-symbols",
+        ft = "julia",
+        dependencies = "nvim-cmp"
+    },
     -- Function signatures
     { "ray-x/lsp_signature.nvim" },
     -- Snippets
