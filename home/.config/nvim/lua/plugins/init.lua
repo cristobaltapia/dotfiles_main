@@ -153,6 +153,14 @@ return {
         }
     },
     -- Better movements
-    { 'jinh0/eyeliner.nvim' },
-    { 'ggandor/leap.nvim' },
+    -- { 'ggandor/leap.nvim' },
+    -- Overview of code
+    {
+        'stevearc/aerial.nvim',
+        ft = {"python", "julia", "tex", "markdown", "typst"},
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+            "nvim-tree/nvim-web-devicons"
+        },
+    },
 }

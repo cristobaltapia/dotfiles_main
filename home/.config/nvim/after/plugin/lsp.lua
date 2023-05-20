@@ -85,26 +85,27 @@ require('mason').setup({})
 require('mason-lspconfig').setup({})
 
 require('mason-lspconfig').setup({
-  ensure_installed = {
-    'lua_ls',
-    'tsserver',
-    'eslint',
-    'pyright',
-    'ltex',
-    'texlab',
-    'julials',
-    'cssls',
-    'efm',
-    'marksman',
-    'typst_lsp',
-    'docker_compose_language_service',
-    'dockerls',
-    'fortls',
-    'bashls',
-  }
+    ensure_installed = {
+        'lua_ls',
+        'tsserver',
+        'eslint',
+        'pyright',
+        'ltex',
+        'texlab',
+        'julials',
+        'cssls',
+        'efm',
+        'marksman',
+        'typst_lsp',
+        'docker_compose_language_service',
+        'dockerls',
+        'fortls',
+        'bashls',
+        'ruff_lsp',
+    }
 })
 
--- Configure all the other language servers
+-- Configure Lua-ls
 lspconfig.lua_ls.setup {
     settings = {
         Lua = {
@@ -132,10 +133,18 @@ lspconfig.lua_ls.setup {
     }
 }
 
+-- Python LSP
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.publishDiagnostics.tagSupport.valueSet = { 2 }
 lspconfig.pyright.setup {}
+lspconfig.ruff_lsp.setup {}
+-- Typst
 lspconfig.typst_lsp.setup { single_file_support = true }
+-- Julia
 lspconfig.julials.setup {}
+-- Latex
 lspconfig.texlab.setup {}
+-- Docker
 lspconfig.docker_compose_language_service.setup {}
 lspconfig.dockerls.setup {
     on_attach = function(client, bufnr)
@@ -143,7 +152,7 @@ lspconfig.dockerls.setup {
         client.server_capabilities.semanticTokensProvider = nil
     end,
 }
--- Define setup for ltex-ls
+-- Grammar correctoin using ltex-ls
 local ltex_setup = {
     settings = {
         ltex = {
