@@ -153,7 +153,7 @@ return {
         }
     },
     -- Better movements
-    -- { 'ggandor/leap.nvim' },
+    { 'ggandor/leap.nvim' },
     -- Overview of code
     {
         'stevearc/aerial.nvim',
