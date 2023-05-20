@@ -152,5 +152,7 @@ return {
             }
         }
     },
+    -- Better movements
     { 'jinh0/eyeliner.nvim' },
+    { 'ggandor/leap.nvim' },
 }
