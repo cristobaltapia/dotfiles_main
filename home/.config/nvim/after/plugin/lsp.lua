@@ -102,6 +102,7 @@ require('mason-lspconfig').setup({
         'fortls',
         'bashls',
         'ruff_lsp',
+        'taplo',
     }
 })
 
@@ -144,6 +145,8 @@ lspconfig.typst_lsp.setup { single_file_support = true }
 lspconfig.julials.setup {}
 -- Latex
 lspconfig.texlab.setup {}
+-- Toml
+lspconfig.taplo.setup {}
 -- Docker
 lspconfig.docker_compose_language_service.setup {}
 lspconfig.dockerls.setup {
