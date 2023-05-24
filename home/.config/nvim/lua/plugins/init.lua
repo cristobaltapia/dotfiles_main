@@ -157,10 +157,12 @@ return {
     -- Overview of code
     {
         'stevearc/aerial.nvim',
-        ft = {"python", "julia", "tex", "markdown", "typst"},
+        ft = { "python", "julia", "tex", "markdown", "typst" },
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
             "nvim-tree/nvim-web-devicons"
         },
     },
+    -- Tmux
+    { 'jpalardy/vim-slime' },
 }
