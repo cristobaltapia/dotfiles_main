@@ -200,14 +200,3 @@ vim.diagnostic.config({ virtual_text = false })
 
 -- Increase update frequency of the ui
 vim.opt.updatetime = 500
-
--- Show diagnostic in floating window when cursor is hold over the error.
-local group_diagnostic = vim.api.nvim_create_augroup("diagnostic", { clear = true })
-
-vim.api.nvim_create_autocmd("CursorHold", {
-    pattern = { "*" },
-    callback = function()
-        vim.diagnostic.open_float(nil, { focus = false })
-    end,
-    group = group_diagnostic
-})
