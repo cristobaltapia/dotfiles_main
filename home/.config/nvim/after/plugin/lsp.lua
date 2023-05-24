@@ -42,7 +42,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         map('x', '<leader>ca', '<cmd>lua vim.lsp.buf.range_code_action()<cr>')
 
         -- Diagnostics
-        map('n', 'gl', vim.diagnostic.open_float)
+        map('n', 'ge', vim.diagnostic.open_float)
         map('n', '[d', vim.diagnostic.goto_prev)
         map('n', ']d', vim.diagnostic.goto_next)
     end
