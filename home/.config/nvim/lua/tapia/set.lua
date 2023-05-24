@@ -15,7 +15,7 @@ vim.opt.relativenumber = true
 -- Lineabraks with indentation
 vim.opt.linebreak = true
 vim.opt.breakindent = true
-vim.opt.showbreak = ".."
+vim.opt.showbreak = "󱞩 "
 
 -- Foldings
 vim.opt.foldenable = false
