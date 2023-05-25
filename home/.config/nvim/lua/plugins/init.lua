@@ -21,7 +21,7 @@ return {
     { 'mbbill/undotree' },
     -- Git support
     { 'tpope/vim-fugitive' },
-    { 'airblade/vim-gitgutter' },
+    { 'lewis6991/gitsigns.nvim' },
     -- Language server and related
     -- LSP Support
     { 'neovim/nvim-lspconfig' }, -- Required
@@ -168,5 +168,11 @@ return {
     -- ASCII diagrams
     {
         'jbyuki/venn.nvim',
-    }
+        dependencies = { "hydra" },
+    },
+    -- Hydra
+    {
+        'anuvyklack/hydra.nvim',
+        name = "hydra",
+    },
 }
