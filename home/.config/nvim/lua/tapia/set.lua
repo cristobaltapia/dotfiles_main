@@ -52,6 +52,7 @@ vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
 vim.opt.diffopt:append("vertical")
+vim.opt.diffopt:append("linematch:60")
 
 vim.opt.shada:append('r/mnt/intcdc')
 
