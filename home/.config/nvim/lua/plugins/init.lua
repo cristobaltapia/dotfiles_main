@@ -165,4 +165,8 @@ return {
     },
     -- Tmux
     { 'jpalardy/vim-slime' },
+    -- ASCII diagrams
+    {
+        'jbyuki/venn.nvim',
+    }
 }
