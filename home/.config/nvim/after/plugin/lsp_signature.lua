@@ -4,6 +4,7 @@ require("lsp_signature").setup({
     doc_lines = 0,
     floating_window = false,
     toggle_key = "<C-h>",
+    select_signature_key = "<C-l>",
     floating_window_above_cur_line = true,
     handler_opts = {
         border = "rounded"
