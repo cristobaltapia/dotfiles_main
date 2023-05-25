@@ -103,6 +103,7 @@ require('mason-lspconfig').setup({
         'bashls',
         'ruff_lsp',
         'taplo',
+        'jsonls',
     }
 })
 
@@ -170,6 +171,8 @@ if Path:new("/usr/bin/ltex-ls"):is_file() then
 end
 lspconfig.ltex.setup(ltex_setup)
 lspconfig.fortls.setup {}
+-- JSON-ls
+lspconfig.jsonls.setup {}
 
 -- Define formatting for different filetypes
 lspconfig.efm.setup {
