@@ -16,3 +16,4 @@ require('gitsigns').setup {
         )
     end
 }
+vim.api.nvim_set_hl(0, 'GitSignsAddLn', { fg = "#434c5e", bg = "#a3be8c" })
