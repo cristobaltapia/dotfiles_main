@@ -113,7 +113,10 @@ return {
         cmd = "WikiIndex",
     },
     { 'lervag/wiki-ft.vim' },
-    { 'dkarter/bullets.vim' },
+    {
+        'dkarter/bullets.vim',
+        ft = { "wiki", "markdown", "pandoc", "markdown.pandoc", "gitcommit", "text" }
+    },
     -- Integration with tmux
     { 'christoomey/vim-tmux-navigator' },
     -- Integration with jupyter
@@ -137,12 +140,12 @@ return {
         }
     },
     -- Integration with latex
-    { 'lervag/vimtex',          ft = { 'tex' } },
+    { 'lervag/vimtex',                 ft = { 'tex' } },
     { 'joom/latex-unicoder.vim' },
     -- Support for typst
-    { 'kaarmu/typst.vim',       branch = 'main' },
+    { 'kaarmu/typst.vim',              branch = 'main' },
     -- Enable asyncronous run of commands
-    { 'stevearc/overseer.nvim', ft = { 'python' } },
+    { 'stevearc/overseer.nvim',        ft = { 'python' } },
     -- Nice visualization of quickfix errors
     { 'kevinhwang91/nvim-bqf' },
     -- Support for markdown
