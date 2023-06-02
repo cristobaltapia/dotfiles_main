@@ -86,7 +86,7 @@ return {
         'rickhowe/diffchar.vim',
         ft = { 'markdown', 'markdown.pandoc', 'tex' }
     },
-    { 'b3nj5m1n/kommentary',           branch = 'main' },
+    { 'b3nj5m1n/kommentary',   branch = 'main' },
     -- Status line
     {
         'nvim-lualine/lualine.nvim',
@@ -97,16 +97,26 @@ return {
     -- Close pairs of parentheses, quotes, etc
     { 'windwp/nvim-autopairs' },
     -- Different nice improvements for neovim
-    { 'echasnovski/mini.nvim',         branch = 'main' },
+    { 'echasnovski/mini.nvim', branch = 'main' },
     -- Support for openning GNUGP excrypted files
     { 'jamessan/vim-gnupg' },
     -- FZF support
-    { 'junegunn/fzf',                  build = './install --all' },
+    {
+        'junegunn/fzf',
+        build = './install --all',
+    },
     { 'junegunn/fzf.vim' },
     -- Note-taking utilities
-    { 'lervag/wiki.vim' },
+    {
+        'lervag/wiki.vim',
+        ft = { "wiki" },
+        cmd = "WikiIndex",
+    },
     { 'lervag/wiki-ft.vim' },
-    { 'dkarter/bullets.vim' },
+    {
+        'dkarter/bullets.vim',
+        ft = { "wiki", "markdown", "pandoc", "markdown.pandoc", "gitcommit", "text" }
+    },
     -- Integration with tmux
     { 'christoomey/vim-tmux-navigator' },
     -- Integration with jupyter
@@ -130,12 +140,12 @@ return {
         }
     },
     -- Integration with latex
-    { 'lervag/vimtex',          ft = { 'tex' } },
+    { 'lervag/vimtex',                 ft = { 'tex' } },
     { 'joom/latex-unicoder.vim' },
     -- Support for typst
-    { 'kaarmu/typst.vim',       branch = 'main' },
+    { 'kaarmu/typst.vim',              branch = 'main' },
     -- Enable asyncronous run of commands
-    { 'stevearc/overseer.nvim', ft = { 'python' } },
+    { 'stevearc/overseer.nvim',        ft = { 'python' } },
     -- Nice visualization of quickfix errors
     { 'kevinhwang91/nvim-bqf' },
     -- Support for markdown
