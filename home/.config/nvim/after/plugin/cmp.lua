@@ -94,9 +94,9 @@ local cmp_config = {
     end,
     -- Define sources to be used
     sources = {
-        { name = "nvim_lsp",      priority = 0 },
-        { name = "ultisnips",     priority = 1 },
-        { name = "path",          priority = 2 },
+        { name = "nvim_lsp",      priority = 9 },
+        { name = "ultisnips",     priority = 10 },
+        { name = "path",          priority = 4 },
         { name = "latex_symbols", priority = 2 },
         {
             name = 'buffer',

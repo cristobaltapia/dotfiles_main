@@ -1,6 +1,6 @@
 require("lsp_signature").setup({
     bind = true, -- This is mandatory, otherwise border config won't get registered.
-    hind_enable = true,
+    hint_enable = true,
     doc_lines = 0,
     floating_window = false,
     toggle_key = "<C-h>",
