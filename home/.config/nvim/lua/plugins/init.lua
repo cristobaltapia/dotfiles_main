@@ -185,4 +185,12 @@ return {
         'anuvyklack/hydra.nvim',
         name = "hydra",
     },
+    {
+        "ThePrimeagen/refactoring.nvim",
+        dependencies = {
+            { "nvim-lua/plenary.nvim" },
+            { "nvim-treesitter/nvim-treesitter" }
+        },
+        ft = { "python", "lua" },
+    },
 }
