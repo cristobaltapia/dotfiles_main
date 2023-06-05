@@ -63,3 +63,6 @@ vim.opt.clipboard:append('unnamedplus')
 
 vim.g.completion_sorting = "none"
 vim.g.completeopt = "menu,menuone,noinsert"
+
+-- Size of the completion menu
+vim.opt.pumheight = 15
