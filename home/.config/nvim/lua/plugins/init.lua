@@ -115,7 +115,7 @@ return {
     { 'lervag/wiki-ft.vim' },
     {
         'dkarter/bullets.vim',
-        ft = { "wiki", "markdown", "pandoc", "markdown.pandoc", "gitcommit", "text" }
+        ft = { "wiki", "markdown", "pandoc", "markdown.pandoc", "gitcommit", "text", "mail" }
     },
     -- Integration with tmux
     { 'christoomey/vim-tmux-navigator' },

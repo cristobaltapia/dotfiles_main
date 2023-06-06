@@ -5,4 +5,5 @@ vim.g.bullets_enabled_file_types = {
     'text',
     'wiki',
     'gitcommit',
+    'mail',
 }
