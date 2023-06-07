@@ -100,3 +100,46 @@ Hydra({
         { 'q',       nil,                                                { exit = true, nowait = true, desc = 'exit' } },
     }
 })
+
+-- Change language for ltex
+local hint_ltex = [[
+ ^^   Select Language for Ltex ^
+^ ^
+ _e_: English (American) ^
+ _d_: German (Germany) ^
+ _s_: Spanish
+^ ^
+ _q_: Exit
+]]
+
+Hydra({
+    name = 'Change Ltex language',
+    hint = hint_ltex,
+    config = {
+        color = 'pink',
+        invoke_on_body = true,
+        hint = {
+            border = 'rounded'
+        },
+        on_enter = function()
+            vim.o.virtualedit = 'all'
+        end,
+    },
+    mode = 'n',
+    body = '<leader>hl',
+    heads = {
+        { 'e', function()
+            require("lspconfig").ltex.setup({ settings = { ltex = { language = "en-US" } } })
+            vim.opt.spelllang = "en_US"
+        end },
+        { 'd', function()
+            require("lspconfig").ltex.setup({ settings = { ltex = { language = "de-DE" } } })
+            vim.opt.spelllang = "de_DE"
+        end },
+        { 's', function()
+            require("lspconfig").ltex.setup({ settings = { ltex = { language = "es" } } })
+            vim.opt.spelllang = "es"
+        end },
+        { 'q', nil, { exit = true } },
+    }
+})
