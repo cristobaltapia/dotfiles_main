@@ -156,6 +156,8 @@ lspconfig.dockerls.setup {
         client.server_capabilities.semanticTokensProvider = nil
     end,
 }
+-- CSS
+lspconfig.cssls.setup {}
 -- Grammar correctoin using ltex-ls
 local ltex_setup = {
     settings = {

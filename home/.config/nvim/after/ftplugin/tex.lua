@@ -12,7 +12,8 @@ vim.keymap.set("n", "<localleader>rf", vim.cmd.VimtexRefreshFolds)
 vim.g.tex_flavor = 'latex'
 
 vim.g.vimtex_compiler_latexmk = {
-    build_dir = 'aux-folder',
+    out_dir = 'out',
+    aux_dir = '.aux',
     callback = 1,
     continuous = 0,
     executable = 'latexmk',
