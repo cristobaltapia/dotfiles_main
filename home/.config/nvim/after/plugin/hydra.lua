@@ -130,11 +130,11 @@ Hydra({
     heads = {
         { 'e', function()
             require("lspconfig").ltex.setup({ settings = { ltex = { language = "en-US" } } })
-            vim.opt.spelllang = "en_US"
+            vim.opt.spelllang = "en_us"
         end },
         { 'd', function()
             require("lspconfig").ltex.setup({ settings = { ltex = { language = "de-DE" } } })
-            vim.opt.spelllang = "de_DE"
+            vim.opt.spelllang = "de_de"
         end },
         { 's', function()
             require("lspconfig").ltex.setup({ settings = { ltex = { language = "es" } } })
