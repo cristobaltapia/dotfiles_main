@@ -77,25 +77,28 @@ vim.api.nvim_set_hl(0, 'CmpItemKindKeyword', { fg = p.subtle })
 vim.api.nvim_set_hl(0, 'CmpItemKindText', { fg = p.subtle })
 
 local cmp_config = {
-    -- Disable autocompletion for comments
-    enabled = function()
-        -- disable completion in telescope prompt
-        local buftype = vim.api.nvim_buf_get_option(0, "buftype")
-        if buftype == "prompt" then return false end
-        -- disable completion in comments
-        local context = require 'cmp.config.context'
-        -- keep command mode completion enabled when cursor is in a comment
-        if vim.api.nvim_get_mode().mode == 'c' then
-            return true
-        else
-            return not context.in_treesitter_capture("comment")
-                and not context.in_syntax_group("Comment")
-        end
-    end,
     -- Define sources to be used
     sources = {
-        { name = "nvim_lsp",      priority = 9 },
-        { name = "ultisnips",     priority = 10 },
+        {
+            name = "nvim_lsp",
+            priority = 9,
+            -- Disable source for comments
+            entry_filter = function(entry, ctx)
+                local context = require 'cmp.config.context'
+                return not context.in_treesitter_capture("comment")
+                    and not context.in_syntax_group("Comment")
+            end
+        },
+        {
+            name = "ultisnips",
+            priority = 10,
+            -- Disable source for comments
+            entry_filter = function(entry, ctx)
+                local context = require 'cmp.config.context'
+                return not context.in_treesitter_capture("comment")
+                    and not context.in_syntax_group("Comment")
+            end
+        },
         { name = "path",          priority = 4 },
         { name = "latex_symbols", priority = 2 },
         {
@@ -120,7 +123,7 @@ local cmp_config = {
         end,
     },
     experimental = {
-        ghost_text = true,
+        ghost_text = { hl_group = 'DevIconCMake' },
     },
     formatting = {
         fields = { 'abbr', 'menu', 'kind' },
