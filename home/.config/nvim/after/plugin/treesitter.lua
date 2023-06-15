@@ -1,7 +1,7 @@
 require('nvim-treesitter.configs').setup {
     -- A list of parser names, or "all" (the five listed parsers should always be installed)
     ensure_installed = { "lua", "vim", "yaml", "bash", "bibtex", "css", "json", "toml", "vimdoc", "query", "javascript",
-        "python", "julia", "dockerfile" , "comment", "yuck" },
+        "python", "julia", "dockerfile", "comment", "yuck" },
 
     -- Install parsers synchronously (only applied to `ensure_installed`)
     sync_install = false,
@@ -30,3 +30,28 @@ require('nvim-treesitter.configs').setup {
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldnestmax = 2
+
+-- Nvim nvim_treesitter textobjects
+require 'nvim-treesitter.configs'.setup {
+    textobjects = {
+        select = {
+            enable = true,
+            -- Automatically jump forward to textobj, similar to targets.vim
+            lookahead = true,
+
+            keymaps = {
+                -- You can use the capture groups defined in textobjects.scm
+                ["af"] = "@function.outer",
+                ["if"] = "@function.inner",
+                ["ac"] = "@class.outer",
+                ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
+            },
+            selection_modes = {
+                ['@parameter.outer'] = 'v', -- charwise
+                ['@function.outer'] = 'V', -- linewise
+                ['@class.outer'] = 'V', -- blockwise
+            },
+            include_surrounding_whitespace = true,
+        },
+    },
+}
