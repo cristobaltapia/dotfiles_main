@@ -3,5 +3,6 @@ require('mini.trailspace').setup()
 require('mini.indentscope').setup()
 require('mini.animate').setup({
     cursor = { enable = false },
-    scroll = { timing = animate.gen_timing.linear({ duration = 150, unit = 'total' }) }
+    resize = { enable = true },
+    scroll = { enable = false, timing = animate.gen_timing.linear({ duration = 150, unit = 'total' }) }
 })
