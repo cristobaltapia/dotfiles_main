@@ -69,7 +69,7 @@ vim.g.completeopt = "menu,menuone,noinsert"
 vim.opt.pumheight = 15
 
 -- Set python syntax for Freecad macros
-vim.api.nvim_create_autocmd({ "BufEnter,BufNewFile,BufRead" }, {
+vim.api.nvim_create_autocmd({ "BufEnter", "BufNew", "BufNewFile", "BufRead" }, {
     pattern = { "*.fcmacro" },
     callback = function()
         vim.opt.filetype = "python"
