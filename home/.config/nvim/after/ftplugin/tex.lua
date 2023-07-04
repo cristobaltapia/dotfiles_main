@@ -74,3 +74,5 @@ vim.g.vimtex_delim_toggle_mod_list = {
     { '\\mleft', '\\mright' },
 }
 
+vim.opt_local.shiftwidth = 2
+vim.opt_local.tabstop = 2
