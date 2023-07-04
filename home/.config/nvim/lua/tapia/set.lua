@@ -75,3 +75,10 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufNew", "BufNewFile", "BufRead" }, {
         vim.opt.filetype = "python"
     end
 })
+-- Set tex syntax for pdf_tex files
+vim.api.nvim_create_autocmd({ "BufEnter", "BufNew", "BufNewFile", "BufRead" }, {
+    pattern = { "*.pdf_tex" },
+    callback = function()
+        vim.opt.filetype = "tex"
+    end
+})
