@@ -138,7 +138,19 @@ lspconfig.lua_ls.setup {
 -- Python LSP
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.publishDiagnostics.tagSupport.valueSet = { 2 }
-lspconfig.pyright.setup {}
+lspconfig.pyright.setup {
+    settings = {
+        python = {
+            analysis = {
+                autoSearchPaths = true,
+                disableOrganizeImports = true,
+                useLibraryCodeForTypes = true,
+                diagnosticMode = 'workspace',
+                autoImportCompletions = false,
+            }
+        }
+    }
+}
 lspconfig.ruff_lsp.setup {}
 -- Typst
 lspconfig.typst_lsp.setup { single_file_support = true }
