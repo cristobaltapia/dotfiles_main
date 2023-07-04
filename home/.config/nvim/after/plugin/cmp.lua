@@ -82,6 +82,7 @@ local cmp_config = {
         {
             name = "nvim_lsp",
             priority = 9,
+            keyword_length = 1,
             -- Disable source for comments
             entry_filter = function(entry, ctx)
                 local context = require 'cmp.config.context'
@@ -125,6 +126,10 @@ local cmp_config = {
     experimental = {
         ghost_text = { hl_group = 'DevIconCMake' },
     },
+    performance = {
+        max_view_entries = 40,
+        fetching_timeout = 100,
+    },
     formatting = {
         fields = { 'abbr', 'menu', 'kind' },
         format = function(entry, item)
@@ -138,6 +143,17 @@ local cmp_config = {
             item.menu = string.format('[%s]', menu_name)
             return item
         end,
+    },
+    sorting = {
+        comparators = {
+            cmp.config.compare.sort_text,
+            cmp.config.compare.offset,
+            cmp.config.compare.exact,
+            cmp.config.compare.score,
+            cmp.config.compare.kind,
+            cmp.config.compare.length,
+            cmp.config.compare.order,
+        }
     },
     window = {
         completion = {
