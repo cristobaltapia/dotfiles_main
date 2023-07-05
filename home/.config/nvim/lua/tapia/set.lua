@@ -69,16 +69,24 @@ vim.g.completeopt = "menu,menuone,noinsert"
 vim.opt.pumheight = 15
 
 -- Set python syntax for Freecad macros
-vim.api.nvim_create_autocmd({ "BufEnter", "BufNew", "BufNewFile", "BufRead" }, {
+vim.api.nvim_create_autocmd({ "BufEnter", "BufNewFile" }, {
     pattern = { "*.fcmacro" },
     callback = function()
         vim.opt.filetype = "python"
     end
 })
 -- Set tex syntax for pdf_tex files
-vim.api.nvim_create_autocmd({ "BufEnter", "BufNew", "BufNewFile", "BufRead" }, {
+vim.api.nvim_create_autocmd({ "BufEnter", "BufNewFile" }, {
     pattern = { "*.pdf_tex" },
     callback = function()
         vim.opt.filetype = "tex"
     end
+})
+
+-- dont list quickfix buffers
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "qf",
+  callback = function()
+    vim.opt_local.buflisted = false
+  end,
 })
