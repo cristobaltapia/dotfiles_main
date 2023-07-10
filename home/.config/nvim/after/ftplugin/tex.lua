@@ -53,7 +53,8 @@ vim.g.vimtex_syntax_conceal = {
 
 vim.g.vimtex_indent_enabled = true
 vim.g.vimtex_indent_on_ampersands = false
-vim.g.vimtex_indent_bib_enabled = true
+vim.g.vimtex_indent_bib_enabled = false
+vim.g.vimtex_fold_bib_enabled = false
 
 vim.g.vimtex_imaps_leader = '#'
 vim.g.vimtex_quickfix_method = 'latexlog'
