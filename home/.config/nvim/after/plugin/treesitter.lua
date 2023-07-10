@@ -48,8 +48,8 @@ require 'nvim-treesitter.configs'.setup {
             },
             selection_modes = {
                 ['@parameter.outer'] = 'v', -- charwise
-                ['@function.outer'] = 'V', -- linewise
-                ['@class.outer'] = 'V', -- blockwise
+                ['@function.outer'] = 'V',  -- linewise
+                ['@class.outer'] = 'V',     -- blockwise
             },
             include_surrounding_whitespace = true,
         },
