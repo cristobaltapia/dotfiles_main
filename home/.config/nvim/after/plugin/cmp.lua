@@ -90,6 +90,7 @@ local cmp_config = {
                     and not context.in_syntax_group("Comment")
             end
         },
+        { name = 'omni' },
         {
             name = "ultisnips",
             priority = 10,

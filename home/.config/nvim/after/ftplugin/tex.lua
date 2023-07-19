@@ -27,7 +27,7 @@ vim.g.vimtex_compiler_latexmk = {
 
 vim.g.vimtex_compiler_latexmk_engines = { _ = '-lualatex' }
 
-vim.g.vimtex_complete_enabled = 0
+vim.g.vimtex_complete_enabled = 1
 vim.g.vimtex_complete_close_braces = 0
 vim.g.vimtex_complete_ignore_case = 1
 vim.g.vimtex_complete_smart_case = 1
@@ -77,3 +77,32 @@ vim.g.vimtex_delim_toggle_mod_list = {
 
 vim.opt_local.shiftwidth = 2
 vim.opt_local.tabstop = 2
+
+require('cmp').setup.buffer {
+    formatting = {
+        format = function(entry, vim_item)
+            vim_item.menu = ({
+                omni = (vim.inspect(vim_item.menu):gsub('%"', "")),
+                buffer = "[Buffer]",
+                -- formatting for other sources
+            })[entry.source.name]
+            return vim_item
+        end,
+    },
+    sources = {
+        { name = 'omni',  priority = 9 },
+        { name = 'buffer' },
+        { name = "path",  priority = 4 },
+        {
+            name = "ultisnips",
+            priority = 10,
+            -- Disable source for comments
+            entry_filter = function(entry, ctx)
+                local context = require 'cmp.config.context'
+                return not context.in_treesitter_capture("comment")
+                    and not context.in_syntax_group("Comment")
+            end
+        },
+        -- other sources
+    },
+}
