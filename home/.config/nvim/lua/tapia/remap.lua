@@ -56,15 +56,15 @@ vim.keymap.set("n", "<leader>bq", "<cmd>bp <BAR> bd #<cr>")
 vim.keymap.set("n", "<leader>cq", vim.cmd.cclose)
 
 -- Run files with overseer
-local overseer = require("overseer")
-local function compile_and_run()
-    local file_path = vim.api.nvim_buf_get_name(0)
-    local file_cwd = vim.loop.cwd()
+-- local overseer = require("overseer")
+-- local function compile_and_run()
+--     local file_path = vim.api.nvim_buf_get_name(0)
+--     local file_cwd = vim.loop.cwd()
 
-    if vim.bo.filetype == 'python' then
-        vim.cmd("write")
-        overseer.run_template({ name = "python_build" })
-    end
-end
+--     if vim.bo.filetype == 'python' then
+--         vim.cmd("write")
+--         overseer.run_template({ name = "python_build" })
+--     end
+-- end
 
-vim.keymap.set('n', '<F5>', compile_and_run)
+-- vim.keymap.set('n', '<F5>', compile_and_run)

@@ -147,9 +147,14 @@ return {
     { 'lervag/vimtex',                 ft = { 'tex' } },
     { 'joom/latex-unicoder.vim' },
     -- Support for typst
-    { 'kaarmu/typst.vim',              branch = 'main' },
+    {
+        'kaarmu/typst.vim',
+        ft = { "typst" },
+        branch = 'main'
+    },
     -- Enable asyncronous run of commands
-    { 'stevearc/overseer.nvim',        ft = { 'python' } },
+    -- { 'stevearc/overseer.nvim',        ft = { 'python' } },
+    { 'skywind3000/asyncrun.vim', ft = { 'python', 'typst' } },
     -- Nice visualization of quickfix errors
     { 'kevinhwang91/nvim-bqf' },
     -- Support for markdown

@@ -172,6 +172,7 @@ lspconfig.dockerls.setup {
 lspconfig.cssls.setup {}
 -- Grammar correctoin using ltex-ls
 local ltex_setup = {
+    filetypes = { "bib", "gitcommit", "markdown", "org", "plaintex", "rst", "rnoweb", "tex", "pandoc", "typst" },
     settings = {
         ltex = {
             language = "en-US",
