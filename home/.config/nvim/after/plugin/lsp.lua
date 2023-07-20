@@ -157,7 +157,7 @@ lspconfig.typst_lsp.setup { single_file_support = true }
 -- Julia
 lspconfig.julials.setup {}
 -- Latex
-lspconfig.texlab.setup {}
+-- lspconfig.texlab.setup {}
 -- Toml
 lspconfig.taplo.setup {}
 -- Docker
@@ -190,12 +190,13 @@ lspconfig.fortls.setup {}
 lspconfig.jsonls.setup {}
 
 -- Define formatting for different filetypes
+local texFormatter = 'latexindent --modifylinebreaks -y="defaultIndent: \'  \'"'
 lspconfig.efm.setup {
     flags = {
         debounce_text_changes = 150,
     },
     init_options = { documentFormatting = true },
-    filetypes = { "python", "bib" },
+    filetypes = { "python", "bib", "tex", "sty", "cls" },
     settings = {
         rootMarkers = { ".git/" },
         languages = {
@@ -208,6 +209,9 @@ lspconfig.efm.setup {
                     formatStdin = true
                 }
             },
+            tex = { { formatCommand = texFormatter, formatStdin = true } },
+            sty = { { formatCommand = texFormatter, formatStdin = true } },
+            cls = { { formatCommand = texFormatter, formatStdin = true } },
         }
     }
 }
