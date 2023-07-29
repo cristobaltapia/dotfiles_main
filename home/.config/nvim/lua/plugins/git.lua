@@ -2,6 +2,7 @@ return {
   -- Fugitive
   {
     'tpope/vim-fugitive',
+    cmd = "G",
     keys = {
       { "<leader>gs", vim.cmd.Git },
       { "<leader>gc", "<cmd>Git commit<cr>" },
