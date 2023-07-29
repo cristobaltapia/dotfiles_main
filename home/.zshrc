@@ -55,7 +55,7 @@ zle -N down-line-or-beginning-search
 # End of lines added by compinstall
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
-HISTSIZE=1000
+HISTSIZE=5000
 SAVEHIST=10000
 bindkey -v
 
@@ -105,14 +105,18 @@ function yayinstall() {
 # FZF
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
+source ~/.local/share/fzf/fzf-git.bash
+
 # - Options
 export FZF_DEFAULT_OPTS='--color=bg+:#3B4252,bg:#2E3440,spinner:#81A1C1,hl:#616E88,fg:#D8DEE9,header:#616E88,info:#81A1C1,pointer:#d08770,marker:#d08770,fg+:#D8DEE9,prompt:#81A1C1,hl+:#81A1C1'
 export FZF_ALT_C_OPTS='--height=40% --min-height=20'
 export FZF_CTRL_T_OPTS='--height=40% --min-height=20'
 # Default commands
 export FZF_DEFAULT_COMMAND="fd"
+# export FZF_DEFAULT_COMMAND="bfs"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd -t d"
+# export FZF_ALT_C_COMMAND="bfs -type d -nohidden "
 
 #----------------------------------------------------------------------
 # Colors
