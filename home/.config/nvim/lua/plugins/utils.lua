@@ -279,6 +279,19 @@ return {
       vim.g.UltisnipsUsePythonVersion = 3
     end
   },
+  {
+    "yssl/AutoCWD.vim",
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      vim.g.autocwd_patternwd_pairs = {
+        { '*.vim', '%:p:h' },
+        { '*.lua', '%:p:h' },
+        { '*.py',  '%:p:h' },
+        { '*.tex', '%:p:h' },
+        { '*',     '%:p:h' },
+      }
+    end
+  }
   -- Follow symlinks
   -- { 'aymericbeaumet/vim-symlink',  dependencies = { 'moll/vim-bbye' } },
 }
