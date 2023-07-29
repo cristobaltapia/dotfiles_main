@@ -1,4 +1,3 @@
-
 -- Define the quickfix format
 function _G.qftf(info)
     local items

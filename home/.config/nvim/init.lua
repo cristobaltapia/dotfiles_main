@@ -12,8 +12,8 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Load lazy.nvim
-local plugins = require("plugins")
-require("lazy").setup(plugins)
 -- Load further configurations (mappings, sets, etc)
 require("tapia")
+-- Load lazy.nvim
+-- local plugins = require("plugins")
+require("lazy").setup("plugins")
