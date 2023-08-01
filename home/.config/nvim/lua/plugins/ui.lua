@@ -64,10 +64,10 @@ return {
   {
     'kevinhwang91/nvim-bqf',
     config = function()
-
       vim.o.qftf = '{info -> v:lua._G.qftf(info)}'
 
       require('bqf').setup()
+      vim.api.nvim_set_hl(0, 'BqfPreviewTitle', { bg = '#ebcb8b', fg = '#3b4252' })
     end
   },
   -- Overview of code
