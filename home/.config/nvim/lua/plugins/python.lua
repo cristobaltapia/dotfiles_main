@@ -8,7 +8,7 @@ return {
       local function run_async()
         local ft = vim.bo.filetype
         if ft == "typst" then
-          vim.cmd('AsyncRun! -cwd=$(VIM_FILEDIR) -save=1 -pos=bottom -rows=15 -focus=0 typst compile "$(VIM_FILEPATH)"')
+          vim.cmd('AsyncRun! -cwd=$(VIM_FILEDIR) -save=1 -pos=bottom -rows=6 -focus=0 typst compile "$(VIM_FILEPATH)"')
         elseif ft == "python" then
           vim.cmd('AsyncRun! -cwd=$(VIM_FILEDIR) -save=1 -pos=bottom -rows=15 -focus=0 python "$(VIM_FILEPATH)"')
         end

@@ -30,9 +30,6 @@ vim.opt.autochdir = true
 
 -- Use spaces to replace tabs
 vim.opt.expandtab = true
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.tabstop = 4
 
 -- Allow virtual editing in visual block
 vim.opt.virtualedit = "block"
