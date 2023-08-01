@@ -1,1 +1,7 @@
-vim.keymap.set("n", "<F5>", ":AsyncRun! -cwd=$(VIM_FILEDIR) -save=1 -mode=hide -raw -pos=bottom -rows=15 -focus=0 typst compile '$(VIM_FILEPATH)'<CR><CR>")
+-- Set error format
+vim.cmd([[set errorformat=%Eerror:\ %m]])
+vim.cmd([[set errorformat+=%Ihelp:\ %m]])
+vim.cmd([[set errorformat+=%C\ \ ┌─\ /%f:%l:%c]])
+vim.cmd([[set errorformat+=%C\ \ \ ┌─\ /%f:%l:%c]])
+vim.cmd([[set errorformat+=%C%s]])
+vim.cmd([[set errorformat+=%Z]])

@@ -3,6 +3,19 @@ return {
     'skywind3000/asyncrun.vim',
     ft = { 'python', 'typst' },
     keys = { "<F5>" },
+    config = function()
+      -- Execute programs asyncronously
+      local function run_async()
+        local ft = vim.bo.filetype
+        if ft == "typst" then
+          vim.cmd('AsyncRun! -cwd=$(VIM_FILEDIR) -save=1 -pos=bottom -rows=15 -focus=0 typst compile "$(VIM_FILEPATH)"')
+        elseif ft == "python" then
+          vim.cmd('AsyncRun! -cwd=$(VIM_FILEDIR) -save=1 -pos=bottom -rows=15 -focus=0 python "$(VIM_FILEPATH)"')
+        end
+      end
+
+      vim.keymap.set("n", "<F5>", run_async)
+    end
   },
   {
     'untitled-ai/jupyter_ascending.vim',
