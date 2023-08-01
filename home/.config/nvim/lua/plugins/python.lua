@@ -1,38 +1,25 @@
 return {
   {
-    'skywind3000/asyncrun.vim',
-    ft = { 'python', 'typst' },
-    -- keys = { "<F5>" },
-    -- config = function()
-    --   -- Execute programs asyncronously
-    --   local function run_async()
-    --     local ft = vim.bo.filetype
-    --     if ft == "typst" then
-    --       vim.cmd('AsyncRun! -cwd=$(VIM_FILEDIR) -save=1 -pos=bottom -rows=6 -focus=0 typst compile "$(VIM_FILEPATH)"')
-    --     elseif ft == "python" then
-    --       vim.cmd('AsyncRun! -cwd=$(VIM_FILEDIR) -save=1 -pos=bottom -rows=15 -focus=0 python "$(VIM_FILEPATH)"')
-    --     end
-    --   end
-
-    --   vim.keymap.set("n", "<F5>", run_async)
-    -- end
-  },
-  {
     "tpope/vim-dispatch",
     ft = { "typst", "python" },
     keys = { "<F5>" },
     config = function()
       -- Execute programs asyncronously
-      local function run_async()
+      local function save_and_run_async()
+        -- Save file
+        vim.cmd.write()
+        -- Get filetype
         local ft = vim.bo.filetype
+        -- Execute command according to filetype
         if ft == "typst" then
-          vim.cmd('Dispatch -compiler=typst typst compile %:p')
+          vim.cmd('Dispatch -compiler=typst -dir=%:p:h typst compile %:p')
         elseif ft == "python" then
           vim.cmd('Dispatch -compiler=python -dir=%:p:h python %:p')
         end
       end
-      vim.keymap.set("n", "<F5>", run_async)
-      -- vim.opts.dispatch_no_maps = 1
+      vim.keymap.set("n", "<F5>", save_and_run_async)
+      -- Deactivate default mappings
+      vim.g.dispatch_no_maps = 1
     end,
   },
   {
