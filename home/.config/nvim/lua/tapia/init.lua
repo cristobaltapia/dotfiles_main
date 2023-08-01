@@ -2,9 +2,6 @@ require("tapia.remap")
 require("tapia.set")
 require("tapia.autocmd")
 
-vim.cmd('hi pythonTSParameter guifg=#b48ead')
-vim.cmd('hi TSConstant guifg=#ebcb8b')
-
 vim.opt.guicursor =
 "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
 
@@ -42,10 +39,17 @@ function _G.qftf(info)
             local lnum = e.lnum > 99999 and -1 or e.lnum
             local cnum = e.col
             local qtype = e.type == '' and '' or ' ' .. e.type:sub(1, 1):upper()
+            local module
+            if string.len(e.module) > 1 and string.len(e.text) > 1 then
+                module = e.module .. ": "
+            else
+                module = e.module
+            end
+            local textm = e.text:gsub("\n", '')
             if qtype == '' then
                 qtype = ' ->'
             end
-            str = valid_fmt:format(fname, lnum, cnum, qtype, e.text)
+            str = valid_fmt:format(fname, lnum, cnum, qtype, module  .. textm)
         else
             str = e.text
         end

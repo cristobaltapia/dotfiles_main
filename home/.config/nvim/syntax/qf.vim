@@ -7,12 +7,14 @@ syn match qfSeparatorLeft /│/ contained nextgroup=qfLineNr
 syn match qfLineNr /[^\:]*/ contained nextgroup=qfSeparatorMid
 syn match qfSeparatorMid /\:/ contained nextgroup=qfColNr
 syn match qfColNr /[^│]*/ contained nextgroup=qfSeparatorRight
-syn match qfSeparatorRight '│' contained nextgroup=qfError,qfWarning,qfInfo,qfNote
+syn match qfSeparatorRight '│' contained nextgroup=qfError,qfWarning,qfInfo,qfNote,qfModulePre
 syn match qfError / E .*$/ contained
-syn match qfErrorPy /\%x00\w\{-1,}\(Error\)/
-syn match qfWarning / W / contained
+syn match qfWarning / W .*$/ contained
 syn match qfInfo / I .*$/ contained
 syn match qfNote / [NH] .*$/ contained
+syn match qfModulePre / ->  in/ contained nextgroup=qfModule
+syn match qfModule / \S*/ contained nextgroup=qfErrorPy
+syn match qfErrorPy /\w\{-1,}\(Error\)/
 syn match qfTraceback /^Traceback/ nextgroup=qfTraceBackNext
 syn match qfTracebackNext /.*$/ contained
 syn match qfNormal /^\(\(│ *\d*\: *\d*\|Traceback\)\@!.\)*$/
@@ -28,6 +30,7 @@ highlight! default link qfTracebackNext MiniTrailSpace
 highlight! default link qfError Debug
 highlight! default link qfErrorPy Debug
 highlight! default link qfWarning SpecialChar
+highlight! default link qfModule SpecialChar
 highlight! default link qfInfo Character
 highlight! default link qfNote Label
 highlight! default link qfNormal Normal

@@ -74,6 +74,10 @@ return {
       vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
       vim.opt.foldnestmax = 2
       vim.opt.foldenable = false
+
+      vim.cmd('hi pythonTSParameter guifg=#b48ead')
+      vim.cmd('hi TSConstant guifg=#ebcb8b')
+
     end
   },
   { "nvim-treesitter/nvim-treesitter-textobjects", },
