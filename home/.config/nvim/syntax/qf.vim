@@ -25,8 +25,8 @@ highlight! default link qfSeparatorRight Delimiter
 highlight! default link qfSeparatorMid Delimiter
 highlight! default link qfLineNr DiagnosticWarn
 highlight! default link qfColNr Number
-highlight! default link qfTraceback MiniTrailSpace
-highlight! default link qfTracebackNext MiniTrailSpace
+highlight! default link qfTraceback Debug
+highlight! default link qfTracebackNext Normal
 highlight! default link qfError Debug
 highlight! default link qfErrorPy Debug
 highlight! default link qfWarning SpecialChar
