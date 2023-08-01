@@ -130,7 +130,6 @@ return {
           'eslint',
           'pyright',
           'ltex',
-          'texlab',
           'julials',
           'cssls',
           'efm',
