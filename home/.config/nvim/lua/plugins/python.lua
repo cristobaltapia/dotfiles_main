@@ -1,8 +1,26 @@
 return {
   {
-    'skywind3000/asyncrun.vim',
-    ft = { 'python', 'typst' },
+    "tpope/vim-dispatch",
+    ft = { "typst", "python" },
     keys = { "<F5>" },
+    config = function()
+      -- Execute programs asyncronously
+      local function save_and_run_async()
+        -- Save file
+        vim.cmd.write()
+        -- Get filetype
+        local ft = vim.bo.filetype
+        -- Execute command according to filetype
+        if ft == "typst" then
+          vim.cmd('Dispatch -compiler=typst -dir=%:p:h typst compile %:p')
+        elseif ft == "python" then
+          vim.cmd('Dispatch -compiler=python -dir=%:p:h python %:p')
+        end
+      end
+      vim.keymap.set("n", "<F5>", save_and_run_async)
+      -- Deactivate default mappings
+      vim.g.dispatch_no_maps = 1
+    end,
   },
   {
     'untitled-ai/jupyter_ascending.vim',

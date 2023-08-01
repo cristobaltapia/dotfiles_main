@@ -69,9 +69,11 @@ return {
     },
     config = function(_, opts)
       require("nvim-treesitter.configs").setup(opts)
+      -- Foldings
       vim.opt.foldmethod = "expr"
       vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
       vim.opt.foldnestmax = 2
+      vim.opt.foldenable = false
     end
   },
   { "nvim-treesitter/nvim-treesitter-textobjects", },
