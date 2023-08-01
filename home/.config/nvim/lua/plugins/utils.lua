@@ -284,7 +284,6 @@ return {
     'aymericbeaumet/vim-symlink',
     -- 'Jasha10/vim-symlink',
     dependencies = { 'moll/vim-bbye' },
-    branch = "neovim0.9-autocmd-issue",
   },
 }
 -- vim: set shiftwidth=2:
