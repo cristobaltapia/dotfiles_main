@@ -25,11 +25,13 @@ highlight! default link qfLineNr DiagnosticWarn
 highlight! default link qfColNr Number
 highlight! default link qfTraceback MiniTrailSpace
 highlight! default link qfTracebackNext MiniTrailSpace
-highlight! default link qfError DiffDelete
-highlight! default link qfErrorPy DiffDelete
-highlight! default link qfWarning DiffChange
-highlight! default link qfInfo DiagnosticWarn
-highlight! default link qfNote DiagnosticWarn
+highlight! default link qfError Debug
+highlight! default link qfErrorPy Debug
+highlight! default link qfWarning SpecialChar
+highlight! default link qfInfo Character
+highlight! default link qfNote Label
 highlight! default link qfNormal Normal
+highlight MyQuickFixLine cterm=none
+highlight! default link QuickFixLine MyQuickFixLine
 
 let b:current_syntax = 'qf'
