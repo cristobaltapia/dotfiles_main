@@ -2,20 +2,38 @@ return {
   {
     'skywind3000/asyncrun.vim',
     ft = { 'python', 'typst' },
+    -- keys = { "<F5>" },
+    -- config = function()
+    --   -- Execute programs asyncronously
+    --   local function run_async()
+    --     local ft = vim.bo.filetype
+    --     if ft == "typst" then
+    --       vim.cmd('AsyncRun! -cwd=$(VIM_FILEDIR) -save=1 -pos=bottom -rows=6 -focus=0 typst compile "$(VIM_FILEPATH)"')
+    --     elseif ft == "python" then
+    --       vim.cmd('AsyncRun! -cwd=$(VIM_FILEDIR) -save=1 -pos=bottom -rows=15 -focus=0 python "$(VIM_FILEPATH)"')
+    --     end
+    --   end
+
+    --   vim.keymap.set("n", "<F5>", run_async)
+    -- end
+  },
+  {
+    "tpope/vim-dispatch",
+    ft = { "typst", "python" },
     keys = { "<F5>" },
     config = function()
       -- Execute programs asyncronously
       local function run_async()
         local ft = vim.bo.filetype
         if ft == "typst" then
-          vim.cmd('AsyncRun! -cwd=$(VIM_FILEDIR) -save=1 -pos=bottom -rows=6 -focus=0 typst compile "$(VIM_FILEPATH)"')
+          vim.cmd('Dispatch -compiler=typst typst compile %:p')
         elseif ft == "python" then
-          vim.cmd('AsyncRun! -cwd=$(VIM_FILEDIR) -save=1 -pos=bottom -rows=15 -focus=0 python "$(VIM_FILEPATH)"')
+          vim.cmd('Dispatch -compiler=python -dir=%:p:h python %:p')
         end
       end
-
       vim.keymap.set("n", "<F5>", run_async)
-    end
+      -- vim.opts.dispatch_no_maps = 1
+    end,
   },
   {
     'untitled-ai/jupyter_ascending.vim',
