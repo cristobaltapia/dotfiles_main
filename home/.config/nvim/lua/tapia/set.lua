@@ -18,9 +18,6 @@ vim.opt.breakindent = true
 vim.opt.showbreak = "󱞩 "
 vim.opt.wrap = true
 
--- Foldings
-vim.opt.foldenable = false
-
 -- Change buffer without saving
 vim.opt.hidden = true
 
