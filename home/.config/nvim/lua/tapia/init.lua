@@ -45,7 +45,7 @@ function _G.qftf(info)
             else
                 module = e.module
             end
-            local textm = e.text:gsub("\n", '')
+            local textm = e.text:gsub("\n", ' ')
             str = valid_fmt:format(fname, lnum, cnum, qtype, module  .. textm)
         else
             str = e.text

@@ -5,9 +5,11 @@ vim.opt.cpoptions:remove("C")
 vim.cmd([[set errorformat=
 \%A\ \ File\ \"%f\"\\\,\ line\ %l\\\,\ in\ %o%\\C,
 \%A\ \ File\ \"%f\"\\\,\ line\ %l%\\C,
+\%W%f:%l:\ %m,
 \%C%p^,
 \%-C\ \ \ \ %.%#,
-\%+C\ \ %.%#,
+\%-C\ \ %.%#,
+\%+C%.%#,
 \%Z%\\S%\\&%m,
 \%-G%.%#
 ]]
