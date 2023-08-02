@@ -1,4 +1,4 @@
-" Typst compiler for neovim
+" Python compiler for neovim
 if exists("current_compiler")
   finish
 endif
