@@ -11,10 +11,14 @@ return {
         -- Get filetype
         local ft = vim.bo.filetype
         -- Execute command according to filetype
+        local dir = vim.fn.fnameescape(vim.fn.expand("%:p:h"))
+        local filename = vim.fn.fnameescape(vim.fn.expand("%:p"))
+
+        print(filename)
         if ft == "typst" then
-          vim.cmd('Dispatch -compiler=typst -dir=%:p:h typst compile %:p')
+          vim.cmd('Dispatch -compiler=typst -dir=' .. dir .. ' typst compile ' .. filename)
         elseif ft == "python" then
-          vim.cmd('Dispatch -compiler=python -dir=%:p:h python %:p')
+          vim.cmd('Dispatch -compiler=python -dir=' .. dir .. ' python ' .. filename)
         end
       end
       vim.keymap.set("n", "<F5>", save_and_run_async)
