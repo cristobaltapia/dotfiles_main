@@ -14,6 +14,7 @@ return {
       { "davidsierradz/cmp-conventionalcommits", },
       { 'quangnguyen30192/cmp-nvim-ultisnips', },
       { 'rose-pine/neovim' },
+      { 'windwp/nvim-autopairs' },
     },
     -- Configuration
     config = function()

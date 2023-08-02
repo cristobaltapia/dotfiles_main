@@ -234,7 +234,6 @@ return {
   -- Close pairs of parentheses, quotes, etc
   {
     'windwp/nvim-autopairs',
-    event = { "BufReadPre", "BufNewFile" },
     config = true,
   },
   -- Different nice improvements for neovim
