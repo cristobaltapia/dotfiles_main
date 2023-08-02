@@ -7,12 +7,11 @@ syn match qfSeparatorLeft /│/ contained nextgroup=qfLineNr
 syn match qfLineNr /[^\:]*/ contained nextgroup=qfSeparatorMid
 syn match qfSeparatorMid /\:/ contained nextgroup=qfColNr
 syn match qfColNr /[^│]*/ contained nextgroup=qfSeparatorRight
-syn match qfSeparatorRight '│' contained nextgroup=qfError,qfWarning,qfInfo,qfNote,qfModulePre
+syn match qfSeparatorRight '│' contained nextgroup=qfError,qfWarning,qfInfo,qfNote,qfModule
 syn match qfError / E .*$/ contained
 syn match qfWarning / W .*$/ contained
 syn match qfInfo / I .*$/ contained
 syn match qfNote / [NH] .*$/ contained
-syn match qfModulePre / ->  in/ contained nextgroup=qfModule
 syn match qfModule / \S*/ contained nextgroup=qfErrorPy
 syn match qfErrorPy /\w\{-1,}\(Error\)/
 syn match qfTraceback /^Traceback/ nextgroup=qfTraceBackNext

@@ -3,13 +3,12 @@ vim.opt.cpoptions:remove("C")
 
 -- Set error format
 vim.cmd([[set errorformat=
-\%A\ \ File\ \"%f\"\\\,\ line\ %l\\\,%o,
+\%A\ \ File\ \"%f\"\\\,\ line\ %l\\\,\ in\ %o%\\C,
+\%A\ \ File\ \"%f\"\\\,\ line\ %l%\\C,
+\%C%p^,
 \%-C\ \ \ \ %.%#,
-\%Z%[%^\ ]%\\@=%m,
-\%A%>\ \ File\ \"%f\"\\\,\ line\ %l,
 \%+C\ \ %.%#,
-\%-C%p^,
-\%Z%m,
+\%Z%\\S%\\&%m,
 \%-G%.%#
 ]]
 )
