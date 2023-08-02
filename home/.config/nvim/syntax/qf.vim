@@ -12,7 +12,7 @@ syn match qfError / E .*$/ contained
 syn match qfWarning / W .*$/ contained
 syn match qfInfo / I .*$/ contained
 syn match qfNote / [NH] .*$/ contained
-syn match qfModule / \S*/ contained nextgroup=qfErrorPy
+syn match qfModule / [^EWINH]\S*/ contained nextgroup=qfErrorPy
 syn match qfErrorPy /\w\{-1,}\(Error\)/
 syn match qfTraceback /^Traceback/ nextgroup=qfTraceBackNext
 syn match qfTracebackNext /.*$/ contained
