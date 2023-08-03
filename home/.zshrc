@@ -1,4 +1,3 @@
-
 # The following lines were added by compinstall
 
 zstyle ':completion:*' completer _expand _complete _ignored _approximate
@@ -39,7 +38,12 @@ fpath=($HOME/.config/zsh/comp $fpath)
 path=($HOME/bin $path)
 
 autoload -Uz compinit
-compinit
+# compinit
+if [ $(date +'%j') != $(date +"%j" -r $HOME/.zcompdump) ]; then
+  compinit
+else
+  compinit -C
+fi
 
 # FEX
 compdef _gnu_generic fexsend fexget fexpush \
@@ -76,7 +80,10 @@ export EDITOR="nvim"
 #----------------------------------------------------------------------
 # Virtual Environment
 export WORKON_HOME=~/.virtualenvs
-source /usr/bin/virtualenvwrapper.sh
+# source /usr/bin/virtualenvwrapper.sh
+export VIRTUALENVWRAPPER_SCRIPT=/usr/bin/virtualenvwrapper.sh
+# Lazy-load virtualenvwrapper
+source /usr/bin/virtualenvwrapper_lazy.sh
 
 #----------------------------------------------------------------------
 # Pyenv
@@ -132,4 +139,3 @@ export NVIM_GTK_NO_HEADERBAR=1
 export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
