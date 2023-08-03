@@ -121,27 +121,26 @@ return {
       lsp_settings()
 
       require('mason').setup({})
-      require('mason-lspconfig').setup({})
 
       require('mason-lspconfig').setup({
         ensure_installed = {
-          'lua_ls',
-          'tsserver',
-          'eslint',
-          'pyright',
-          'ltex',
-          'julials',
+          'bashls',
           'cssls',
-          'efm',
-          'marksman',
-          'typst_lsp',
           'docker_compose_language_service',
           'dockerls',
+          'efm',
+          'eslint',
           'fortls',
-          'bashls',
+          'jsonls',
+          'julials',
+          'ltex',
+          'lua_ls',
+          'marksman',
+          'pyright',
           'ruff_lsp',
           'taplo',
-          'jsonls',
+          'tsserver',
+          'typst_lsp',
         }
       })
 

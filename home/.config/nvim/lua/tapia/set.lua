@@ -79,11 +79,16 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufNewFile" }, {
 
 -- dont list quickfix buffers
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "qf",
-  callback = function()
-    vim.opt_local.buflisted = false
-  end,
+    pattern = "qf",
+    callback = function()
+        vim.opt_local.buflisted = false
+    end,
 })
 
 -- Disable editorconfig
 vim.g.editorconfig = false
+
+-- Set default tabsize
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
