@@ -192,9 +192,6 @@ return {
       -- Typst
       lspconfig.typst_lsp.setup {
         single_file_support = true,
-        settings = {
-          exportPdf = "onSave"
-        }
       }
       -- Julia
       lspconfig.julials.setup {}
