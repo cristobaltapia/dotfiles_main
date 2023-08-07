@@ -9,9 +9,11 @@ let s:cpo_save = &cpo
 set cpo&vim
 
 set errorformat=%Eerror:\ %m
+set errorformat+=%Wwarning:\ %m
 set errorformat+=%Ihelp:\ %m
 set errorformat+=%C\ \ ┌─\ /%f:%l:%c
 set errorformat+=%C\ \ \ ┌─\ /%f:%l:%c
+set errorformat+=%C\ \ \ =\ %m
 set errorformat+=%C%s
 set errorformat+=%Z
 
