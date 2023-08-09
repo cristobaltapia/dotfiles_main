@@ -10,6 +10,7 @@ set cpo&vim
 CompilerSet errorformat=
             \%A%f(%l):\ %trror\ \#%n:\ %m,
             \%A%f(%l):\ %tarning\ \#%n:\ %m,
+            \%f(%l):\ remark:\ \#%n:\ %m,
             \%-C%.%#,
             \%-Z%p^,
             \%-G%.%#
