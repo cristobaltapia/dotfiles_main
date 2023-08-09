@@ -13,9 +13,12 @@ CompilerSet errorformat=
             \%-C%.%#,
             \%-Z%p^,
             \%-G%.%#
+"
+" Wrap the text in the quickfix window
+augroup quickfix_abaqus
+        autocmd!
+        autocmd BufReadPost quickfix setlocal wrap
+augroup END
 
 let &cpo = s:keepcpo
 unlet s:keepcpo
-
-let b:dispatch = 'abq2022 make library=%'
-
