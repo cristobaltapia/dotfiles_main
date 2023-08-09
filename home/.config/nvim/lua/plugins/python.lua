@@ -1,7 +1,7 @@
 return {
   {
     "tpope/vim-dispatch",
-    ft = { "typst", "python" },
+    ft = { "typst", "python", "fortran" },
     keys = { "<F5>" },
     config = function()
       -- Execute programs asyncronously
@@ -17,6 +17,8 @@ return {
         print(filename)
         if ft == "typst" then
           vim.cmd('Dispatch -compiler=typst -dir=' .. dir .. ' typst compile ' .. filename)
+        elseif ft == "fortran" then
+          vim.cmd('Dispatch -compiler=abaqus -dir=' .. dir .. ' abq2022 make library=' .. filename)
         elseif ft == "python" then
           vim.cmd('Dispatch -compiler=python -dir=' .. dir .. ' python ' .. filename)
         end
