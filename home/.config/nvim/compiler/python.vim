@@ -33,16 +33,16 @@ set errorformat+=%+Z%.%#%trror:\ %.%#
 " here captured in a general manner. We use the prefix '%>' to only consider
 " errorformats defined from this point downwards.
 set errorformat+=%W%>%f:%l:\ %.%#%tarning%m
+" We finish the multi-line warning if there is an empty line. (I think there
+" is no guarantee that this works always, but is seems to work pretty good
+" in general.)
+set errorformat+=%-Z
 " The second line of the warning message is similar as above, where the
 " incumbent line is presented verbatim. We ignore this line and finish the
 " multi-line error.
 set errorformat+=%C\ \ %.%#
 " Get any second line continuing the previous message.
 set errorformat+=%+C%.%#
-" We finish the multi-line warning if there is an empty line. (I think there
-" is no guarantee that this works always, but is seems to work pretty good
-" in general.)
-set errorformat+=%-Z
 " Ignore any other line.
 set errorformat+=%+G
 
