@@ -6,6 +6,7 @@ return {
     dependencies = {
       { 'lervag/wiki-ft.vim' },
     },
+    tag = "v0.8",
     cmd = "WikiIndex",
     init = function()
       vim.g.vimwiki_pubs_config = {

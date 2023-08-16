@@ -236,7 +236,7 @@ return {
           debounce_text_changes = 150,
         },
         init_options = { documentFormatting = true },
-        filetypes = { "python", "bib", "tex", "sty", "cls" },
+        filetypes = { "python", "bib", "tex", "sty", "cls", "fortran" },
         settings = {
           rootMarkers = { ".git/" },
           languages = {
@@ -246,6 +246,12 @@ return {
             bib = {
               {
                 formatCommand = "bibtex-tidy --v2 --curly --align=14 --no-escape --sort-fields --sort",
+                formatStdin = true
+              }
+            },
+            fortran = {
+              {
+                formatCommand = "findent --continuation=0 --input_format=fixed --indent_procedure=0",
                 formatStdin = true
               }
             },
