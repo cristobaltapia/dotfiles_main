@@ -67,7 +67,9 @@ return {
       vim.g.vimtex_complete_smart_case = 1
       vim.g.vimtex_fold_enabled = 1
 
-      vim.g.vimtex_parser_bib_backend = 'bibtexparser'
+      if vim.fn.executable('bibtexparser') then
+        vim.g.vimtex_parser_bib_backend = 'bibtexparser'
+      end
 
       vim.g.vimtex_syntax_conceal = {
         accents = 1,
