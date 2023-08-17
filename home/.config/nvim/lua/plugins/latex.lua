@@ -2,7 +2,7 @@ return {
   -- Integration with latex
   {
     'lervag/vimtex',
-    ft = { "tex", "cls", "tikz" },
+    ft = { "tex", "cls", "sty", "tikz" },
     dependencies = { "hrsh7th/nvim-cmp" },
     keys = {
       { "<localleader>ll", "<Plug>(vimtex-compile-ss)" },
@@ -66,6 +66,8 @@ return {
       vim.g.vimtex_complete_ignore_case = 1
       vim.g.vimtex_complete_smart_case = 1
       vim.g.vimtex_fold_enabled = 1
+
+      vim.g.vimtex_parser_bib_backend = 'bibtexparser'
 
       vim.g.vimtex_syntax_conceal = {
         accents = 1,
