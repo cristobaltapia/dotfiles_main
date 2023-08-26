@@ -14,5 +14,12 @@ ldiff = difftool -y -t latex
 
 [difftool.latex]
 cmd = latexdiff "$LOCAL" "$REMOTE"
+
 [init]
 	defaultBranch = main
+
+[credential "https://git.overleaf.com"]
+    username = cristobal.tapia-camu@mpa.uni-stuttgart.de
+    helper = store
+[protocol "file"]
+	allow = always

@@ -12,5 +12,3 @@ export MPA="$HOME/Documents/MPA"
 export NVIM_GTK_NO_HEADERBAR=1
 
 source /home/tapia/.config/broot/launcher/bash/br
-
-export PATH="$HOME/.poetry/bin:$PATH"
