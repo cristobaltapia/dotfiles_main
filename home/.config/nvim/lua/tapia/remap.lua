@@ -24,7 +24,7 @@ vim.keymap.set("i", "<C-s>", "<c-g>u<Esc>[s1z=`]a<c-g>u")
 -- Faster folding
 vim.keymap.set({ "n", "v" }, "<space>", "za")
 
--- Mas <Esc> to shift-space
+-- Map <Esc> to shift-space
 vim.keymap.set({ "i", "v", "s" }, "<S-Space>", "<Esc>")
 vim.keymap.set({ "i", "v", "s" }, "<M-Space>", "<Esc>")
 
@@ -33,6 +33,9 @@ vim.keymap.set("n", "j", "gj")
 vim.keymap.set("n", "k", "gk")
 vim.keymap.set("n", "gj", "j")
 vim.keymap.set("n", "gk", "k")
+
+-- Escape to normal mode when in terminal
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 
 -- For the quickfix window it is better to undo the previous remapping
 local qf_group = vim.api.nvim_create_augroup('quickfix', { clear = true })
