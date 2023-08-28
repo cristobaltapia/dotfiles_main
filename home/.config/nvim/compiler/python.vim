@@ -40,9 +40,7 @@ set errorformat+=%-Z
 " The second line of the warning message is similar as above, where the
 " incumbent line is presented verbatim. We ignore this line and finish the
 " multi-line error.
-set errorformat+=%C\ \ %.%#
-" Get any second line continuing the previous message.
-set errorformat+=%+C%.%#
+set errorformat+=%Z\ \ %.%#
 " Ignore any other line.
 set errorformat+=%+G
 

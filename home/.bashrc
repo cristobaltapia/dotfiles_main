@@ -71,9 +71,9 @@ source /usr/bin/virtualenvwrapper.sh
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 source "$HOME/.homesick/repos/homeshick/completions/homeshick-completion.bash"
 
-if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
-        source /etc/profile.d/vte.sh
-fi
+# if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+#         source /etc/profile.d/vte.sh
+# fi
 
 # F*EX
 export PATH="$HOME/.fex/bin:$PATH"
@@ -91,15 +91,14 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
-export PATH="$HOME/.poetry/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 # Enable tab-completion for directories after variables
 shopt -s direxpand
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
 # br
-source /home/tapia/.config/broot/launcher/bash/br
+# source /home/tapia/.config/broot/launcher/bash/br
+alias br=broot
 
 # Generic colourizer
 [[ -s "/etc/profile.d/grc.bashrc" ]] && source /etc/profile.d/grc.bashrc
@@ -141,6 +140,8 @@ function yayinstall() {
 
 ################################################
 # FZF config
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
 export FZF_DEFAULT_OPTS='--color=bg+:#3B4252,bg:#2E3440,spinner:#81A1C1,hl:#616E88,fg:#D8DEE9,header:#616E88,info:#81A1C1,pointer:#d08770,marker:#d08770,fg+:#D8DEE9,prompt:#81A1C1,hl+:#81A1C1'
 export FZF_ALT_C_OPTS='--height=40% --min-height=20'
 export FZF_CTRL_T_OPTS='--height=40% --min-height=20'
@@ -151,4 +152,27 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd -t d"
 
 source ${HOME}/.local/share/fzf/fzf-git.bash
+
+
+# Pyhton colors
+norm="$(printf '\033[0m')" #returns to "normal"
+bold="$(printf '\033[0;1m')" #set bold
+red="$(printf '\033[0;31m')" #set red
+boldyellowonblue="$(printf '\033[0;1;33;44m')"
+boldyellow="$(printf '\033[0;1;33m')"
+boldred="$(printf '\033[0;1;31m')" #set bold, and set red.
+
+copython() {
+        python $@ 2>&1 | sed -e "s/Traceback/${boldyellowonblue}&${norm}/g" \
+        -e "s/File \".*\.py\".*$/${boldyellow}&${norm}/g" \
+        -e "s/\, line [[:digit:]]\+/${boldred}&${norm}/g"
+    }
+
+
+# BEGIN_KITTY_SHELL_INTEGRATION
+# if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
+# END_KITTY_SHELL_INTEGRATION
+
 source ${HOME}/bin/fzf-beet.bash
+
+export JULIA_NUM_THREADS=4
