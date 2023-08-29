@@ -1,0 +1,13 @@
+{
+  "grammar_german_latex": {
+    "type": "chat",
+    "opts": {
+      "template": "Korrigiere den folgenden Text auf Deutsch in LaTeX. Prüf auf grammatische Fehler und auf Stil. Der Text soll wissenschaftlich sein aber einfach zu lesen:\n\n{{input}}",
+      "strategy": "edit",
+      "params": {
+        "model": "gpt-4",
+        "max_tokens": 1000
+      }
+    }
+  }
+}

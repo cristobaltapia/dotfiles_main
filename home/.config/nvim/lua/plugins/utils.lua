@@ -284,5 +284,23 @@ return {
     -- 'Jasha10/vim-symlink',
     dependencies = { 'moll/vim-bbye' },
   },
+  {
+    "jackMort/ChatGPT.nvim",
+    cmd = { "ChatGPT", "ChatGPTRun", "ChatGPTEditWithInstructions" },
+    config = function()
+      local home = vim.fn.expand("$HOME")
+      require("chatgpt").setup(
+        {
+          api_key_cmd = "cat " .. home .. "/.config/chatgpt/api",
+          actions_paths = { vim.env.HOME .. "/.config/chatgpt/actions.json" }
+        }
+      )
+    end,
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim"
+    }
+  }
 }
 -- vim: set shiftwidth=2:
