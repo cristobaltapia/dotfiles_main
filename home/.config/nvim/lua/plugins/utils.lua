@@ -241,9 +241,13 @@ return {
     'echasnovski/mini.nvim',
     branch = 'main',
     event = { "BufReadPre", "BufNewFile" },
+    keys = {
+      { "<F2>", ":lua MiniFiles.open()<cr>", "n" },
+    },
     config = function()
       local animate = require('mini.animate')
       require('mini.trailspace').setup()
+      require('mini.files').setup()
       require('mini.indentscope').setup()
       require('mini.animate').setup({
         cursor = { enable = false },
