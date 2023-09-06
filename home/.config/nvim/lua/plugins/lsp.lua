@@ -131,6 +131,7 @@ return {
           'efm',
           'eslint',
           'fortls',
+          'html',
           'jsonls',
           'julials',
           'ltex',
@@ -228,6 +229,8 @@ return {
       lspconfig.fortls.setup {}
       -- JSON-ls
       lspconfig.jsonls.setup {}
+      -- HTML
+      lspconfig.html.setup {}
 
       -- Define formatting for different filetypes
       local texFormatter = 'latexindent --modifylinebreaks -y="defaultIndent: \'  \'"'
