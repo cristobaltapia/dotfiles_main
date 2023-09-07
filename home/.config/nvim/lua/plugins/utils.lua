@@ -242,7 +242,7 @@ return {
     branch = 'main',
     event = { "BufReadPre", "BufNewFile" },
     keys = {
-      { "<F2>", ":lua MiniFiles.open()<cr>", "n" },
+      { ",f", ":lua MiniFiles.open()<cr>", "n" },
     },
     config = function()
       local animate = require('mini.animate')
