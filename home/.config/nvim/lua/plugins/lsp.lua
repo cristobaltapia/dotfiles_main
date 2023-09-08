@@ -209,7 +209,7 @@ return {
         end,
       }
       -- CSS
-      lspconfig.cssls.setup {}
+      lspconfig.cssls.setup { }
       -- Grammar correctoin using ltex-ls
       local ltex_setup = {
         filetypes = { "bib", "gitcommit", "markdown", "org", "plaintex", "rst", "rnoweb", "tex", "pandoc",
@@ -234,12 +234,16 @@ return {
 
       -- Define formatting for different filetypes
       local texFormatter = 'latexindent --modifylinebreaks -y="defaultIndent: \'  \'"'
+      local prettierFormat = {
+        formatCommand = [[prettier --stdin-filepath ${INPUT} ${--tab-width:tab_width}]],
+        formatStdin = true,
+      }
       lspconfig.efm.setup {
         flags = {
           debounce_text_changes = 150,
         },
         init_options = { documentFormatting = true },
-        filetypes = { "python", "bib", "tex", "sty", "cls", "fortran" },
+        filetypes = { "python", "bib", "tex", "sty", "cls", "fortran", "css", "scss" },
         settings = {
           rootMarkers = { ".git/" },
           languages = {
@@ -261,6 +265,8 @@ return {
             tex = { { formatCommand = texFormatter, formatStdin = true } },
             sty = { { formatCommand = texFormatter, formatStdin = true } },
             cls = { { formatCommand = texFormatter, formatStdin = true } },
+            css = { prettierFormat },
+            scss = { prettierFormat },
           }
         }
       }
