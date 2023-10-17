@@ -180,6 +180,7 @@ return {
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities.textDocument.publishDiagnostics.tagSupport.valueSet = { 2 }
       lspconfig.pyright.setup {
+        -- cmd = {"pyright-langserver", "--stdio", "--project", vim.env.HOME .. "/.config/pyright.json"},
         settings = {
           python = {
             analysis = {
@@ -196,6 +197,9 @@ return {
       -- Typst
       lspconfig.typst_lsp.setup {
         single_file_support = true,
+        settings = {
+          exportPdf = "never"
+        }
       }
       -- Julia
       lspconfig.julials.setup {}

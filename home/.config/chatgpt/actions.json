@@ -2,11 +2,12 @@
   "grammar_german_latex": {
     "type": "chat",
     "opts": {
-      "template": "Korrigiere den folgenden Text auf Deutsch in LaTeX. Prüf auf Stil und grammatische Fehler. Der Text soll wissenschaftlich sein aber einfach zu lesen. Jeder Satz wird in einer Linie geschrieben, aber es ist erlaubt unterschiedliche Sätze zu verbinden, oder einen Satz zu trennen, wenn das besser für den Stil des Textes ist:\n\n{{input}}",
+      "template": "Korrigiere den folgenden Text auf Deutsch in LaTeX. Prüf auf Stil und grammatische Fehler. Der Text soll wissenschaftlich sein aber relativ einfach zu lesen. Nebensätze sind erlaubt:\n\n{{input}}",
       "strategy": "edit",
       "params": {
         "model": "gpt-4",
-        "max_tokens": 1000
+        "max_tokens": 1000,
+        "temperature": 0.4
       }
     }
   }

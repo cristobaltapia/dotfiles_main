@@ -181,7 +181,7 @@ return {
         name = 'Change Ltex language',
         hint = hint_ltex,
         config = {
-          color = 'pink',
+          color = 'teal',
           invoke_on_body = true,
           hint = {
             border = 'rounded'
