@@ -212,7 +212,6 @@ return {
               require("lspconfig").ltex.setup({ settings = { ltex = { language = "es" } } })
               vim.opt.spelllang = "es"
             end,
-            { exit_before = true }
           },
           { 'q', nil, { exit = true } },
         }
