@@ -92,3 +92,11 @@ vim.g.editorconfig = false
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
+
+-- Make history persistent between sessions
+vim.opt.undofile = true
+vim.opt.undodir = vim.env.HOME .. '.config/nvim/undodir'
+
+if vim.fn.isdirectory(vim.env.HOME .. '/.config/nvim/undodir') then
+    vim.fn.mkdir(vim.env.HOME .. '/.config/nvim/undodir')
+end
