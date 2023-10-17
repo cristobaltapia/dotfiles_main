@@ -125,6 +125,7 @@ return {
       require('mason-lspconfig').setup({
         ensure_installed = {
           'bashls',
+          'clangd',
           'cssls',
           'docker_compose_language_service',
           'dockerls',
@@ -173,6 +174,8 @@ return {
         }
       }
 
+      -- Clangd
+      lspconfig.clangd.setup {}
       -- Python LSP
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities.textDocument.publishDiagnostics.tagSupport.valueSet = { 2 }
@@ -232,7 +235,11 @@ return {
       lspconfig.ltex.setup(ltex_setup)
       lspconfig.fortls.setup {}
       -- JSON-ls
-      lspconfig.jsonls.setup {}
+      lspconfig.jsonls.setup {
+        init_options = {
+          provideFormatter = false
+        }
+      }
       -- HTML
       lspconfig.html.setup {}
 
@@ -247,7 +254,7 @@ return {
           debounce_text_changes = 150,
         },
         init_options = { documentFormatting = true },
-        filetypes = { "python", "bib", "tex", "sty", "cls", "fortran", "css", "scss" },
+        filetypes = { "python", "bib", "tex", "sty", "cls", "fortran", "css", "scss", "json" },
         settings = {
           rootMarkers = { ".git/" },
           languages = {
@@ -271,6 +278,7 @@ return {
             cls = { { formatCommand = texFormatter, formatStdin = true } },
             css = { prettierFormat },
             scss = { prettierFormat },
+            json = { prettierFormat },
           }
         }
       }
