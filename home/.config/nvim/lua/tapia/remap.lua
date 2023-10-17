@@ -27,6 +27,7 @@ vim.keymap.set({ "n", "v" }, "<space>", "za")
 -- Map <Esc> to shift-space
 vim.keymap.set({ "i", "v", "s" }, "<S-Space>", "<Esc>")
 vim.keymap.set({ "i", "v", "s" }, "<M-Space>", "<Esc>")
+vim.keymap.set({ "i", "v", "s" }, "<c-e>", "<Esc>")
 
 -- Redefine movements
 vim.keymap.set("n", "j", "gj")

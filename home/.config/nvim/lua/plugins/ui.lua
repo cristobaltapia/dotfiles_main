@@ -55,6 +55,10 @@ return {
       { "<A-j>", "<cmd>TmuxNavigateDown<cr>",  "n", { silent = true } },
       { "<A-k>", "<cmd>TmuxNavigateUp<cr>",    "n", { silent = true } },
       { "<A-l>", "<cmd>TmuxNavigateRight<cr>", "n", { silent = true } },
+      { "<A-left>", "<cmd>TmuxNavigateLeft<cr>",  "n", { silent = true } },
+      { "<A-down>", "<cmd>TmuxNavigateDown<cr>",  "n", { silent = true } },
+      { "<A-up>", "<cmd>TmuxNavigateUp<cr>",    "n", { silent = true } },
+      { "<A-right>", "<cmd>TmuxNavigateRight<cr>", "n", { silent = true } },
     },
     init = function()
       vim.g.tmux_navigator_no_mappings = true
