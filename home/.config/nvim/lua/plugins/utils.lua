@@ -69,11 +69,11 @@ return {
       vim.api.nvim_set_hl(0, 'LeapBackdrop', { link = 'Comment' })
       local leap = require('leap')
       leap.opts.safe_labels = {}
-      leap.opts.labels = {"s", "i", "e",
-          "t", "n", "r", "b", "a", "u", "y", "m", "l", "g", "h", "d", "f",
-          "S", "I", "E",
-          "T", "N", "R", "B", "A", "U", "Y", "M", "L", "G", "H", "D", "F",
-        }
+      leap.opts.labels = { "s", "i", "e",
+        "t", "n", "r", "b", "a", "u", "y", "m", "l", "g", "h", "d", "f",
+        "S", "I", "E",
+        "T", "N", "R", "B", "A", "U", "Y", "M", "L", "G", "H", "D", "F",
+      }
     end
   },
   -- Hydra
@@ -257,12 +257,20 @@ return {
     branch = 'main',
     event = { "BufReadPre", "BufNewFile" },
     keys = {
-      { ",f", ":lua MiniFiles.open()<cr>", "n" },
+      { "<leader>m", ":lua MiniFiles.open()<cr>", "n" },
     },
     config = function()
       local animate = require('mini.animate')
       require('mini.trailspace').setup()
-      require('mini.files').setup()
+      require('mini.files').setup(
+        {
+          mappings = {
+            go_in = 'h',
+            go_in_plus = 'H',
+            go_out = 't',
+            go_out_plus = 'T',
+          }
+        })
       require('mini.indentscope').setup()
       require('mini.animate').setup({
         cursor = { enable = false },
