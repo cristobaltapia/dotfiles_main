@@ -67,6 +67,13 @@ return {
     },
     config = function()
       vim.api.nvim_set_hl(0, 'LeapBackdrop', { link = 'Comment' })
+      local leap = require('leap')
+      leap.opts.safe_labels = {}
+      leap.opts.labels = {"s", "i", "e",
+          "t", "n", "r", "b", "a", "u", "y", "m", "l", "g", "h", "d", "f",
+          "S", "I", "E",
+          "T", "N", "R", "B", "A", "U", "Y", "M", "L", "G", "H", "D", "F",
+        }
     end
   },
   -- Hydra
