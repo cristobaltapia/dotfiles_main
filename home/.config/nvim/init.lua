@@ -12,6 +12,9 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- Define the leader key
+vim.g.mapleader = ","
+
 -- Load further configurations (mappings, sets, etc)
 require("tapia")
 -- Load lazy.nvim

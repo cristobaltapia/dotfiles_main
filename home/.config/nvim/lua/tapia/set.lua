@@ -51,8 +51,6 @@ vim.opt.diffopt:append("linematch:60")
 
 vim.opt.shada:append('r/mnt/intcdc')
 
-vim.g.mapleader = ","
-
 -- Visual selection copies to the clipboard
 vim.opt.clipboard:append('unnamedplus')
 
