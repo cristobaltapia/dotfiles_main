@@ -22,7 +22,7 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 vim.keymap.set("i", "<C-s>", "<c-g>u<Esc>[s1z=`]a<c-g>u")
 
 -- Faster folding
-vim.keymap.set({ "n", "v" }, "<space>", "za")
+vim.keymap.set({ "n", "v" }, "<space>", "zA")
 
 -- Map <Esc> to shift-space
 vim.keymap.set({ "i", "v", "s" }, "<S-Space>", "<Esc>")
