@@ -14,6 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Define the leader key
 vim.g.mapleader = ","
+vim.g.maplocalleader = ","
 
 -- Load further configurations (mappings, sets, etc)
 require("tapia")
