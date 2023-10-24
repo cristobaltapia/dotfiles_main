@@ -14,3 +14,25 @@ set index-fg "#e5e9f0"
 set index-bg "#2e3440"
 set window-title-home-tilde false
 set window-title-basename false
+
+unmap t
+unmap n
+unmap r
+unmap h
+
+map t scroll left
+map n scroll down
+map r scroll up
+map h scroll right
+map N navigate next
+map R navigate previous
+
+map <C-c> recolor
+
+map i toggle_index
+
+map [index] i toggle_index
+map [index] t navigate_index collapse
+map [index] n navigate_index down
+map [index] r navigate_index up
+map [index] h navigate_index expand
