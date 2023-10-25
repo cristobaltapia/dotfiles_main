@@ -28,6 +28,10 @@ map N navigate next
 map R navigate previous
 
 map <C-c> recolor
+map <C-s> toggle_statusbar
+
+map <C-i> zoom in
+map <C-o> zoom out
 
 map i toggle_index
 
@@ -36,3 +40,8 @@ map [index] t navigate_index collapse
 map [index] n navigate_index down
 map [index] r navigate_index up
 map [index] h navigate_index expand
+
+map [presentation] n navigate next
+map [presentation] r navigate previous
+map [normal] p toggle_presentation
+map [presentation] p toggle_presentation
