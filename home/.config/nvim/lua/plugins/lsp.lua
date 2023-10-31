@@ -254,13 +254,10 @@ return {
           debounce_text_changes = 150,
         },
         init_options = { documentFormatting = true },
-        filetypes = { "python", "bib", "tex", "sty", "cls", "fortran", "css", "scss", "json" },
+        filetypes = {"bib", "tex", "sty", "cls", "fortran", "css", "scss", "json" },
         settings = {
           rootMarkers = { ".git/" },
           languages = {
-            python = {
-              { formatCommand = "yapf", formatStdin = true }
-            },
             bib = {
               {
                 formatCommand = "bibtex-tidy --v2 --curly --align=14 --no-escape --sort-fields --sort",
