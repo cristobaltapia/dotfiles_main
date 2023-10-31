@@ -8,11 +8,11 @@ title_text = $(printf "[%02d/%02d]" $imv_current_index $imv_file_count) $(basena
 
 [binds]
 
-j = next
-k = prev
+n = next
+r = prev
 gg = goto 1
 G = goto -1
-<Shift+J> = pan 0 -50
-<Shift+K> = pan 0 50
-<Shift+H> = pan 50 0
-<Shift+L> = pan -50 0
+<Shift+T> = pan 50 0
+<Shift+N> = pan 0 -50
+<Shift+R> = pan 0 50
+<Shift+H> = pan -50 0
