@@ -35,6 +35,11 @@ vim.keymap.set("n", "k", "gk")
 vim.keymap.set("n", "gj", "j")
 vim.keymap.set("n", "gk", "k")
 
+vim.keymap.set("n", "<Up>", "g<Up>")
+vim.keymap.set("n", "<Down>", "g<Down>")
+vim.keymap.set("n", "g<Up>", "<Up>")
+vim.keymap.set("n", "g<Down>", "<Down>")
+
 -- Escape to normal mode when in terminal
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 

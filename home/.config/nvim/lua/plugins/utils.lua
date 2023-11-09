@@ -303,6 +303,8 @@ return {
       -- Set the smart function definition to use numpy style for docstrings
       vim.g.ultisnips_python_style = "numpy"
       vim.g.UltisnipsUsePythonVersion = 3
+      vim.g.UltiSnipsJumpForwardTrigger = "<c-e>"
+      vim.g.UltiSnipsJumpBackwardTrigger = "<c-a>"
     end
   },
   -- Follow symlinks
