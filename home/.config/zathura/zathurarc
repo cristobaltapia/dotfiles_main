@@ -29,6 +29,7 @@ map R navigate previous
 
 map <C-c> recolor
 map <C-s> toggle_statusbar
+map <C-r> rotate rotate-cw
 
 map <C-i> zoom in
 map <C-o> zoom out
