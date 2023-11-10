@@ -265,10 +265,10 @@ return {
       require('mini.files').setup(
         {
           mappings = {
-            go_in = 'h',
-            go_in_plus = 'H',
-            go_out = 't',
-            go_out_plus = 'T',
+            go_in = '<Right>',
+            go_in_plus = '<cr>',
+            go_out = '<Left>',
+            go_out_plus = 't',
           }
         })
       require('mini.indentscope').setup()
