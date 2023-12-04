@@ -308,11 +308,11 @@ return {
     end
   },
   -- Follow symlinks
-  {
-    'aymericbeaumet/vim-symlink',
-    -- 'Jasha10/vim-symlink',
-    dependencies = { 'moll/vim-bbye' },
-  },
+  -- {
+  --   'aymericbeaumet/vim-symlink',
+  --   -- 'Jasha10/vim-symlink',
+  --   dependencies = { 'moll/vim-bbye' },
+  -- },
   {
     "jackMort/ChatGPT.nvim",
     cmd = { "ChatGPT", "ChatGPTRun", "ChatGPTEditWithInstructions" },

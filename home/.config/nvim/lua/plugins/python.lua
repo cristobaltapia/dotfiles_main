@@ -2,7 +2,7 @@ return {
   {
     "tpope/vim-dispatch",
     ft = { "typst", "python", "fortran", "make" },
-    keys = { "<F5>", "<F6>" },
+    keys = { "<F4>", "<F5>", "<F6>" },
     config = function()
       -- Execute programs asyncronously
       local function save_and_run_async()
@@ -37,6 +37,19 @@ return {
         end
       end
 
+      local function pytest_async()
+        -- Save file
+        vim.cmd.write()
+        -- Get filetype
+        local ft = vim.bo.filetype
+        -- Execute command according to filetype
+
+        if ft == "python" then
+          vim.cmd('Dispatch -compiler=pytest pytest --tb=short -q')
+        end
+      end
+
+      vim.keymap.set("n", "<F4>", pytest_async)
       vim.keymap.set("n", "<F5>", save_and_run_async)
       vim.keymap.set("n", "<F6>", debug_async)
       -- Deactivate default mappings

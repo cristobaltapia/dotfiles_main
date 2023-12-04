@@ -51,6 +51,9 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
     callback = function()
         vim.keymap.set('n', 'j', 'j', { buffer = true })
         vim.keymap.set('n', 'k', 'k', { buffer = true })
+        vim.keymap.set('n', '<Up>', '<Up>', { buffer = true })
+        vim.keymap.set('n', '<Down>', '<Down>', { buffer = true })
+        vim.opt_local.scrolloff = 0
     end,
 })
 

@@ -3,7 +3,10 @@ return {
   {
     'lervag/vimtex',
     ft = { "tex", "cls", "sty", "tikz" },
-    dependencies = { "hrsh7th/nvim-cmp" },
+    -- version = "2.13",
+    dependencies = {
+      { "hrsh7th/nvim-cmp" },
+    },
     keys = {
       { "<localleader>ll", "<Plug>(vimtex-compile-ss)" },
       { "<localleader>ll", "<Plug>(vimtex-compile-selected)", mode = "v" },
@@ -27,9 +30,10 @@ return {
           end,
         },
         sources = {
-          { name = 'omni',  priority = 9 },
+          { name = 'omni', priority = 9 },
+          -- { name = 'vimtex', priority = 9 },
           { name = 'buffer' },
-          { name = "path",  priority = 4 },
+          { name = "path",   priority = 4 },
           {
             name = "ultisnips",
             priority = 10,
