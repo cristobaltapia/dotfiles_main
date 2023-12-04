@@ -15,15 +15,6 @@ set index-bg "#2e3440"
 set window-title-home-tilde false
 set window-title-basename false
 
-unmap t
-unmap n
-unmap r
-unmap h
-
-map t scroll left
-map n scroll down
-map r scroll up
-map h scroll right
 map N navigate next
 map R navigate previous
 
