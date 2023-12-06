@@ -7,8 +7,8 @@ local hint_diagram = [[
 ]]
 
 local hint_git = [[
- _J_: next hunk   _s_: stage hunk        _d_: show deleted   _b_: blame line
- _K_: prev hunk   _u_: undo last stage   _p_: preview hunk   _B_: blame show full
+ _n_: next hunk   _s_: stage hunk        _d_: show deleted   _b_: blame line
+ _p_: prev hunk   _u_: undo last stage   _P_: preview hunk   _B_: blame show full
  ^ ^              _S_: stage buffer      ^ ^                 _/_: show base file
  ^
  ^ ^              _<Enter>_: Fugitive              _q_: exit
@@ -118,7 +118,6 @@ return {
         name = 'Git',
         hint = hint_git,
         config = {
-          buffer = bufnr,
           color = 'pink',
           invoke_on_body = true,
           hint = {
@@ -146,14 +145,14 @@ return {
         mode = { 'n', 'x' },
         body = '<leader>g',
         heads = {
-          { 'J',
+          { 'n',
             function()
               if vim.wo.diff then return ']c' end
               vim.schedule(function() gitsigns.next_hunk() end)
               return '<Ignore>'
             end,
             { expr = true, desc = 'next hunk' } },
-          { 'K',
+          { 'p',
             function()
               if vim.wo.diff then return '[c' end
               vim.schedule(function() gitsigns.prev_hunk() end)
@@ -163,7 +162,7 @@ return {
           { 's', ':Gitsigns stage_hunk<CR>', { silent = true, desc = 'stage hunk' } },
           { 'u', gitsigns.undo_stage_hunk,   { desc = 'undo last stage' } },
           { 'S', gitsigns.stage_buffer,      { desc = 'stage buffer' } },
-          { 'p', gitsigns.preview_hunk,      { desc = 'preview hunk' } },
+          { 'P', gitsigns.preview_hunk,      { desc = 'preview hunk' } },
           { 'd', gitsigns.toggle_deleted, {
             nowait = true,
             desc = 'toggle deleted'

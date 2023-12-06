@@ -49,12 +49,26 @@ return {
         end
       end
 
+      local function pytest_start()
+        -- Save file
+        vim.cmd.write()
+        -- Get filetype
+        local ft = vim.bo.filetype
+        -- Execute command according to filetype
+
+        if ft == "python" then
+          vim.cmd('Start -compiler=pytest pytest --tb=short -q')
+        end
+      end
+
+      vim.keymap.set("n", "<F7>", pytest_start)
       vim.keymap.set("n", "<F4>", pytest_async)
       vim.keymap.set("n", "<F5>", save_and_run_async)
       vim.keymap.set("n", "<F6>", debug_async)
       -- Deactivate default mappings
       vim.g.dispatch_no_maps = 1
       vim.g.dispatch_no_tmux_start = 1
+      vim.g.dispatch_no_tmux_make = 1
     end,
   },
   {

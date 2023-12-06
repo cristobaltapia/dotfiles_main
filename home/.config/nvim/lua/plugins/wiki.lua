@@ -7,8 +7,9 @@ return {
       { 'lervag/wiki-ft.vim' },
     },
     -- tag = "v0.8",
+    lazy = true,
     cmd = "WikiIndex",
-    init = function()
+    config = function()
       -- Root folder
       vim.g.wiki_root = '~/Nextcloud/Notes'
       -- Keymaps
@@ -18,7 +19,8 @@ return {
         vim.env.HOME .. "/.config/pubs/main_library.conf",
         vim.env.HOME .. "/.config/pubs/misc_library.conf",
       }
-      -- Cretion of links
+      vim.fn.chdir(vim.fn.expand('%:p:h'))
+      -- Creation of links
       vim.g.wiki_link_creation = {
         wiki = {
           link_type = "wiki",
@@ -47,7 +49,7 @@ return {
       "text",
       "wiki",
     },
-    init = function()
+    config = function()
       vim.g.bullets_enabled_file_types = {
         'gitcommit',
         'mail',
