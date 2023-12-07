@@ -9,7 +9,7 @@ return {
     -- tag = "v0.8",
     lazy = true,
     cmd = "WikiIndex",
-    config = function()
+    init = function()
       -- Root folder
       vim.g.wiki_root = '~/Nextcloud/Notes'
       -- Keymaps
@@ -19,7 +19,6 @@ return {
         vim.env.HOME .. "/.config/pubs/main_library.conf",
         vim.env.HOME .. "/.config/pubs/misc_library.conf",
       }
-      vim.fn.chdir(vim.fn.expand('%:p:h'))
       -- Creation of links
       vim.g.wiki_link_creation = {
         wiki = {
@@ -36,6 +35,9 @@ return {
       }
       -- Filetypes
       vim.g.wiki_filetypes = { 'wiki' }
+    end,
+    config = function()
+      vim.opt.autochdir = true
     end
   },
   {
