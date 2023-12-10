@@ -182,6 +182,7 @@ return {
         }
       })
 
+      local ltex_ft = { "bib", "gitcommit", "markdown", "org", "plaintex", "rst", "rnoweb", "tex", "pandoc", "typst" }
       -- Change language for ltex
       Hydra({
         name = 'Change Ltex language',
@@ -201,21 +202,21 @@ return {
         heads = {
           { 'e',
             function()
-              require("lspconfig").ltex.setup({ settings = { ltex = { language = "en-US" } } })
+              require("lspconfig").ltex.setup({ filetypes = ltex_ft, settings = { ltex = { language = "en-US" } } })
               vim.opt.spelllang = "en_us"
             end,
             { exit_before = true }
           },
           { 'd',
             function()
-              require("lspconfig").ltex.setup({ settings = { ltex = { language = "de-DE" } } })
+              require("lspconfig").ltex.setup({ filetypes = ltex_ft, settings = { ltex = { language = "de-DE" } } })
               vim.opt.spelllang = "de_de"
             end,
             { exit_before = true }
           },
           { 's',
             function()
-              require("lspconfig").ltex.setup({ settings = { ltex = { language = "es" } } })
+              require("lspconfig").ltex.setup({ filetypes = ltex_ft, settings = { ltex = { language = "es" } } })
               vim.opt.spelllang = "es"
             end,
           },
