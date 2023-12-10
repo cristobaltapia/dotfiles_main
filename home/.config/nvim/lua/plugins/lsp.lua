@@ -216,7 +216,7 @@ return {
         end,
       }
       -- CSS
-      lspconfig.cssls.setup { }
+      lspconfig.cssls.setup {}
       -- Grammar correctoin using ltex-ls
       local ltex_setup = {
         filetypes = { "bib", "gitcommit", "markdown", "org", "plaintex", "rst", "rnoweb", "tex", "pandoc",
@@ -254,7 +254,7 @@ return {
           debounce_text_changes = 150,
         },
         init_options = { documentFormatting = true },
-        filetypes = {"bib", "tex", "sty", "cls", "fortran", "css", "scss", "json" },
+        filetypes = { "bib", "tex", "sty", "cls", "fortran", "css", "scss", "json", "typst" },
         settings = {
           rootMarkers = { ".git/" },
           languages = {
@@ -276,6 +276,7 @@ return {
             css = { prettierFormat },
             scss = { prettierFormat },
             json = { prettierFormat },
+            typst = { { formatCommand = "typstfmt --output -", formatStdin = true } },
           }
         }
       }
