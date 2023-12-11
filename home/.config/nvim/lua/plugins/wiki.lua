@@ -13,7 +13,7 @@ return {
       -- Root folder
       vim.g.wiki_root = '~/Nextcloud/Notes'
       -- Keymaps
-      vim.api.nvim_set_keymap("n", "<leader>wst", ":WikiTags<cr>" , {desc = "Search tags."})
+      vim.api.nvim_set_keymap("n", "<leader>wst", ":WikiTags<cr>", { desc = "Search tags." })
       -- Define location of pubs libraries
       vim.g.vimwiki_pubs_config = {
         vim.env.HOME .. "/.config/pubs/main_library.conf",
@@ -51,7 +51,7 @@ return {
       "text",
       "wiki",
     },
-    config = function()
+    init = function()
       vim.g.bullets_enabled_file_types = {
         'gitcommit',
         'mail',
