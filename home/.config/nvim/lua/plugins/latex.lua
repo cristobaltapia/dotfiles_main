@@ -30,10 +30,10 @@ return {
           end,
         },
         sources = {
-          { name = 'omni', priority = 9 },
+          { name = 'omni',  priority = 9 },
           -- { name = 'vimtex', priority = 9 },
           { name = 'buffer' },
-          { name = "path",   priority = 4 },
+          { name = "path",  priority = 4 },
           {
             name = "ultisnips",
             priority = 10,
@@ -70,6 +70,26 @@ return {
       vim.g.vimtex_complete_ignore_case = 1
       vim.g.vimtex_complete_smart_case = 1
       vim.g.vimtex_fold_enabled = 1
+
+      vim.g.vimtex_fold_types = {
+        sections = {
+          parse_levels = 0,
+          sections = {
+            '%(add)?part',
+            '%(chapter|addchap)',
+            '%(section|addsec)',
+            '%(subsection|workpackage)',
+            '%(subsubsection|subworkpackage)',
+          },
+          parts = {
+            'appendix',
+            'frontmatter',
+            'mainmatter',
+            'backmatter',
+          },
+        },
+      }
+      vim.opt_local.foldnestmax = 4
 
       if vim.fn.executable('bibtexparser') then
         vim.g.vimtex_parser_bib_backend = 'bibtexparser'
