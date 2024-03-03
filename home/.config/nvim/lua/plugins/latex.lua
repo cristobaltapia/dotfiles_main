@@ -18,7 +18,9 @@ return {
       vim.g.tex_flavor = 'latex'
 
       -- Set autocompletion
-      require('cmp').setup.buffer {
+      local cmp = require('cmp')
+
+      cmp.setup.filetype("tex", {
         formatting = {
           format = function(entry, vim_item)
             vim_item.menu = ({
@@ -30,10 +32,10 @@ return {
           end,
         },
         sources = {
-          { name = 'omni',  priority = 9 },
-          -- { name = 'vimtex', priority = 9 },
+          { name = 'vimtex', priority = 9 },
+          -- { name = 'omni',  priority = 8 },
           { name = 'buffer' },
-          { name = "path",  priority = 4 },
+          { name = "path",   priority = 4 },
           {
             name = "ultisnips",
             priority = 10,
@@ -44,9 +46,8 @@ return {
                   and not context.in_syntax_group("Comment")
             end
           },
-          -- other sources
-        },
-      }
+        }
+      })
 
       -- Set options for vimtex
       vim.g.vimtex_compiler_latexmk = {
