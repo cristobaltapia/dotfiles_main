@@ -16,6 +16,7 @@ return {
       { 'rose-pine/neovim' },
       { 'windwp/nvim-autopairs' },
       { "micangl/cmp-vimtex" },
+      { "rcarriga/cmp-dap" },
     },
     -- Configuration
     config = function()
