@@ -1,6 +1,7 @@
 return {
     {
         "mfussenegger/nvim-dap",
+        ft = {"python"},
         keys = {
             { "<F8>",
                 function()
@@ -34,6 +35,7 @@ return {
                 end
             },
         },
+
         config = function(_, opts)
             local dap = require('dap')
 
@@ -61,6 +63,42 @@ return {
                 end
             end
 
+            local Path = require('plenary.path')
+            -- Find 'manage.py' for django projects
+            local function find_manage_py_folder(start_path)
+                local function search_manage_py(path, levels)
+                    if levels == 0 then
+                        return ""
+                    end
+
+                    -- Get all folders and files in 'path'
+                    local cwdContent = vim.split(vim.fn.glob(path .. "/*"), '\n', { trimempty = true })
+                    for _, entry in pairs(cwdContent) do
+                        -- Create new Path object
+                        local new_path = Path:new(entry)
+                        if new_path:is_dir() then
+                            local manage_py_path = new_path:joinpath('manage.py')
+                            if manage_py_path:exists() then
+                                return new_path
+                            else
+                                local subfolder_result = search_manage_py(new_path, levels - 1)
+                                if subfolder_result then
+                                    return subfolder_result
+                                end
+                            end
+                        end
+                    end
+                    return nil
+                end
+                local start_dir = Path:new(start_path)
+                if start_dir:exists() and start_dir:is_dir() then
+                    -- Maximum search depth is set to 1
+                    return search_manage_py(start_dir, 1)
+                else
+                    return nil
+                end
+            end
+
             dap.configurations.python = {
                 {
                     -- The first three options are required by nvim-dap
@@ -82,6 +120,16 @@ return {
                             return 'python'
                         end
                     end,
+                },
+                {
+                    -- Set configuration to debug a django project
+                    type = 'python', -- the type here established the link to the adapter definition: `dap.adapters.python`
+                    request = 'launch',
+                    name = "Django server",
+                    program = find_manage_py_folder(vim.fn.getcwd()) .. "/manage.py",
+                    args = { "runserver" },
+                    redirectOutput = true,
+                    pythonPath = 'python',
                 },
             }
 
