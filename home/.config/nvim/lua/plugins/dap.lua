@@ -10,7 +10,6 @@ return {
             { "<F6>",
                 function()
                     require('dap').continue()
-                    require('dap').repl.open()
                 end
             },
             { "<leader>es",
@@ -30,7 +29,8 @@ return {
             },
             { "<leader>dd",
                 function()
-                    require('dap').close()
+                    require('dap').disconnect()
+                    require('dap').terminate()
                 end
             },
         },
@@ -85,6 +85,7 @@ return {
                 },
             }
 
+            -- Autocompletion for the REPL
             require("cmp").setup({
                 enabled = function()
                     return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt"
@@ -97,6 +98,20 @@ return {
                     { name = "dap" },
                 },
             })
+
+            -- Define listeners for opening and closing the REPL
+            dap.listeners.before.attach.python = function()
+                dap.repl.open()
+            end
+            dap.listeners.before.launch.python = function()
+                dap.repl.open()
+            end
+            dap.listeners.after.disconnect.python = function()
+                dap.repl.close()
+            end
+            dap.listeners.after.terminate.python = function()
+                dap.repl.close()
+            end
         end
 
     },
