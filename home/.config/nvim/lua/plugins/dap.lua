@@ -68,6 +68,7 @@ return {
                     request = 'launch',
                     name = "Launch file",
                     program = "${file}", -- This configuration will launch the current file if used.
+                    redirectOutput = true,
                     pythonPath = function()
                         -- debugpy supports launching an application with a different interpreter than the one used to launch debugpy itself.
                         -- The code below looks for a `venv` or `.venv` folder in the current directly and uses the python within.
