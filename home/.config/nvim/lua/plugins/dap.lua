@@ -38,6 +38,7 @@ return {
 
         config = function(_, opts)
             local dap = require('dap')
+            vim.fn.sign_define('DapBreakpoint', {text='', texthl='Debug', linehl='', numhl=''})
 
             dap.adapters.python = function(cb, config)
                 if config.request == 'attach' then
