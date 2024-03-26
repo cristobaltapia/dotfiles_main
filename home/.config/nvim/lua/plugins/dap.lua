@@ -89,14 +89,14 @@ return {
                             end
                         end
                     end
-                    return nil
+                    return ""
                 end
                 local start_dir = Path:new(start_path)
                 if start_dir:exists() and start_dir:is_dir() then
                     -- Maximum search depth is set to 1
                     return search_manage_py(start_dir, 1)
                 else
-                    return nil
+                    return ""
                 end
             end
 
