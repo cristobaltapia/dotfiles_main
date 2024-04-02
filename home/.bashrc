@@ -176,3 +176,5 @@ copython() {
 source ${HOME}/bin/fzf-beet.bash
 
 export JULIA_NUM_THREADS=4
+
+source /home/tapia/.config/broot/launcher/bash/br
