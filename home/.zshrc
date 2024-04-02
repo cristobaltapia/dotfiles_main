@@ -137,5 +137,12 @@ export MPA="$HOME/Documents/MPA"
 export NVIM_GTK_NO_HEADERBAR=1
 
 export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
+# Fix pdfpc
+alias pdfpc='env LIBVA_DRIVER_PATH=/tmp/null pdfpc'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Created by `pipx` on 2024-02-25 15:51:23
+export PATH="$PATH:/home/tapia/.local/bin"
+
+source /home/tapia/.config/broot/launcher/bash/br
