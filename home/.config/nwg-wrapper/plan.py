@@ -2,8 +2,10 @@
 from datetime import date
 from textwrap import fill, wrap, shorten
 from os.path import expandvars
-import ruamel.yaml as yaml
+import ruamel.yaml as ryaml
 from pandas import DateOffset
+
+yaml = ryaml.YAML(typ="safe", pure=True)
 
 MONTHS = {
     1:"Januar",
@@ -24,7 +26,7 @@ MONTHS = {
 def main():
     # Read plan
     with open(expandvars("$HOME/Nextcloud/five_year_plan.yaml"), "r") as stream:
-        plan = yaml.safe_load(stream)
+        plan = yaml.load(stream)
 
     out = format_output(plan)
     print(out)
