@@ -174,5 +174,5 @@ blacklistadd https://zty.pe/
 set hintchars tnrheiscbamulyfz
 bind l hint
 bind L hint -b
-bind Crtl-o back
-bind Crtl-i forward
+bind <C-o> back
+bind <C-i> forward
