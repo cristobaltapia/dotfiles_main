@@ -20,6 +20,7 @@ return {
         "query",
         "regex",
         "toml",
+        "typst",
         "vim",
         "vimdoc",
         "yaml",
