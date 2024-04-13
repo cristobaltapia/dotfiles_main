@@ -1,7 +1,7 @@
 return {
     {
         "mfussenegger/nvim-dap",
-        ft = {"python"},
+        ft = { "python" },
         keys = {
             { "<F8>",
                 function()
@@ -38,7 +38,7 @@ return {
 
         config = function(_, opts)
             local dap = require('dap')
-            vim.fn.sign_define('DapBreakpoint', {text='', texthl='Debug', linehl='', numhl=''})
+            vim.fn.sign_define('DapBreakpoint', { text = '', texthl = 'Debug', linehl = '', numhl = '' })
 
             dap.adapters.python = function(cb, config)
                 if config.request == 'attach' then
@@ -129,6 +129,16 @@ return {
                     name = "Django server",
                     program = find_manage_py_folder(vim.fn.getcwd()) .. "/manage.py",
                     args = { "runserver" },
+                    redirectOutput = true,
+                    pythonPath = 'python',
+                },
+                {
+                    -- Set configuration to run pytest
+                    type = 'python',
+                    request = 'launch',
+                    name = "Pytest",
+                    module = "pytest",
+                    args = { "tests" },
                     redirectOutput = true,
                     pythonPath = 'python',
                 },
