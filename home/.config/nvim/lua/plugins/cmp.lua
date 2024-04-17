@@ -189,12 +189,13 @@ return {
         -- `:` cmdline setup.
         cmp.setup.cmdline(':', {
           mapping = cmp.mapping.preset.cmdline(),
+          completion = { autocomplete = false },
           sources = cmp.config.sources({
-            { name = 'path' }
-          }, {
-            { name = 'cmdline', keyword_length = 2 }
-          })
-        }),
+            { name = 'path' },
+            { name = 'cmdline' }
+          }),
+        }
+        ),
       }
 
       cmp.setup(cmp_config)
