@@ -16,6 +16,7 @@ return {
         "json",
         "julia",
         "lua",
+        "make",
         "python",
         "query",
         "regex",
