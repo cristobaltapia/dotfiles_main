@@ -171,6 +171,7 @@
 
 blacklistadd localhost:8888
 blacklistadd https://zty.pe/
+blacklistadd overleaf.com/project
 set hintchars tnrheiscbamulyfz
 bind l hint
 bind L hint -b
