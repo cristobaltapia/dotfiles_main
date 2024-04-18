@@ -177,3 +177,4 @@ bind l hint
 bind L hint -b
 bind <C-o> back
 bind <C-i> forward
+guiset hoverlink right
