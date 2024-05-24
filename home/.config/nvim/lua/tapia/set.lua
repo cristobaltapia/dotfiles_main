@@ -98,3 +98,4 @@ vim.opt.undodir = vim.env.HOME .. '/.config/nvim/undodir'
 if not vim.fn.isdirectory(vim.env.HOME .. '/.config/nvim/undodir') then
     vim.fn.mkdir(vim.env.HOME .. '/.config/nvim/undodir')
 end
+

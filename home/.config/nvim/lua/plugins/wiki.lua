@@ -63,5 +63,18 @@ return {
       }
     end
   },
+  {
+    'jbyuki/nabla.nvim',
+    ft = { 'wiki' },
+    keys = {
+      { "<localleader>p", function()
+        require("nabla").popup()
+      end
+      },
+    },
+    config = function()
+      require("nabla").enable_virt()
+    end,
+  }
 }
 -- vim: set shiftwidth=2:

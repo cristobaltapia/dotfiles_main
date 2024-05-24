@@ -45,19 +45,6 @@ return {
     'rickhowe/diffchar.vim',
     ft = { 'markdown', 'markdown.pandoc', 'tex' }
   },
-  {
-    'b3nj5m1n/kommentary',
-    branch = 'main',
-    config = function()
-      require('kommentary.config').configure_language("julia", {
-        single_line_comment_string = "#",
-        prefer_single_line_comments = true,
-      })
-      require('kommentary.config').configure_language("lua", {
-        prefer_single_line_comments = true,
-      })
-    end
-  },
   -- Better movements
   {
     'ggandor/leap.nvim',

@@ -2,7 +2,7 @@ return {
   {
     "tpope/vim-dispatch",
     ft = { "typst", "python", "fortran", "make" },
-    keys = { "<F4>", "<F5>"},
+    keys = { "<F4>", "<F5>" },
     config = function()
       -- Execute programs asyncronously
       local function save_and_run_async()

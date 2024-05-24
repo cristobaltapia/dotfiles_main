@@ -4,9 +4,9 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
     pattern = { 'lua' },
     callback = function()
         vim.opt.expandtab = true
-        vim.opt.softtabstop = 4
-        vim.opt.shiftwidth = 4
-        vim.opt.tabstop = 4
+        vim.opt.softtabstop = 2
+        vim.opt.shiftwidth = 2
+        vim.opt.tabstop = 2
     end,
 })
 
@@ -23,3 +23,10 @@ vim.api.nvim_create_autocmd({ 'User' }, {
     command = "copen | clast | wincmd k",
 })
 
+-- LSP inlay hints
+vim.api.nvim_create_autocmd({ 'InsertEnter' }, {
+    callback = function() vim.lsp.inlay_hint.enable(true) end,
+})
+vim.api.nvim_create_autocmd({ 'InsertLeave' }, {
+    callback = function() vim.lsp.inlay_hint.enable(false) end,
+})

@@ -1,7 +1,14 @@
 return {
   {
+    'cristobaltapia/cmp-nvim-ultisnips',
+    branch = 'fix-performance',
+    name = 'cmp-nvim-ultisnips',
+    lazy = 'true',
+  },
+  {
     'hrsh7th/nvim-cmp',
     name = "nvim-cmp",
+    enabled = true,
     event = { "BufReadPost", "BufNewFile" },
     dependencies = {
       { "danymat/neogen" },
@@ -12,7 +19,9 @@ return {
       { 'hrsh7th/cmp-nvim-lsp-signature-help', },
       { 'hrsh7th/cmp-cmdline', },
       { "davidsierradz/cmp-conventionalcommits", },
-      { 'quangnguyen30192/cmp-nvim-ultisnips', },
+      -- { 'quangnguyen30192/cmp-nvim-ultisnips', },
+      { 'cmp-nvim-ultisnips', },
+      -- { dir = '/home/tapia/git_repos/Meine/cmp-nvim-ultisnips/', },
       { 'rose-pine/neovim' },
       { 'windwp/nvim-autopairs' },
       { "micangl/cmp-vimtex" },
@@ -23,6 +32,7 @@ return {
       local cmp = require('cmp')
       local cmp_select_opts = { behavior = cmp.SelectBehavior.Select }
       local cmp_ultisnips_mappings = require('cmp_nvim_ultisnips.mappings')
+      local cmp_lsp = require("cmp.types.lsp")
 
       -- Define mappings for cmp
       local neogen = require('neogen')
@@ -31,8 +41,18 @@ return {
         ['<C-n>'] = cmp.mapping.select_next_item(cmp_select_opts),
         ['<C-Space>'] = cmp.mapping(function()
             if cmp.visible() then
-              print("here 1")
-              cmp.confirm({ select = true, behavior = 'replace' })
+              -- Insert text if the selection is a path and replace otherwise.
+              local sel_source = cmp.get_active_entry()
+              if sel_source == nil then
+                cmp.select_next_item()
+                sel_source = cmp.get_active_entry()
+              end
+
+              if cmp_lsp.CompletionItemKind[sel_source:get_kind()] ~= 'Path' then
+                cmp.confirm({ select = true, behavior = 'insert' })
+              else
+                cmp.confirm({ select = true, behavior = 'replace' })
+              end
             else
               vim.fn["UltiSnips#ExpandSnippet"]()
             end
@@ -62,7 +82,7 @@ return {
         ),
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<C-e>'] = cmp.mapping.abort(),
+        -- ['<C-e>'] = cmp.mapping.abort(),
       }
 
       -- Add parenthesis automatically after functions
@@ -84,17 +104,19 @@ return {
       vim.api.nvim_set_hl(0, 'CmpItemKindKeyword', { fg = p.subtle })
       vim.api.nvim_set_hl(0, 'CmpItemKindText', { fg = p.subtle })
 
+      local context = require('cmp.config.context')
+      local in_capture = context.in_treesitter_capture
+
       local cmp_config = {
         -- Define sources to be used
         sources = {
           {
             name = "nvim_lsp",
             priority = 9,
-            keyword_length = 1,
+            keyword_length = 2,
             -- Disable source for comments
             entry_filter = function(entry, ctx)
-              local context = require 'cmp.config.context'
-              return not context.in_treesitter_capture("comment")
+              return not in_capture("comment") and not in_capture("string.documentation")
                   and not context.in_syntax_group("Comment")
             end
           },
@@ -104,8 +126,7 @@ return {
             priority = 10,
             -- Disable source for comments
             entry_filter = function(entry, ctx)
-              local context = require 'cmp.config.context'
-              return not context.in_treesitter_capture("comment")
+              return not in_capture("comment") and not in_capture("string.documentation")
                   and not context.in_syntax_group("Comment")
             end
           },
@@ -141,7 +162,7 @@ return {
         },
         performance = {
           max_view_entries = 40,
-          fetching_timeout = 100,
+          fetching_timeout = 200,
         },
         formatting = {
           fields = { 'abbr', 'menu', 'kind' },

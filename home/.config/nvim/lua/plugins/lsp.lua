@@ -25,11 +25,8 @@ return {
         },
         severity_sort = true,
       },
-      -- Enable this to enable the builtin LSP inlay hints on Neovim >=
-      -- 0.10.0 Be aware that you also will need to properly configure
-      -- your LSP server to provide the inlay hints.
       inlay_hints = {
-        enabled = false,
+        enabled = true,
       },
       -- add any global capabilities here
       capabilities = {},
@@ -48,6 +45,7 @@ return {
         lsp_defaults.capabilities,
         require('cmp_nvim_lsp').default_capabilities()
       )
+      -- lsp_defaults.capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = false
 
       vim.api.nvim_create_autocmd('LspAttach', {
         desc = 'LSP actions',
@@ -138,8 +136,9 @@ return {
           'ltex',
           'lua_ls',
           'marksman',
-          'pyright',
+          'basedpyright',
           'ruff_lsp',
+          'rust_analyzer',
           'taplo',
           'tsserver',
           'typst_lsp',
@@ -173,27 +172,50 @@ return {
           }
         }
       }
-
-      -- Clangd
-      lspconfig.clangd.setup {}
-      -- Python LSP
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities.textDocument.publishDiagnostics.tagSupport.valueSet = { 2 }
-      lspconfig.pyright.setup {
-        -- cmd = {"pyright-langserver", "--stdio", "--project", vim.env.HOME .. "/.config/pyright.json"},
+      -- Rust
+      lspconfig.rust_analyzer.setup {
         settings = {
-          python = {
-            analysis = {
-              autoSearchPaths = true,
-              disableOrganizeImports = true,
-              useLibraryCodeForTypes = true,
-              diagnosticMode = 'workspace',
-              autoImportCompletions = false,
+          ['rust-analyzer'] = {
+            diagnostics = {
+              enable = true,
             }
           }
         }
       }
+
+      -- Clangd
+      lspconfig.clangd.setup {
+        settings = {
+          python = {
+            checkOnType = false,
+            diagnostics = true,
+            inlayHints = true,
+            smartCompletion = true
+          }
+        }
+      }
+
+      -- Python LSP
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      capabilities.textDocument.publishDiagnostics.tagSupport.valueSet = { 2 }
+
+      lspconfig.basedpyright.setup {
+        settings = {
+          basedpyright = {
+            disableOrganizeImports = true,
+            analysis = {
+              autoSearchPaths = true,
+              diagnosticMode = 'workspace',
+              useLibraryCodeForTypes = true,
+              autoImportCompletions = false,
+              typeCheckingMode = 'standard',
+            }
+          }
+        }
+      }
+
       lspconfig.ruff_lsp.setup {}
+
       -- Typst
       lspconfig.typst_lsp.setup {
         single_file_support = true,
@@ -201,14 +223,17 @@ return {
           exportPdf = "never"
         }
       }
+
       -- Julia
+      -- local julia = vim.fn.expand("~/.julia/environments/nvim-lspconfig/bin/julia")
       lspconfig.julials.setup {
-        on_new_config = function(new_config, _)
-          local julia = vim.fn.expand("~/.julia/environments/nvim-lspconfig/bin/julia")
-          if require 'lspconfig'.util.path.is_file(julia) then
-            new_config.cmd[1] = julia
-          end
-        end
+        cmd = { 'julia', "--project=." },
+        -- on_new_config = function(new_config, _)
+        --   local julia = vim.fn.expand("~/.julia/environments/nvim-lspconfig/bin/julia")
+        --   if require 'lspconfig'.util.path.is_file(julia) then
+        --     new_config.cmd[1] = julia
+        --   end
+        -- end
       }
 
       -- Latex
@@ -227,7 +252,7 @@ return {
       lspconfig.cssls.setup {}
       -- Grammar correctoin using ltex-ls
       local ltex_setup = {
-        filetypes = { "bib", "gitcommit", "markdown", "org", "plaintex", "rst", "rnoweb", "tex", "pandoc",
+        filetypes = { "gitcommit", "markdown", "org", "plaintex", "rst", "rnoweb", "tex", "pandoc",
           "typst" },
         settings = {
           ltex = {
@@ -253,8 +278,9 @@ return {
 
       -- Define formatting for different filetypes
       local texFormatter = 'latexindent --modifylinebreaks -y="defaultIndent: \'  \'"'
+      -- formatCommand = [[prettier --stdin-filepath ${INPUT} ${--tab-width:tab_width}]],
       local prettierFormat = {
-        formatCommand = [[prettier --stdin-filepath ${INPUT} ${--tab-width:tab_width}]],
+        formatCommand = 'prettier --stdin-filepath "${INPUT}" ${--tab-width:tab_width}',
         formatStdin = true,
       }
       lspconfig.efm.setup {
@@ -262,7 +288,7 @@ return {
           debounce_text_changes = 150,
         },
         init_options = { documentFormatting = true },
-        filetypes = { "bib", "tex", "sty", "cls", "fortran", "css", "scss", "json", "typst" },
+        filetypes = { "bib", "tex", "sty", "cls", "fortran", "css", "scss", "json", "jsonc", "typst" },
         settings = {
           rootMarkers = { ".git/" },
           languages = {
@@ -284,6 +310,7 @@ return {
             css = { prettierFormat },
             scss = { prettierFormat },
             json = { prettierFormat },
+            jsonc = { prettierFormat },
             typst = { { formatCommand = "typstfmt --output -", formatStdin = true } },
           }
         }
