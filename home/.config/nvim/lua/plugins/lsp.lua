@@ -2,8 +2,9 @@ return {
   -- Lsp-connfig
   {
     'neovim/nvim-lspconfig',
+    name = "nvim-lspconfig",
     dependencies = {
-      { "folke/neodev.nvim" },
+      { "folke/lazydev.nvim" },
       { "williamboman/mason-lspconfig.nvim" },
       { "nvim-lua/plenary.nvim" },
       { "ray-x/lsp_signature.nvim" },
@@ -35,7 +36,7 @@ return {
     },
     config = function(_, opts)
       local Path = require("plenary.path")
-      require("neodev").setup { lspconfig = true, }
+      -- require("lazydev").setup { lspconfig = true, }
 
       local lspconfig = require('lspconfig')
       local lsp_defaults = lspconfig.util.default_config
@@ -66,15 +67,7 @@ return {
           map('n', 'gr', vim.lsp.buf.references)
           map('n', 'gs', vim.lsp.buf.signature_help)
           map('n', '<leader>rn', vim.lsp.buf.rename)
-          map({ 'n', 'x' }, 'gq', function() vim.lsp.buf.format({ async = true }) end)
-          -- Format selected code only
-          vim.keymap.set('v', 'gq', function()
-            vim.lsp.buf.format({
-              async = true,
-              timeout_ms = 10000,
-              range = { vim.fn.getpos('v'), vim.fn.getcurpos() },
-            })
-          end)
+          -- Formatting is done with conform.nvim
           map('n', '<leader>ca', vim.lsp.buf.code_action)
           map('x', '<leader>ca', '<cmd>lua vim.lsp.buf.range_code_action()<cr>')
 
@@ -122,6 +115,7 @@ return {
 
       require('mason-lspconfig').setup({
         ensure_installed = {
+          'basedpyright',
           'bashls',
           'clangd',
           'cssls',
@@ -136,8 +130,7 @@ return {
           'ltex',
           'lua_ls',
           'marksman',
-          'basedpyright',
-          'ruff_lsp',
+          'ruff',
           'rust_analyzer',
           'taplo',
           'tsserver',
@@ -155,7 +148,7 @@ return {
               -- Tell the language server which version of Lua you're using
               -- (most likely LuaJIT in the case of Neovim)
               version = 'LuaJIT',
-              path = runtime_path,
+              -- path = runtime_path,
             },
             diagnostics = {
               -- Get the language server to recognize the `vim` global
@@ -165,7 +158,7 @@ return {
               checkThirdParty = false,
               library = {
                 -- Make the server aware of Neovim runtime files
-                vim.fn.expand('$VIMRUNTIME/lua'),
+                vim.env.VIMRUNTIME,
                 vim.fn.stdpath('config') .. '/lua'
               }
             }
@@ -184,16 +177,7 @@ return {
       }
 
       -- Clangd
-      lspconfig.clangd.setup {
-        settings = {
-          python = {
-            checkOnType = false,
-            diagnostics = true,
-            inlayHints = true,
-            smartCompletion = true
-          }
-        }
-      }
+      lspconfig.clangd.setup {}
 
       -- Python LSP
       local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -208,13 +192,13 @@ return {
               diagnosticMode = 'workspace',
               useLibraryCodeForTypes = true,
               autoImportCompletions = false,
-              typeCheckingMode = 'standard',
+              typeCheckingMode = 'basic',
             }
           }
         }
       }
 
-      lspconfig.ruff_lsp.setup {}
+      lspconfig.ruff.setup {}
 
       -- Typst
       lspconfig.typst_lsp.setup {
@@ -276,47 +260,6 @@ return {
       -- HTML
       lspconfig.html.setup {}
 
-      -- Define formatting for different filetypes
-      local texFormatter = 'latexindent --modifylinebreaks -y="defaultIndent: \'  \'"'
-      -- formatCommand = [[prettier --stdin-filepath ${INPUT} ${--tab-width:tab_width}]],
-      local prettierFormat = {
-        formatCommand = 'prettier --stdin-filepath "${INPUT}" ${--tab-width:tab_width}',
-        formatStdin = true,
-      }
-      lspconfig.efm.setup {
-        flags = {
-          debounce_text_changes = 150,
-        },
-        init_options = { documentFormatting = true },
-        filetypes = { "bib", "tex", "sty", "cls", "fortran", "css", "scss", "json", "jsonc", "typst" },
-        settings = {
-          rootMarkers = { ".git/" },
-          languages = {
-            bib = {
-              {
-                formatCommand = "bibtex-tidy --v2 --curly --align=14 --no-escape --sort-fields --sort",
-                formatStdin = true
-              }
-            },
-            fortran = {
-              {
-                formatCommand = "findent --continuation=0 --input_format=fixed --indent_procedure=0",
-                formatStdin = true
-              }
-            },
-            tex = { { formatCommand = texFormatter, formatStdin = true } },
-            sty = { { formatCommand = texFormatter, formatStdin = true } },
-            cls = { { formatCommand = texFormatter, formatStdin = true } },
-            css = { prettierFormat },
-            scss = { prettierFormat },
-            json = { prettierFormat },
-            jsonc = { prettierFormat },
-            typst = { { formatCommand = "typstfmt --output -", formatStdin = true } },
-          }
-        }
-      }
-
-
       -- Don't show diagnostics in-line
       vim.diagnostic.config({ virtual_text = false })
 
@@ -325,7 +268,7 @@ return {
     end
   },
   {
-    "folke/neodev.nvim",
+    "folke/lazydev.nvim",
     opts = {
       lspconfig = true
     }
@@ -343,10 +286,56 @@ return {
       },
     }
   },
+  -- Conform: formatting
+  {
+    'stevearc/conform.nvim',
+    opts = {},
+    dependencies = {
+      "mason",
+      "nvim-lspconfig",
+    },
+    config = function(_, opts)
+      local conform = require('conform')
+      -- local mason = require('mason')
+      -- local mason_registry = require('mason-registry')
+
+      vim.keymap.set("n", "gq", function() conform.format({}) end)
+
+      conform.setup({
+        lsp_fallback = true,
+        formatters = {
+          findent = {
+            args = { "--continuation", "0", "--input_format", "fixed", "--indent_procedure", "0" }
+          },
+          ["bibtex-tidy"] = {
+            args = { "--v2", "--curly", "--align", "14", "--no-escape", "--sort-fields", "--sort" }
+          }
+        },
+        formatters_by_ft = {
+          python = { "isort", "ruff_format" },
+          bib = { "bibtex-tidy" },
+          rust = { "rustfmt" },
+          typst = { "typstfmt" },
+          tex = { "latexindent" },
+          cls = { "latexindent" },
+          sty = { "latexindent" },
+          fortran = { "findent" },
+          css = { "prettier" },
+          scss = { "prettier" },
+          json = { "prettier" },
+          jsonc = { "prettier" },
+        }
+      })
+    end
+  },
   -- Function signatures
   {
     "ray-x/lsp_signature.nvim",
     lazy = true,
+    event = "VeryLazy",
+    config = function(_, opts)
+      require 'lsp_signature'.setup(opts)
+    end,
     opts = {
       bind = true, -- This is mandatory, otherwise border config won't get registered.
       hint_enable = true,
