@@ -1,6 +1,6 @@
 return {
   {
-    'nvim-treesitter/nvim-treesitter',
+    "nvim-treesitter/nvim-treesitter",
     name = "nvim-treesitter",
     event = { "BufReadPost", "BufNewFile" },
     build = ":TSUpdate",
@@ -65,9 +65,9 @@ return {
             ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
           },
           selection_modes = {
-            ['@parameter.outer'] = 'v',             -- charwise
-            ['@function.outer'] = 'V',              -- linewise
-            ['@class.outer'] = 'V',                 -- blockwise
+            ["@parameter.outer"] = "v", -- charwise
+            ["@function.outer"] = "V", -- linewise
+            ["@class.outer"] = "V", -- blockwise
           },
           include_surrounding_whitespace = false,
         },
@@ -81,12 +81,11 @@ return {
       vim.opt.foldnestmax = 2
       vim.opt.foldenable = false
 
-      vim.cmd('hi pythonTSParameter guifg=#b48ead')
-      vim.cmd('hi TSConstant guifg=#ebcb8b')
-
-    end
+      vim.cmd("hi pythonTSParameter guifg=#b48ead")
+      vim.cmd("hi TSConstant guifg=#ebcb8b")
+    end,
   },
-  { "nvim-treesitter/nvim-treesitter-textobjects", },
-  { 'nvim-treesitter/playground' },
+  { "nvim-treesitter/nvim-treesitter-textobjects" },
+  { "nvim-treesitter/playground" },
 }
 -- vim: set shiftwidth=2:

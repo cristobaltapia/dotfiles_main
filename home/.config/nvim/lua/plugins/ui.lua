@@ -11,12 +11,12 @@ return {
   --   end
   -- },
   {
-    'AlexvZyl/nordic.nvim',
+    "AlexvZyl/nordic.nvim",
     lazy = false,
     priority = 1000,
     config = function()
-      local nordic = require('nordic')
-      local palette = require('nordic.colors')
+      local nordic = require("nordic")
+      local palette = require("nordic.colors")
       local opts = {
         -- Enable bold keywords.
         bold_keywords = true,
@@ -32,9 +32,9 @@ return {
         swap_backgrounds = true,
         -- Override the styling of any highlight group.
         override = {
-          Visual = { bg = palette.grey2, },
-          FloatBorder = { fg = palette.yellow.base, bold = true, },
-          NormalFloat = { bg = palette.grey2, },
+          Visual = { bg = palette.grey2 },
+          FloatBorder = { fg = palette.yellow.base, bold = true },
+          NormalFloat = { bg = palette.grey2 },
           WikiLinkWiki = { fg = palette.blue1, underline = true },
           SpellBad = { fg = palette.red.base, underline = true },
         },
@@ -45,17 +45,17 @@ return {
           -- Bold cursorline number.
           bold_number = true,
           -- Available styles: 'dark', 'light'.
-          theme = 'dark',
+          theme = "dark",
           -- Blending the cursorline bg with the buffer bg.
           blend = 0.85,
         },
         noice = {
           -- Available styles: `classic`, `flat`.
-          style = 'classic',
+          style = "classic",
         },
         telescope = {
           -- Available styles: `classic`, `flat`.
-          style = 'classic',
+          style = "classic",
         },
         leap = {
           -- Dims the backdrop when using leap.
@@ -64,18 +64,17 @@ return {
         ts_context = {
           -- Enables dark background for treesitter-context window
           dark_background = true,
-        }
-
+        },
       }
       -- opts.override['Underlined'] = { fg = palette.cyan.base }
       nordic.setup(opts)
 
       nordic.load()
-    end
+    end,
   },
   -- Tmux
   {
-    'jpalardy/vim-slime',
+    "jpalardy/vim-slime",
     keys = {
       { "<C-c><C-c>", mode = "n" },
       { "<C-c><C-c>", mode = "v" },
@@ -84,80 +83,82 @@ return {
       vim.g.slime_target = "tmux"
       vim.g.slime_default_config = { socket_name = "default", target_pane = "0.1" }
       vim.g.slime_bracketed_paste = 1
-    end
+    end,
   },
   -- Status line
   {
-    'nvim-lualine/lualine.nvim',
+    "nvim-lualine/lualine.nvim",
     event = { "BufReadPost", "BufNewFile" },
     dependencies = {
-      'nvim-tree/nvim-web-devicons',
+      "nvim-tree/nvim-web-devicons",
     },
     opts = {
-      extensions = { 'quickfix', 'fugitive' },
+      extensions = { "quickfix", "fugitive" },
       tabline = {
-        lualine_a = { 'buffers' },
-        lualine_z = { function()
-          return [[buffers]]
-        end },
+        lualine_a = { "buffers" },
+        lualine_z = {
+          function()
+            return [[buffers]]
+          end,
+        },
       },
     },
   },
   -- FZF support
   {
-    'junegunn/fzf.vim',
+    "junegunn/fzf.vim",
     dependencies = {
-      { 'junegunn/fzf', build = './install --all' },
+      { "junegunn/fzf", build = "./install --all" },
     },
   },
   -- Integration with tmux
   {
-    'christoomey/vim-tmux-navigator',
+    "christoomey/vim-tmux-navigator",
     lazy = true,
     keys = {
-      { "<A-h>",     "<cmd>TmuxNavigateLeft<cr>",  "n", { silent = true } },
-      { "<A-j>",     "<cmd>TmuxNavigateDown<cr>",  "n", { silent = true } },
-      { "<A-k>",     "<cmd>TmuxNavigateUp<cr>",    "n", { silent = true } },
-      { "<A-l>",     "<cmd>TmuxNavigateRight<cr>", "n", { silent = true } },
-      { "<A-left>",  "<cmd>TmuxNavigateLeft<cr>",  "n", { silent = true } },
-      { "<A-down>",  "<cmd>TmuxNavigateDown<cr>",  "n", { silent = true } },
-      { "<A-up>",    "<cmd>TmuxNavigateUp<cr>",    "n", { silent = true } },
+      { "<A-h>", "<cmd>TmuxNavigateLeft<cr>", "n", { silent = true } },
+      { "<A-j>", "<cmd>TmuxNavigateDown<cr>", "n", { silent = true } },
+      { "<A-k>", "<cmd>TmuxNavigateUp<cr>", "n", { silent = true } },
+      { "<A-l>", "<cmd>TmuxNavigateRight<cr>", "n", { silent = true } },
+      { "<A-left>", "<cmd>TmuxNavigateLeft<cr>", "n", { silent = true } },
+      { "<A-down>", "<cmd>TmuxNavigateDown<cr>", "n", { silent = true } },
+      { "<A-up>", "<cmd>TmuxNavigateUp<cr>", "n", { silent = true } },
       { "<A-right>", "<cmd>TmuxNavigateRight<cr>", "n", { silent = true } },
     },
     init = function()
       vim.g.tmux_navigator_no_mappings = true
-    end
+    end,
   },
   -- Nice visualization of quickfix errors
   {
-    'kevinhwang91/nvim-bqf',
+    "kevinhwang91/nvim-bqf",
     config = function()
-      vim.o.qftf = '{info -> v:lua._G.qftf(info)}'
+      vim.o.qftf = "{info -> v:lua._G.qftf(info)}"
 
-      require('bqf').setup()
-      vim.api.nvim_set_hl(0, 'BqfPreviewTitle', { bg = '#ebcb8b', fg = '#3b4252' })
-    end
+      require("bqf").setup()
+      vim.api.nvim_set_hl(0, "BqfPreviewTitle", { bg = "#ebcb8b", fg = "#3b4252" })
+    end,
   },
   -- Overview of code
   {
-    'stevearc/aerial.nvim',
+    "stevearc/aerial.nvim",
     ft = { "python", "julia", "tex", "markdown", "typst" },
     dependencies = {
       -- "nvim-treesitter/nvim-treesitter",
-      "nvim-tree/nvim-web-devicons"
+      "nvim-tree/nvim-web-devicons",
     },
     keys = { { "<leader>a", "<cmd>AerialToggle<cr>" } },
     config = function()
-      local aerial = require('aerial')
-      require('aerial').setup({
+      local aerial = require("aerial")
+      require("aerial").setup({
         -- optionally use on_attach to set keymaps when aerial has attached to a buffer
         on_attach = function(bufnr)
           -- Jump forwards/backwards with '{' and '}'
-          vim.keymap.set('n', '}', aerial.next, { buffer = bufnr })
-          vim.keymap.set('n', '{', aerial.prev, { buffer = bufnr })
-        end
+          vim.keymap.set("n", "}", aerial.next, { buffer = bufnr })
+          vim.keymap.set("n", "{", aerial.prev, { buffer = bufnr })
+        end,
       })
-    end
+    end,
   },
   -- Better display of errors
   {
@@ -167,23 +168,21 @@ return {
       { "<leader>tt", "<cmd>Trouble<cr>", "n" },
     },
     cmd = { "Trouble" },
-    opts = { focus = true, },
+    opts = { focus = true },
   },
   {
-    'm00qek/baleia.nvim',
+    "m00qek/baleia.nvim",
     config = function()
-      local baleia = require('baleia').setup({
-        strip_ansi_codes = true
+      local baleia = require("baleia").setup({
+        strip_ansi_codes = true,
       })
-      vim.api.nvim_create_autocmd(
-        "FileType",
-        {
-          pattern = "dap-repl",
-          callback = function()
-            baleia.automatically(vim.api.nvim_get_current_buf())
-          end
-        })
-    end
-  }
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "dap-repl",
+        callback = function()
+          baleia.automatically(vim.api.nvim_get_current_buf())
+        end,
+      })
+    end,
+  },
 }
 -- vim: set shiftwidth=2:

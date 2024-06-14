@@ -1,7 +1,7 @@
 return {
   -- Integration with latex
   {
-    'lervag/vimtex',
+    "lervag/vimtex",
     ft = { "tex", "cls", "sty", "tikz" },
     -- version = "2.13",
     dependencies = {
@@ -15,10 +15,10 @@ return {
       { "<localleader>rf", "<cmd>VimtexRefreshFolds<cr>" },
     },
     config = function()
-      vim.g.tex_flavor = 'latex'
+      vim.g.tex_flavor = "latex"
 
       -- Set autocompletion
-      local cmp = require('cmp')
+      local cmp = require("cmp")
 
       cmp.setup.filetype("tex", {
         formatting = {
@@ -32,39 +32,39 @@ return {
           end,
         },
         sources = {
-          { name = 'vimtex', priority = 9 },
+          { name = "vimtex", priority = 9 },
           -- { name = 'omni',  priority = 8 },
-          { name = 'buffer' },
-          { name = "path",   priority = 4 },
+          { name = "buffer" },
+          { name = "path", priority = 4 },
           {
             name = "ultisnips",
             priority = 10,
             -- Disable source for comments
             entry_filter = function(entry, ctx)
-              local context = require 'cmp.config.context'
-              return not context.in_treesitter_capture("comment")
-                  and not context.in_syntax_group("Comment")
-            end
+              local context = require("cmp.config.context")
+              return not context.in_treesitter_capture("comment") and not context.in_syntax_group("Comment")
+            end,
           },
-        }
+        },
       })
 
       -- Set options for vimtex
       vim.g.vimtex_compiler_latexmk = {
-        out_dir = 'out',
-        aux_dir = '.aux',
+        out_dir = "out",
+        aux_dir = ".aux",
         callback = 1,
         continuous = 0,
-        executable = 'latexmk',
-        options = { '-verbose',
-          '-shell-escape',
-          '-file-line-error',
-          '-synctex=1',
-          '-interaction=nonstopmode',
+        executable = "latexmk",
+        options = {
+          "-verbose",
+          "-shell-escape",
+          "-file-line-error",
+          "-synctex=1",
+          "-interaction=nonstopmode",
         },
       }
 
-      vim.g.vimtex_compiler_latexmk_engines = { _ = '-lualatex' }
+      vim.g.vimtex_compiler_latexmk_engines = { _ = "-lualatex" }
 
       vim.g.vimtex_complete_enabled = 1
       vim.g.vimtex_complete_close_braces = 0
@@ -76,24 +76,24 @@ return {
         sections = {
           parse_levels = 0,
           sections = {
-            '%(add)?part',
-            '%(chapter|addchap)',
-            '%(section|addsec)',
-            '%(subsection|workpackage)',
-            '%(subsubsection|subworkpackage)',
+            "%(add)?part",
+            "%(chapter|addchap)",
+            "%(section|addsec)",
+            "%(subsection|workpackage)",
+            "%(subsubsection|subworkpackage)",
           },
           parts = {
-            'appendix',
-            'frontmatter',
-            'mainmatter',
-            'backmatter',
+            "appendix",
+            "frontmatter",
+            "mainmatter",
+            "backmatter",
           },
         },
       }
       vim.opt_local.foldnestmax = 4
 
-      if vim.fn.executable('bibtexparser') then
-        vim.g.vimtex_parser_bib_backend = 'bibtexparser'
+      if vim.fn.executable("bibtexparser") then
+        vim.g.vimtex_parser_bib_backend = "bibtexparser"
       end
 
       vim.g.vimtex_syntax_conceal = {
@@ -119,12 +119,12 @@ return {
       vim.g.vimtex_indent_bib_enabled = false
       vim.g.vimtex_fold_bib_enabled = false
 
-      vim.g.vimtex_imaps_leader = '#'
-      vim.g.vimtex_quickfix_method = 'latexlog'
+      vim.g.vimtex_imaps_leader = "#"
+      vim.g.vimtex_quickfix_method = "latexlog"
       vim.g.matchup_override_vimtex = true
-      vim.g.vimtex_compiler_progname = vim.env.HOME .. '/.virtualenvs/py3neovim/bin/nvr'
+      vim.g.vimtex_compiler_progname = vim.env.HOME .. "/.virtualenvs/py3neovim/bin/nvr"
 
-      vim.g.vimtex_view_method = 'zathura'
+      vim.g.vimtex_view_method = "zathura"
       vim.g.vimtex_view_forward_search_on_start = true
 
       vim.g.vimtex_echo_verbose_input = 0
@@ -134,12 +134,12 @@ return {
 
       -- Delimiter modifiers
       vim.g.vimtex_delim_toggle_mod_list = {
-        { '\\left',  '\\right' },
-        { '\\mleft', '\\mright' },
+        { "\\left", "\\right" },
+        { "\\mleft", "\\mright" },
       }
-    end
+    end,
   },
   -- Transfor latex symbols to unicode
-  { 'joom/latex-unicoder.vim' },
+  { "joom/latex-unicoder.vim" },
 }
 -- vim: set shiftwidth=2:

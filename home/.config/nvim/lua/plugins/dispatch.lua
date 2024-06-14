@@ -4,7 +4,7 @@ return {
     ft = { "typst", "python", "fortran", "make", "rust" },
     keys = { "<F4>", "<F5>" },
     config = function()
-      local Path = require('plenary.path')
+      local Path = require("plenary.path")
       -- Execute programs asyncronously
       local function save_and_run_async()
         -- Save file
@@ -16,11 +16,11 @@ return {
         local filename = vim.fn.fnameescape(vim.fn.expand("%:p"))
 
         if ft == "typst" then
-          vim.cmd('Dispatch -compiler=typst -dir=' .. dir .. ' typst compile ' .. filename)
+          vim.cmd("Dispatch -compiler=typst -dir=" .. dir .. " typst compile " .. filename)
         elseif ft == "fortran" then
-          vim.cmd('Dispatch -compiler=abaqus -dir=' .. dir .. ' abq2022 make library=' .. filename)
+          vim.cmd("Dispatch -compiler=abaqus -dir=" .. dir .. " abq2022 make library=" .. filename)
         elseif ft == "python" then
-          vim.cmd('Dispatch -compiler=python -dir=' .. dir .. ' python ' .. filename)
+          vim.cmd("Dispatch -compiler=python -dir=" .. dir .. " python " .. filename)
         end
       end
 
@@ -32,7 +32,7 @@ return {
         -- Execute command according to filetype
 
         if ft == "python" then
-          vim.cmd('Dispatch -compiler=pytest pytest --tb=short -q')
+          vim.cmd("Dispatch -compiler=pytest pytest --tb=short -q")
         end
       end
 

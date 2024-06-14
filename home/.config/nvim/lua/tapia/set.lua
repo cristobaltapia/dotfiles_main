@@ -1,4 +1,4 @@
-vim.g.python3_host_prog = vim.env.HOME .. '/.virtualenvs/py3neovim/bin/python3'
+vim.g.python3_host_prog = vim.env.HOME .. "/.virtualenvs/py3neovim/bin/python3"
 
 vim.opt.title = true
 vim.opt.titlestring = "%t %y"
@@ -49,10 +49,10 @@ vim.opt.isfname:append("@-@")
 vim.opt.diffopt:append("vertical")
 vim.opt.diffopt:append("linematch:60")
 
-vim.opt.shada:append('r/mnt/intcdc')
+vim.opt.shada:append("r/mnt/intcdc")
 
 -- Visual selection copies to the clipboard
-vim.opt.clipboard:append('unnamedplus')
+vim.opt.clipboard:append("unnamedplus")
 
 vim.g.completion_sorting = "none"
 vim.g.completeopt = "menu,menuone,noinsert"
@@ -62,25 +62,25 @@ vim.opt.pumheight = 15
 
 -- Set python syntax for Freecad macros
 vim.api.nvim_create_autocmd({ "BufEnter", "BufNewFile" }, {
-    pattern = { "*.fcmacro" },
-    callback = function()
-        vim.opt.filetype = "python"
-    end
+  pattern = { "*.fcmacro" },
+  callback = function()
+    vim.opt.filetype = "python"
+  end,
 })
 -- Set tex syntax for pdf_tex files
 vim.api.nvim_create_autocmd({ "BufEnter", "BufNewFile" }, {
-    pattern = { "*.pdf_tex" },
-    callback = function()
-        vim.opt.filetype = "tex"
-    end
+  pattern = { "*.pdf_tex" },
+  callback = function()
+    vim.opt.filetype = "tex"
+  end,
 })
 
 -- dont list quickfix buffers
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = "qf",
-    callback = function()
-        vim.opt_local.buflisted = false
-    end,
+  pattern = "qf",
+  callback = function()
+    vim.opt_local.buflisted = false
+  end,
 })
 
 -- Disable editorconfig
@@ -93,9 +93,8 @@ vim.opt.tabstop = 4
 
 -- Make history persistent between sessions
 vim.opt.undofile = true
-vim.opt.undodir = vim.env.HOME .. '/.config/nvim/undodir'
+vim.opt.undodir = vim.env.HOME .. "/.config/nvim/undodir"
 
-if not vim.fn.isdirectory(vim.env.HOME .. '/.config/nvim/undodir') then
-    vim.fn.mkdir(vim.env.HOME .. '/.config/nvim/undodir')
+if not vim.fn.isdirectory(vim.env.HOME .. "/.config/nvim/undodir") then
+  vim.fn.mkdir(vim.env.HOME .. "/.config/nvim/undodir")
 end
-

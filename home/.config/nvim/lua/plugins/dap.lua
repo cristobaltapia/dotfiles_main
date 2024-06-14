@@ -3,43 +3,49 @@ return {
     "mfussenegger/nvim-dap",
     ft = { "python" },
     keys = {
-      { "<F8>",
+      {
+        "<F8>",
         function()
-          require('dap').toggle_breakpoint()
-        end
+          require("dap").toggle_breakpoint()
+        end,
       },
-      { "<F6>",
+      {
+        "<F6>",
         function()
-          require('dap').continue()
-        end
+          require("dap").continue()
+        end,
       },
-      { "<leader>es",
+      {
+        "<leader>es",
         function()
-          require('dap').step_into()
-        end
+          require("dap").step_into()
+        end,
       },
-      { "<leader>dr",
+      {
+        "<leader>dr",
         function()
-          require('dap').repl.toggle()
-        end
+          require("dap").repl.toggle()
+        end,
       },
-      { "<leader>dq",
+      {
+        "<leader>dq",
         function()
-          require('dap').repl.close()
-          require('dap').terminate()
-        end
+          require("dap").repl.close()
+          require("dap").terminate()
+        end,
       },
-      { "<leader>dd",
+      {
+        "<leader>dd",
         function()
-          require('dap').disconnect()
-          require('dap').terminate()
-        end
+          require("dap").disconnect()
+          require("dap").terminate()
+        end,
       },
     },
 
     config = function(_, opts)
-      local dap = require('dap')
-      vim.fn.sign_define('DapBreakpoint', { text = '', texthl = 'Debug', linehl = '', numhl = '' })
+      local dap = require("dap")
+      vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "Debug", linehl = "", numhl = "" })
 
       --
       -- INFO:
@@ -49,9 +55,8 @@ return {
       -- Autocompletion for the REPL
       require("cmp").setup({
         enabled = function()
-          return vim.api.nvim_get_option_value("buftype", {}) ~= "prompt"
-              or require("cmp_dap").is_dap_buffer()
-        end
+          return vim.api.nvim_get_option_value("buftype", {}) ~= "prompt" or require("cmp_dap").is_dap_buffer()
+        end,
       })
 
       require("cmp").setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
@@ -76,14 +81,13 @@ return {
           dap.repl.close()
         end
       end
-    end
-
+    end,
   },
   {
     "rcarriga/nvim-dap-ui",
     dependencies = {
       "mfussenegger/nvim-dap",
-      "nvim-neotest/nvim-nio"
+      "nvim-neotest/nvim-nio",
     },
     config = function(_, opts)
       -- Configure icons
@@ -99,14 +103,14 @@ return {
             step_back = "↶",
             run_last = "🗘",
             terminate = "🕱",
-            disconnect = "⏻"
-          }
-        }
+            disconnect = "⏻",
+          },
+        },
       }
 
       local dapui = require("dapui")
       dapui.setup(ui_config)
-    end
-  }
+    end,
+  },
 }
 -- vim: set shiftwidth=2:

@@ -44,15 +44,15 @@ vim.keymap.set("n", "g<Down>", "<Down>")
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 
 -- For the quickfix window it is better to undo the previous remapping
-local qf_group = vim.api.nvim_create_augroup('quickfix', { clear = true })
-vim.api.nvim_create_autocmd({ 'FileType' }, {
-  pattern = { 'qf' },
+local qf_group = vim.api.nvim_create_augroup("quickfix", { clear = true })
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  pattern = { "qf" },
   group = qf_group,
   callback = function()
-    vim.keymap.set('n', 'j', 'j', { buffer = true })
-    vim.keymap.set('n', 'k', 'k', { buffer = true })
-    vim.keymap.set('n', '<Up>', '<Up>', { buffer = true })
-    vim.keymap.set('n', '<Down>', '<Down>', { buffer = true })
+    vim.keymap.set("n", "j", "j", { buffer = true })
+    vim.keymap.set("n", "k", "k", { buffer = true })
+    vim.keymap.set("n", "<Up>", "<Up>", { buffer = true })
+    vim.keymap.set("n", "<Down>", "<Down>", { buffer = true })
     vim.opt_local.scrolloff = 0
   end,
 })

@@ -1,10 +1,10 @@
 return {
   {
-    'untitled-ai/jupyter_ascending.vim',
+    "untitled-ai/jupyter_ascending.vim",
     event = "BufEnter *.sync.py",
     dependencies = {
-      { 'kana/vim-textobj-user' },
-      { 'GCBallesteros/vim-textobj-hydrogen' },
+      { "kana/vim-textobj-user" },
+      { "GCBallesteros/vim-textobj-hydrogen" },
     },
     keys = {
       { "<leader><leader>x", "<Plug>JupyterExecute" },
@@ -16,7 +16,7 @@ return {
       vim.keymap.del("n", "<space><space>x")
       vim.keymap.del("n", "<space><space>X")
       vim.keymap.del("n", "<space><space>r")
-    end
+    end,
   },
   -- {
   --   'stevearc/overseer.nvim',

@@ -1,7 +1,7 @@
 return {
   -- Lsp-connfig
   {
-    'neovim/nvim-lspconfig',
+    "neovim/nvim-lspconfig",
     name = "nvim-lspconfig",
     dependencies = {
       { "folke/lazydev.nvim" },
@@ -38,18 +38,15 @@ return {
       local Path = require("plenary.path")
       -- require("lazydev").setup { lspconfig = true, }
 
-      local lspconfig = require('lspconfig')
+      local lspconfig = require("lspconfig")
       local lsp_defaults = lspconfig.util.default_config
 
-      lsp_defaults.capabilities = vim.tbl_deep_extend(
-        'force',
-        lsp_defaults.capabilities,
-        require('cmp_nvim_lsp').default_capabilities()
-      )
+      lsp_defaults.capabilities =
+        vim.tbl_deep_extend("force", lsp_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
       -- lsp_defaults.capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = false
 
-      vim.api.nvim_create_autocmd('LspAttach', {
-        desc = 'LSP actions',
+      vim.api.nvim_create_autocmd("LspAttach", {
+        desc = "LSP actions",
         callback = function(event)
           -- Define current bufnr
           local bufnr = event.buf
@@ -59,87 +56,82 @@ return {
           end
 
           -- LSP actions
-          map('n', 'K', vim.lsp.buf.hover)
-          map('n', 'gd', vim.lsp.buf.definition)
-          map('n', 'gD', vim.lsp.buf.declaration)
-          map('n', 'gi', vim.lsp.buf.implementation)
-          map('n', 'go', vim.lsp.buf.type_definition)
-          map('n', 'gr', vim.lsp.buf.references)
-          map('n', 'gs', vim.lsp.buf.signature_help)
-          map('n', '<leader>rn', vim.lsp.buf.rename)
+          map("n", "K", vim.lsp.buf.hover)
+          map("n", "gd", vim.lsp.buf.definition)
+          map("n", "gD", vim.lsp.buf.declaration)
+          map("n", "gi", vim.lsp.buf.implementation)
+          map("n", "go", vim.lsp.buf.type_definition)
+          map("n", "gr", vim.lsp.buf.references)
+          map("n", "gs", vim.lsp.buf.signature_help)
+          map("n", "<leader>rn", vim.lsp.buf.rename)
           -- Formatting is done with conform.nvim
-          map('n', '<leader>ca', vim.lsp.buf.code_action)
-          map('x', '<leader>ca', '<cmd>lua vim.lsp.buf.range_code_action()<cr>')
+          map("n", "<leader>ca", vim.lsp.buf.code_action)
+          map("x", "<leader>ca", "<cmd>lua vim.lsp.buf.range_code_action()<cr>")
 
           -- Diagnostics
-          map('n', 'ge', vim.diagnostic.open_float)
-          map('n', '[d', vim.diagnostic.goto_prev)
-          map('n', ']d', vim.diagnostic.goto_next)
-        end
+          map("n", "ge", vim.diagnostic.open_float)
+          map("n", "[d", vim.diagnostic.goto_prev)
+          map("n", "]d", vim.diagnostic.goto_next)
+        end,
       })
 
       local function lsp_settings()
         vim.diagnostic.config({
           severity_sort = true,
-          float = { border = 'rounded' },
+          float = { border = "rounded" },
         })
 
-        vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
-          vim.lsp.handlers.hover,
-          { border = 'rounded' }
-        )
+        vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
 
-        vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
-          vim.lsp.handlers.signature_help,
-          { border = 'rounded' }
-        )
+        vim.lsp.handlers["textDocument/signatureHelp"] =
+          vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
 
         local command = vim.api.nvim_create_user_command
 
-        command('LspWorkspaceAdd', function()
+        command("LspWorkspaceAdd", function()
           vim.lsp.buf.add_workspace_folder()
-        end, { desc = 'Add folder to workspace' })
+        end, { desc = "Add folder to workspace" })
 
-        command('LspWorkspaceList', function()
+        command("LspWorkspaceList", function()
           vim.notify(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-        end, { desc = 'List workspace folders' })
+        end, { desc = "List workspace folders" })
 
-        command('LspWorkspaceRemove', function()
+        command("LspWorkspaceRemove", function()
           vim.lsp.buf.remove_workspace_folder()
-        end, { desc = 'Remove folder from workspace' })
+        end, { desc = "Remove folder from workspace" })
       end
 
       lsp_settings()
 
-      require('mason').setup({})
+      require("mason").setup({})
 
-      require('mason-lspconfig').setup({
+      require("mason-lspconfig").setup({
         ensure_installed = {
-          'basedpyright',
-          'bashls',
-          'clangd',
-          'cssls',
-          'docker_compose_language_service',
-          'dockerls',
-          'efm',
-          'eslint',
-          'fortls',
-          'html',
-          'jsonls',
-          'julials',
-          'ltex',
-          'lua_ls',
-          'marksman',
-          'ruff',
-          'rust_analyzer',
-          'taplo',
-          'tsserver',
-          'typst_lsp',
-        }
+          "basedpyright",
+          "bashls",
+          "clangd",
+          "cssls",
+          "docker_compose_language_service",
+          "dockerls",
+          "efm",
+          "eslint",
+          "fortls",
+          "html",
+          "jsonls",
+          "julials",
+          "ltex",
+          "lua_ls",
+          "marksman",
+          "ruff",
+          "rust_analyzer",
+          "taplo",
+          "tsserver",
+          "typst_lsp",
+        },
       })
 
       -- Configure Lua-ls
-      lspconfig.lua_ls.setup {
+      lspconfig.lua_ls.setup({
         settings = {
           Lua = {
             -- Disable telemetry
@@ -147,97 +139,96 @@ return {
             runtime = {
               -- Tell the language server which version of Lua you're using
               -- (most likely LuaJIT in the case of Neovim)
-              version = 'LuaJIT',
+              version = "LuaJIT",
               -- path = runtime_path,
             },
             diagnostics = {
               -- Get the language server to recognize the `vim` global
-              globals = { 'vim' }
+              globals = { "vim" },
             },
             workspace = {
               checkThirdParty = false,
               library = {
                 -- Make the server aware of Neovim runtime files
                 vim.env.VIMRUNTIME,
-                vim.fn.stdpath('config') .. '/lua'
-              }
-            }
-          }
-        }
-      }
+                vim.fn.stdpath("config") .. "/lua",
+              },
+            },
+          },
+        },
+      })
       -- Rust
-      lspconfig.rust_analyzer.setup {
+      lspconfig.rust_analyzer.setup({
         settings = {
-          ['rust-analyzer'] = {
+          ["rust-analyzer"] = {
             diagnostics = {
               enable = true,
-            }
-          }
-        }
-      }
+            },
+          },
+        },
+      })
 
       -- Clangd
-      lspconfig.clangd.setup {}
+      lspconfig.clangd.setup({})
 
       -- Python LSP
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities.textDocument.publishDiagnostics.tagSupport.valueSet = { 2 }
 
-      lspconfig.basedpyright.setup {
+      lspconfig.basedpyright.setup({
         settings = {
           basedpyright = {
             disableOrganizeImports = true,
             analysis = {
               autoSearchPaths = true,
-              diagnosticMode = 'workspace',
+              diagnosticMode = "workspace",
               useLibraryCodeForTypes = true,
               autoImportCompletions = false,
-              typeCheckingMode = 'basic',
-            }
-          }
-        }
-      }
+              typeCheckingMode = "basic",
+            },
+          },
+        },
+      })
 
-      lspconfig.ruff.setup {}
+      lspconfig.ruff.setup({})
 
       -- Typst
-      lspconfig.typst_lsp.setup {
+      lspconfig.typst_lsp.setup({
         single_file_support = true,
         settings = {
-          exportPdf = "never"
-        }
-      }
+          exportPdf = "never",
+        },
+      })
 
       -- Julia
       -- local julia = vim.fn.expand("~/.julia/environments/nvim-lspconfig/bin/julia")
-      lspconfig.julials.setup {
-        cmd = { 'julia', "--project=." },
+      lspconfig.julials.setup({
+        cmd = { "julia", "--project=." },
         -- on_new_config = function(new_config, _)
         --   local julia = vim.fn.expand("~/.julia/environments/nvim-lspconfig/bin/julia")
         --   if require 'lspconfig'.util.path.is_file(julia) then
         --     new_config.cmd[1] = julia
         --   end
         -- end
-      }
+      })
 
       -- Latex
       -- lspconfig.texlab.setup {}
       -- Toml
-      lspconfig.taplo.setup {}
+      lspconfig.taplo.setup({})
       -- Docker
-      lspconfig.docker_compose_language_service.setup {}
-      lspconfig.dockerls.setup {
+      lspconfig.docker_compose_language_service.setup({})
+      lspconfig.dockerls.setup({
         on_attach = function(client, bufnr)
           -- Remove syntax from LSP
           client.server_capabilities.semanticTokensProvider = nil
         end,
-      }
+      })
       -- CSS
-      lspconfig.cssls.setup {}
+      lspconfig.cssls.setup({})
       -- Grammar correctoin using ltex-ls
       local ltex_setup = {
-        filetypes = { "gitcommit", "markdown", "org", "plaintex", "rst", "rnoweb", "tex", "pandoc",
-          "typst" },
+        filetypes = { "gitcommit", "markdown", "org", "plaintex", "rst", "rnoweb", "tex", "pandoc", "typst" },
         settings = {
           ltex = {
             language = "en-US",
@@ -250,83 +241,107 @@ return {
         ltex_setup["cmd"] = { "/usr/bin/ltex-ls" }
       end
       lspconfig.ltex.setup(ltex_setup)
-      lspconfig.fortls.setup {}
+      lspconfig.fortls.setup({})
       -- JSON-ls
-      lspconfig.jsonls.setup {
+      lspconfig.jsonls.setup({
         init_options = {
-          provideFormatter = false
-        }
-      }
+          provideFormatter = false,
+        },
+      })
       -- HTML
-      lspconfig.html.setup {}
+      lspconfig.html.setup({})
 
       -- Don't show diagnostics in-line
       vim.diagnostic.config({ virtual_text = false })
 
       -- Increase update frequency of the ui
       vim.opt.updatetime = 500
-    end
+    end,
   },
   {
     "folke/lazydev.nvim",
     opts = {
-      lspconfig = true
-    }
+      lspconfig = true,
+    },
   },
   -- Mason
   {
-    'williamboman/mason-lspconfig.nvim',
+    "williamboman/mason-lspconfig.nvim",
     name = "mason",
     dependencies = {
       {
-        'williamboman/mason.nvim',
+        "williamboman/mason.nvim",
         build = function()
-          pcall(vim.cmd, 'MasonUpdate')
+          pcall(vim.cmd, "MasonUpdate")
         end,
       },
-    }
+    },
   },
   -- Conform: formatting
   {
-    'stevearc/conform.nvim',
+    "stevearc/conform.nvim",
     opts = {},
     dependencies = {
       "mason",
       "nvim-lspconfig",
     },
     config = function(_, opts)
-      local conform = require('conform')
+      local conform = require("conform")
       -- local mason = require('mason')
       -- local mason_registry = require('mason-registry')
 
-      vim.keymap.set("n", "gq", function() conform.format({}) end)
+      vim.keymap.set("n", "gq", function()
+        conform.format({})
+      end)
 
       conform.setup({
         lsp_fallback = true,
         formatters = {
           findent = {
-            args = { "--continuation", "0", "--input_format", "fixed", "--indent_procedure", "0" }
+            args = { "--continuation", "0", "--input_format", "fixed", "--indent_procedure", "0" },
           },
           ["bibtex-tidy"] = {
-            args = { "--v2", "--curly", "--align", "14", "--no-escape", "--sort-fields", "--sort" }
-          }
+            args = { "--v2", "--curly", "--align", "14", "--no-escape", "--sort-fields", "--sort" },
+          },
+          stylua = {
+            args = {
+              "--indent-type",
+              "Spaces",
+              "--indent-width",
+              "2",
+              "--search-parent-directories",
+              "--stdin-filepath",
+              "$FILENAME",
+              "-",
+            },
+          },
+          shfmt = {
+            args = { "--case-indent", "--indent", "4", "-filename", "$FILENAME" },
+          },
         },
         formatters_by_ft = {
-          python = { "isort", "ruff_format" },
+          bash = { "shfmt" },
           bib = { "bibtex-tidy" },
-          rust = { "rustfmt" },
-          typst = { "typstfmt" },
-          tex = { "latexindent" },
+          c = { "clang-format" },
           cls = { "latexindent" },
-          sty = { "latexindent" },
-          fortran = { "findent" },
           css = { "prettier" },
-          scss = { "prettier" },
+          fortran = { "findent" },
+          html = { "djlint" },
           json = { "prettier" },
           jsonc = { "prettier" },
-        }
+          lua = { "stylua" },
+          python = { "isort", "ruff_format" },
+          rust = { "rustfmt" },
+          scss = { "prettier" },
+          sh = { "shfmt" },
+          sty = { "latexindent" },
+          tex = { "latexindent" },
+          toml = { "taplo" },
+          typst = { "typstfmt" },
+          yaml = { "yamlfmt" },
+        },
       })
-    end
+    end,
   },
   -- Function signatures
   {
@@ -334,7 +349,7 @@ return {
     lazy = true,
     event = "VeryLazy",
     config = function(_, opts)
-      require 'lsp_signature'.setup(opts)
+      require("lsp_signature").setup(opts)
     end,
     opts = {
       bind = true, -- This is mandatory, otherwise border config won't get registered.
@@ -345,9 +360,9 @@ return {
       select_signature_key = "<C-l>",
       floating_window_above_cur_line = true,
       handler_opts = {
-        border = "rounded"
-      }
-    }
+        border = "rounded",
+      },
+    },
   },
 }
 -- vim: set shiftwidth=2:
