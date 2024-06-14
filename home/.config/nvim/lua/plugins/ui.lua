@@ -164,19 +164,23 @@ return {
     "folke/trouble.nvim",
     dependencies = "web-devicons",
     keys = {
-      { "<leader>tt", "<cmd>TroubleToggle<cr>", "n" },
-    }
+      { "<leader>tt", "<cmd>Trouble<cr>", "n" },
+    },
+    cmd = { "Trouble" },
+    opts = { focus = true, },
   },
   {
     'm00qek/baleia.nvim',
     config = function()
-      local baleia = require('baleia').setup({})
+      local baleia = require('baleia').setup({
+        strip_ansi_codes = true
+      })
       vim.api.nvim_create_autocmd(
         "FileType",
         {
           pattern = "dap-repl",
           callback = function()
-            baleia.automatically(vim.fn.bufnr('%'))
+            baleia.automatically(vim.api.nvim_get_current_buf())
           end
         })
     end

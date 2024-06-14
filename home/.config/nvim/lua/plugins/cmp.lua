@@ -103,11 +103,14 @@ return {
       vim.api.nvim_set_hl(0, 'CmpItemKindSnippet', { fg = p.iris })
       vim.api.nvim_set_hl(0, 'CmpItemKindKeyword', { fg = p.subtle })
       vim.api.nvim_set_hl(0, 'CmpItemKindText', { fg = p.subtle })
+      -- vim.api.nvim_set_hl(0, 'CmpNormal', { fg = p.subtle, bg = p.love })
 
       local context = require('cmp.config.context')
       local in_capture = context.in_treesitter_capture
 
       local cmp_config = {
+        -- Don't preselect any item
+        preselect = cmp.PreselectMode.None,
         -- Define sources to be used
         sources = {
           {
@@ -192,7 +195,9 @@ return {
         window = {
           completion = {
             winhighlight = "Normal:StatusLineNC,CursorLine:Substitute",
+            scrollbar = true,
           },
+          -- scrollbar = {winhighlight = "Normal:CmpNormal"},
           documentation = {
             winhighlight = 'FloatBorder:WildMenu',
             border = "rounded",

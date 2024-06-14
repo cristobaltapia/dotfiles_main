@@ -5,6 +5,7 @@ return {
     -- ft = { "wiki" },
     dependencies = {
       { 'lervag/wiki-ft.vim' },
+      { 'nabla' },
     },
     -- tag = "v0.8",
     lazy = true,
@@ -66,15 +67,19 @@ return {
   {
     'jbyuki/nabla.nvim',
     ft = { 'wiki' },
+    name = "nabla",
+    dependencies = {"nvim-treesitter"},
     keys = {
       { "<localleader>p", function()
         require("nabla").popup()
       end
       },
+      { "<localleader>vv", function()
+        require("nabla").toggle_virt({ autogen = true })
+      end
+      },
+
     },
-    config = function()
-      require("nabla").enable_virt()
-    end,
   }
 }
 -- vim: set shiftwidth=2:

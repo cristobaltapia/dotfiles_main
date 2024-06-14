@@ -1,6 +1,7 @@
+-- Configuration of debugger with dap
 local dap = require('dap')
 local util = require("lspconfig.util")
--- Rust
+
 dap.adapters.cppdbg = {
   id = 'cppdbg',
   type = 'executable',

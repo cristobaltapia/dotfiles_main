@@ -23,10 +23,3 @@ vim.api.nvim_create_autocmd({ 'User' }, {
     command = "copen | clast | wincmd k",
 })
 
--- LSP inlay hints
-vim.api.nvim_create_autocmd({ 'InsertEnter' }, {
-    callback = function() vim.lsp.inlay_hint.enable(true) end,
-})
-vim.api.nvim_create_autocmd({ 'InsertLeave' }, {
-    callback = function() vim.lsp.inlay_hint.enable(false) end,
-})

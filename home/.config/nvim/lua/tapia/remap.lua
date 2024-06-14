@@ -22,7 +22,7 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 vim.keymap.set("i", "<C-s>", "<c-g>u<Esc>[s1z=`]a<c-g>u")
 
 -- Faster folding
-vim.keymap.set({ "n", "v" }, "<space>", "zA")
+vim.keymap.set({ "n", "v" }, "<space>", "za")
 
 -- Map <Esc> to shift-space
 vim.keymap.set({ "i", "v", "s" }, "<S-Space>", "<Esc>")
@@ -46,15 +46,15 @@ vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 -- For the quickfix window it is better to undo the previous remapping
 local qf_group = vim.api.nvim_create_augroup('quickfix', { clear = true })
 vim.api.nvim_create_autocmd({ 'FileType' }, {
-    pattern = { 'qf' },
-    group = qf_group,
-    callback = function()
-        vim.keymap.set('n', 'j', 'j', { buffer = true })
-        vim.keymap.set('n', 'k', 'k', { buffer = true })
-        vim.keymap.set('n', '<Up>', '<Up>', { buffer = true })
-        vim.keymap.set('n', '<Down>', '<Down>', { buffer = true })
-        vim.opt_local.scrolloff = 0
-    end,
+  pattern = { 'qf' },
+  group = qf_group,
+  callback = function()
+    vim.keymap.set('n', 'j', 'j', { buffer = true })
+    vim.keymap.set('n', 'k', 'k', { buffer = true })
+    vim.keymap.set('n', '<Up>', '<Up>', { buffer = true })
+    vim.keymap.set('n', '<Down>', '<Down>', { buffer = true })
+    vim.opt_local.scrolloff = 0
+  end,
 })
 
 -- Move to next buffer
@@ -80,3 +80,8 @@ vim.keymap.set("n", "<leader>cq", vim.cmd.cclose)
 -- end
 
 -- vim.keymap.set('n', '<F5>', compile_and_run)
+--
+-- Toggle inlay hints
+vim.keymap.set("n", "<leader>hh", function()
+  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end)

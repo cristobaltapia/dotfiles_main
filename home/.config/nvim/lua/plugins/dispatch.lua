@@ -1,9 +1,10 @@
 return {
   {
     "tpope/vim-dispatch",
-    ft = { "typst", "python", "fortran", "make" },
+    ft = { "typst", "python", "fortran", "make", "rust" },
     keys = { "<F4>", "<F5>" },
     config = function()
+      local Path = require('plenary.path')
       -- Execute programs asyncronously
       local function save_and_run_async()
         -- Save file

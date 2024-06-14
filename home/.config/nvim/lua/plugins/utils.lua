@@ -247,7 +247,6 @@ return {
       { "<leader>m", ":lua MiniFiles.open()<cr>", "n" },
     },
     config = function()
-      local animate = require('mini.animate')
       require('mini.trailspace').setup()
       require('mini.files').setup(
         {
@@ -259,11 +258,23 @@ return {
           }
         })
       require('mini.indentscope').setup()
+      local animate = require('mini.animate')
       require('mini.animate').setup({
         cursor = { enable = false },
         resize = { enable = true },
         scroll = { enable = false, timing = animate.gen_timing.linear({ duration = 150, unit = 'total' }) }
       })
+      require('mini.visits').setup()
+      -- Set keybindings
+      vim.keymap.set("n", "<leader>pp", MiniVisits.select_path)
+    end
+  },
+  {
+    'echasnovski/mini.notify',
+    version = false,
+    ft = { "julia", "rust" },
+    config = function()
+      require('mini.notify').setup()
     end
   },
   -- Support for openning GNUGP excrypted files
@@ -307,6 +318,9 @@ return {
       local home = vim.fn.expand("$HOME")
       require("chatgpt").setup(
         {
+          keymaps = {
+            close = "<C-c>",
+          },
           api_key_cmd = "cat " .. home .. "/.config/chatgpt/api",
           actions_paths = { vim.env.HOME .. "/.config/chatgpt/actions.json" }
         }
