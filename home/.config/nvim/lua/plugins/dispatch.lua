@@ -11,6 +11,7 @@ return {
         vim.cmd.write()
         -- Get filetype
         local ft = vim.bo.filetype
+        local ext = vim.fn.expand("%:e")
         -- Execute command according to filetype
         local dir = vim.fn.fnameescape(vim.fn.expand("%:p:h"))
         local filename = vim.fn.fnameescape(vim.fn.expand("%:p"))
@@ -19,6 +20,8 @@ return {
           vim.cmd("Dispatch -compiler=typst -dir=" .. dir .. " typst compile " .. filename)
         elseif ft == "fortran" then
           vim.cmd("Dispatch -compiler=abaqus -dir=" .. dir .. " abq2022 make library=" .. filename)
+        elseif ext == "fcmacro" then
+          vim.cmd("Dispatch -compiler=python -dir=" .. dir .. " freecadcmd " .. filename)
         elseif ft == "python" then
           vim.cmd("Dispatch -compiler=python -dir=" .. dir .. " python " .. filename)
         end

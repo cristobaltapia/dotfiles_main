@@ -1,15 +1,5 @@
 return {
   -- Colorschemes
-  -- {
-  --   'shaunsingh/nord.nvim',
-  --   name = 'nord',
-  --   config = function()
-  --     vim.cmd('colorscheme nord')
-  --     vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#ebcb8b", bold = true })
-  --     vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#434c5e" })
-  --     vim.cmd('hi! LspInlayHint guifg=#b48ead')
-  --   end
-  -- },
   {
     "AlexvZyl/nordic.nvim",
     lazy = false,
@@ -37,6 +27,8 @@ return {
           NormalFloat = { bg = palette.grey2 },
           WikiLinkWiki = { fg = palette.blue1, underline = true },
           SpellBad = { fg = palette.red.base, underline = true },
+          -- Color for the scrollbar in cmp
+          PmenuThumb = { bg = palette.blue0 },
         },
         -- Cursorline options.  Also includes visual/selection.
         cursorline = {

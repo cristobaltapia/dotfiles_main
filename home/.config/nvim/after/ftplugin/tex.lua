@@ -7,3 +7,5 @@ vim.g.tex_flavor = 'latex'
 vim.opt_local.shiftwidth = 2
 vim.opt_local.tabstop = 2
 vim.opt.foldnestmax = 3
+
+vim.cmd("TSDisable highlight")

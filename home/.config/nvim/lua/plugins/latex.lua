@@ -32,12 +32,13 @@ return {
           end,
         },
         sources = {
-          { name = "vimtex", priority = 9 },
+          { name = "vimtex", priority = 9, keyword_length = 2 },
           -- { name = 'omni',  priority = 8 },
-          { name = "buffer" },
+          { name = "buffer", keyword_length = 2 },
           { name = "path", priority = 4 },
           {
             name = "ultisnips",
+            keyword_length = 2,
             priority = 10,
             -- Disable source for comments
             entry_filter = function(entry, ctx)

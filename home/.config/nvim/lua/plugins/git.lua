@@ -11,6 +11,7 @@ return {
   -- Gitsigns
   {
     "lewis6991/gitsigns.nvim",
+    enabled = false,
     config = function(_, opts)
       require("gitsigns").setup({
         on_attach = function(bufnr)

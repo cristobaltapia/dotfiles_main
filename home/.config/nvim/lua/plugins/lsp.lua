@@ -291,7 +291,7 @@ return {
       -- local mason_registry = require('mason-registry')
 
       vim.keymap.set("n", "gq", function()
-        conform.format({})
+        conform.format({ lsp_fallback = true })
       end)
 
       conform.setup({
@@ -302,6 +302,9 @@ return {
           },
           ["bibtex-tidy"] = {
             args = { "--v2", "--curly", "--align", "14", "--no-escape", "--sort-fields", "--sort" },
+          },
+          latexindent = {
+            args = {"-m", "--yaml", "defaultIndent: '  '", "-"}
           },
           stylua = {
             args = {
@@ -322,7 +325,7 @@ return {
         formatters_by_ft = {
           bash = { "shfmt" },
           bib = { "bibtex-tidy" },
-          c = { "clang-format" },
+          c = { "astyle" },
           cls = { "latexindent" },
           css = { "prettier" },
           fortran = { "findent" },
@@ -330,14 +333,14 @@ return {
           json = { "prettier" },
           jsonc = { "prettier" },
           lua = { "stylua" },
-          python = { "isort", "ruff_format" },
+          python = { "isort", "yapf" },
           rust = { "rustfmt" },
           scss = { "prettier" },
           sh = { "shfmt" },
           sty = { "latexindent" },
           tex = { "latexindent" },
           toml = { "taplo" },
-          typst = { "typstfmt" },
+          typst = { "typstyle" },
           yaml = { "yamlfmt" },
         },
       })
