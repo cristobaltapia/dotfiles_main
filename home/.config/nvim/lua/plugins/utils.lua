@@ -61,7 +61,7 @@ return {
       leap.opts.labels = {
         "s", "i", "e", "t", "n", "r", "b", "a", "u", "y", "m",
         "l", "g", "h", "d", "f", "S", "I", "E", "T", "N", "R",
-        "B", "A", "U", "Y", "M", "L", "G", "H", "D", "F"}
+        "B", "A", "U", "Y", "M", "L", "G", "H", "D", "F" }
       -- stylua: ignore end
     end,
   },
@@ -97,8 +97,8 @@ return {
           { "J", "<C-v>j:VBox<CR>" },
           { "K", "<C-v>k:VBox<CR>" },
           { "L", "<C-v>l:VBox<CR>" },
-          { "f", ":VBox<CR>", { mode = "v" } },
-          { "q", nil, { exit = true } },
+          { "f", ":VBox<CR>",      { mode = "v" } },
+          { "q", nil,              { exit = true } },
         },
       })
 
@@ -152,7 +152,7 @@ return {
   {
     "danymat/neogen",
     keys = {
-      { "<leader>ds", "<cmd>Neogen func<cr>", desc = "Generate func docstrings" },
+      { "<leader>ds", "<cmd>Neogen func<cr>",  desc = "Generate func docstrings" },
       { "<leader>dc", "<cmd>Neogen class<cr>", desc = "Generate class docstrings" },
     },
     config = function()
@@ -186,7 +186,7 @@ return {
     branch = "main",
     event = { "BufReadPre", "BufNewFile" },
     keys = {
-      { "<leader>m", ":lua MiniFiles.open()<cr>", "n" },
+      { "<leader>m",  ":lua MiniFiles.open()<cr>",          "n" },
       { "<leader>go", ":lua MiniDiff.toggle_overlay()<cr>", "n" },
     },
     config = function()
@@ -281,5 +281,18 @@ return {
       "nvim-telescope/telescope.nvim",
     },
   },
+  {
+    "robitx/gp.nvim",
+    config = function()
+      local home = vim.fn.expand("$HOME")
+      local conf = {
+        -- For customization, refer to Install > Configuration in the Documentation/Readme
+        openai_api_key = {"cat", home .. "/.config/chatgpt/api"}
+      }
+      require("gp").setup(conf)
+
+      -- Setup shortcuts here (see Usage > Shortcuts in the Documentation/Readme)
+    end,
+  }
 }
 -- vim: set shiftwidth=2:
