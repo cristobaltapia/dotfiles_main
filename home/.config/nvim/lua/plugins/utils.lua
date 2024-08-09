@@ -48,13 +48,14 @@ return {
   -- Better movements
   {
     "ggandor/leap.nvim",
-    keys = {
-      { "s", "<Plug>(leap-forward-to)", "n", { silent = true } },
-      { "S", "<Plug>(leap-backward-to)", "n", { silent = true } },
-    },
     config = function()
       vim.api.nvim_set_hl(0, "LeapBackdrop", { link = "Comment" })
       local leap = require("leap")
+
+      vim.keymap.set("n", "l", "<Plug>(leap)", { noremap = true })
+      vim.keymap.set({ "x", "o" }, "l", "<Plug>(leap-forward)", { noremap = true })
+      vim.keymap.set({ "x", "o" }, "L", "<Plug>(leap-backward)", { noremap = true })
+
       leap.opts.safe_labels = {}
       -- stylua: ignore start
       leap.opts.labels = {
@@ -147,24 +148,31 @@ return {
       })
     end,
   },
-  -- Docstrings generator
+  -- Docstrings generator (neogen)
   {
-    "danymat/neogen",
+    -- "danymat/neogen",
+    dir = "/home/tapia/git_repos/Meine/neogen/",
     keys = {
       { "<leader>ds", "<cmd>Neogen func<cr>", desc = "Generate func docstrings" },
       { "<leader>dc", "<cmd>Neogen class<cr>", desc = "Generate class docstrings" },
     },
-    opts = {
-      enabled = true,
-      input_after_comment = true,
-      languages = {
-        python = {
-          template = {
-            annotation_convention = "numpydoc",
+    config = function()
+      local neogen = require("neogen")
+
+      vim.keymap.set({ "i", "v" }, "<C-e>", neogen.jump_next)
+
+      neogen.setup({
+        enabled = true,
+        input_after_comment = true,
+        languages = {
+          python = {
+            template = {
+              annotation_convention = "numpydoc",
+            },
           },
         },
-      },
-    },
+      })
+    end,
   },
   -- Surround movements
   { "tpope/vim-surround" },
@@ -254,6 +262,7 @@ return {
   --   -- 'Jasha10/vim-symlink',
   --   dependencies = { 'moll/vim-bbye' },
   -- },
+  -- ChatGPT
   {
     "jackMort/ChatGPT.nvim",
     cmd = { "ChatGPT", "ChatGPTRun", "ChatGPTEditWithInstructions" },

@@ -78,7 +78,7 @@ return {
       -- Foldings
       vim.opt.foldmethod = "expr"
       vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-      vim.opt.foldnestmax = 2
+      vim.opt.foldnestmax = 3
       vim.opt.foldenable = false
 
       vim.cmd("hi pythonTSParameter guifg=#b48ead")

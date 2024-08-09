@@ -190,7 +190,13 @@ return {
         },
       })
 
-      lspconfig.ruff.setup({})
+      lspconfig.ruff.setup({
+        init_options = {
+          settings = {
+            showSyntaxErrors = false,
+          },
+        },
+      })
 
       -- Typst
       lspconfig.typst_lsp.setup({
@@ -201,16 +207,7 @@ return {
       })
 
       -- Julia
-      -- local julia = vim.fn.expand("~/.julia/environments/nvim-lspconfig/bin/julia")
-      lspconfig.julials.setup({
-        cmd = { "julia", "--project=." },
-        -- on_new_config = function(new_config, _)
-        --   local julia = vim.fn.expand("~/.julia/environments/nvim-lspconfig/bin/julia")
-        --   if require 'lspconfig'.util.path.is_file(julia) then
-        --     new_config.cmd[1] = julia
-        --   end
-        -- end
-      })
+      lspconfig.julials.setup({})
 
       -- Latex
       -- lspconfig.texlab.setup {}
@@ -228,7 +225,8 @@ return {
       lspconfig.cssls.setup({})
       -- Grammar correctoin using ltex-ls
       local ltex_setup = {
-        filetypes = { "gitcommit", "markdown", "org", "plaintex", "rst", "rnoweb", "tex", "pandoc", "typst" },
+        -- filetypes = { "gitcommit", "markdown", "org", "plaintex", "rst", "rnoweb", "tex", "pandoc", "typst" },
+        filetypes = { "tex" },
         settings = {
           ltex = {
             language = "en-US",
@@ -258,6 +256,7 @@ return {
       vim.opt.updatetime = 500
     end,
   },
+  -- Lazydev
   {
     "folke/lazydev.nvim",
     opts = {
@@ -267,7 +266,6 @@ return {
   -- Mason
   {
     "williamboman/mason-lspconfig.nvim",
-    name = "mason",
     dependencies = {
       {
         "williamboman/mason.nvim",
@@ -282,7 +280,7 @@ return {
     "stevearc/conform.nvim",
     opts = {},
     dependencies = {
-      "mason",
+      "williamboman/mason-lspconfig.nvim",
       "nvim-lspconfig",
     },
     config = function(_, opts)
@@ -304,7 +302,7 @@ return {
             args = { "--v2", "--curly", "--align", "14", "--no-escape", "--sort-fields", "--sort" },
           },
           latexindent = {
-            args = {"-m", "--yaml", "defaultIndent: '  '", "-"}
+            args = { "-m", "--yaml", "defaultIndent: '  '", "-" },
           },
           stylua = {
             args = {
@@ -333,7 +331,7 @@ return {
           json = { "prettier" },
           jsonc = { "prettier" },
           lua = { "stylua" },
-          python = { "isort", "yapf" },
+          python = { "ruff_organize_imports", "ruff_format" },
           rust = { "rustfmt" },
           scss = { "prettier" },
           sh = { "shfmt" },
