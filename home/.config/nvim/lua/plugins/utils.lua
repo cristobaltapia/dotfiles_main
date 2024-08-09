@@ -150,8 +150,7 @@ return {
   },
   -- Docstrings generator (neogen)
   {
-    -- "danymat/neogen",
-    dir = "/home/tapia/git_repos/Meine/neogen/",
+    "danymat/neogen",
     keys = {
       { "<leader>ds", "<cmd>Neogen func<cr>", desc = "Generate func docstrings" },
       { "<leader>dc", "<cmd>Neogen class<cr>", desc = "Generate class docstrings" },
