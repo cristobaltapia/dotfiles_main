@@ -1,9 +1,9 @@
 -- Define hints for hydra
 local hint_diagram = [[
  Arrow^^^^^^   Select region with <C-v>
- ^ ^ _K_ ^ ^   _f_: surround it with box
- _H_ ^ ^ _L_
- ^ ^ _J_ ^ ^                      _q_
+ ^ ^ ^ ^ ^ ^ ^ _<up>_ ^ ^   _f_: surround it with box
+ _<left>_ ^ ^ ^ ^  _<right>_
+ ^ ^ ^ ^ ^ ^ _<down>_ ^ ^                      _q_
 ]]
 
 local hint_git = [[
@@ -93,10 +93,10 @@ return {
         mode = "n",
         body = "<leader>hd",
         heads = {
-          { "H", "<C-v>h:VBox<CR>" },
-          { "J", "<C-v>j:VBox<CR>" },
-          { "K", "<C-v>k:VBox<CR>" },
-          { "L", "<C-v>l:VBox<CR>" },
+          { "<left>", "<C-v>h:VBox<CR>" },
+          { "<down>", "<C-v>j:VBox<CR>" },
+          { "<up>", "<C-v>k:VBox<CR>" },
+          { "<right>", "<C-v>l:VBox<CR>" },
           { "f", ":VBox<CR>",      { mode = "v" } },
           { "q", nil,              { exit = true } },
         },
@@ -287,7 +287,9 @@ return {
       local home = vim.fn.expand("$HOME")
       local conf = {
         -- For customization, refer to Install > Configuration in the Documentation/Readme
-        openai_api_key = {"cat", home .. "/.config/chatgpt/api"}
+        openai_api_key = {"cat", home .. "/.config/chatgpt/api"},
+        chat_free_cursor = true,
+
       }
       require("gp").setup(conf)
 

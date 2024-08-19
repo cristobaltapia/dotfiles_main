@@ -7,6 +7,7 @@ vim.opt.tabstop = 4
 vim.opt.autochdir = false
 
 -- Configuration of debugger with dap
+local util = require("lspconfig.util")
 local dap_ok, _ = pcall(require, "dap")
 if dap_ok then
   local dap = require("dap")
@@ -35,7 +36,6 @@ if dap_ok then
     end
   end
 
-  local util = require("lspconfig.util")
 
   dap.configurations.python = {
     {
@@ -45,6 +45,9 @@ if dap_ok then
       name = "Launch file",
       program = "${file}",
       redirectOutput = true,
+      cwd = function()
+        return util.root_pattern("pyproject.toml")(vim.fn.getcwd())
+      end,
       pythonPath = function()
         local cwd = vim.fn.getcwd()
         if vim.fn.executable(cwd .. "/venv/bin/python") == 1 then
