@@ -32,10 +32,10 @@ return {
           end,
         },
         sources = {
-          { name = "vimtex", priority = 9, keyword_length = 2 },
+          { name = "vimtex", priority = 9,      keyword_length = 2 },
           -- { name = 'omni',  priority = 8 },
           { name = "buffer", keyword_length = 2 },
-          { name = "path", priority = 4 },
+          { name = "path",   priority = 4 },
           {
             name = "ultisnips",
             keyword_length = 2,
@@ -93,9 +93,7 @@ return {
       }
       vim.opt_local.foldnestmax = 4
 
-      if vim.fn.executable("bibtexparser") then
-        vim.g.vimtex_parser_bib_backend = "bibtexparser"
-      end
+      vim.g.vimtex_parser_bib_backend = "lua"
 
       vim.g.vimtex_syntax_conceal = {
         accents = 1,
@@ -123,7 +121,6 @@ return {
       vim.g.vimtex_imaps_leader = "#"
       vim.g.vimtex_quickfix_method = "latexlog"
       vim.g.matchup_override_vimtex = true
-      vim.g.vimtex_compiler_progname = vim.env.HOME .. "/.virtualenvs/py3neovim/bin/nvr"
 
       vim.g.vimtex_view_method = "zathura"
       vim.g.vimtex_view_forward_search_on_start = true
@@ -135,7 +132,7 @@ return {
 
       -- Delimiter modifiers
       vim.g.vimtex_delim_toggle_mod_list = {
-        { "\\left", "\\right" },
+        { "\\left",  "\\right" },
         { "\\mleft", "\\mright" },
       }
     end,
