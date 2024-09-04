@@ -42,7 +42,7 @@ return {
       local lsp_defaults = lspconfig.util.default_config
 
       lsp_defaults.capabilities =
-        vim.tbl_deep_extend("force", lsp_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
+          vim.tbl_deep_extend("force", lsp_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
       -- lsp_defaults.capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = false
 
       vim.api.nvim_create_autocmd("LspAttach", {
@@ -84,7 +84,7 @@ return {
         vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
 
         vim.lsp.handlers["textDocument/signatureHelp"] =
-          vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
+            vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
 
         local command = vim.api.nvim_create_user_command
 
@@ -175,10 +175,25 @@ return {
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities.textDocument.publishDiagnostics.tagSupport.valueSet = { 2 }
 
+      local util = require("lspconfig.util")
+      --- Get python path considering local virtual environment folders
+      local function get_python_path()
+        local cwd = util.root_pattern("pyproject.toml")(vim.fn.getcwd()) or ""
+        if vim.fn.executable(cwd .. "/.venv/bin/python") == 1 then
+          return cwd .. "/.venv/bin/python"
+        else
+          return "python"
+        end
+      end
+
       lspconfig.basedpyright.setup({
         settings = {
+          python = {
+            pythonPath = get_python_path()
+          },
           basedpyright = {
             disableOrganizeImports = true,
+            venvPath = ".venv",
             analysis = {
               autoSearchPaths = true,
               diagnosticMode = "workspace",

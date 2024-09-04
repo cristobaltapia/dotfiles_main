@@ -36,7 +36,7 @@ if dap_ok then
     end
   end
 
-  local function find_python_path()
+  local function get_python_path()
     local cwd = util.root_pattern("pyproject.toml")(vim.fn.getcwd())
     if vim.fn.executable(cwd .. "/.venv/bin/python") == 1 then
       return cwd .. "/.venv/bin/python"
@@ -57,7 +57,7 @@ if dap_ok then
       cwd = function()
         return util.root_pattern("pyproject.toml")(vim.fn.getcwd())
       end,
-      pythonPath = find_python_path
+      pythonPath = get_python_path
     },
     {
       -- Set configuration to debug a django project
@@ -69,7 +69,7 @@ if dap_ok then
       end,
       args = { "runserver" },
       redirectOutput = true,
-      pythonPath = find_python_path
+      pythonPath = get_python_path
     },
     {
       -- Set configuration to run pytest
@@ -79,7 +79,7 @@ if dap_ok then
       module = "pytest",
       args = { "--color=yes", "tests" },
       redirectOutput = true,
-      pythonPath = find_python_path
+      pythonPath = get_python_path
     },
   }
 end
