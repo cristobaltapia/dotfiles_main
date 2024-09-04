@@ -23,7 +23,18 @@ return {
         elseif ext == "fcmacro" then
           vim.cmd("Dispatch -compiler=python -dir=" .. dir .. " freecadcmd " .. filename)
         elseif ft == "python" then
-          vim.cmd("Dispatch -compiler=python -dir=" .. dir .. " python " .. filename)
+          -- For python always check if we are inside a project and use the root folder
+          -- as dir
+          local util = require("lspconfig.util")
+          local root_dir = util.root_pattern("pyproject.toml")(vim.fn.getcwd()) or dir
+          -- Also use the local virtual environment if present
+          local pyexe
+          if vim.fn.executable(root_dir .. "/.venv/bin/python") == 1 then
+            pyexe = root_dir .. "/.venv/bin/python"
+          else
+            pyexe = "python"
+          end
+          vim.cmd("Dispatch -compiler=python -dir=" .. root_dir .. " " .. pyexe .. " " .. filename)
         end
       end
 
