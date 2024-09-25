@@ -125,7 +125,7 @@ return {
           "ruff",
           "rust_analyzer",
           "taplo",
-          "tsserver",
+          "ts_ls",
           "typst_lsp",
         },
       })

@@ -13,7 +13,9 @@ return {
         -- Enable italic comments.
         italic_comments = true,
         -- Enable general editor background transparency.
-        transparent_bg = false,
+        transparent = {
+          bg = false,
+        },
         -- Enable brighter float border.
         bright_border = false,
         -- Reduce the overall amount of blue in the theme (diverges from base Nord).
@@ -21,15 +23,15 @@ return {
         -- Swap the dark background with the normal one.
         swap_backgrounds = true,
         -- Override the styling of any highlight group.
-        override = {
-          Visual = { bg = palette.grey2 },
-          FloatBorder = { fg = palette.yellow.base, bold = true },
-          NormalFloat = { bg = palette.grey2 },
-          WikiLinkWiki = { fg = palette.blue1, underline = true },
-          SpellBad = { fg = palette.red.base, underline = true },
+        on_highlight = function(highlights, palette)
+          Visual = { bg = palette.grey2 }
+          FloatBorder = { fg = palette.yellow.base, bold = true }
+          NormalFloat = { bg = palette.grey2 }
+          WikiLinkWiki = { fg = palette.blue1, underline = true }
+          SpellBad = { fg = palette.red.base, underline = true }
           -- Color for the scrollbar in cmp
-          PmenuThumb = { bg = palette.blue0 },
-        },
+          PmenuThumb = { bg = palette.blue0 }
+        end,
         -- Cursorline options.  Also includes visual/selection.
         cursorline = {
           -- Bold font in cursorline.
