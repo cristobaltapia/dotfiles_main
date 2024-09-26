@@ -23,14 +23,19 @@ return {
         -- Swap the dark background with the normal one.
         swap_backgrounds = true,
         -- Override the styling of any highlight group.
-        on_highlight = function(highlights, palette)
-          Visual = { bg = palette.grey2 }
-          FloatBorder = { fg = palette.yellow.base, bold = true }
-          NormalFloat = { bg = palette.grey2 }
-          WikiLinkWiki = { fg = palette.blue1, underline = true }
-          SpellBad = { fg = palette.red.base, underline = true }
+        on_highlight = function(highlights, palette_nordic)
+          highlights.Visual = { bg = palette_nordic.grey2 }
+          highlights.FloatBorder = {
+            fg = palette_nordic.yellow.base,
+            bold = true
+          }
+          highlights.NormalFloat = { bg = palette_nordic.grey2 }
+          highlights.WikiLinkWiki = {
+            fg = palette_nordic.blue1,
+            underline = true
+          }
           -- Color for the scrollbar in cmp
-          PmenuThumb = { bg = palette.blue0 }
+          highlights.PmenuThumb = { bg = palette_nordic.blue0 }
         end,
         -- Cursorline options.  Also includes visual/selection.
         cursorline = {
@@ -110,13 +115,13 @@ return {
     "christoomey/vim-tmux-navigator",
     lazy = true,
     keys = {
-      { "<A-h>", "<cmd>TmuxNavigateLeft<cr>", "n", { silent = true } },
-      { "<A-j>", "<cmd>TmuxNavigateDown<cr>", "n", { silent = true } },
-      { "<A-k>", "<cmd>TmuxNavigateUp<cr>", "n", { silent = true } },
-      { "<A-l>", "<cmd>TmuxNavigateRight<cr>", "n", { silent = true } },
-      { "<A-left>", "<cmd>TmuxNavigateLeft<cr>", "n", { silent = true } },
-      { "<A-down>", "<cmd>TmuxNavigateDown<cr>", "n", { silent = true } },
-      { "<A-up>", "<cmd>TmuxNavigateUp<cr>", "n", { silent = true } },
+      { "<A-h>",     "<cmd>TmuxNavigateLeft<cr>",  "n", { silent = true } },
+      { "<A-j>",     "<cmd>TmuxNavigateDown<cr>",  "n", { silent = true } },
+      { "<A-k>",     "<cmd>TmuxNavigateUp<cr>",    "n", { silent = true } },
+      { "<A-l>",     "<cmd>TmuxNavigateRight<cr>", "n", { silent = true } },
+      { "<A-left>",  "<cmd>TmuxNavigateLeft<cr>",  "n", { silent = true } },
+      { "<A-down>",  "<cmd>TmuxNavigateDown<cr>",  "n", { silent = true } },
+      { "<A-up>",    "<cmd>TmuxNavigateUp<cr>",    "n", { silent = true } },
       { "<A-right>", "<cmd>TmuxNavigateRight<cr>", "n", { silent = true } },
     },
     init = function()
