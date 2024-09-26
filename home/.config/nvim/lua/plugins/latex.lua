@@ -95,6 +95,7 @@ return {
 
       vim.g.vimtex_parser_bib_backend = "lua"
 
+      vim.g.vimtex_syntax_enabled = true
       vim.g.vimtex_syntax_conceal = {
         accents = 1,
         ligatures = 0,
