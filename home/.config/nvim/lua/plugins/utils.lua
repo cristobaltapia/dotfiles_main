@@ -93,12 +93,12 @@ return {
         mode = "n",
         body = "<leader>hd",
         heads = {
-          { "<left>", "<C-v>h:VBox<CR>" },
-          { "<down>", "<C-v>j:VBox<CR>" },
-          { "<up>", "<C-v>k:VBox<CR>" },
+          { "<left>",  "<C-v>h:VBox<CR>" },
+          { "<down>",  "<C-v>j:VBox<CR>" },
+          { "<up>",    "<C-v>k:VBox<CR>" },
           { "<right>", "<C-v>l:VBox<CR>" },
-          { "f", ":VBox<CR>",      { mode = "v" } },
-          { "q", nil,              { exit = true } },
+          { "f",       ":VBox<CR>",      { mode = "v" } },
+          { "q",       nil,              { exit = true } },
         },
       })
 
@@ -287,9 +287,8 @@ return {
       local home = vim.fn.expand("$HOME")
       local conf = {
         -- For customization, refer to Install > Configuration in the Documentation/Readme
-        openai_api_key = {"cat", home .. "/.config/chatgpt/api"},
+        openai_api_key = { "cat", home .. "/.config/chatgpt/api" },
         chat_free_cursor = true,
-
       }
       require("gp").setup(conf)
 
