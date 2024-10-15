@@ -294,6 +294,14 @@ return {
 
       -- Setup shortcuts here (see Usage > Shortcuts in the Documentation/Readme)
     end,
-  }
+  },
+  {
+    "pasky/claude.vim",
+    config = function()
+      local home = vim.fn.expand("$HOME")
+      local api = vim.fn.readfile(home .. "/.config/chatgpt/api_claude")
+      vim.g.claude_api_key = api[1]
+    end,
+  },
 }
 -- vim: set shiftwidth=2:
