@@ -342,7 +342,7 @@ return {
           cls = { "latexindent" },
           css = { "prettier" },
           fortran = { "findent" },
-          html = { "djlint" },
+          html = { "htmlbeautifier" },
           json = { "prettier" },
           jsonc = { "prettier" },
           lua = { "stylua" },

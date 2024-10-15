@@ -27,12 +27,12 @@ return {
           highlights.Visual = { bg = palette_nordic.grey2 }
           highlights.FloatBorder = {
             fg = palette_nordic.yellow.base,
-            bold = true
+            bold = true,
           }
           highlights.NormalFloat = { bg = palette_nordic.grey2 }
           highlights.WikiLinkWiki = {
             fg = palette_nordic.blue1,
-            underline = true
+            underline = true,
           }
           -- Color for the scrollbar in cmp
           highlights.PmenuThumb = { bg = palette_nordic.blue0 }
@@ -115,13 +115,13 @@ return {
     "christoomey/vim-tmux-navigator",
     lazy = true,
     keys = {
-      { "<A-h>",     "<cmd>TmuxNavigateLeft<cr>",  "n", { silent = true } },
-      { "<A-j>",     "<cmd>TmuxNavigateDown<cr>",  "n", { silent = true } },
-      { "<A-k>",     "<cmd>TmuxNavigateUp<cr>",    "n", { silent = true } },
-      { "<A-l>",     "<cmd>TmuxNavigateRight<cr>", "n", { silent = true } },
-      { "<A-left>",  "<cmd>TmuxNavigateLeft<cr>",  "n", { silent = true } },
-      { "<A-down>",  "<cmd>TmuxNavigateDown<cr>",  "n", { silent = true } },
-      { "<A-up>",    "<cmd>TmuxNavigateUp<cr>",    "n", { silent = true } },
+      { "<A-h>", "<cmd>TmuxNavigateLeft<cr>", "n", { silent = true } },
+      { "<A-j>", "<cmd>TmuxNavigateDown<cr>", "n", { silent = true } },
+      { "<A-k>", "<cmd>TmuxNavigateUp<cr>", "n", { silent = true } },
+      { "<A-l>", "<cmd>TmuxNavigateRight<cr>", "n", { silent = true } },
+      { "<A-left>", "<cmd>TmuxNavigateLeft<cr>", "n", { silent = true } },
+      { "<A-down>", "<cmd>TmuxNavigateDown<cr>", "n", { silent = true } },
+      { "<A-up>", "<cmd>TmuxNavigateUp<cr>", "n", { silent = true } },
       { "<A-right>", "<cmd>TmuxNavigateRight<cr>", "n", { silent = true } },
     },
     init = function()
