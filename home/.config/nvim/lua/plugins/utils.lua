@@ -282,15 +282,24 @@ return {
     },
   },
   {
-    "robitx/gp.nvim",
+    "frankroeder/parrot.nvim",
     config = function()
       local home = vim.fn.expand("$HOME")
+      local api_openai = {"cat", home .. "/.config/chatgpt/api"}
+      local api_anthropic = {"cat", home .. "/.config/chatgpt/api_claude"}
       local conf = {
         -- For customization, refer to Install > Configuration in the Documentation/Readme
-        openai_api_key = { "cat", home .. "/.config/chatgpt/api" },
         chat_free_cursor = true,
+        providers = {
+          anthropic = {
+            api_key = api_anthropic,
+          },
+          openai = {
+            api_key = api_openai,
+          },
+        }
       }
-      require("gp").setup(conf)
+      require("parrot").setup(conf)
 
       -- Setup shortcuts here (see Usage > Shortcuts in the Documentation/Readme)
     end,

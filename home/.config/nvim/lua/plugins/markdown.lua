@@ -7,8 +7,9 @@ return {
       { "godlygeek/tabular" },
       {
         "iamcco/markdown-preview.nvim",
-        build = function()
-          vim.fn["mkdp#util#install"]()
+        build = "cd app && yarn install",
+        init = function()
+          vim.g.mkdp_filetypes = { "markdown" }
         end,
         ft = { "markdown", "pandoc", "markdown.pandoc" },
       },
@@ -21,10 +22,11 @@ return {
     endfunction
     ]])
 
-      --[[ local function open_browser(url)
-    io.popen("epiphany --private-instance " .. url .. " &")
-end ]]
+      -- local function open_browser(url)
+      --   io.popen("epiphany --private-instance " .. url .. " &")
+      -- end
       vim.g.mkdp_browserfunc = "g:Open_browser"
+      -- vim.g.mkdp_browser = "firefox"
 
       vim.g.mkdp_filetypes = { "pandoc", "markdown", "markdown.pandoc", "wiki" }
       vim.g.mkdp_auto_close = false
