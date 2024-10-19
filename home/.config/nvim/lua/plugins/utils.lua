@@ -97,8 +97,8 @@ return {
           { "<down>", "<C-v>j:VBox<CR>" },
           { "<up>", "<C-v>k:VBox<CR>" },
           { "<right>", "<C-v>l:VBox<CR>" },
-          { "f", ":VBox<CR>",      { mode = "v" } },
-          { "q", nil,              { exit = true } },
+          { "f", ":VBox<CR>", { mode = "v" } },
+          { "q", nil, { exit = true } },
         },
       })
 
@@ -152,7 +152,7 @@ return {
   {
     "danymat/neogen",
     keys = {
-      { "<leader>ds", "<cmd>Neogen func<cr>",  desc = "Generate func docstrings" },
+      { "<leader>ds", "<cmd>Neogen func<cr>", desc = "Generate func docstrings" },
       { "<leader>dc", "<cmd>Neogen class<cr>", desc = "Generate class docstrings" },
     },
     config = function()
@@ -186,7 +186,7 @@ return {
     branch = "main",
     event = { "BufReadPre", "BufNewFile" },
     keys = {
-      { "<leader>m",  ":lua MiniFiles.open()<cr>",          "n" },
+      { "<leader>m", ":lua MiniFiles.open()<cr>", "n" },
       { "<leader>go", ":lua MiniDiff.toggle_overlay()<cr>", "n" },
     },
     config = function()
