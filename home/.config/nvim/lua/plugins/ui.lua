@@ -183,5 +183,24 @@ return {
       })
     end,
   },
+  -- Buffer search (snipe)
+  {
+    "leath-dub/snipe.nvim",
+    keys = {
+      {
+        "gb",
+        function()
+          require("snipe").open_buffer_menu()
+        end,
+        desc = "Open Snipe buffer menu",
+      },
+    },
+    opts = {
+      hints = {
+        -- Characters to use for hints (NOTE: make sure they don't collide with the navigation keymaps)
+        dictionary = "etinsrchabumyl",
+      },
+    },
+  },
 }
 -- vim: set shiftwidth=2:
