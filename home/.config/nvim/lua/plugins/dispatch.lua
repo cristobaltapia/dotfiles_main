@@ -17,7 +17,7 @@ return {
         local filename = vim.fn.fnameescape(vim.fn.expand("%:p"))
 
         if ft == "typst" then
-          vim.cmd("Dispatch -compiler=typst -dir=" .. dir .. " typst compile " .. filename)
+          vim.cmd("Dispatch! -compiler=typst -dir=" .. dir .. " typst watch " .. filename)
         elseif ft == "fortran" then
           vim.cmd("Dispatch -compiler=abaqus -dir=" .. dir .. " abq2022 make library=" .. filename)
         elseif ext == "fcmacro" then

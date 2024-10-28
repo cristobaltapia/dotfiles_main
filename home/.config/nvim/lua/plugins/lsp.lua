@@ -42,7 +42,7 @@ return {
       local lsp_defaults = lspconfig.util.default_config
 
       lsp_defaults.capabilities =
-          vim.tbl_deep_extend("force", lsp_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
+        vim.tbl_deep_extend("force", lsp_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
       -- lsp_defaults.capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = false
 
       vim.api.nvim_create_autocmd("LspAttach", {
@@ -84,7 +84,7 @@ return {
         vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
 
         vim.lsp.handlers["textDocument/signatureHelp"] =
-            vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
+          vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
 
         local command = vim.api.nvim_create_user_command
 
@@ -126,7 +126,7 @@ return {
           "rust_analyzer",
           "taplo",
           "ts_ls",
-          "typst_lsp",
+          "tinymist",
         },
       })
 
@@ -189,7 +189,7 @@ return {
       lspconfig.basedpyright.setup({
         settings = {
           python = {
-            pythonPath = get_python_path()
+            pythonPath = get_python_path(),
           },
           basedpyright = {
             disableOrganizeImports = true,
@@ -214,10 +214,15 @@ return {
       })
 
       -- Typst
-      lspconfig.typst_lsp.setup({
-        single_file_support = true,
+      lspconfig.tinymist.setup({
+        on_attach = function(client, bufnr)
+          -- Disable semantic tokens (semantic highlighting)
+          client.server_capabilities.semanticTokensProvider = nil
+        end,
+        -- single_file_support = true,
         settings = {
           exportPdf = "never",
+          outputPath = "$root/target/$dir/$name",
         },
       })
 
