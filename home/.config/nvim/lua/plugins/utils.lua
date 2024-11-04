@@ -93,12 +93,12 @@ return {
         mode = "n",
         body = "<leader>hd",
         heads = {
-          { "<left>", "<C-v>h:VBox<CR>" },
-          { "<down>", "<C-v>j:VBox<CR>" },
-          { "<up>", "<C-v>k:VBox<CR>" },
+          { "<left>",  "<C-v>h:VBox<CR>" },
+          { "<down>",  "<C-v>j:VBox<CR>" },
+          { "<up>",    "<C-v>k:VBox<CR>" },
           { "<right>", "<C-v>l:VBox<CR>" },
-          { "f", ":VBox<CR>", { mode = "v" } },
-          { "q", nil, { exit = true } },
+          { "f",       ":VBox<CR>",      { mode = "v" } },
+          { "q",       nil,              { exit = true } },
         },
       })
 
@@ -152,7 +152,7 @@ return {
   {
     "danymat/neogen",
     keys = {
-      { "<leader>ds", "<cmd>Neogen func<cr>", desc = "Generate func docstrings" },
+      { "<leader>ds", "<cmd>Neogen func<cr>",  desc = "Generate func docstrings" },
       { "<leader>dc", "<cmd>Neogen class<cr>", desc = "Generate class docstrings" },
     },
     config = function()
@@ -186,7 +186,7 @@ return {
     branch = "main",
     event = { "BufReadPre", "BufNewFile" },
     keys = {
-      { "<leader>m", ":lua MiniFiles.open()<cr>", "n" },
+      { "<leader>m",  ":lua MiniFiles.open()<cr>",          "n" },
       { "<leader>go", ":lua MiniDiff.toggle_overlay()<cr>", "n" },
     },
     config = function()
@@ -304,13 +304,39 @@ return {
       -- Setup shortcuts here (see Usage > Shortcuts in the Documentation/Readme)
     end,
   },
+  -- Avante nvim
   {
-    "pasky/claude.vim",
-    config = function()
-      local home = vim.fn.expand("$HOME")
-      local api = vim.fn.readfile(home .. "/.config/chatgpt/api_claude")
-      vim.g.claude_api_key = api[1]
-    end,
-  },
+    "yetone/avante.nvim",
+    event = "VeryLazy",
+    lazy = true,
+    cmd = {"AvanteChat", "AvanteAsk"},
+    version = false, -- set this if you want to always pull the latest change
+    opts = {
+      -- add any opts here
+      behaviour = {
+        auto_suggestions = false,
+        auto_set_highlight_group = true,
+        auto_set_keymaps = true,
+        auto_apply_diff_after_generation = false,
+        support_paste_from_clipboard = false,
+      },
+    },
+    -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
+    build = "make",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "stevearc/dressing.nvim",
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      {
+        -- Make sure to set this up properly if you have lazy=true
+        'MeanderingProgrammer/render-markdown.nvim',
+        opts = {
+          file_types = { "Avante" },
+        },
+        ft = { "Avante" },
+      },
+    },
+  }
 }
 -- vim: set shiftwidth=2:
