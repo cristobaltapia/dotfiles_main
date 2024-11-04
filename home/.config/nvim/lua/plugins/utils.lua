@@ -309,16 +309,49 @@ return {
     "yetone/avante.nvim",
     event = "VeryLazy",
     lazy = true,
-    cmd = {"AvanteChat", "AvanteAsk"},
+    cmd = { "AvanteChat", "AvanteAsk" },
     version = false, -- set this if you want to always pull the latest change
     opts = {
       -- add any opts here
       behaviour = {
         auto_suggestions = false,
         auto_set_highlight_group = true,
-        auto_set_keymaps = true,
+        auto_set_keymaps = false,
         auto_apply_diff_after_generation = false,
         support_paste_from_clipboard = false,
+      },
+      hints = { enabled = false },
+      mappings = {
+        --- @class AvanteConflictMappings
+        diff = {
+          ours = "co",
+          theirs = "ct",
+          all_theirs = "ca",
+          both = "cb",
+          -- cursor = "cc",
+          next = "]x",
+          prev = "[x",
+        },
+        suggestion = {
+          accept = "<M-l>",
+          next = "<M-]>",
+          prev = "<M-[>",
+          dismiss = "<C-]>",
+        },
+        jump = {
+          next = "]]",
+          prev = "[[",
+        },
+        submit = {
+          normal = "<CR>",
+          insert = "<C-s>",
+        },
+        sidebar = {
+          apply_all = "A",
+          apply_cursor = "a",
+          -- switch_windows = "<Tab>",
+          -- reverse_switch_windows = "<S-Tab>",
+        },
       },
     },
     -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
