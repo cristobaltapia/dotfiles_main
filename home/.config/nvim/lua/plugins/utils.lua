@@ -324,10 +324,10 @@ return {
       mappings = {
         --- @class AvanteConflictMappings
         diff = {
-          ours = "co",
-          theirs = "ct",
-          all_theirs = "ca",
-          both = "cb",
+          ours = "go",
+          theirs = "gt",
+          all_theirs = "ga",
+          -- both = "cb",
           -- cursor = "cc",
           next = "]x",
           prev = "[x",
