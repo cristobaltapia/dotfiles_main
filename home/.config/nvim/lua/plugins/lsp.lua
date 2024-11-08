@@ -219,7 +219,7 @@ return {
           -- Disable semantic tokens (semantic highlighting)
           client.server_capabilities.semanticTokensProvider = nil
         end,
-        -- single_file_support = true,
+        single_file_support = true,
         settings = {
           exportPdf = "never",
           outputPath = "$root/target/$dir/$name",
