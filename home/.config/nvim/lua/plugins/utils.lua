@@ -321,6 +321,9 @@ return {
         support_paste_from_clipboard = false,
       },
       hints = { enabled = false },
+      windows = {
+        width = 40,
+      },
       mappings = {
         --- @class AvanteConflictMappings
         diff = {

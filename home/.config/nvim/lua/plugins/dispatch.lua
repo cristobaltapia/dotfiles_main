@@ -35,6 +35,7 @@ return {
             pyexe = "python"
           end
           vim.cmd("Dispatch -compiler=python -dir=" .. root_dir .. " " .. pyexe .. " " .. filename)
+          vim.cmd("Copen")
         end
       end
 

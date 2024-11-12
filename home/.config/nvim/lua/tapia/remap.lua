@@ -45,7 +45,11 @@ vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 
 -- For the quickfix window it is better to undo the previous remapping
 local qf_group = vim.api.nvim_create_augroup("quickfix", { clear = true })
-vim.api.nvim_create_autocmd({ "FileType" }, {
+
+-- Store the global scrolloff value
+local global_scrolloff = vim.o.scrolloff
+
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
   pattern = { "qf" },
   group = qf_group,
   callback = function()
@@ -53,7 +57,15 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.keymap.set("n", "k", "k", { buffer = true })
     vim.keymap.set("n", "<Up>", "<Up>", { buffer = true })
     vim.keymap.set("n", "<Down>", "<Down>", { buffer = true })
-    vim.opt_local.scrolloff = 0
+    vim.wo.scrolloff = 0
+  end,
+})
+
+vim.api.nvim_create_autocmd("BufLeave", {
+  pattern = { "qf" },
+  group = qf_group,
+  callback = function()
+    vim.wo.scrolloff = global_scrolloff
   end,
 })
 
