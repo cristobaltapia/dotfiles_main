@@ -53,6 +53,7 @@ return {
       vim.g.vimtex_compiler_latexmk = {
         out_dir = "out",
         aux_dir = ".aux",
+        -- aux_dir = "/tmp/latex-aux",
         callback = 1,
         continuous = 0,
         executable = "latexmk",
