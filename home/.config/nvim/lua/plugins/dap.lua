@@ -46,6 +46,7 @@ return {
     config = function(_, opts)
       local dap = require("dap")
       vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "Debug", linehl = "", numhl = "" })
+      vim.fn.sign_define("DapStopped", { text = "→", texthl = "ErrorMsg", linehl = "", numhl = "" })
 
       --
       -- INFO:
