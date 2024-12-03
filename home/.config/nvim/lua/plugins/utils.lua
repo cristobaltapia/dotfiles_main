@@ -47,23 +47,28 @@ return {
   },
   -- Better movements
   {
-    "ggandor/leap.nvim",
-    config = function()
-      vim.api.nvim_set_hl(0, "LeapBackdrop", { link = "Comment" })
-      local leap = require("leap")
-
-      vim.keymap.set("n", "l", "<Plug>(leap)", { noremap = true })
-      vim.keymap.set({ "x", "o" }, "l", "<Plug>(leap-forward)", { noremap = true })
-      vim.keymap.set({ "x", "o" }, "L", "<Plug>(leap-backward)", { noremap = true })
-
-      leap.opts.safe_labels = {}
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    ---@type Flash.Config
+    opts = {
+      search = {
+        mode = function(str)
+          return "\\c" .. str
+        end,
+        max_length = 2,
+      },
+      modes = {
+        char = {
+          enabled = false,
+        },
+      },
+    },
+    keys = {
       -- stylua: ignore start
-      leap.opts.labels = {
-        "s", "i", "e", "t", "n", "r", "b", "a", "u", "y", "m",
-        "l", "g", "h", "d", "f", "S", "I", "E", "T", "N", "R",
-        "B", "A", "U", "Y", "M", "L", "G", "H", "D", "F" }
+      { "l", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+      { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
       -- stylua: ignore end
-    end,
+    },
   },
   -- Hydra
   {
@@ -93,12 +98,12 @@ return {
         mode = "n",
         body = "<leader>hd",
         heads = {
-          { "<left>",  "<C-v>h:VBox<CR>" },
-          { "<down>",  "<C-v>j:VBox<CR>" },
-          { "<up>",    "<C-v>k:VBox<CR>" },
+          { "<left>", "<C-v>h:VBox<CR>" },
+          { "<down>", "<C-v>j:VBox<CR>" },
+          { "<up>", "<C-v>k:VBox<CR>" },
           { "<right>", "<C-v>l:VBox<CR>" },
-          { "f",       ":VBox<CR>",      { mode = "v" } },
-          { "q",       nil,              { exit = true } },
+          { "f", ":VBox<CR>", { mode = "v" } },
+          { "q", nil, { exit = true } },
         },
       })
 
@@ -152,7 +157,7 @@ return {
   {
     "danymat/neogen",
     keys = {
-      { "<leader>ds", "<cmd>Neogen func<cr>",  desc = "Generate func docstrings" },
+      { "<leader>ds", "<cmd>Neogen func<cr>", desc = "Generate func docstrings" },
       { "<leader>dc", "<cmd>Neogen class<cr>", desc = "Generate class docstrings" },
     },
     config = function()
@@ -186,7 +191,7 @@ return {
     branch = "main",
     event = { "BufReadPre", "BufNewFile" },
     keys = {
-      { "<leader>m",  ":lua MiniFiles.open()<cr>",          "n" },
+      { "<leader>m", ":lua MiniFiles.open()<cr>", "n" },
       { "<leader>go", ":lua MiniDiff.toggle_overlay()<cr>", "n" },
     },
     config = function()
@@ -366,13 +371,13 @@ return {
       "MunifTanjim/nui.nvim",
       {
         -- Make sure to set this up properly if you have lazy=true
-        'MeanderingProgrammer/render-markdown.nvim',
+        "MeanderingProgrammer/render-markdown.nvim",
         opts = {
           file_types = { "Avante" },
         },
         ft = { "Avante" },
       },
     },
-  }
+  },
 }
 -- vim: set shiftwidth=2:
