@@ -2,7 +2,7 @@ return {
   {
     "tpope/vim-dispatch",
     ft = { "typst", "python", "fortran", "make", "rust" },
-    keys = { "<F4>", "<F5>" },
+    keys = { "<F4>", "<F5>", "<F7>" },
     config = function()
       local Path = require("plenary.path")
       -- Execute programs asyncronously
@@ -53,6 +53,7 @@ return {
 
       vim.keymap.set("n", "<F4>", pytest_async)
       vim.keymap.set("n", "<F5>", save_and_run_async)
+      vim.keymap.set("n", "<F7>", function() vim.cmd('AbortDispatch') end)
       -- Deactivate default mappings
       vim.g.dispatch_no_maps = 1
       vim.g.dispatch_no_tmux_start = 1
