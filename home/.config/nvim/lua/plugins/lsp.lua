@@ -42,7 +42,7 @@ return {
       local lsp_defaults = lspconfig.util.default_config
 
       lsp_defaults.capabilities =
-          vim.tbl_deep_extend("force", lsp_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
+        vim.tbl_deep_extend("force", lsp_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
       -- lsp_defaults.capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = false
 
       vim.api.nvim_create_autocmd("LspAttach", {
@@ -84,7 +84,7 @@ return {
         vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
 
         vim.lsp.handlers["textDocument/signatureHelp"] =
-            vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
+          vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
 
         local command = vim.api.nvim_create_user_command
 
@@ -107,10 +107,10 @@ return {
 
       require("mason-lspconfig").setup({
         ensure_installed = {
-          "arduino_language_server",
+          -- "arduino_language_server",
           "basedpyright",
           "bashls",
-          "clangd",
+          -- "clangd",
           "cssls",
           "docker_compose_language_service",
           "dockerls",
@@ -232,8 +232,7 @@ return {
 
       -- Arduino
       lspconfig.arduino_language_server.setup({
-        cmd = { 'bash', '-c', vim.env.HOME .. '/.local/share/nvim/mason/bin/arduino-language-server',
-          '-clang', vim.env.HOME .. '/.local/share/nvim/mason/bin/clangd' }
+        -- cmd = { "sh", "-c", "arduino-language-server 2>/dev/null" },
       })
 
       -- Latex
@@ -251,21 +250,14 @@ return {
       -- CSS
       lspconfig.cssls.setup({})
       -- Grammar correctoin using ltex-ls
-      local ltex_setup = {
-        -- filetypes = { "gitcommit", "markdown", "org", "plaintex", "rst", "rnoweb", "tex", "pandoc", "typst" },
-        filetypes = { "tex" },
+      lspconfig.ltex_plus.setup({
+        filetypes = { "markdown", "plaintex", "rst", "tex", "pandoc", "typst", "mail" },
         settings = {
           ltex = {
             language = "en-US",
           },
         },
-      }
-      -- For ltex-ls under archlinux I have to use the system installation, but
-      -- for other systems (e.g. Ubuntu) the default cmd works good.
-      if Path:new("/usr/bin/ltex-ls"):is_file() then
-        ltex_setup["cmd"] = { "/usr/bin/ltex-ls" }
-      end
-      lspconfig.ltex.setup(ltex_setup)
+      })
       lspconfig.fortls.setup({})
       -- JSON-ls
       lspconfig.jsonls.setup({
