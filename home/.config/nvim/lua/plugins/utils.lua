@@ -65,8 +65,8 @@ return {
     },
     keys = {
       -- stylua: ignore start
-      { "l", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-      { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+      { "l",     mode = { "n", "x", "o" }, function() require("flash").jump() end,   desc = "Flash" },
+      { "<c-s>", mode = { "c" },           function() require("flash").toggle() end, desc = "Toggle Flash Search" },
       -- stylua: ignore end
     },
   },
@@ -98,12 +98,12 @@ return {
         mode = "n",
         body = "<leader>hd",
         heads = {
-          { "<left>", "<C-v>h:VBox<CR>" },
-          { "<down>", "<C-v>j:VBox<CR>" },
-          { "<up>", "<C-v>k:VBox<CR>" },
+          { "<left>",  "<C-v>h:VBox<CR>" },
+          { "<down>",  "<C-v>j:VBox<CR>" },
+          { "<up>",    "<C-v>k:VBox<CR>" },
           { "<right>", "<C-v>l:VBox<CR>" },
-          { "f", ":VBox<CR>", { mode = "v" } },
-          { "q", nil, { exit = true } },
+          { "f",       ":VBox<CR>",      { mode = "v" } },
+          { "q",       nil,              { exit = true } },
         },
       })
 
@@ -157,7 +157,7 @@ return {
   {
     "danymat/neogen",
     keys = {
-      { "<leader>ds", "<cmd>Neogen func<cr>", desc = "Generate func docstrings" },
+      { "<leader>ds", "<cmd>Neogen func<cr>",  desc = "Generate func docstrings" },
       { "<leader>dc", "<cmd>Neogen class<cr>", desc = "Generate class docstrings" },
     },
     config = function()
@@ -191,7 +191,7 @@ return {
     branch = "main",
     event = { "BufReadPre", "BufNewFile" },
     keys = {
-      { "<leader>m", ":lua MiniFiles.open()<cr>", "n" },
+      { "<leader>m",  ":lua MiniFiles.open()<cr>",          "n" },
       { "<leader>go", ":lua MiniDiff.toggle_overlay()<cr>", "n" },
     },
     config = function()
@@ -324,6 +324,15 @@ return {
         auto_set_keymaps = true,
         auto_apply_diff_after_generation = false,
         support_paste_from_clipboard = false,
+      },
+      provider = "mistral",
+      vendors = {
+        mistral = {
+          __inherited_from = 'openai',
+          endpoint = 'https://api.mistral.ai/v1',
+          api_key_name = 'MISTRAL_API_KEY',
+          model = 'mistral-large-latest',
+        },
       },
       hints = { enabled = false },
       windows = {

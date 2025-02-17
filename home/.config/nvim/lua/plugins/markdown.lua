@@ -32,5 +32,18 @@ return {
       vim.g.mkdp_auto_close = false
     end,
   },
+  {
+    "OXY2DEV/markview.nvim",
+    lazy = true, -- Recommended
+    -- ft = "markdown" -- If you decide to lazy-load anyway
+
+    options = {
+      filetypes = { "markdown", "quarto", "rmd" },
+    },
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons"
+    }
+  }
 }
 -- vim: set shiftwidth=2:

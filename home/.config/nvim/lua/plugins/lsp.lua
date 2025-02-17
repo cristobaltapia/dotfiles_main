@@ -252,8 +252,8 @@ return {
       lspconfig.cssls.setup({})
       -- Grammar correctoin using ltex-ls
       local ltex_setup = {
-        -- filetypes = { "gitcommit", "markdown", "org", "plaintex", "rst", "rnoweb", "tex", "pandoc", "typst" },
-        filetypes = { "tex" },
+        filetypes = { "gitcommit", "markdown", "org", "plaintex", "rst", "rnoweb", "tex", "pandoc", "typst" },
+        -- filetypes = { "tex" },
         settings = {
           ltex = {
             language = "en-US",
@@ -262,10 +262,11 @@ return {
       }
       -- For ltex-ls under archlinux I have to use the system installation, but
       -- for other systems (e.g. Ubuntu) the default cmd works good.
-      if Path:new("/usr/bin/ltex-ls"):is_file() then
-        ltex_setup["cmd"] = { "/usr/bin/ltex-ls" }
-      end
-      lspconfig.ltex.setup(ltex_setup)
+      -- if Path:new("/usr/bin/ltex-ls-plus"):is_file() then
+      --   ltex_setup["cmd"] = { "/usr/bin/ltex-ls" }
+      -- end
+      ltex_setup["cmd"] = { "/usr/bin/ltex-ls-plus" }
+      lspconfig.ltex_plus.setup(ltex_setup)
       lspconfig.fortls.setup({})
       -- JSON-ls
       lspconfig.jsonls.setup({
