@@ -37,6 +37,7 @@ return {
       auto_install = false,
       highlight = {
         enable = true,
+        disable = { "tex" },
         additional_vim_regex_highlighting = false,
       },
       rainbow = {

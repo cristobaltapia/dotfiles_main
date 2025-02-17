@@ -277,15 +277,15 @@ return {
         -- For customization, refer to Install > Configuration in the Documentation/Readme
         chat_free_cursor = true,
         providers = {
-          -- anthropic = {
-          --   api_key = api_anthropic,
-          -- },
+          anthropic = {
+            api_key = api_anthropic,
+          },
           -- openai = {
           --   api_key = api_openai,
           -- },
-          mistral = {
-            api_key = os.getenv("MISTRAL_API_KEY"),
-          },
+          -- mistral = {
+          --   api_key = os.getenv("MISTRAL_API_KEY"),
+          -- },
         },
         hooks = {
           GrammarGerman = function(prt, params)
@@ -306,8 +306,8 @@ return {
               + (new text)
               ```
 
-              ANTWORTE OHNE EXTRA KOMMENTARE, NUR MIT DEM KORRIGIERTEN TEXT IM
-              OBEN GENANNTEN FORMAT!!!
+              Antworte ohne extra Kommentare, nur mit dem Korrigierten Text im
+              oben genannten Format!!!
               Eine spezielle Notation von Symbolen wird bevorzugt gegenüber dem
               UTF-8-Code, wenn dies für den Dateityp angemessen ist. Zum
               Beispiel in LaTeX '--' für einen n-Gedankenstrich verwenden.
@@ -325,7 +325,9 @@ return {
               are not forbidden, but they should be used with care. Write one
               sentence per line:
 
+              ```{{filetype}}
               {{selection}}
+              ```
 
               Respond with a diff between the old and the new text, simulating
               the output of the command `diff --unified old new`, i.e. in the
@@ -336,8 +338,8 @@ return {
               + (new text)
               ```
 
-              DO NOT RESPOND WITH ANY TYPE OF COMMENTS, JUST THE CORRECTED
-              VERSION IN THE SPECIFIED FORMAT!!!
+              Do not respond with any type of comments, just the corrected
+              version in the specified format!
               Special notation of symbols is preferred over the utf-8 code if
               appropriate for the type of file. E.g. in latex use '--' for an
               n-dash.
