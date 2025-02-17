@@ -296,13 +296,55 @@ return {
         -- For customization, refer to Install > Configuration in the Documentation/Readme
         chat_free_cursor = true,
         providers = {
-          anthropic = {
-            api_key = api_anthropic,
-          },
-          openai = {
-            api_key = api_openai,
-          },
+          -- anthropic = {
+          --   api_key = api_anthropic,
+          -- },
+          -- openai = {
+          --   api_key = api_openai,
+          -- },
+          mistral = {
+            api_key = os.getenv("MISTRAL_API_KEY"),
+          }
         },
+        hooks = {
+          GrammarGerman = function(prt, params)
+            local chat_prompt = [[
+              Korrigiere den folgenden Text auf Deutsch (der Text ist ein
+              {{filetype}} document). Prüf auf Stil und grammatische Fehler.
+              Der Text soll wissenschaftlich sein aber relativ einfach
+              zu lesen. Nebensätze sind erlaubt. Schreib einen Satz pro Linie:
+
+              {{selection}}
+
+            ]]
+            local model_obj = prt.get_model "command"
+            prt.Prompt(params, prt.ui.Target.popup, model_obj, nil, chat_prompt)
+          end,
+          GrammarEnglish = function(prt, params)
+            local chat_prompt = [[
+              Check the spelling and style of the following {{filetype}} text.
+              The text should have a scientific style, yet it should be
+              relatively easy to understand. Don't oversimplify. Long sentences
+              are not forbidden, but they should be used with care. Write one
+              sentence per line:
+
+              {{selection}}
+
+              Respond with the following format:
+              <<<<<<< HEAD (Current changes)
+              (current text)
+              =======
+              (new text)
+              >>>>>>> Snippet (Incoming changes)
+
+              DO NOT RESPOND WITH ANY TYPE OF COMMENTS, JUST THE CORRECTED
+              VERSION IN THE SPECIFIED FORMAT!!!
+
+            ]]
+            local model_obj = prt.get_model "command"
+            prt.Prompt(params, prt.ui.Target.rewrite, model_obj, nil, chat_prompt)
+          end,
+        }
       }
       require("parrot").setup(conf)
 
