@@ -178,3 +178,8 @@ bind L hint -b
 bind <C-o> back
 bind <C-i> forward
 guiset hoverlink right
+bind n findnext
+bind N findnext --reverse
+bind <Esc> clearsearchhighlight
+unbind /
+bind / fillcmdline find 
