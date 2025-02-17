@@ -1,0 +1,159 @@
+#compdef ocrmypdf
+# SPDX-FileCopyrightText: 2023 [Your Name]
+# Based on original bash completion by Frank Pille and Alex Willner
+# SPDX-License-Identifier: MIT
+
+_ocrmypdf_output_types=(
+    'pdfa:output a PDF/A (default)'
+    'pdf:output a standard PDF'
+    'pdfa-1:output a PDF/A-1b'
+    'pdfa-2:output a PDF/A-2b'
+    'pdfa-3:output a PDF/A-3b'
+    'none:do not produce an output PDF'
+)
+
+_ocrmypdf_pdf_renderers=(
+    'auto:auto select PDF renderer'
+    'hocr:use hOCR renderer'
+    'hocrdebug:uses hOCR renderer in debug mode, showing recognized text'
+    'sandwich:use sandwich renderer'
+)
+
+_ocrmypdf_pdfa_compression=(
+    'auto:let Ghostscript decide how to compress images'
+    'jpeg:convert color and grayscale images to JPEG'
+    'lossless:convert color and grayscale images to lossless (PNG)'
+)
+
+_ocrmypdf_color_strategies=(
+    'LeaveColorUnchanged:default'
+    'CMYK:convert to CMYK'
+    'Gray:convert to grayscale'
+    'RGB:convert to RGB'
+    'UseDeviceIndependentColor:convert with device independent color'
+)
+
+_ocrmypdf_tesseract_pagesegmodes=(
+    '0:orientation and script detection (OSD) only'
+    '1:automatic page segmentation with OSD'
+    '2:automatic page segmentation, but no OSD, or OCR'
+    '3:fully automatic page segmentation, but no OSD (default)'
+    '4:assume a single column of text of variable sizes'
+    '5:assume a single uniform block of vertically aligned text'
+    '6:assume a single uniform block of text'
+    '7:treat the image as a single text line'
+    '8:treat the image as a single word'
+    '9:treat the image as a single word in a circle'
+    '10:treat the image as a single character'
+    '11:sparse text - find as much text as possible in no particular order'
+    '12:sparse text with OSD'
+    '13:raw line - treat the image as a single text line'
+)
+
+_ocrmypdf_tesseract_oem=(
+    '0:legacy engine only'
+    '1:neural nets LSTM engine only'
+    '2:legacy + LSTM engines'
+    '3:default, based on what is available'
+)
+
+_ocrmypdf_tesseract_thresholding=(
+    'auto:let OCRmyPDF pick thresholding - current always uses otsu'
+    'otsu:use hOCR renderer'
+    'adaptive-otsu:use adaptive Otsu thresholding'
+    'sauvola:use Sauvola thresholding'
+)
+
+_ocrmypdf() {
+    local curcontext="$curcontext" state line ret=1
+    typeset -A opt_args
+
+    _arguments -C \
+        '--help[show help message]' \
+        '--language=[language(s) of the file to be OCRed]:language:->languages' \
+        '--image-dpi=[assume this DPI if input image DPI is unknown]:dpi:' \
+        '--output-type=[select PDF output options]:type:->output_types' \
+        '--sidecar=[write OCR to text file]:file:_files' \
+        '--version[print program version and exit]' \
+        '--jobs=[how many worker processes to use]:jobs:->jobs' \
+        '--quiet[suppress INFO messages]' \
+        '--verbose=[set verbosity level]:level:(0\:"standard output" 1\:"troubleshooting" 2\:"debugging")' \
+        '--title=[set metadata]:title:' \
+        '--author=[set metadata]:author:' \
+        '--subject=[set metadata]:subject:' \
+        '--keywords=[set metadata]:keywords:' \
+        '--rotate-pages[rotate pages to correct orientation]' \
+        '--remove-background[attempt to remove background from pages]' \
+        '--deskew[fix small horizontal alignment skew]' \
+        '--clean[clean document images before OCR]' \
+        '--clean-final[clean document images and keep result]' \
+        '--unpaper-args=[arguments to pass to unpaper]:args:' \
+        '--oversample=[oversample images to this DPI]:dpi:' \
+        '--remove-vectors[do not send vector objects to OCR]' \
+        '--threshold[threshold images before OCR]' \
+        '--force-ocr[OCR documents that already have printable text]' \
+        '--skip-text[skip OCR on any pages that already contain text]' \
+        '--redo-ocr[redo OCR on any pages that seem to have OCR already]' \
+        '--invalidate-digital-signatures[remove digital signatures from PDF]' \
+        '--skip-big=[skip OCR on pages larger than this many MPixels]:mpixels:' \
+        '--optimize=[select optimization level]:level:(0\:"none" 1\:"safe" 2\:"lossy" 3\:"aggressive")' \
+        '--jpeg-quality=[JPEG quality]:quality:(0 25 50 75 100)' \
+        '--png-quality=[PNG quality]:quality:(0 25 50 75 100)' \
+        '--jbig2-lossy[enable lossy JBIG2]' \
+        '--jbig2-threshold=[set JBIG2 threshold]:threshold:' \
+        '--pages=[apply OCR to only specified pages]:pages:' \
+        '--max-image-mpixels=[image decompression bomb threshold]:mpixels:' \
+        '--pdf-renderer=[select PDF renderer]:renderer:->pdf_renderers' \
+        '--rotate-pages-threshold=[page rotation confidence]:threshold:' \
+        '--pdfa-image-compression=[set PDF/A image compression]:compression:->pdfa_compression' \
+        '--fast-web-view=[linearize PDF if above size in MB]:size:' \
+        '--plugin=[name of plugin to import]:plugin:' \
+        '--keep-temporary-files[keep temporary files (debug)]' \
+        '--tesseract-config=[set custom tesseract config file]:file:_files' \
+        '--tesseract-pagesegmode=[set tesseract --psm]:mode:->pagesegmodes' \
+        '--tesseract-oem=[set tesseract --oem]:mode:->oem' \
+        '--tesseract-thresholding=[set tesseract image thresholding]:threshold:->thresholding' \
+        '--tesseract-timeout=[maximum seconds to wait for OCR]:timeout:' \
+        '--user-words=[specify location of user words file]:file:_files' \
+        '--user-patterns=[specify location of user patterns file]:file:_files' \
+        '--no-progress-bar[disable the progress bar]' \
+        '--color-conversion-strategy=[select color conversion]:strategy:->color_strategies' \
+        '*:filename:_files' \
+        && ret=0
+
+    case $state in
+        languages)
+            local -a langs
+            langs=( ${(f)"$(tesseract --list-langs 2>/dev/null)"} )
+            _describe -t languages 'language' langs && ret=0
+            ;;
+        output_types)
+            _describe -t output_types 'output type' _ocrmypdf_output_types && ret=0
+            ;;
+        jobs)
+            _values 'jobs' {1.."$(nproc 2>/dev/null || sysctl -n hw.ncpu 2>/dev/null || echo 4)"}
+            ;;
+        pdf_renderers)
+            _describe -t pdf_renderers 'PDF renderer' _ocrmypdf_pdf_renderers && ret=0
+            ;;
+        pdfa_compression)
+            _describe -t pdfa_compression 'PDF/A compression' _ocrmypdf_pdfa_compression && ret=0
+            ;;
+        pagesegmodes)
+            _describe -t pagesegmodes 'page segmentation mode' _ocrmypdf_tesseract_pagesegmodes && ret=0
+            ;;
+        oem)
+            _describe -t oem 'OCR Engine Mode' _ocrmypdf_tesseract_oem && ret=0
+            ;;
+        thresholding)
+            _describe -t thresholding 'thresholding method' _ocrmypdf_tesseract_thresholding && ret=0
+            ;;
+        color_strategies)
+            _describe -t color_strategies 'color conversion strategy' _ocrmypdf_color_strategies && ret=0
+            ;;
+    esac
+
+    return ret
+}
+
+_ocrmypdf "$@"

@@ -181,4 +181,10 @@ bind <C-i> forward
 guiset hoverlink right
 set hintchars tnrheiscbamulyfz
 
+bind n findnext
+bind N findnext --reverse
+bind <Esc> clearsearchhighlight
+unbind /
+bind / fillcmdline find 
+
 " vim:ft=vim

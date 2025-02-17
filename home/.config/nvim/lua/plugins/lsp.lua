@@ -258,6 +258,13 @@ return {
           },
         },
       })
+      -- For ltex-ls under archlinux I have to use the system installation, but
+      -- for other systems (e.g. Ubuntu) the default cmd works good.
+      -- if Path:new("/usr/bin/ltex-ls-plus"):is_file() then
+      --   ltex_setup["cmd"] = { "/usr/bin/ltex-ls" }
+      -- end
+      -- ltex_setup["cmd"] = { "/usr/bin/ltex-ls-plus" }
+      -- lspconfig.ltex_plus.setup(ltex_setup)
       lspconfig.fortls.setup({})
       -- JSON-ls
       lspconfig.jsonls.setup({
