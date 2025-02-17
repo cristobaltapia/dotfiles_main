@@ -128,7 +128,7 @@ return {
           {
             "e",
             function()
-              require("lspconfig").ltex.setup({ filetypes = ltex_ft, settings = { ltex = { language = "en-US" } } })
+              require("lspconfig").ltex_plus.setup({ filetypes = ltex_ft, settings = { ltex = { language = "en-US" } } })
               vim.opt.spelllang = "en_us"
             end,
             { exit_before = true },
@@ -136,7 +136,7 @@ return {
           {
             "d",
             function()
-              require("lspconfig").ltex.setup({ filetypes = ltex_ft, settings = { ltex = { language = "de-DE" } } })
+              require("lspconfig").ltex_plus.setup({ filetypes = ltex_ft, settings = { ltex = { language = "de-DE" } } })
               vim.opt.spelllang = "de_de"
             end,
             { exit_before = true },
@@ -144,7 +144,7 @@ return {
           {
             "s",
             function()
-              require("lspconfig").ltex.setup({ filetypes = ltex_ft, settings = { ltex = { language = "es" } } })
+              require("lspconfig").ltex_plus.setup({ filetypes = ltex_ft, settings = { ltex = { language = "es" } } })
               vim.opt.spelllang = "es"
             end,
           },
