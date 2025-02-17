@@ -98,12 +98,12 @@ return {
         mode = "n",
         body = "<leader>hd",
         heads = {
-          { "<left>",  "<C-v>h:VBox<CR>" },
-          { "<down>",  "<C-v>j:VBox<CR>" },
-          { "<up>",    "<C-v>k:VBox<CR>" },
+          { "<left>", "<C-v>h:VBox<CR>" },
+          { "<down>", "<C-v>j:VBox<CR>" },
+          { "<up>", "<C-v>k:VBox<CR>" },
           { "<right>", "<C-v>l:VBox<CR>" },
-          { "f",       ":VBox<CR>",      { mode = "v" } },
-          { "q",       nil,              { exit = true } },
+          { "f", ":VBox<CR>", { mode = "v" } },
+          { "q", nil, { exit = true } },
         },
       })
 
@@ -157,7 +157,7 @@ return {
   {
     "danymat/neogen",
     keys = {
-      { "<leader>ds", "<cmd>Neogen func<cr>",  desc = "Generate func docstrings" },
+      { "<leader>ds", "<cmd>Neogen func<cr>", desc = "Generate func docstrings" },
       { "<leader>dc", "<cmd>Neogen class<cr>", desc = "Generate class docstrings" },
     },
     config = function()
@@ -191,7 +191,7 @@ return {
     branch = "main",
     event = { "BufReadPre", "BufNewFile" },
     keys = {
-      { "<leader>m",  ":lua MiniFiles.open()<cr>",          "n" },
+      { "<leader>m", ":lua MiniFiles.open()<cr>", "n" },
       { "<leader>go", ":lua MiniDiff.toggle_overlay()<cr>", "n" },
     },
     config = function()
@@ -268,25 +268,6 @@ return {
   -- },
   -- ChatGPT
   {
-    "jackMort/ChatGPT.nvim",
-    cmd = { "ChatGPT", "ChatGPTRun", "ChatGPTEditWithInstructions" },
-    config = function()
-      local home = vim.fn.expand("$HOME")
-      require("chatgpt").setup({
-        keymaps = {
-          close = "<C-c>",
-        },
-        api_key_cmd = "cat " .. home .. "/.config/chatgpt/api",
-        actions_paths = { vim.env.HOME .. "/.config/chatgpt/actions.json" },
-      })
-    end,
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-    },
-  },
-  {
     "frankroeder/parrot.nvim",
     config = function()
       local home = vim.fn.expand("$HOME")
@@ -304,7 +285,7 @@ return {
           -- },
           mistral = {
             api_key = os.getenv("MISTRAL_API_KEY"),
-          }
+          },
         },
         hooks = {
           GrammarGerman = function(prt, params)
@@ -316,9 +297,25 @@ return {
 
               {{selection}}
 
+              Antworte mit einem diff zwischen dem alten und neuen Text. Es
+              soll das Output des Befehls `diff --unified old new` simulieren,
+              d. h. in dem folgenden Format
+
+              ```diff
+              - (old text)
+              + (new text)
+              ```
+
+              ANTWORTE OHNE EXTRA KOMMENTARE, NUR MIT DEM KORRIGIERTEN TEXT IM
+              OBEN GENANNTEN FORMAT!!!
+              Eine spezielle Notation von Symbolen wird bevorzugt gegenüber dem
+              UTF-8-Code, wenn dies für den Dateityp angemessen ist. Zum
+              Beispiel in LaTeX '--' für einen n-Gedankenstrich verwenden.
+
             ]]
-            local model_obj = prt.get_model "command"
-            prt.Prompt(params, prt.ui.Target.popup, model_obj, nil, chat_prompt)
+            local model_obj = prt.get_model("command")
+            -- prt.Prompt(params, prt.ui.Target.popup, model_obj, nil, chat_prompt)
+            prt.ChatNew(params, chat_prompt)
           end,
           GrammarEnglish = function(prt, params)
             local chat_prompt = [[
@@ -330,21 +327,26 @@ return {
 
               {{selection}}
 
-              Respond with the following format:
-              <<<<<<< HEAD (Current changes)
-              (current text)
-              =======
-              (new text)
-              >>>>>>> Snippet (Incoming changes)
+              Respond with a diff between the old and the new text, simulating
+              the output of the command `diff --unified old new`, i.e. in the
+              following format:
+
+              ```diff
+              - (old text)
+              + (new text)
+              ```
 
               DO NOT RESPOND WITH ANY TYPE OF COMMENTS, JUST THE CORRECTED
               VERSION IN THE SPECIFIED FORMAT!!!
-
+              Special notation of symbols is preferred over the utf-8 code if
+              appropriate for the type of file. E.g. in latex use '--' for an
+              n-dash.
             ]]
-            local model_obj = prt.get_model "command"
-            prt.Prompt(params, prt.ui.Target.rewrite, model_obj, nil, chat_prompt)
+            local model_obj = prt.get_model("command")
+            -- prt.Prompt(params, prt.ui.Target.rewrite, model_obj, nil, chat_prompt)
+            prt.ChatNew(params, chat_prompt)
           end,
-        }
+        },
       }
       require("parrot").setup(conf)
 
@@ -367,13 +369,13 @@ return {
         auto_apply_diff_after_generation = false,
         support_paste_from_clipboard = false,
       },
-      provider = "mistral",
+      provider = "claude",
       vendors = {
         mistral = {
-          __inherited_from = 'openai',
-          endpoint = 'https://api.mistral.ai/v1',
-          api_key_name = 'MISTRAL_API_KEY',
-          model = 'mistral-large-latest',
+          __inherited_from = "openai",
+          endpoint = "https://api.mistral.ai/v1",
+          api_key_name = "MISTRAL_API_KEY",
+          model = "mistral-large-latest",
         },
       },
       hints = { enabled = false },
