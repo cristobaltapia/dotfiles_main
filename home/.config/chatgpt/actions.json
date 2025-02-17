@@ -5,7 +5,7 @@
       "template": "Korrigiere den folgenden Text auf Deutsch in LaTeX. Prüf auf Stil und grammatische Fehler. Der Text soll wissenschaftlich sein aber relativ einfach zu lesen. Nebensätze sind erlaubt. Schreib einen Satz pro Linie:\n\n{{input}}",
       "strategy": "edit",
       "params": {
-        "model": "gpt-4",
+        "model": "gpt-4o",
         "max_tokens": 1000,
         "temperature": 0.4
       }
@@ -17,7 +17,19 @@
       "template": "Korrigiere den folgenden Text auf Deutsch in Typst. Prüf auf Stil und grammatische Fehler. Der Text soll wissenschaftlich sein aber relativ einfach zu lesen. Nebensätze sind erlaubt. Schreib einen Satz pro Linie:\n\n{{input}}",
       "strategy": "edit",
       "params": {
-        "model": "gpt-4",
+        "model": "gpt-4o",
+        "max_tokens": 1000,
+        "temperature": 0.4
+      }
+    }
+  },
+  "translate_to_german": {
+    "type": "chat",
+    "opts": {
+      "template": "Übersetzt den folgenden text von Englisch auf Deutsch. Prüf auf Stil und grammatische Fehler. Der Text soll wissenschaftlich sein aber relativ einfach zu lesen. Nebensätze sind erlaubt. Schreib einen Satz pro Linie:\n\n{{input}}",
+      "strategy": "edit",
+      "params": {
+        "model": "gpt-4o",
         "max_tokens": 1000,
         "temperature": 0.4
       }
