@@ -345,6 +345,14 @@ return {
           shfmt = {
             args = { "--case-indent", "--indent", "4", "-filename", "$FILENAME" },
           },
+          prettypst = {
+            args = {
+              "--use-std-in",
+              "--use-std-out",
+              "--file-location",
+              "$FILENAME",
+            },
+          },
         },
         formatters_by_ft = {
           bash = { "shfmt" },
@@ -364,7 +372,7 @@ return {
           sty = { "latexindent" },
           tex = { "latexindent" },
           toml = { "taplo" },
-          typst = { "typstyle" },
+          typst = { "prettypst" },
           yaml = { "yamlfmt" },
         },
       })
