@@ -350,7 +350,7 @@ return {
             api_key = os.getenv("MISTRAL_API_KEY"),
             endpoint = "https://api.mistral.ai/v1/chat/completions",
             topic = {
-              model = "open-mistral-nemo"
+              model = "mistral-large-latest"
             }
           },
         },
