@@ -267,12 +267,12 @@ return {
       local ChatHandler = require("parrot.chat_handler")
 
       --- Grammar correction functions
-      local function correct_geram(prt, params)
+      local function correct_german(prt, params)
         local chat_prompt = [[
               Korrigiere den folgenden Text auf Deutsch (der Text ist ein
-              {{filetype}} document). Prüf auf Stil und grammatische Fehler.
-              Der Text soll wissenschaftlich sein aber relativ einfach
-              zu lesen. Nebensätze sind erlaubt. Schreib einen Satz pro Linie:
+              {{filetype}} Dokument). Prüfe auf Stil und grammatikalische
+              Fehler. Der Text soll wissenschaftlich sein, aber relativ einfach
+              zu lesen. Nebensätze sind erlaubt. Schreib einen Satz pro Zeile:
 
               {{selection}}
 
@@ -302,11 +302,11 @@ return {
 
       local function correct_english(prt, params)
         local chat_prompt = [[
-              Check the spelling and style of the following {{filetype}} text.
-              The text should have a scientific style, yet it should be
-              relatively easy to understand. Don't oversimplify. Long sentences
-              are not forbidden, but they should be used with care. Write one
-              sentence per line:
+              Check the spelling, grammar and style of the following
+              {{filetype}} text. The text should have a scientific style, yet
+              it should be relatively easy to understand. Don't oversimplify.
+              Long sentences are not forbidden, but they should be used with
+              care. Write one sentence per line:
 
               ```{{filetype}}
               {{selection}}
@@ -358,7 +358,7 @@ return {
           modes = { "n", "i", "v", "x" }, shortcut = "<C-g><C-g>"
         },
         hooks = {
-          GrammarGerman = correct_geram,
+          GrammarGerman = correct_german,
           GrammarEnglish = correct_english,
         },
       }
