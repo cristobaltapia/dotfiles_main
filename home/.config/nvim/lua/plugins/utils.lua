@@ -43,7 +43,7 @@ return {
   -- Char-based diff
   {
     "rickhowe/diffchar.vim",
-    ft = { "markdown", "markdown.pandoc", "tex" },
+    ft = { "markdown", "markdown.pandoc", "tex", "typst" },
   },
   -- Better movements
   {
@@ -98,12 +98,12 @@ return {
         mode = "n",
         body = "<leader>hd",
         heads = {
-          { "<left>", "<C-v>h:VBox<CR>" },
-          { "<down>", "<C-v>j:VBox<CR>" },
-          { "<up>", "<C-v>k:VBox<CR>" },
+          { "<left>",  "<C-v>h:VBox<CR>" },
+          { "<down>",  "<C-v>j:VBox<CR>" },
+          { "<up>",    "<C-v>k:VBox<CR>" },
           { "<right>", "<C-v>l:VBox<CR>" },
-          { "f", ":VBox<CR>", { mode = "v" } },
-          { "q", nil, { exit = true } },
+          { "f",       ":VBox<CR>",      { mode = "v" } },
+          { "q",       nil,              { exit = true } },
         },
       })
 
@@ -157,7 +157,7 @@ return {
   {
     "danymat/neogen",
     keys = {
-      { "<leader>ds", "<cmd>Neogen func<cr>", desc = "Generate func docstrings" },
+      { "<leader>ds", "<cmd>Neogen func<cr>",  desc = "Generate func docstrings" },
       { "<leader>dc", "<cmd>Neogen class<cr>", desc = "Generate class docstrings" },
     },
     config = function()
@@ -191,8 +191,8 @@ return {
     branch = "main",
     event = { "BufReadPre", "BufNewFile" },
     keys = {
-      { "<leader>m", ":lua MiniFiles.open()<cr>", "n" },
-      { "<leader>go", ":lua MiniDiff.toggle_overlay()<cr>", "n" },
+      { "<leader>m",  ":lua MiniFiles.open()<cr>",          "n" },
+      { "<leader>gd", ":lua MiniDiff.toggle_overlay()<cr>", "n" },
     },
     config = function()
       require("mini.trailspace").setup()
@@ -260,36 +260,15 @@ return {
       vim.g.UltiSnipsJumpBackwardTrigger = "<c-a>"
     end,
   },
-  -- Follow symlinks
-  -- {
-  --   'aymericbeaumet/vim-symlink',
-  --   -- 'Jasha10/vim-symlink',
-  --   dependencies = { 'moll/vim-bbye' },
-  -- },
-  -- ChatGPT
+  -- Parrot
   {
     "frankroeder/parrot.nvim",
     config = function()
-      local home = vim.fn.expand("$HOME")
-      local api_openai = { "cat", home .. "/.config/chatgpt/api" }
-      local api_anthropic = { "cat", home .. "/.config/chatgpt/api_claude" }
-      local conf = {
-        -- For customization, refer to Install > Configuration in the Documentation/Readme
-        chat_free_cursor = true,
-        providers = {
-          anthropic = {
-            api_key = api_anthropic,
-          },
-          -- openai = {
-          --   api_key = api_openai,
-          -- },
-          -- mistral = {
-          --   api_key = os.getenv("MISTRAL_API_KEY"),
-          -- },
-        },
-        hooks = {
-          GrammarGerman = function(prt, params)
-            local chat_prompt = [[
+      local ChatHandler = require("parrot.chat_handler")
+
+      --- Grammar correction functions
+      local function correct_geram(prt, params)
+        local chat_prompt = [[
               Korrigiere den folgenden Text auf Deutsch (der Text ist ein
               {{filetype}} document). Prüf auf Stil und grammatische Fehler.
               Der Text soll wissenschaftlich sein aber relativ einfach
@@ -297,13 +276,16 @@ return {
 
               {{selection}}
 
-              Antworte mit einem diff zwischen dem alten und neuen Text. Es
-              soll das Output des Befehls `diff --unified old new` simulieren,
-              d. h. in dem folgenden Format
+              Antworte im folgenden Format:
 
-              ```diff
-              - (old text)
-              + (new text)
+              ```
+              # Old text
+
+              (old text)
+
+              # New text
+
+              (new text)
               ```
 
               Antworte ohne extra Kommentare, nur mit dem Korrigierten Text im
@@ -313,12 +295,13 @@ return {
               Beispiel in LaTeX '--' für einen n-Gedankenstrich verwenden.
 
             ]]
-            local model_obj = prt.get_model("command")
-            -- prt.Prompt(params, prt.ui.Target.popup, model_obj, nil, chat_prompt)
-            prt.ChatNew(params, chat_prompt)
-          end,
-          GrammarEnglish = function(prt, params)
-            local chat_prompt = [[
+        local model_obj = prt.get_model("command")
+        prt.Prompt(params, prt.ui.Target.popup, model_obj, nil, chat_prompt)
+        -- prt.ChatNew(params, chat_prompt)
+      end
+
+      local function correct_english(prt, params)
+        local chat_prompt = [[
               Check the spelling and style of the following {{filetype}} text.
               The text should have a scientific style, yet it should be
               relatively easy to understand. Don't oversimplify. Long sentences
@@ -329,13 +312,16 @@ return {
               {{selection}}
               ```
 
-              Respond with a diff between the old and the new text, simulating
-              the output of the command `diff --unified old new`, i.e. in the
-              following format:
+              Respond with the following format:
 
-              ```diff
-              - (old text)
-              + (new text)
+              ```
+              # Old text
+
+              (old text)
+
+              # New text
+
+              (new text)
               ```
 
               Do not respond with any type of comments, just the corrected
@@ -344,10 +330,36 @@ return {
               appropriate for the type of file. E.g. in latex use '--' for an
               n-dash.
             ]]
-            local model_obj = prt.get_model("command")
-            -- prt.Prompt(params, prt.ui.Target.rewrite, model_obj, nil, chat_prompt)
-            prt.ChatNew(params, chat_prompt)
-          end,
+        local model_obj = prt.get_model("command")
+        prt.Prompt(params, prt.ui.Target.popup, model_obj, nil, chat_prompt)
+        -- prt.ChatNew(params, chat_prompt)
+      end
+
+      local conf = {
+        -- For customization, refer to Install > Configuration in the Documentation/Readme
+        chat_free_cursor = true,
+        style_popup_max_width = 76,
+        providers = {
+          -- anthropic = {
+          --   api_key = api_anthropic,
+          -- },
+          -- openai = {
+          --   api_key = api_openai,
+          -- },
+          mistral = {
+            api_key = os.getenv("MISTRAL_API_KEY"),
+            endpoint = "https://api.mistral.ai/v1/chat/completions",
+            topic = {
+              model = "open-mistral-nemo"
+            }
+          },
+        },
+        chat_shortcut_respond = {
+          modes = { "n", "i", "v", "x" }, shortcut = "<C-g><C-g>"
+        },
+        hooks = {
+          GrammarGerman = correct_geram,
+          GrammarEnglish = correct_english,
         },
       }
       require("parrot").setup(conf)
@@ -372,6 +384,19 @@ return {
         support_paste_from_clipboard = false,
       },
       provider = "claude",
+      claude = {
+        disable_tools = false,
+        endpoint = "https://api.anthropic.com",
+        model = "claude-3-5-sonnet-20241022",
+        temperature = 0,
+        max_tokens = 4096,
+      },
+      file_selector = {
+        provider = "telescope",
+        provider_opts = {
+          find_command = { "rg", "--files", "--hidden", "-g", "!.git" }
+        }
+      },
       vendors = {
         mistral = {
           __inherited_from = "openai",
