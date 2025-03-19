@@ -16,3 +16,4 @@ G = goto -1
 <Shift+N> = pan 0 -50
 <Shift+R> = pan 0 50
 <Shift+H> = pan -50 0
+<Delete> = exec rm "$imv_current_file"; close
