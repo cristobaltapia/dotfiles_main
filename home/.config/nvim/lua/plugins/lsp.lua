@@ -42,7 +42,7 @@ return {
       local lsp_defaults = lspconfig.util.default_config
 
       lsp_defaults.capabilities =
-        vim.tbl_deep_extend("force", lsp_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
+          vim.tbl_deep_extend("force", lsp_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
       -- lsp_defaults.capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = false
 
       vim.api.nvim_create_autocmd("LspAttach", {
@@ -84,7 +84,7 @@ return {
         vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
 
         vim.lsp.handlers["textDocument/signatureHelp"] =
-          vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
+            vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
 
         local command = vim.api.nvim_create_user_command
 
