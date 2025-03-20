@@ -402,7 +402,7 @@ return {
           __inherited_from = "openai",
           endpoint = "https://api.mistral.ai/v1",
           api_key_name = "MISTRAL_API_KEY",
-          model = "mistral-large-latest",
+          model = "codestral-latest",
         },
       },
       hints = { enabled = false },
