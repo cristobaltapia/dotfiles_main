@@ -71,88 +71,88 @@ return {
     },
   },
   -- Hydra
-  {
-    "anuvyklack/hydra.nvim",
-    name = "hydra",
-    lazy = true,
-    keys = {
-      "<leader>hd",
-      "<leader>hl",
-    },
-    config = function(_, opts)
-      local Hydra = require("hydra")
-
-      Hydra({
-        name = "Draw Diagram",
-        hint = hint_diagram,
-        config = {
-          color = "pink",
-          invoke_on_body = true,
-          hint = {
-            border = "rounded",
-          },
-          on_enter = function()
-            vim.o.virtualedit = "all"
-          end,
-        },
-        mode = "n",
-        body = "<leader>hd",
-        heads = {
-          { "<left>",  "<C-v>h:VBox<CR>" },
-          { "<down>",  "<C-v>j:VBox<CR>" },
-          { "<up>",    "<C-v>k:VBox<CR>" },
-          { "<right>", "<C-v>l:VBox<CR>" },
-          { "f",       ":VBox<CR>",      { mode = "v" } },
-          { "q",       nil,              { exit = true } },
-        },
-      })
-
-      local ltex_ft = { "bib", "gitcommit", "markdown", "org", "plaintex", "rst", "rnoweb", "tex", "pandoc", "typst" }
-      -- Change language for ltex
-      Hydra({
-        name = "Change Ltex language",
-        hint = hint_ltex,
-        config = {
-          color = "teal",
-          invoke_on_body = true,
-          hint = {
-            border = "rounded",
-          },
-          on_enter = function()
-            vim.o.virtualedit = "all"
-          end,
-        },
-        mode = "n",
-        body = "<leader>hl",
-        heads = {
-          {
-            "e",
-            function()
-              require("lspconfig").ltex_plus.setup({ filetypes = ltex_ft, settings = { ltex = { language = "en-US" } } })
-              vim.opt.spelllang = "en_us"
-            end,
-            { exit_before = true },
-          },
-          {
-            "d",
-            function()
-              require("lspconfig").ltex_plus.setup({ filetypes = ltex_ft, settings = { ltex = { language = "de-DE" } } })
-              vim.opt.spelllang = "de_de"
-            end,
-            { exit_before = true },
-          },
-          {
-            "s",
-            function()
-              require("lspconfig").ltex_plus.setup({ filetypes = ltex_ft, settings = { ltex = { language = "es" } } })
-              vim.opt.spelllang = "es"
-            end,
-          },
-          { "q", nil, { exit = true } },
-        },
-      })
-    end,
-  },
+  -- {
+  --   "anuvyklack/hydra.nvim",
+  --   name = "hydra",
+  --   lazy = true,
+  --   keys = {
+  --     "<leader>hd",
+  --     "<leader>hl",
+  --   },
+  --   config = function(_, opts)
+  --     local Hydra = require("hydra")
+  --
+  --     Hydra({
+  --       name = "Draw Diagram",
+  --       hint = hint_diagram,
+  --       config = {
+  --         color = "pink",
+  --         invoke_on_body = true,
+  --         hint = {
+  --           border = "rounded",
+  --         },
+  --         on_enter = function()
+  --           vim.o.virtualedit = "all"
+  --         end,
+  --       },
+  --       mode = "n",
+  --       body = "<leader>hd",
+  --       heads = {
+  --         { "<left>",  "<C-v>h:VBox<CR>" },
+  --         { "<down>",  "<C-v>j:VBox<CR>" },
+  --         { "<up>",    "<C-v>k:VBox<CR>" },
+  --         { "<right>", "<C-v>l:VBox<CR>" },
+  --         { "f",       ":VBox<CR>",      { mode = "v" } },
+  --         { "q",       nil,              { exit = true } },
+  --       },
+  --     })
+  --
+  --     local ltex_ft = { "bib", "gitcommit", "markdown", "org", "plaintex", "rst", "rnoweb", "tex", "pandoc", "typst" }
+  --     -- Change language for ltex
+  --     Hydra({
+  --       name = "Change Ltex language",
+  --       hint = hint_ltex,
+  --       config = {
+  --         color = "teal",
+  --         invoke_on_body = true,
+  --         hint = {
+  --           border = "rounded",
+  --         },
+  --         on_enter = function()
+  --           vim.o.virtualedit = "all"
+  --         end,
+  --       },
+  --       mode = "n",
+  --       body = "<leader>hl",
+  --       heads = {
+  --         {
+  --           "e",
+  --           function()
+  --             require("lspconfig").ltex_plus.setup({ filetypes = ltex_ft, settings = { ltex = { language = "en-US" } } })
+  --             vim.opt.spelllang = "en_us"
+  --           end,
+  --           { exit_before = true },
+  --         },
+  --         {
+  --           "d",
+  --           function()
+  --             require("lspconfig").ltex_plus.setup({ filetypes = ltex_ft, settings = { ltex = { language = "de-DE" } } })
+  --             vim.opt.spelllang = "de_de"
+  --           end,
+  --           { exit_before = true },
+  --         },
+  --         {
+  --           "s",
+  --           function()
+  --             require("lspconfig").ltex_plus.setup({ filetypes = ltex_ft, settings = { ltex = { language = "es" } } })
+  --             vim.opt.spelllang = "es"
+  --           end,
+  --         },
+  --         { "q", nil, { exit = true } },
+  --       },
+  --     })
+  --   end,
+  -- },
   -- Docstrings generator (neogen)
   {
     "danymat/neogen",
@@ -263,37 +263,33 @@ return {
   -- Parrot
   {
     "frankroeder/parrot.nvim",
+    version = "v1.5.0",
     config = function()
       local ChatHandler = require("parrot.chat_handler")
 
       --- Grammar correction functions
       local function correct_german(prt, params)
         local chat_prompt = [[
-              Korrigiere den folgenden Text auf Deutsch (der Text ist ein
-              {{filetype}} Dokument). Prüfe auf Stil und grammatikalische
-              Fehler. Der Text soll wissenschaftlich sein, aber relativ einfach
-              zu lesen. Nebensätze sind erlaubt. Schreib einen Satz pro Zeile:
+Korrigiere den folgenden Text auf Deutsch (der Text ist ein
+{{filetype}} Dokument). Prüfe auf Stil und grammatikalische
+Fehler. Der Text soll wissenschaftlich sein, aber relativ einfach
+zu lesen. Nebensätze sind erlaubt. Schreib einen Satz pro Zeile:
 
-              {{selection}}
+{{selection}}
 
-              Antworte im folgenden Format:
+Antworte im folgenden Format:
 
-              ```
-              # Old text
+```
+# New text
 
-              (old text)
+(new text)
+```
 
-              # New text
-
-              (new text)
-              ```
-
-              Antworte ohne extra Kommentare, nur mit dem Korrigierten Text im
-              oben genannten Format!!!
-              Eine spezielle Notation von Symbolen wird bevorzugt gegenüber dem
-              UTF-8-Code, wenn dies für den Dateityp angemessen ist. Zum
-              Beispiel in LaTeX '--' für einen n-Gedankenstrich verwenden.
-
+Antworte ohne extra Kommentare, nur mit dem Korrigierten Text im
+oben genannten Format!!!
+Eine spezielle Notation von Symbolen wird bevorzugt gegenüber dem
+UTF-8-Code, wenn dies für den Dateityp angemessen ist. Zum
+Beispiel in LaTeX '--' für einen n-Gedankenstrich verwenden.
             ]]
         local model_obj = prt.get_model("command")
         prt.Prompt(params, prt.ui.Target.popup, model_obj, nil, chat_prompt)
@@ -302,33 +298,29 @@ return {
 
       local function correct_english(prt, params)
         local chat_prompt = [[
-              Check the spelling, grammar and style of the following
-              {{filetype}} text. The text should have a scientific style, yet
-              it should be relatively easy to understand. Don't oversimplify.
-              Long sentences are not forbidden, but they should be used with
-              care. Write one sentence per line:
+Check the spelling, grammar and style of the following
+{{filetype}} text. The text should have a scientific style, yet
+it should be relatively easy to understand. Don't oversimplify.
+Long sentences are not forbidden, but they should be used with
+care. Write one sentence per line:
 
-              ```{{filetype}}
-              {{selection}}
-              ```
+```{{filetype}}
+{{selection}}
+```
 
-              Respond with the following format:
+Respond with the following format:
 
-              ```
-              # Old text
+```
+# Edited text
 
-              (old text)
+(new text)
+```
 
-              # New text
-
-              (new text)
-              ```
-
-              Do not respond with any type of comments, just the corrected
-              version in the specified format!
-              Special notation of symbols is preferred over the utf-8 code if
-              appropriate for the type of file. E.g. in latex use '--' for an
-              n-dash.
+Do not respond with any type of comments, just the corrected
+version in the specified format!
+Special notation of symbols is preferred over the utf-8 code if
+appropriate for the type of file. E.g. in latex use '--' for an
+n-dash.
             ]]
         local model_obj = prt.get_model("command")
         prt.Prompt(params, prt.ui.Target.popup, model_obj, nil, chat_prompt)
@@ -339,13 +331,26 @@ return {
         -- For customization, refer to Install > Configuration in the Documentation/Readme
         chat_free_cursor = true,
         style_popup_max_width = 76,
+        system_prompt = {
+          command = [[
+You are a professional scientific/researcher reviewer and editor. You know all
+the best practices for writing formal documents, especially scientific
+documents such as papers. You have a solid knowledge of both the english and
+the german language, and can use this knowledge to improve the readability and
+style of sentences, paragraphs and whole documents. You also understand
+perfectly the best practices for the LaTeX typesetting system, as well as for
+Typst.
+          ]] },
         providers = {
           -- anthropic = {
           --   api_key = api_anthropic,
           -- },
-          -- openai = {
-          --   api_key = api_openai,
-          -- },
+          openai = {
+            api_key = os.getenv("OPENAI_API_KEY"),
+            topic = {
+              model = "o1-2024-12-17"
+            }
+          },
           mistral = {
             api_key = os.getenv("MISTRAL_API_KEY"),
             endpoint = "https://api.mistral.ai/v1/chat/completions",

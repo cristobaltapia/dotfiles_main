@@ -79,21 +79,39 @@ vim.keymap.set("n", "<leader>bq", "<cmd>bp <BAR> bd #<cr>")
 -- Close quickfix window
 vim.keymap.set("n", "<leader>cq", vim.cmd.cclose)
 
--- Run files with overseer
--- local overseer = require("overseer")
--- local function compile_and_run()
---     local file_path = vim.api.nvim_buf_get_name(0)
---     local file_cwd = vim.loop.cwd()
-
---     if vim.bo.filetype == 'python' then
---         vim.cmd("write")
---         overseer.run_template({ name = "python_build" })
---     end
--- end
-
--- vim.keymap.set('n', '<F5>', compile_and_run)
---
 -- Toggle inlay hints
 vim.keymap.set("n", "<leader>hh", function()
   vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end)
+
+-- The following keymaps are activated on lsp attach
+vim.api.nvim_create_autocmd("LspAttach", {
+  desc = "LSP actions",
+  callback = function(event)
+    -- Define current bufnr
+    local bufnr = event.buf
+    local map = function(m, lhs, rhs)
+      local options = { buffer = bufnr, remap = false }
+      vim.keymap.set(m, lhs, rhs, options)
+    end
+
+    -- LSP actions
+    map("n", "K", vim.lsp.buf.hover)
+    map("n", "gd", vim.lsp.buf.definition)
+    map("n", "gD", vim.lsp.buf.declaration)
+    map("n", "gi", vim.lsp.buf.implementation)
+    map("n", "go", vim.lsp.buf.type_definition)
+    map("n", "gr", vim.lsp.buf.references)
+    map("n", "gs", vim.lsp.buf.signature_help)
+    map("n", "<leader>rn", vim.lsp.buf.rename)
+    -- Formatting is done with conform.nvim
+    map("n", "<leader>ca", vim.lsp.buf.code_action)
+    map("x", "<leader>ca", "<cmd>lua vim.lsp.buf.range_code_action()<cr>")
+
+    -- Diagnostics
+    map("n", "ge", vim.diagnostic.open_float)
+
+    -- Set folding method
+    vim.o.foldmethod = "expr"
+  end,
+})

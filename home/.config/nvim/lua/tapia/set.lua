@@ -100,3 +100,8 @@ if not vim.fn.isdirectory(vim.env.HOME .. "/.config/nvim/undodir") then
 end
 
 vim.opt.laststatus = 3
+
+vim.o.winborder = "rounded"
+
+-- Increase update frequency of the ui
+vim.opt.updatetime = 500
