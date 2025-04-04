@@ -105,7 +105,7 @@ return {
           elseif vim.bo.filetype == "dap-repl" then
             return { "dap" }
           elseif vim.bo.filetype == "tex" then
-            return { "lsp", "vimtex", "ultisnips", "path", "buffer", "latex_symbols"}
+            return { "vimtex", "ultisnips", "path", "latex_symbols", "buffer" }
           else
             return { "lsp", "path", "ultisnips" }
           end
