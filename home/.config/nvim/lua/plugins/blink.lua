@@ -33,25 +33,10 @@ return {
 
     -- use a release tag to download pre-built binaries
     version = "1.*",
-    -- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
-    -- build = 'cargo build --release',
-    -- If you use nix, you can build from source using latest nightly rust with:
-    -- build = 'nix run .#build-plugin',
-
+    ---
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
-      -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
-      -- 'super-tab' for mappings similar to vscode (tab to accept)
-      -- 'enter' for enter to accept
-      -- 'none' for no mappings
-      --
-      -- All presets have the following mappings:
-      -- C-space: Open menu or open docs if already open
-      -- C-n/C-p or Up/Down: Select next/previous item
-      -- C-e: Hide menu
-      -- C-k: Toggle signature help (if signature.enabled = true)
-      --
       -- See :h blink-cmp-config-keymap for defining your own keymap
       keymap = {
         preset = "default",
@@ -76,7 +61,6 @@ return {
         nerd_font_variant = "mono",
       },
 
-      -- (Default) Only show the documentation popup when manually triggered
       completion = {
         documentation = { auto_show = true, auto_show_delay_ms = 300 },
         list = { selection = { preselect = false, auto_insert = true } },
@@ -93,8 +77,6 @@ return {
         },
       },
 
-      -- Default list of enabled providers defined so that you can extend it
-      -- elsewhere in your config, without redefining it, due to `opts_extend`
       sources = {
         default = function(ctx)
           local success, node = pcall(vim.treesitter.get_node)
@@ -110,10 +92,12 @@ return {
             return { "lsp", "path", "ultisnips" }
           end
         end,
+        min_keyword_length = 2,
         providers = {
           ultisnips = {
             name = "ultisnips",
             module = "blink.compat.source",
+            score_offset = -1,
             opts = {
               entry_filter = function(entry, ctx)
                 local context = require("cmp.config.context")
@@ -127,6 +111,7 @@ return {
           vimtex = {
             name = "vimtex",
             module = "blink.compat.source",
+            min_keyword_length = 1,
           },
           latex_symbols = {
             name = "latex_symbols",
@@ -135,6 +120,10 @@ return {
           dap = {
             name = "dap",
             module = "blink.compat.source",
+          },
+          buffer = {
+            score_offset = 10,
+            min_keyword_length = 5,
           },
         },
       },
