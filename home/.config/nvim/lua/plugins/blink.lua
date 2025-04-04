@@ -66,6 +66,7 @@ return {
         list = { selection = { preselect = false, auto_insert = true } },
         ghost_text = { enabled = true },
         keyword = { range = "prefix" },
+        trigger = { },
         menu = {
           draw = {
             treesitter = { "lsp" },
@@ -86,8 +87,10 @@ return {
             return { "lsp", "path" }
           elseif vim.bo.filetype == "dap-repl" then
             return { "dap" }
+          elseif vim.bo.filetype == "julia" then
+            return { "lsp", "ultisnips", "path", "latex_symbols" }
           elseif vim.bo.filetype == "tex" then
-            return { "vimtex", "ultisnips", "path", "latex_symbols", "buffer" }
+            return { "vimtex", "ultisnips", "path", "buffer" }
           else
             return { "lsp", "path", "ultisnips" }
           end
@@ -97,7 +100,7 @@ return {
           ultisnips = {
             name = "ultisnips",
             module = "blink.compat.source",
-            score_offset = -1,
+            score_offset = 1,
             opts = {
               entry_filter = function(entry, ctx)
                 local context = require("cmp.config.context")
@@ -111,6 +114,7 @@ return {
           vimtex = {
             name = "vimtex",
             module = "blink.compat.source",
+            score_offset = 5,
             min_keyword_length = 1,
           },
           latex_symbols = {
@@ -122,7 +126,7 @@ return {
             module = "blink.compat.source",
           },
           buffer = {
-            score_offset = 10,
+            score_offset = -100,
             min_keyword_length = 5,
           },
         },
