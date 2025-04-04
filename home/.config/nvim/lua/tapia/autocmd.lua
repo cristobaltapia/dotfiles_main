@@ -22,3 +22,10 @@ vim.api.nvim_create_autocmd({ "User" }, {
   group = asyncrun_group,
   command = "copen | clast | wincmd k",
 })
+
+vim.api.nvim_create_autocmd({ "InsertLeave" }, {
+  pattern = { "*" },
+  desc = "Reload folding every time insert mode is left.",
+  command = "set foldmethod=expr"
+
+})
