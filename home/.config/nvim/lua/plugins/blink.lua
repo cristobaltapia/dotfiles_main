@@ -9,6 +9,11 @@ return {
     opts = {},
   },
   {
+    "hrsh7th/nvim-cmp",
+    name = "nvim-cmp",
+    enabled = false,
+  },
+  {
     "saghen/blink.cmp",
 
     -- optional: provides snippets for the snippet source
