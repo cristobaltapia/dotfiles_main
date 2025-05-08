@@ -9,10 +9,10 @@ return {
   },
   -- Mason
   {
-    "williamboman/mason-lspconfig.nvim",
+    "mason-org/mason-lspconfig.nvim",
     dependencies = {
       {
-        "williamboman/mason.nvim",
+        "mason-org/mason.nvim",
         build = function()
           pcall(vim.cmd, "MasonUpdate")
         end,

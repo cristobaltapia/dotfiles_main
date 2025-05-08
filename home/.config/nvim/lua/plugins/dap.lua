@@ -53,19 +53,6 @@ return {
       -- The configurations for each filetype are defined in the respective after/ftplugin subdir.
       --
 
-      -- Autocompletion for the REPL
-      -- require("cmp").setup({
-      --   enabled = function()
-      --     return vim.api.nvim_get_option_value("buftype", {}) ~= "prompt" or require("cmp_dap").is_dap_buffer()
-      --   end,
-      -- })
-      --
-      -- require("cmp").setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
-      --   sources = {
-      --     { name = "dap" },
-      --   },
-      -- })
-
       -- Define listeners for opening and closing the REPL
       local fts = { "python", "rust" }
       for _, ft in pairs(fts) do
