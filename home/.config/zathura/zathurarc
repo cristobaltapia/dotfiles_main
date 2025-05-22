@@ -15,17 +15,20 @@ set index-bg "#1e222a"
 set window-title-home-tilde false
 set window-title-basename false
 
-map N navigate next
-map R navigate previous
+map <C-n> navigate next
+map <C-r> navigate previous
 
 map <C-c> recolor
 map <C-s> toggle_statusbar
-map <C-r> rotate rotate-cw
+map <C-a> rotate rotate-cw
 
 map <C-i> zoom in
 map <C-e> zoom out
 
 map i toggle_index
+
+map n search forward
+map N search backward
 
 map [index] i toggle_index
 map [index] t navigate_index collapse
