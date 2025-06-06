@@ -157,7 +157,7 @@ return {
   {
     "danymat/neogen",
     keys = {
-      { "<leader>ds", "<cmd>Neogen func<cr>",  desc = "Generate func docstrings" },
+      { "<leader>ds", "<cmd>Neogen func<cr>", desc = "Generate func docstrings" },
       { "<leader>dc", "<cmd>Neogen class<cr>", desc = "Generate class docstrings" },
     },
     config = function()
@@ -191,7 +191,7 @@ return {
     branch = "main",
     event = { "BufReadPre", "BufNewFile" },
     keys = {
-      { "<leader>m",  ":lua MiniFiles.open()<cr>",          "n" },
+      { "<leader>m", ":lua MiniFiles.open()<cr>", "n" },
       { "<leader>gd", ":lua MiniDiff.toggle_overlay()<cr>", "n" },
     },
     config = function()
@@ -424,25 +424,27 @@ Typst.
         support_paste_from_clipboard = false,
       },
       provider = "claude",
-      claude = {
-        disable_tools = false,
-        endpoint = "https://api.anthropic.com",
-        model = "claude-3-5-sonnet-20241022",
-        temperature = 0,
-        max_tokens = 4096,
-      },
-      file_selector = {
-        provider = "telescope",
-        provider_opts = {
-          find_command = { "rg", "--files", "--hidden", "-g", "!.git" }
-        }
-      },
-      vendors = {
+      providers = {
+        claude = {
+          disable_tools = false,
+          endpoint = "https://api.anthropic.com",
+          model = "claude-3-5-sonnet-20241022",
+          extra_request_body = {
+            max_tokens = 4096,
+            temperature = 0,
+          },
+        },
         mistral = {
           __inherited_from = "openai",
           endpoint = "https://api.mistral.ai/v1",
           api_key_name = "MISTRAL_API_KEY",
           model = "codestral-latest",
+        },
+      },
+      file_selector = {
+        provider = "telescope",
+        provider_opts = {
+          find_command = { "rg", "--files", "--hidden", "-g", "!.git" },
         },
       },
       hints = { enabled = false },

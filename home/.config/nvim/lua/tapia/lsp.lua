@@ -139,10 +139,26 @@ vim.lsp.config.cssls = {
   },
 }
 
+local language_id_mapping = {
+  bib = "bibtex",
+  pandoc = "markdown",
+  plaintex = "tex",
+  mail = "tex",
+  rnoweb = "rsweave",
+  rst = "restructuredtext",
+  tex = "latex",
+  text = "plaintext",
+}
+
+local function get_language_id(_, filetype)
+  return language_id_mapping[filetype] or filetype
+end
+
 --- Ltex-plus (grammar check)
 vim.lsp.config.ltex_plus = {
   cmd = { "ltex-ls-plus" },
   filetypes = { "markdown", "plaintex", "rst", "tex", "pandoc", "typst", "mail" },
+  get_language_id = get_language_id,
   settings = {
     ltex = {
       language = "en-US",
