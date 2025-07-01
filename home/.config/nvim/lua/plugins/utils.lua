@@ -340,7 +340,8 @@ the german language, and can use this knowledge to improve the readability and
 style of sentences, paragraphs and whole documents. You also understand
 perfectly the best practices for the LaTeX typesetting system, as well as for
 Typst.
-          ]] },
+          ]],
+        },
         providers = {
           -- anthropic = {
           --   api_key = api_anthropic,
@@ -348,19 +349,20 @@ Typst.
           openai = {
             api_key = os.getenv("OPENAI_API_KEY"),
             topic = {
-              model = "o1-2024-12-17"
-            }
+              model = "o1-2024-12-17",
+            },
           },
           mistral = {
             api_key = os.getenv("MISTRAL_API_KEY"),
             endpoint = "https://api.mistral.ai/v1/chat/completions",
             topic = {
-              model = "mistral-large-latest"
-            }
+              model = "mistral-large-latest",
+            },
           },
         },
         chat_shortcut_respond = {
-          modes = { "n", "i", "v", "x" }, shortcut = "<C-g><C-g>"
+          modes = { "n", "i", "v", "x" },
+          shortcut = "<C-g><C-g>",
         },
         hooks = {
           GrammarGerman = correct_german,
