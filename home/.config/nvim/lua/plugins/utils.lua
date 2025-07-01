@@ -327,6 +327,39 @@ n-dash.
         -- prt.ChatNew(params, chat_prompt)
       end
 
+
+      local function translate_to_german(prt, params)
+        local chat_prompt = [[
+Translate the following scientific text from English to German. The text is
+formatted in {{filetype}}—preserve all formatting exactly as in the original.
+Use clear, concise German. Long sentences are allowed, but use them sparingly.
+Prioritize readability, precision, and scientific but accessible tone. Write
+one sentence per line in the output.
+
+Use special notation for symbols where appropriate for the file type (e.g., --
+for an en dash in LaTeX instead of UTF-8 –).
+
+```{{filetype}}
+{{selection}}
+```
+
+Respond with the following format:
+
+```
+# Edited text
+
+(new text)
+```
+
+Do not include comments or explanations—only the translated version in the
+format above.
+]]
+        local model_obj = prt.get_model("command")
+        prt.Prompt(params, prt.ui.Target.popup, model_obj, nil, chat_prompt)
+        -- prt.ChatNew(params, chat_prompt)
+      end
+
+
       local conf = {
         -- For customization, refer to Install > Configuration in the Documentation/Readme
         chat_free_cursor = true,
@@ -367,11 +400,12 @@ Typst.
         hooks = {
           GrammarGerman = correct_german,
           GrammarEnglish = correct_english,
+          TranslateToGerman = translate_to_german,
         },
       }
       require("parrot").setup(conf)
 
-      -- Setup shortcuts here (see Usage > Shortcuts in the Documentation/Readme)
+      vim.cmd("PrtProvider openai")
     end,
   },
   -- Avante nvim
