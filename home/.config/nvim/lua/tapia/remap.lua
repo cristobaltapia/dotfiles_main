@@ -1,4 +1,6 @@
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+-- Delete default LSP keymap
+vim.keymap.del("i", "<C-S>")
 
 -- Allow to move lines in visual mode
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
