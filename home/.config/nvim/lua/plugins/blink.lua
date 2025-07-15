@@ -42,17 +42,19 @@ return {
         preset = "default",
         ["<C-n>"] = { "show", "select_next", "fallback" },
         ["<C-c>"] = { "cancel" },
-        ["<C-space>"] = {
-          function()
-            local blink = require("blink-cmp")
-            if blink.is_visible() then
-              -- Insert text if the selection is a path and replace otherwise.
-              blink.select_and_accept()
-            else
-              vim.fn["UltiSnips#ExpandSnippet"]()
-            end
-          end,
-        },
+        ["<C-space>"] = false,
+        -- ["<C-space>"] = {
+        --   function()
+        --     local blink = require("blink-cmp")
+        --     -- if blink.is_visible() then
+        --     if blink.is_menu_visible() then
+        --       -- Insert text if the selection is a path and replace otherwise.
+        --       blink.select_and_accept()
+        --     else
+        --       vim.cmd("call UltiSnips#ExpandSnippet()")
+        --     end
+        --   end,
+        -- },
       },
 
       appearance = {
@@ -66,13 +68,13 @@ return {
         list = { selection = { preselect = false, auto_insert = true } },
         ghost_text = { enabled = true },
         keyword = { range = "prefix" },
-        trigger = { },
+        trigger = {},
         menu = {
           draw = {
             treesitter = { "lsp" },
             columns = {
-              { "label", "label_description", gap = 1 },
-              { "kind_icon", "kind", gap = 1 },
+              { "label",     "label_description", gap = 1 },
+              { "kind_icon", "kind",              gap = 1 },
             },
           },
         },
@@ -106,8 +108,8 @@ return {
                 local context = require("cmp.config.context")
                 local in_capture = context.in_treesitter_capture
                 return not in_capture("comment")
-                  and not in_capture("string.documentation")
-                  and not context.in_syntax_group("Comment")
+                    and not in_capture("string.documentation")
+                    and not context.in_syntax_group("Comment")
               end,
             },
           },
