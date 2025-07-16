@@ -101,6 +101,10 @@ return {
         end,
         min_keyword_length = 2,
         providers = {
+          lsp = {
+            timeout_ms = 1000,
+            async = true,
+          },
           ultisnips = {
             name = "ultisnips",
             module = "blink.compat.source",
