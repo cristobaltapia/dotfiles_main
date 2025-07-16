@@ -39,10 +39,12 @@ return {
     opts = {
       -- See :h blink-cmp-config-keymap for defining your own keymap
       keymap = {
-        preset = "default",
+        preset = "none",
         ["<C-n>"] = { "show", "select_next", "fallback" },
         ["<C-c>"] = { "cancel" },
-        ["<C-space>"] = false,
+        ["<C-b>"] = { "scroll_documentation_up", "fallback" },
+        ["<C-f>"] = { "scroll_documentation_down", "fallback" },
+        ["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
         -- ["<C-space>"] = {
         --   function()
         --     local blink = require("blink-cmp")

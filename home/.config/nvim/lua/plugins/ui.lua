@@ -110,6 +110,12 @@ return {
       set("x", "<leader>T", function() mc.transposeCursors(-1) end)
       -- stylua: ignore end
 
+      vim.keymap.set("n", "<leader>cc", function()
+        mc.addCursor("w")
+      end)
+
+      set({ "n", "x" }, "<c-q>", mc.toggleCursor)
+
       -- Mappings defined in a keymap layer only apply when there are
       -- multiple cursors. This lets you have overlapping mappings.
       mc.addKeymapLayer(function(layerSet)
@@ -185,13 +191,13 @@ return {
     "christoomey/vim-tmux-navigator",
     lazy = true,
     keys = {
-      { "<A-h>", "<cmd>TmuxNavigateLeft<cr>", "n", { silent = true } },
-      { "<A-j>", "<cmd>TmuxNavigateDown<cr>", "n", { silent = true } },
-      { "<A-k>", "<cmd>TmuxNavigateUp<cr>", "n", { silent = true } },
-      { "<A-l>", "<cmd>TmuxNavigateRight<cr>", "n", { silent = true } },
-      { "<A-left>", "<cmd>TmuxNavigateLeft<cr>", "n", { silent = true } },
-      { "<A-down>", "<cmd>TmuxNavigateDown<cr>", "n", { silent = true } },
-      { "<A-up>", "<cmd>TmuxNavigateUp<cr>", "n", { silent = true } },
+      { "<A-h>",     "<cmd>TmuxNavigateLeft<cr>",  "n", { silent = true } },
+      { "<A-j>",     "<cmd>TmuxNavigateDown<cr>",  "n", { silent = true } },
+      { "<A-k>",     "<cmd>TmuxNavigateUp<cr>",    "n", { silent = true } },
+      { "<A-l>",     "<cmd>TmuxNavigateRight<cr>", "n", { silent = true } },
+      { "<A-left>",  "<cmd>TmuxNavigateLeft<cr>",  "n", { silent = true } },
+      { "<A-down>",  "<cmd>TmuxNavigateDown<cr>",  "n", { silent = true } },
+      { "<A-up>",    "<cmd>TmuxNavigateUp<cr>",    "n", { silent = true } },
       { "<A-right>", "<cmd>TmuxNavigateRight<cr>", "n", { silent = true } },
     },
     init = function()
