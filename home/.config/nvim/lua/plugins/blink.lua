@@ -40,6 +40,7 @@ return {
       -- See :h blink-cmp-config-keymap for defining your own keymap
       keymap = {
         preset = "none",
+        ["<C-p>"] = { "show", "select_prev", "fallback" },
         ["<C-n>"] = { "show", "select_next", "fallback" },
         ["<C-c>"] = { "cancel" },
         ["<C-b>"] = { "scroll_documentation_up", "fallback" },
