@@ -44,7 +44,7 @@ return {
     opts = {
       defaults = {
         scroll_strategy = "limit",
-        border = false,
+        border = true,
         winblend = 30,
         sorting_strategy = "ascending",
         layout_strategy = "vertical",
