@@ -34,7 +34,7 @@ return {
           "fortls",
           "html",
           "jsonls",
-          "julials",
+          -- "julials",
           "ltex",
           "lua_ls",
           "marksman",
@@ -128,10 +128,10 @@ return {
   {
     "ray-x/lsp_signature.nvim",
     lazy = true,
-    event = "VeryLazy",
-    config = function(_, opts)
-      require("lsp_signature").setup(opts)
-    end,
+    event = "InsertEnter",
+    -- config = function(_, opts)
+    --   require("lsp_signature").setup(opts)
+    -- end,
     opts = {
       bind = true, -- This is mandatory, otherwise border config won't get registered.
       hint_enable = true,
