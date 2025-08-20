@@ -12,6 +12,9 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- This keymap conflicts with my keymap for autocorrecting text
+vim.keymap.del("s", "<C-S>")
+
 -- Define the leader key
 vim.g.mapleader = ","
 vim.g.maplocalleader = ","
