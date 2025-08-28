@@ -17,6 +17,8 @@ function start_debugger()
 
     conn = Sockets.accept(server)
     debugsession = DebugAdapter.DebugSession(conn)
+    params = DebugAdapter.SetCompiledItemsArguments(["ALL_MODULES_EXCEPT_MAIN"])
+    DebugAdapter.set_compiled_items_request(debugsession, params)
 
     run(debugsession)
 
