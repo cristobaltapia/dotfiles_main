@@ -35,6 +35,9 @@ return {
       -- Install parsers synchronously (only applied to `ensure_installed`)
       sync_install = false,
       auto_install = false,
+      indent = {
+        enable = false,
+      },
       highlight = {
         enable = true,
         disable = { "tex" },
