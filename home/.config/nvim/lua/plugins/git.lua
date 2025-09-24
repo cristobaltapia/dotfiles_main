@@ -2,7 +2,7 @@ return {
   -- Fugitive
   {
     "tpope/vim-fugitive",
-    cmd = {"G", "Gdiffsplit"},
+    cmd = { "G", "Gdiffsplit" },
     keys = {
       { "<leader>gs", vim.cmd.Git },
       { "<leader>gc", "<cmd>Git commit<cr>" },
@@ -26,6 +26,12 @@ return {
         end,
       })
       vim.api.nvim_set_hl(0, "GitSignsAddLn", { fg = "#434c5e", bg = "#a3be8c" })
+    end,
+  },
+  {
+    "sindrets/diffview.nvim",
+    config = function(_, opts)
+      require("diffview").setup({})
     end,
   },
 }
