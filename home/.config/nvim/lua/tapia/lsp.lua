@@ -87,7 +87,9 @@ vim.lsp.config.tinymist = {
   filetypes = { "typst" },
   settings = {
     exportPdf = "never",
-    semanticTokens = "disable",
+    systemFonts = false,
+    semanticTokens = "enable",
+    projectResolution = "singleFile",
   },
 }
 
