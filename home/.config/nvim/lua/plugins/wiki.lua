@@ -7,7 +7,6 @@ return {
       { "lervag/wiki-ft.vim" },
       { "nabla" },
     },
-    -- tag = "v0.8",
     lazy = true,
     cmd = "WikiIndex",
     init = function()
@@ -40,7 +39,7 @@ return {
     end,
   },
   {
-    "dkarter/bullets.vim",
+    "bullets-vim/bullets.vim",
     ft = {
       "gitcommit",
       "mail",
