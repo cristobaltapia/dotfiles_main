@@ -187,7 +187,7 @@ return {
   },
   -- Mini.nvim plugins
   {
-    "echasnovski/mini.nvim",
+    "nvim-mini/mini.nvim",
     branch = "main",
     event = { "BufReadPre", "BufNewFile" },
     keys = {
@@ -225,7 +225,7 @@ return {
     end,
   },
   {
-    "echasnovski/mini.notify",
+    "nvim-mini/mini.notify",
     version = false,
     ft = { "julia", "rust" },
     config = function()
@@ -274,6 +274,36 @@ Korrigiere den folgenden Text auf Deutsch (der Text ist ein
 {{filetype}} Dokument). Prüfe auf Stil und grammatikalische
 Fehler. Der Text soll wissenschaftlich sein, aber relativ einfach
 zu lesen. Nebensätze sind erlaubt. Schreib einen Satz pro Zeile:
+
+{{selection}}
+
+Antworte im folgenden Format:
+
+```
+# New text
+
+(new text)
+```
+
+Antworte ohne extra Kommentare, nur mit dem Korrigierten Text im
+oben genannten Format!!!
+Eine spezielle Notation von Symbolen wird bevorzugt gegenüber dem
+UTF-8-Code, wenn dies für den Dateityp angemessen ist. Zum
+Beispiel in LaTeX '--' für einen n-Gedankenstrich verwenden.
+            ]]
+        local model_obj = prt.get_model("command")
+        prt.Prompt(params, prt.ui.Target.popup, model_obj, nil, chat_prompt)
+        -- prt.ChatNew(params, chat_prompt)
+      end
+
+      local function corretc_german_presentation(prt, params)
+        local chat_prompt = [[
+Korrigiere den folgenden deutschen Text (ein {{filetype}}-Dokument). Achte auf
+Grammatik, Rechtschreibung und einen gut lesbaren Stil. Der Text soll
+wissenschaftlich korrekt, aber sprachlich vereinfacht und gut verständlich
+sein. Er wird mündlich in einer Präsentation vorgetragen. Verwende möglichst
+einfache, klare Sätze und vermeide komplizierte Fachsprache, wenn möglich. Gib
+den überarbeiteten Text mit einem vollständigen Satz pro Zeile aus.
 
 {{selection}}
 
@@ -360,7 +390,6 @@ format above.
         -- prt.ChatNew(params, chat_prompt)
       end
 
-
       local conf = {
         -- For customization, refer to Install > Configuration in the Documentation/Readme
         chat_free_cursor = true,
@@ -400,6 +429,7 @@ Typst.
         },
         hooks = {
           GrammarGerman = correct_german,
+          GrammarGermanPresentation = corretc_german_presentation,
           GrammarEnglish = correct_english,
           TranslateToGerman = translate_to_german,
         },
@@ -456,6 +486,10 @@ Typst.
       },
       windows = {
         width = 40,
+        input = {
+          prefix = "> ",
+          height = 15, -- Height of the input window in vertical layout
+        },
       },
       mappings = {
         --- @class AvanteConflictMappings
