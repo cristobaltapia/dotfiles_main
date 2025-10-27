@@ -157,7 +157,7 @@ return {
   {
     "danymat/neogen",
     keys = {
-      { "<leader>ds", "<cmd>Neogen func<cr>", desc = "Generate func docstrings" },
+      { "<leader>ds", "<cmd>Neogen func<cr>",  desc = "Generate func docstrings" },
       { "<leader>dc", "<cmd>Neogen class<cr>", desc = "Generate class docstrings" },
     },
     config = function()
@@ -191,7 +191,7 @@ return {
     branch = "main",
     event = { "BufReadPre", "BufNewFile" },
     keys = {
-      { "<leader>m", ":lua MiniFiles.open()<cr>", "n" },
+      { "<leader>m",  ":lua MiniFiles.open()<cr>",          "n" },
       { "<leader>gd", ":lua MiniDiff.toggle_overlay()<cr>", "n" },
     },
     config = function()
@@ -316,11 +316,12 @@ Respond with the following format:
 (new text)
 ```
 
+Write the text in the original format ({{filetype}}).
+
 Do not respond with any type of comments, just the corrected
 version in the specified format!
 Special notation of symbols is preferred over the utf-8 code if
-appropriate for the type of file. E.g. in latex use '--' for an
-n-dash.
+appropriate for the type of file. E.g. use '--' for an n-dash.
             ]]
         local model_obj = prt.get_model("command")
         prt.Prompt(params, prt.ui.Target.popup, model_obj, nil, chat_prompt)
@@ -382,7 +383,7 @@ Typst.
           openai = {
             api_key = os.getenv("OPENAI_API_KEY"),
             topic = {
-              model = "o1-2024-12-17",
+              model = "gpt-5",
             },
           },
           mistral = {
@@ -449,6 +450,10 @@ Typst.
         },
       },
       hints = { enabled = false },
+      selection = {
+        enabled = false,
+        hint_display = "delayed",
+      },
       windows = {
         width = 40,
       },
