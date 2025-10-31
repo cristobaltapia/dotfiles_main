@@ -358,7 +358,6 @@ appropriate for the type of file. E.g. use '--' for an n-dash.
         -- prt.ChatNew(params, chat_prompt)
       end
 
-
       local function translate_to_german(prt, params)
         local chat_prompt = [[
 Translate the following scientific text from English to German. The text is
