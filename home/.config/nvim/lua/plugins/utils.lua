@@ -455,7 +455,17 @@ Typst.
         auto_apply_diff_after_generation = false,
         support_paste_from_clipboard = false,
       },
-      provider = "claude",
+      provider = "claude-code",
+      acp_providers = {
+        ["claude-code"] = {
+          command = "npx",
+          args = { "@zed-industries/claude-code-acp" },
+          env = {
+            NODE_NO_WARNINGS = "1",
+            ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY"),
+          },
+        },
+      },
       providers = {
         claude = {
           disable_tools = false,
