@@ -80,9 +80,19 @@ if dap_ok then
       -- Set configuration to run pytest
       type = "python",
       request = "launch",
-      name = "Pytest",
+      name = "Pytest (all)",
       module = "pytest",
       args = { "--color=yes", "tests" },
+      redirectOutput = true,
+      pythonPath = get_python_path,
+    },
+    {
+      -- Set configuration to run pytest
+      type = "python",
+      request = "launch",
+      name = "Pytest (current file)",
+      module = "pytest",
+      args = { "--color=yes", "${file}" },
       redirectOutput = true,
       pythonPath = get_python_path,
     },
