@@ -419,9 +419,9 @@ Typst.
         auto_apply_diff_after_generation = false,
         support_paste_from_clipboard = false,
       },
-      provider = "claude-code",
+      provider = "claude",
       acp_providers = {
-        ["claude-code"] = {
+        claude = {
           command = "npx",
           args = { "@zed-industries/claude-code-acp" },
           env = {
