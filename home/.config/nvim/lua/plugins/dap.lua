@@ -1,6 +1,7 @@
 return {
   {
     "mfussenegger/nvim-dap",
+    version = "0.10.0",
     ft = { "python", "julia" },
     keys = {
       {
@@ -73,6 +74,7 @@ return {
   },
   {
     "rcarriga/nvim-dap-ui",
+    version = "v4.0.0",
     dependencies = {
       "mfussenegger/nvim-dap",
       "nvim-neotest/nvim-nio",

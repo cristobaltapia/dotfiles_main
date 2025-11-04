@@ -106,58 +106,13 @@ return {
   --         { "q",       nil,              { exit = true } },
   --       },
   --     })
-  --
-  --     local ltex_ft = { "bib", "gitcommit", "markdown", "org", "plaintex", "rst", "rnoweb", "tex", "pandoc", "typst" }
-  --     -- Change language for ltex
-  --     Hydra({
-  --       name = "Change Ltex language",
-  --       hint = hint_ltex,
-  --       config = {
-  --         color = "teal",
-  --         invoke_on_body = true,
-  --         hint = {
-  --           border = "rounded",
-  --         },
-  --         on_enter = function()
-  --           vim.o.virtualedit = "all"
-  --         end,
-  --       },
-  --       mode = "n",
-  --       body = "<leader>hl",
-  --       heads = {
-  --         {
-  --           "e",
-  --           function()
-  --             require("lspconfig").ltex_plus.setup({ filetypes = ltex_ft, settings = { ltex = { language = "en-US" } } })
-  --             vim.opt.spelllang = "en_us"
-  --           end,
-  --           { exit_before = true },
-  --         },
-  --         {
-  --           "d",
-  --           function()
-  --             require("lspconfig").ltex_plus.setup({ filetypes = ltex_ft, settings = { ltex = { language = "de-DE" } } })
-  --             vim.opt.spelllang = "de_de"
-  --           end,
-  --           { exit_before = true },
-  --         },
-  --         {
-  --           "s",
-  --           function()
-  --             require("lspconfig").ltex_plus.setup({ filetypes = ltex_ft, settings = { ltex = { language = "es" } } })
-  --             vim.opt.spelllang = "es"
-  --           end,
-  --         },
-  --         { "q", nil, { exit = true } },
-  --       },
-  --     })
-  --   end,
   -- },
   -- Docstrings generator (neogen)
   {
     "danymat/neogen",
+    tag = "2.20.0",
     keys = {
-      { "<leader>ds", "<cmd>Neogen func<cr>",  desc = "Generate func docstrings" },
+      { "<leader>ds", "<cmd>Neogen func<cr>", desc = "Generate func docstrings" },
       { "<leader>dc", "<cmd>Neogen class<cr>", desc = "Generate class docstrings" },
     },
     config = function()
@@ -191,7 +146,7 @@ return {
     branch = "main",
     event = { "BufReadPre", "BufNewFile" },
     keys = {
-      { "<leader>m",  ":lua MiniFiles.open()<cr>",          "n" },
+      { "<leader>m", ":lua MiniFiles.open()<cr>", "n" },
       { "<leader>gd", ":lua MiniDiff.toggle_overlay()<cr>", "n" },
     },
     config = function()
@@ -263,7 +218,7 @@ return {
   -- Parrot
   {
     "frankroeder/parrot.nvim",
-    version = "v1.5.0",
+    version = "v2.5.0",
     config = function()
       local ChatHandler = require("parrot.chat_handler")
 
@@ -405,20 +360,29 @@ Typst.
           ]],
         },
         providers = {
-          -- anthropic = {
-          --   api_key = api_anthropic,
-          -- },
           openai = {
+            name = "openai",
             api_key = os.getenv("OPENAI_API_KEY"),
+            endpoint = "https://api.openai.com/v1/chat/completions",
             topic = {
-              model = "gpt-5",
+              model = "o4-mini",
+            },
+            models = {
+              "gpt-4o",
+              "o4-mini",
+              "gpt-4.1-nano",
             },
           },
           mistral = {
+            name = "mistral",
             api_key = os.getenv("MISTRAL_API_KEY"),
             endpoint = "https://api.mistral.ai/v1/chat/completions",
             topic = {
-              model = "mistral-large-latest",
+              model = "mistral-medium-2508",
+            },
+            models = {
+              "magistral-medium-2509",
+              "mistral-medium-2508",
             },
           },
         },
@@ -442,6 +406,7 @@ Typst.
   {
     "yetone/avante.nvim",
     event = "VeryLazy",
+    tag = "v0.0.27",
     lazy = true,
     cmd = { "AvanteChat", "AvanteAsk" },
     version = false, -- set this if you want to always pull the latest change
