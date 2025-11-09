@@ -13,7 +13,7 @@ if dap_ok then
   local dap = require("dap")
 
   -- Visual debugging for build123d using ocp_vscode
-  dap.listeners.after.event_stopped["auto-print-test"] = function(session, body)
+  dap.listeners.after.event_stopped["build123d-debug"] = function(session, body)
     if session.config.name == "build123d (visual debug)" then
       session:evaluate('from ocp_vscode import show_all, get_port; show_all(locals(), port=get_port(), _visual_debug=True)', function(err, response)
         if err then
