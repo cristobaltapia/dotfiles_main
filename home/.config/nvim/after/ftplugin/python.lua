@@ -12,6 +12,17 @@ local dap_ok, _ = pcall(require, "dap")
 if dap_ok then
   local dap = require("dap")
 
+  -- Visual debugging for build123d using ocp_vscode
+  dap.listeners.after.event_stopped["auto-print-test"] = function(session, body)
+    if session.config.name == "build123d (visual debug)" then
+      session:evaluate('from ocp_vscode import show_all, get_port; show_all(locals(), port=get_port(), _visual_debug=True)', function(err, response)
+        if err then
+          print("Evaluation error: " .. vim.inspect(err))
+        end
+      end, { context = "repl" })
+    end
+  end
+
   dap.adapters.python = function(cb, config)
     if config.request == "attach" then
       local port = (config.connect or config).port
@@ -52,6 +63,23 @@ if dap_ok then
       type = "python",
       request = "launch",
       name = "Launch file",
+      program = "${file}",
+      redirectOutput = true,
+      cwd = function()
+        local cwd = util.root_pattern("pyproject.toml")(vim.fn.getcwd())
+        if cwd then
+          return util.root_pattern("pyproject.toml")(vim.fn.getcwd())
+        else
+          return "."
+        end
+      end,
+      pythonPath = get_python_path,
+    },
+    {
+      -- The first three options are required by nvim-dap
+      type = "python",
+      request = "launch",
+      name = "build123d (visual debug)",
       program = "${file}",
       redirectOutput = true,
       cwd = function()
