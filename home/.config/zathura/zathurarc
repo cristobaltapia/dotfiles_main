@@ -8,8 +8,8 @@ set guioptions none
 set completion-fg "#e5e9f0"
 set completion-highlight-bg "#8fbcbb"
 set completion-highlight-fg "#232323"
-set highlight-color "#8fbcbb"
-set highlight-active-color "#5e81ac"
+set highlight-color "#8fbcbb66"
+set highlight-active-color "#5e81ac66"
 set index-fg "#e5e9f0"
 set index-bg "#1e222a"
 set window-title-home-tilde false
