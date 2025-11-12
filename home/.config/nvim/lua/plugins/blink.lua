@@ -73,7 +73,7 @@ return {
         keyword = { range = "prefix" },
         trigger = {},
         menu = {
-          auto_show_delay_ms = 500,
+          -- auto_show_delay_ms = 500,
           draw = {
             treesitter = { "lsp" },
             columns = {

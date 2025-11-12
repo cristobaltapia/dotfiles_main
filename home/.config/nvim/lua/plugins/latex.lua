@@ -2,6 +2,7 @@ return {
   -- Integration with latex
   {
     "lervag/vimtex",
+    version = "v2.17",
     ft = { "tex", "cls", "sty", "tikz" },
     -- version = "2.13",
     dependencies = {
