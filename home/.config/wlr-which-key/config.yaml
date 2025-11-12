@@ -1,0 +1,66 @@
+# Theming
+font: JetBrainsMono Nerd Font 12
+background: "#434c5ed0"
+color: "#e5e9f0"
+border: "#ebcb8b"
+separator: " ➜ "
+border_width: 3
+corner_r: 12
+padding: 15 # Defaults to corner_r
+rows_per_column: 5 # No limit by default
+column_padding: 25 # Defaults to padding
+
+# Anchor and margin
+anchor: bottom # One of center, left, right, top, bottom, bottom-left, top-left, etc.
+# Only relevant when anchor is not center
+margin_right: 0
+margin_bottom: 0
+margin_left: 0
+margin_top: 0
+
+# namespace to use for the layer shell surface
+#namespace: "wlr_which_key"
+
+menu:
+  - key: "m"
+    desc: Notifications
+    submenu:
+      - key: "Return"
+        desc: Invoce and Dismiss
+        cmd: makoctl invoke && makoctl dismiss
+      - key: "d"
+        desc: Dismiss
+        cmd: makoctl dismiss
+      - key: "D"
+        desc: Dismiss all
+        cmd: makoctl dismiss -a
+      - key: "m"
+        desc: Action
+        cmd: makoctl menu -- fuzzel -d -w 20 -l 5
+  - key: "s"
+    desc: Resize windows
+    submenu:
+      - key: "Up"
+        desc: "Up"
+        cmd: niri msg action set-window-height -10% && wlr-which-key -k s
+      - key: "Down"
+        desc: "Down"
+        cmd: niri msg action set-window-height +10% && wlr-which-key -k s
+  - key: "e"
+    desc: Exit menu
+    submenu:
+      - key: "l"
+        desc: "Lock"
+        cmd: swaylock -f
+      - key: "e"
+        desc: "Exit"
+        cmd: loginctl terminate-user $USER
+      - key: "s"
+        desc: "Suspend"
+        cmd: systemctl suspend
+      - key: "r"
+        desc: "Restart"
+        cmd: systemctl reboot
+      - key: "S"
+        desc: "Shutdown"
+        cmd: systemctl poweroff
