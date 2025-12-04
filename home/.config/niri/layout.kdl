@@ -1,0 +1,88 @@
+layout {
+    // Set gaps around windows in logical pixels.
+    gaps 16
+
+    center-focused-column "on-overflow"
+    always-center-single-column
+
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+        proportion 1.0
+    }
+
+    // You can also customize the heights that "switch-preset-window-height" (Mod+Shift+S) toggles between.
+    preset-window-heights {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+    }
+
+    default-column-width { proportion 0.5; }
+    // To get a stationary background (see respective layer rule)
+    background-color "transparent"
+
+    // You can change how the focus ring looks.
+    focus-ring {
+        width 4
+        // Color of the ring on the active monitor.
+        active-color "#BF616A"
+        // Color of the ring on inactive monitors.
+        inactive-color "#505050"
+    }
+
+    border {
+        // The settings are the same as for the focus ring.
+        // If you enable the border, you probably want to disable the focus ring.
+        off
+
+        width 4
+        active-color "#ffc87f"
+        inactive-color "#ebcb8b"
+
+        // Color of the border around windows that request your attention.
+        urgent-color "#9b0000"
+
+        // Gradients can use a few different interpolation color spaces.
+        // For example, this is a pastel rainbow gradient via in="oklch longer hue".
+        //
+        // active-gradient from="#e5989b" to="#ffb4a2" angle=45 relative-to="workspace-view" in="oklch longer hue"
+
+        // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
+    }
+
+    // You can enable drop shadows for windows.
+    shadow {
+        // Uncomment the next line to enable shadows.
+        on
+        // Softness controls the shadow blur radius.
+        softness 30
+        // Spread expands the shadow.
+        spread 5
+        // Offset moves the shadow relative to the window.
+        offset x=0 y=5
+        // You can also change the shadow color and opacity.
+        color "#0007"
+    }
+
+    tab-indicator {
+        width 15
+        length total-proportion=0.3
+        active-color "#ebcb8b"
+        // inactive-color "#81a1c1"
+        place-within-column
+    }
+
+    // Struts shrink the area occupied by windows, similarly to layer-shell panels.
+    // You can think of them as a kind of outer gaps. They are set in logical pixels.
+    // Left and right struts will cause the next window to the side to always be visible.
+    // Top and bottom struts will simply add outer gaps in addition to the area occupied by
+    // layer-shell panels and regular gaps.
+    struts {
+        left 20
+        right 20
+        // top 64
+        // bottom 64
+    }
+}

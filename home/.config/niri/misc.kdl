@@ -1,0 +1,66 @@
+// Add lines like this to spawn processes at startup.
+// Note that running niri as a session supports xdg-desktop-autostart,
+// which may be more convenient to use.
+// See the binds section below for more spawn examples.
+
+// This line starts waybar, a commonly used bar for Wayland compositors.
+// spawn-at-startup "waybar"
+
+spawn-at-startup "nm-applet"
+spawn-at-startup "nextcloud" "--background"
+
+spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "cursor-theme" "capitaine-cursors"
+
+// xwayland
+// spawn-at-startup "xwayland-satellite"
+
+environment {
+    DISPLAY ":0"
+    ELECTRON_OZONE_PLATFORM_HINT "auto"
+    XDG_CURRENT_DESKTOP "Niri"
+    XDG_SESSION_DESKTOP "Niri"
+    XDG_SESSION_TYPE "wayland"
+    DESKTOP_SESSION "niri"
+    MOZ_ENABLE_WAYLAND "1"
+    ELECTRON_OZONE_PLATFORM_HINT "wayland"
+    CLUTTER_BACKEND "wayland"
+    SDL_VIDEODRIVER "wayland"
+    QT_QPA_PLATFORM "wayland;xcb"
+    QT_QPA_PLATFORMTHEME "qt6ct"
+    QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
+    QT_SCALE_FACTOR "1"
+    QT_AUTO_SCREEN_SCALE_FACTOR "1"
+    GDK_SCALE "1"
+    GDK_BACKEND "wayland"
+    GTK_USE_PORTAL "1"
+    WLR_NO_HARDWARE_CURSORS "1"
+}
+
+cursor {
+    xcursor-theme "capitaine-cursors"
+}
+
+// Disable CSD
+prefer-no-csd
+
+// You can change the path where screenshots are saved.
+// A ~ at the front will be expanded to the home directory.
+// The path is formatted with strftime(3) to give you the screenshot date and time.
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+// You can also set this to null to disable saving screenshots to disk.
+// screenshot-path null
+
+// Animation settings.
+// The wiki explains how to configure individual animations:
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Animations
+animations {
+    // Uncomment to turn off all animations.
+    // off
+
+    // Slow down all animations by this factor. Values below 1 speed them up instead.]
+}
+
+hotkey-overlay {
+    skip-at-startup
+}

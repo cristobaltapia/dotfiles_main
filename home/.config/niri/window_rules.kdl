@@ -1,0 +1,196 @@
+// Window rules let you adjust behavior for individual windows.
+// Find more information on the wiki:
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
+
+// Work around WezTerm's initial configure bug
+// by setting an empty default-column-width.
+window-rule {
+    // This regular expression is intentionally made as specific as possible,
+    // since this is the default config, and we want no false positives.
+    // You can get away with just app-id="wezterm" if you want.
+    match app-id=r#"^org\.wezfurlong\.wezterm$"#
+    default-column-width {}
+}
+
+window-rule {
+    match is-floating=true
+    default-floating-position x=0 y=50 relative-to="top"
+    default-window-height { proportion 0.75; }
+
+    focus-ring {
+        active-color "#a3be8c"
+    }
+}
+
+// Mark screencasted window
+window-rule {
+    match is-window-cast-target=true
+
+    focus-ring {
+        active-color "#f38ba8"
+        inactive-color "#7d0d2d"
+    }
+
+    border {
+        inactive-color "#7d0d2d"
+    }
+
+    shadow {
+        color "#7d0d2d70"
+    }
+
+    tab-indicator {
+        active-color "#f38ba8"
+        inactive-color "#7d0d2d"
+    }
+}
+
+// Open the Firefox picture-in-picture player as floating by default.
+window-rule {
+    // This app-id regular expression will work for both:
+    // - host Firefox (app-id is "firefox")
+    // - Flatpak Firefox (app-id is "org.mozilla.firefox")
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    open-floating true
+}
+
+window-rule {
+    match app-id="firefox"
+    default-column-width { proportion 0.75; }
+}
+
+window-rule {
+    match app-id="org.gnome.Evolution"
+    open-maximized true
+}
+
+window-rule {
+    match app-id="Pinentry-gtk"
+    match app-id="org.gnome.PowerStats"
+    match app-id="localsend"
+    match app-id="com.github.wwmm.easyeffects"
+    match app-id="org.raspberrypi.rpi-imager"
+    open-floating true
+}
+
+window-rule {
+    match app-id="footclient" title="compose-message"
+    default-column-width { proportion 0.45; }
+    default-window-height { proportion 0.65; }
+    open-floating true
+}
+
+window-rule {
+    match app-id="org.gnome.Evolution" title="Evolution Preferences"
+    default-column-width { proportion 0.55; }
+    default-window-height { proportion 0.85; }
+}
+
+window-rule {
+    match app-id="org.gnome.Evolution" title=r#"Compose Message|Appointment — .*|Assigned Task — .*|Meeting — .*|Re: .*"#
+    open-floating true
+    default-window-height { proportion 0.75; }
+    default-column-width { proportion 0.55; }
+}
+
+window-rule {
+    match app-id="blueman-manager"
+    open-floating true
+    default-window-height { proportion 0.65; }
+}
+
+window-rule {
+    match app-id="nm-connection-editor"
+    open-floating true
+    default-window-height { proportion 0.75; }
+}
+
+window-rule {
+    match app-id="foot" title="Pubs edit"
+    open-floating true
+    default-window-height { proportion 0.6; }
+    default-column-width { proportion 0.50; }
+}
+
+window-rule {
+    match app-id="rofi-pubs" title="Wofi-pubs"
+    open-floating true
+    default-window-height { proportion 0.15; }
+    default-column-width { proportion 0.20; }
+}
+
+window-rule {
+    match app-id="footclient" title="vimwiki"
+    open-floating true
+    default-window-height { proportion 0.85; }
+    default-column-width { proportion 0.50; }
+}
+
+window-rule {
+    match app-id="blender"
+    match app-id="prusa-slicer"
+    match app-id="gimp"
+    match app-id="librecad"
+    match app-id="org.inkscape.Inkscape"
+    match app-id="PrusaSlicer"
+    match app-id="org.freecad.FreeCAD"
+    match app-id="steam"
+    match title=r#"^CQ-Editor:.*$"#
+    open-maximized true
+}
+
+window-rule {
+    match app-id="blender" title="Preferences"
+    open-floating true
+    default-column-width { proportion 0.65; }
+    default-window-height { proportion 0.65; }
+}
+
+// Solvespace
+window-rule {
+    match app-id="solvespace"
+    open-maximized true
+}
+
+window-rule {
+    match app-id="solvespace" title="Property Browser — SolveSpace"
+    open-floating true
+    default-floating-position x=0 y=0 relative-to="top-right"
+    border {
+        on
+        inactive-color "#88c0d0"
+    }
+}
+
+// FreeCAD
+window-rule {
+    match app-id="org.freecad.FreeCAD" title="Unsaved Document"
+    open-floating true
+}
+
+// Example: block out two password managers from screen capture.
+// (This example rule is commented out with a "/-" in front.)
+/-window-rule {
+    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
+    match app-id=r#"^org\.gnome\.World\.Secrets$"#
+
+    block-out-from "screen-capture"
+
+    // Use this instead if you want them visible on third-party screenshot tools.
+    // block-out-from "screencast"
+}
+
+// Example: enable rounded corners for all windows.
+// (This example rule is commented out with a "/-" in front.)
+window-rule {
+    geometry-corner-radius 12
+    clip-to-geometry true
+}
+
+layer-rule {
+    // This is for swaybg; change for other wallpaper tools.
+    // Find the right namespace by running niri msg layers.
+    match namespace="^wallpaper$"
+    place-within-backdrop true
+}
+

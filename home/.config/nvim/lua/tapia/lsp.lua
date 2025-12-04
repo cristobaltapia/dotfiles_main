@@ -87,19 +87,22 @@ vim.lsp.config.tinymist = {
   filetypes = { "typst" },
   settings = {
     exportPdf = "never",
-    systemFonts = false,
+    -- systemFonts = false,
     semanticTokens = "enable",
     projectResolution = "singleFile",
+    syntaxOnly = "enable",
   },
 }
 
 --- Julia
 vim.lsp.config.julials = {
-  cmd = { "julia",
+  cmd = {
+    "julia",
     "--startup-file=no",
     "--project=" .. "~/.julia/environments/lsp/",
     "--history-file=no",
-    "-e", [[
+    "-e",
+    [[
       using Pkg
       Pkg.instantiate()
       using LanguageServer
@@ -125,7 +128,8 @@ vim.lsp.config.julials = {
                   server = LanguageServer.LanguageServerInstance(stdin, stdout, project_path, depot_path)
       server.runlinter = true
       run(server)
-  ]] },
+  ]],
+  },
   filetypes = { "julia" },
   root_markers = { "Project.toml" },
 }

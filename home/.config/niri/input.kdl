@@ -1,0 +1,47 @@
+// Input device configuration.
+// Find the full list of options on the wiki:
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Input
+input {
+    keyboard {
+        xkb {
+            layout "de"
+        }
+        
+    // repeat-delay 1000
+    // repeat-rate 20
+    }
+
+    touchpad {
+        tap
+        dwt
+        drag true
+        natural-scroll
+        accel-speed 0.2
+        accel-profile "adaptive"
+        scroll-method "two-finger"
+        // disabled-on-external-mouse
+    }
+
+    mouse {
+        accel-speed 0.6
+        accel-profile "flat"
+    }
+
+    trackpoint {
+        off
+        // natural-scroll
+        // accel-speed 0.2
+        // accel-profile "flat"
+        // scroll-method "on-button-down"
+        // scroll-button 273
+        // middle-emulation
+    }
+
+    warp-mouse-to-focus
+}
+
+gestures {
+    hot-corners {
+        off
+    }
+}
