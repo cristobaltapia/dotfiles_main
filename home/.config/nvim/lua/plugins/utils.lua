@@ -435,10 +435,10 @@ Typst.
         claude = {
           disable_tools = false,
           endpoint = "https://api.anthropic.com",
-          model = "claude-3-5-sonnet-20241022",
+          model = "claude-sonnet-4-5-20250929",
           extra_request_body = {
-            max_tokens = 4096,
-            temperature = 0,
+            temperature = 0.75,
+            max_tokens = 20480,
           },
         },
         mistral = {

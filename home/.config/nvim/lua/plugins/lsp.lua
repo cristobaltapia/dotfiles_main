@@ -91,6 +91,11 @@ return {
           shfmt = {
             args = { "--case-indent", "--indent", "4", "-filename", "$FILENAME" },
           },
+          kdlfmt = {
+            command = "kdlfmt",
+            args = { "format", "-" },
+            stdin = true,
+          },
           prettypst = {
             args = {
               "--use-std-in",
@@ -110,6 +115,7 @@ return {
           html = { "htmlbeautifier" },
           json = { "prettier" },
           jsonc = { "prettier" },
+          kdl = { "kdlfmt" },
           lua = { "stylua" },
           python = { "ruff_organize_imports", "ruff_format" },
           rust = { "rustfmt" },
