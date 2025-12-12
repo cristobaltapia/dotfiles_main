@@ -26,7 +26,7 @@ return {
       --   io.popen("epiphany --private-instance " .. url .. " &")
       -- end
       vim.g.mkdp_browserfunc = "g:Open_browser"
-      vim.g['pandoc#command#path'] = vim.env.HOME .. '/.local/bin/pandoc'
+      -- vim.g['pandoc#command#path'] = vim.env.HOME .. '/.local/bin/pandoc'
       -- vim.g.mkdp_browser = "firefox"
 
       vim.g.mkdp_filetypes = { "pandoc", "markdown", "markdown.pandoc", "wiki" }

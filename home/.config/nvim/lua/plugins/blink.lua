@@ -20,6 +20,7 @@ return {
     dependencies = {
       { "rafamadriz/friendly-snippets" },
       { "kdheepak/cmp-latex-symbols" },
+      { "Kaiser-Yang/blink-cmp-avante" },
       { "rcarriga/cmp-dap" },
       {
         "cristobaltapia/cmp-nvim-ultisnips",
@@ -77,8 +78,8 @@ return {
           draw = {
             treesitter = { "lsp" },
             columns = {
-              { "label",     "label_description", gap = 1 },
-              { "kind_icon", "kind",              gap = 1 },
+              { "label", "label_description", gap = 1 },
+              { "kind_icon", "kind", gap = 1 },
             },
           },
         },
@@ -116,8 +117,8 @@ return {
                 local context = require("cmp.config.context")
                 local in_capture = context.in_treesitter_capture
                 return not in_capture("comment")
-                    and not in_capture("string.documentation")
-                    and not context.in_syntax_group("Comment")
+                  and not in_capture("string.documentation")
+                  and not context.in_syntax_group("Comment")
               end,
             },
           },

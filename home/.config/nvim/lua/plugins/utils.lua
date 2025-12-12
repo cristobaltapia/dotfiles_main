@@ -112,7 +112,7 @@ return {
     "danymat/neogen",
     tag = "2.20.0",
     keys = {
-      { "<leader>ds", "<cmd>Neogen func<cr>",  desc = "Generate func docstrings" },
+      { "<leader>ds", "<cmd>Neogen func<cr>", desc = "Generate func docstrings" },
       { "<leader>dc", "<cmd>Neogen class<cr>", desc = "Generate class docstrings" },
     },
     config = function()
@@ -146,7 +146,7 @@ return {
     branch = "main",
     event = { "BufReadPre", "BufNewFile" },
     keys = {
-      { "<leader>m",  ":lua MiniFiles.open()<cr>",          "n" },
+      { "<leader>m", ":lua MiniFiles.open()<cr>", "n" },
       { "<leader>gd", ":lua MiniDiff.toggle_overlay()<cr>", "n" },
     },
     config = function()
@@ -219,7 +219,7 @@ return {
   {
     "frankroeder/parrot.nvim",
     version = "v2.5.0",
-    ft = {"tex", "md"},
+    ft = { "tex", "md", "typst" },
     config = function()
       local ChatHandler = require("parrot.chat_handler")
 
