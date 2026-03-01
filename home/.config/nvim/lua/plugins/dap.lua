@@ -2,7 +2,7 @@ return {
   {
     "mfussenegger/nvim-dap",
     version = "0.10.0",
-    ft = { "python", "julia" },
+    ft = { "python", "julia", "cpp" },
     keys = {
       {
         "<F8>",
@@ -20,6 +20,18 @@ return {
         "<leader>es",
         function()
           require("dap").step_into()
+        end,
+      },
+      {
+        "<leader>eo",
+        function()
+          require("dap").step_out()
+        end,
+      },
+      {
+        "<F9>",
+        function()
+          require("dap").step_over()
         end,
       },
       {

@@ -110,6 +110,7 @@ return {
           bib = { "bibtex-tidy" },
           c = { "astyle" },
           cls = { "latexindent" },
+          cpp = { "astyle" },
           css = { "prettier" },
           fortran = { "findent" },
           html = { "htmlbeautifier" },

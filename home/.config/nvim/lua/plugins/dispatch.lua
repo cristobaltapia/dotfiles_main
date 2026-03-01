@@ -1,7 +1,7 @@
 return {
   {
     "tpope/vim-dispatch",
-    ft = { "typst", "python", "fortran", "make", "rust" },
+    ft = { "typst", "python", "fortran", "make", "rust", "cpp"},
     keys = { "<F4>", "<F5>", "<F7>" },
     config = function()
       local Path = require("plenary.path")
