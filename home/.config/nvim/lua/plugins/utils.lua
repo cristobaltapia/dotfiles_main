@@ -218,7 +218,7 @@ return {
   -- Parrot
   {
     "frankroeder/parrot.nvim",
-    version = "v2.5.0",
+    version = "v2.5.1",
     ft = { "tex", "md", "typst", "mail" },
     config = function()
       local ChatHandler = require("parrot.chat_handler")

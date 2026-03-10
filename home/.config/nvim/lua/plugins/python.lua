@@ -18,11 +18,5 @@ return {
       vim.keymap.del("n", "<space><space>r")
     end,
   },
-  -- {
-  --   'stevearc/overseer.nvim',
-  --   opts = {
-  --     templates = { "builtin", "user.python_build" }
-  --   },
-  -- }
 }
 -- vim: set shiftwidth=2:
