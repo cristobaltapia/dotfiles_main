@@ -8,6 +8,7 @@
 
 spawn-at-startup "nm-applet"
 spawn-at-startup "nextcloud" "--background"
+spawn-at-startup "/usr/lib/soteria-polkit/soteria"
 
 spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "cursor-theme" "capitaine-cursors"
 
@@ -38,6 +39,8 @@ environment {
 
 cursor {
     xcursor-theme "capitaine-cursors"
+    hide-when-typing
+    hide-after-inactive-ms 10000
 }
 
 // Disable CSD
