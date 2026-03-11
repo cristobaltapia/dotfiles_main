@@ -9,12 +9,12 @@ layout {
         proportion 0.33333
         proportion 0.5
         proportion 0.66667
-        proportion 1.0
     }
 
     // You can also customize the heights that "switch-preset-window-height" (Mod+Shift+S) toggles between.
     preset-window-heights {
         proportion 0.33333
+        proportion 0.43
         proportion 0.5
         proportion 0.66667
     }
@@ -86,3 +86,13 @@ layout {
         // bottom 64
     }
 }
+
+overview {
+    backdrop-color "#2e3440"
+    workspace-shadow {
+        off
+        // color "#4c566a"
+    }
+}
+
+

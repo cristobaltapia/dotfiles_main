@@ -1,7 +1,7 @@
 binds {
     // Run programs
     Mod+Return { spawn "footclient"; }
-    Mod+D { spawn "fuzzel" "--width" "20" "--anchor" "top"; }
+    Mod+D { spawn "fuzzel" "--width" "30"; }
     Mod+Shift+W { spawn "~/.config/sway/scripts/wifi-chooser.sh"; }
     Mod+Shift+V { spawn "~/.config/sway/scripts/vpn-chooser.sh"; }
     Super+Alt+L { spawn "swaylock"; }
@@ -32,12 +32,12 @@ binds {
     Mod+Shift+Q { close-window; }
 
     Mod+Left  { focus-column-left; }
-    Mod+Down  { focus-window-down; }
-    Mod+Up    { focus-window-up; }
+    Mod+Down  { focus-window-or-workspace-down; }
+    Mod+Up    { focus-window-or-workspace-up; }
     Mod+Right { focus-column-right; }
     Mod+T     { focus-column-left; }
-    Mod+N     { focus-window-down; }
-    Mod+R     { focus-window-up; }
+    Mod+N     { focus-window-or-workspace-down; }
+    Mod+R     { focus-window-or-workspace-up; }
     Mod+H     { focus-column-right; }
 
     Mod+Shift+Left  { move-column-left; }
@@ -171,8 +171,8 @@ binds {
     Mod+S { switch-preset-column-width; }
     Mod+Shift+S { switch-preset-window-height; }
     //Mod+Shift+R { reset-window-height; }
-    // Mod+F { maximize-column; }
-    Mod+F { maximize-window-to-edges; }
+    Mod+F { maximize-column; }
+    // Mod+Shift+F { maximize-window-to-edges; }
     Mod+Shift+F { fullscreen-window; }
 
     // Expand the focused column to space not taken up by other fully visible columns.
@@ -200,10 +200,6 @@ binds {
     Mod+L { set-window-height "+10%"; }
     // Mod+B { spawn-sh "wlr-which-key -k s"; }
 
-    // Move the focused window between the floating and the tiling layout.
-    Mod+Shift+J { toggle-window-floating; }
-    Mod+J { switch-focus-between-floating-and-tiling; }
-
     // Toggle tabbed column display mode.
     // Windows in this column will appear as vertical tabs,
     // rather than stacked on top of each other.
@@ -214,6 +210,8 @@ binds {
     // a matching layout switch hotkey configured in xkb options above.
     // Having both at once on the same hotkey will break the switching,
     // since it will switch twice upon pressing the hotkey (once by xkb, once by niri).
+
+    // Move the focused window between the floating and the tiling layout.
     Mod+Space       { switch-focus-between-floating-and-tiling; }
     Mod+Shift+Space { toggle-window-floating; }
 
@@ -221,7 +219,10 @@ binds {
     Ctrl+Print { screenshot-screen; }
     Alt+Print { screenshot-window; }
 
+    // Notification menu
     Mod+M { spawn-sh "wlr-which-key -k m"; }
+    // External monitor brightness
+    Mod+Shift+B { spawn-sh "wlr-which-key -k b"; }
 
     // Applications such as remote-desktop clients and software KVM switches may
     // request that niri stops processing the keyboard shortcuts defined here
@@ -231,13 +232,15 @@ binds {
     //
     // The allow-inhibiting=false property can be applied to other binds as well,
     // which ensures niri always processes them, even when an inhibitor is active.
-    Mod+Escape { toggle-keyboard-shortcuts-inhibit; }
+    // Mod+Escape { toggle-keyboard-shortcuts-inhibit; }
+    Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
 
     // The quit action will show a confirmation dialog to avoid accidental exits.
-    // Mod+Shift+E { quit; }
-    // Mod+Shift+E { spawn "~/.config/niri/scripts/logout.sh"; }
     Mod+Shift+E { spawn-sh "wlr-which-key -k e"; }
     Ctrl+Alt+Delete { quit; }
+
+    // Special mode for presentations
+    Mod+Ctrl+p { spawn-sh "wlr-which-key -k p"; }
 
     // Powers off the monitors. To turn them back on, do any input like
     // moving the mouse or pressing any other key.

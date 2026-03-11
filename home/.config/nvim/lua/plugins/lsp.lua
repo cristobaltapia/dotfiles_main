@@ -67,6 +67,9 @@ return {
       conform.setup({
         lsp_fallback = true,
         formatters = {
+          ["clang-format"] = {
+            args = { "--style", "Webkit" },
+          },
           findent = {
             args = { "--continuation", "0", "--input_format", "fixed", "--indent_procedure", "0" },
           },
@@ -110,7 +113,7 @@ return {
           bib = { "bibtex-tidy" },
           c = { "astyle" },
           cls = { "latexindent" },
-          cpp = { "astyle" },
+          cpp = { "clang-format" },
           css = { "prettier" },
           fortran = { "findent" },
           html = { "htmlbeautifier" },

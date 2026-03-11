@@ -70,7 +70,15 @@ window-rule {
     match app-id="localsend"
     match app-id="com.github.wwmm.easyeffects"
     match app-id="org.raspberrypi.rpi-imager"
+    match app-id="org.pulseaudio.pavucontrol"
+    match app-id="OpenFlipper"
     open-floating true
+}
+
+window-rule {
+    match app-id="OpenFlipper" title=r#"OpenFlipper.+"#
+    open-floating false
+    open-maximized true
 }
 
 window-rule {
@@ -87,7 +95,7 @@ window-rule {
 }
 
 window-rule {
-    match app-id="org.gnome.Evolution" title=r#"Compose Message|Appointment — .*|Assigned Task — .*|Meeting — .*|Re: .*"#
+    match app-id="org.gnome.Evolution" title=r#"Compose Message|Appointment — .*|Assigned Task — .*|Meeting — .*|Re: .*|Fwd:.*"#
     open-floating true
     default-window-height { proportion 0.75; }
     default-column-width { proportion 0.55; }
@@ -137,6 +145,13 @@ window-rule {
     match app-id="steam"
     match title=r#"^CQ-Editor:.*$"#
     open-maximized true
+}
+
+window-rule {
+    match app-id="footclient" title="codelldb-nvim"
+    default-column-display "normal"
+    default-window-height { proportion 0.5; }
+    default-column-width { proportion 0.3; }
 }
 
 window-rule {
@@ -190,7 +205,8 @@ window-rule {
 layer-rule {
     // This is for swaybg; change for other wallpaper tools.
     // Find the right namespace by running niri msg layers.
-    match namespace="^wallpaper$"
+    // match namespace="^wallpaper$"
     place-within-backdrop true
 }
+
 

@@ -54,12 +54,34 @@ return {
           require("dap").terminate()
         end,
       },
+      {
+        "<F10>",
+        function()
+          vim.cmd("OpenScopes")
+        end,
+      },
     },
 
     config = function(_, opts)
       local dap = require("dap")
       vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "Debug", linehl = "", numhl = "" })
       vim.fn.sign_define("DapStopped", { text = "→", texthl = "ErrorMsg", linehl = "", numhl = "" })
+
+      dap.defaults.fallback.external_terminal = {
+        command = "/usr/bin/footclient",
+        args = { "-T codelldb-nvim -e" },
+      }
+
+      local widgets = require("dap.ui.widgets")
+      local scopes = widgets.sidebar(widgets.scopes)
+      vim.api.nvim_create_user_command("OpenScopes", function()
+        -- scopes.open()
+        scopes.toggle()
+
+        vim.api.nvim_create_user_command("RefreshScopes", function()
+          scopes.refresh()
+        end, {})
+      end, {})
 
       --
       -- INFO:

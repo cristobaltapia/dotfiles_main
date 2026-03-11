@@ -1,3 +1,8 @@
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
+vim.opt.autochdir = false
+
 -- Configuration of debugger with dap
 local util = require("lspconfig.util")
 local dap_ok, _ = pcall(require, "dap")
@@ -9,6 +14,10 @@ if dap_ok then
     type = "executable",
     command = "gdb",
     args = { "--interpreter=dap", "--eval-command", "set print pretty on" },
+  }
+  dap.adapters.codelldb = {
+    type = "executable",
+    command = "codelldb",
   }
 
   dap.configurations.cpp = {
@@ -22,6 +31,18 @@ if dap_ok then
       args = {}, -- provide arguments if needed
       cwd = "${workspaceFolder}",
       stopAtBeginningOfMainSubprogram = false,
+    },
+    {
+      name = "Launch (codelldb)",
+      type = "codelldb",
+      request = "launch",
+      program = function()
+        return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+      end,
+      args = {}, -- provide arguments if needed
+      cwd = "${workspaceFolder}",
+      stopAtBeginningOfMainSubprogram = false,
+      console = "externalTerminal",
     },
     {
       name = "Select and attach to process",
