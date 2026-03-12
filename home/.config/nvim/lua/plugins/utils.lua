@@ -370,6 +370,7 @@ Typst.
             },
             models = {
               "gpt-4o",
+              "gpt-5-mini",
               "o4-mini",
               "gpt-4.1-nano",
             },
