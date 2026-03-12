@@ -15,6 +15,12 @@ set index-bg "#1e222a"
 set window-title-home-tilde false
 set window-title-basename false
 
+unmap <C-n>
+unmap <C-r>
+unmap <C-c>
+unmap <C-s>
+unmap <C-s>
+
 map <C-n> navigate next
 map <C-r> navigate previous
 
@@ -26,6 +32,7 @@ map <C-i> zoom in
 map <C-e> zoom out
 
 map i toggle_index
+map P toggle_single_page_mode
 
 map n search forward
 map N search backward
