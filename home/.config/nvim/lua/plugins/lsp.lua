@@ -68,7 +68,7 @@ return {
         lsp_fallback = true,
         formatters = {
           ["clang-format"] = {
-            args = { "--style", "Webkit" },
+            args = { "--style", "GNU" },
           },
           findent = {
             args = { "--continuation", "0", "--input_format", "fixed", "--indent_procedure", "0" },

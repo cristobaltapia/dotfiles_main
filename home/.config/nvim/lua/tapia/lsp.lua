@@ -34,6 +34,26 @@ vim.lsp.config.clangd = {
   cmd = { "clangd", "--background-index" },
   root_markers = { "compile_commands.json", "compile_flags.txt" },
   filetypes = { "c", "cpp" },
+  -- capabilities = { textDocument = { completion = { completionItem = { snippetSupport = false } } } },
+}
+
+--- Bashls
+vim.lsp.config.bashls = {
+  cmd = { "bash-language-server", "start" },
+  filetypes = { "sh", "bash" },
+}
+
+--- Fortls
+vim.lsp.config.fortls = {
+  cmd = {
+    "fortls",
+    "--notify_init",
+    "--hover_signature",
+    "--hover_language=fortran",
+    "--use_signature_help",
+  },
+  filetypes = { "fortran" },
+  root_markers = { ".fortls", ".fortlsrc", ".fortls.json", ".git" },
 }
 
 --- Lua_ls
@@ -224,20 +244,22 @@ vim.lsp.config.html = {
 }
 
 vim.lsp.enable({
-  "basedpyright",
-  "ruff",
-  "clangd",
-  "lua_ls",
-  "rust_analyzer",
-  "tinymist",
-  "julials",
   "arduino_language_server",
+  "basedpyright",
+  "bashls",
+  "clangd",
+  "cssls",
   "docker_compose_langserver",
   "dockerls",
-  "cssls",
-  "ltex_plus",
-  "jsonls",
+  "fortls",
   "html",
+  "jsonls",
+  "julials",
+  "ltex_plus",
+  "lua_ls",
+  "ruff",
+  "rust_analyzer",
+  "tinymist",
 })
 
 vim.diagnostic.config({
