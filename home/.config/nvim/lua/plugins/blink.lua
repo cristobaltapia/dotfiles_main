@@ -50,7 +50,7 @@ return {
         ["<C-c>"] = { "cancel" },
         ["<C-b>"] = { "scroll_documentation_up", "fallback" },
         ["<C-f>"] = { "scroll_documentation_down", "fallback" },
-        ["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
+        ["<C-h>"] = { "show_signature", "hide_signature", "fallback" },
         ["<c-e>"] = { "snippet_forward", "fallback" },
         -- ["<C-space>"] = {
         --   function()
