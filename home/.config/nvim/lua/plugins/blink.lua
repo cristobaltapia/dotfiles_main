@@ -15,10 +15,9 @@ return {
   },
   {
     "saghen/blink.cmp",
-
     -- optional: provides snippets for the snippet source
     dependencies = {
-      { "rafamadriz/friendly-snippets" },
+      -- { "rafamadriz/friendly-snippets" },
       { "kdheepak/cmp-latex-symbols" },
       { "Kaiser-Yang/blink-cmp-avante" },
       { "rcarriga/cmp-dap" },
@@ -28,6 +27,11 @@ return {
         name = "cmp-nvim-ultisnips",
         enabled = true,
         lazy = "true",
+        config = function()
+          require("cmp_nvim_ultisnips").setup({
+            filetype_source = "treesitter",
+          })
+        end,
       },
       { "micangl/cmp-vimtex" },
     },
@@ -68,6 +72,12 @@ return {
         nerd_font_variant = "mono",
       },
 
+      signature = {
+        enabled = true,
+        trigger = {
+          enabled = true,
+        },
+      },
       completion = {
         documentation = { auto_show = true, auto_show_delay_ms = 300 },
         list = { selection = { preselect = false, auto_insert = true } },

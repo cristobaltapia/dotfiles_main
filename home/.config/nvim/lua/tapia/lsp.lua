@@ -31,10 +31,22 @@ vim.lsp.config.ruff = {
 
 --- Clangd
 vim.lsp.config.clangd = {
-  cmd = { "clangd", "--background-index" },
+  cmd = {
+    "clangd",
+    "--background-index",
+    "--function-arg-placeholders=0",
+    "--all-scopes-completion=false",
+  },
   root_markers = { "compile_commands.json", "compile_flags.txt" },
   filetypes = { "c", "cpp" },
-  -- capabilities = { textDocument = { completion = { completionItem = { snippetSupport = false } } } },
+  capabilities = {
+    textDocument = {
+      completion = {
+        completionItem = { snippetSupport = true },
+        completionList = { "editRange" },
+      },
+    },
+  },
 }
 
 --- Bashls
