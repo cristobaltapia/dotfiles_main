@@ -51,7 +51,7 @@ return {
         ["<C-b>"] = { "scroll_documentation_up", "fallback" },
         ["<C-f>"] = { "scroll_documentation_down", "fallback" },
         ["<C-h>"] = { "show_signature", "hide_signature", "fallback" },
-        ["<c-e>"] = { "snippet_forward", "fallback" },
+        -- ["<c-e>"] = { "snippet_forward", "fallback", },
         -- ["<C-space>"] = {
         --   function()
         --     local blink = require("blink-cmp")

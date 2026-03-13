@@ -118,7 +118,8 @@ return {
     config = function()
       local neogen = require("neogen")
 
-      vim.keymap.set({ "i", "v" }, "<C-e>", neogen.jump_next)
+      -- vim.keymap.set({ "i", "v" }, "<C-e>", neogen.jump_next)
+      -- The keymapping is handled in the configuration of UltiSnips (bellow)
 
       neogen.setup({
         enabled = true,
@@ -211,8 +212,55 @@ return {
       -- Set the smart function definition to use numpy style for docstrings
       vim.g.ultisnips_python_style = "numpy"
       vim.g.UltisnipsUsePythonVersion = 3
-      vim.g.UltiSnipsJumpForwardTrigger = "<c-e>"
-      vim.g.UltiSnipsJumpBackwardTrigger = "<c-a>"
+      -- vim.g.UltiSnipsJumpForwardTrigger = "<c-e>"
+      -- vim.g.UltiSnipsJumpBackwardTrigger = "<c-a>"
+
+      -- Define function to check whether using ultisnip to jump to the next
+      -- placeholder was successfull.
+      vim.g.ulti_jump_forwards_res = 0
+      function UltiSnip_get_jump_forward_result()
+        vim.api.nvim_call_function("UltiSnips#JumpForwards", {})
+        return vim.g.ulti_jump_forwards_res
+      end
+
+      -- Define function to check whether using ultisnip to jump to the
+      -- previous placeholder was successfull.
+      vim.g.ulti_jump_backwards_res = 0
+      function UltiSnip_get_jump_backwards_result()
+        vim.api.nvim_call_function("UltiSnips#JumpBackwards", {})
+        return vim.g.ulti_jump_backwards_res
+      end
+
+      -- Keymapping for handling jumping to placeholders. This considers
+      -- different plugins: Ultisnips, blink (lsp) and neogen.
+      vim.keymap.set({ "i", "v" }, "<C-e>", function()
+        local blink = require("blink.cmp")
+        local neogen = require("neogen")
+        -- Jump to next using ultisnips, otherwise check whether blink or
+        -- neogen are "jumpable"
+        if UltiSnip_get_jump_forward_result() == 0 then
+          if blink.snippet_active() then
+            blink.snippet_forward()
+          elseif neogen.jumpable() then
+            neogen.jump_next()
+          end
+        end
+      end)
+
+      -- The same as above, but for jumping backwards
+      vim.keymap.set({ "i", "v" }, "<C-a>", function()
+        local blink = require("blink.cmp")
+        local neogen = require("neogen")
+        -- Jump to next using ultisnips, otherwise check whether blink or
+        -- neogen are "jumpable"
+        if UltiSnip_get_jump_backwards_result() == 0 then
+          if blink.snippet_active() then
+            blink.snippet_backward()
+          elseif neogen.jumpable() then
+            neogen.jump_prev()
+          end
+        end
+      end)
     end,
   },
   -- Parrot
