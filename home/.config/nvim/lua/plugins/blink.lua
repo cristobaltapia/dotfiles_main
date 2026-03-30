@@ -75,7 +75,7 @@ return {
       signature = {
         enabled = true,
         trigger = {
-          enabled = true,
+          enabled = false,
         },
       },
       completion = {
