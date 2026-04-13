@@ -48,6 +48,9 @@ vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 -- For the quickfix window it is better to undo the previous remapping
 local qf_group = vim.api.nvim_create_augroup("quickfix", { clear = true })
 
+-- Undotree
+vim.keymap.set("n", "<leader>u", require("undotree").open)
+
 -- Store the global scrolloff value
 local global_scrolloff = vim.o.scrolloff
 

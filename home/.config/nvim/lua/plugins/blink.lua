@@ -15,6 +15,8 @@ return {
   },
   {
     "saghen/blink.cmp",
+    branch = "v1",
+    build = "cargo build --release",
     -- optional: provides snippets for the snippet source
     dependencies = {
       -- { "rafamadriz/friendly-snippets" },
@@ -37,7 +39,7 @@ return {
     },
 
     -- use a release tag to download pre-built binaries
-    version = "1.*",
+    -- version = "1.*",
     ---
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config

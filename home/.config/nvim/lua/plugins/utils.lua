@@ -6,34 +6,12 @@ local hint_diagram = [[
  ^ ^ ^ ^ ^ ^ _<down>_ ^ ^                      _q_
 ]]
 
-local hint_git = [[
- _n_: next hunk   _s_: stage hunk        _d_: show deleted   _b_: blame line
- _p_: prev hunk   _u_: undo last stage   _P_: preview hunk   _B_: blame show full
- ^ ^              _S_: stage buffer      ^ ^                 _/_: show base file
- ^
- ^ ^              _<Enter>_: Fugitive              _q_: exit
-]]
-
-local hint_ltex = [[
- ^^   Select Language for Ltex ^
-^ ^
- _e_: English (American) ^
- _d_: German (Germany) ^
- _s_: Spanish
-^ ^
- _q_: Exit
-]]
-
 return {
-  -- Undo history
+  -- Hex editor
   {
-    "mbbill/undotree",
-    keys = {
-      { "<F3>", "<cmd>UndotreeToggle<cr>", "n" },
-    },
-    config = function()
-      vim.g.undotree_WindowLayout = 2
-      vim.g.undotree_SetFocusWhenToggle = true
+    "RaafatTurki/hex.nvim",
+    config = function(_, opts)
+      require("hex").setup()
     end,
   },
   -- Web devicons
@@ -71,42 +49,42 @@ return {
     },
   },
   -- Hydra
-  -- {
-  --   "anuvyklack/hydra.nvim",
-  --   name = "hydra",
-  --   lazy = true,
-  --   keys = {
-  --     "<leader>hd",
-  --     "<leader>hl",
-  --   },
-  --   config = function(_, opts)
-  --     local Hydra = require("hydra")
-  --
-  --     Hydra({
-  --       name = "Draw Diagram",
-  --       hint = hint_diagram,
-  --       config = {
-  --         color = "pink",
-  --         invoke_on_body = true,
-  --         hint = {
-  --           border = "rounded",
-  --         },
-  --         on_enter = function()
-  --           vim.o.virtualedit = "all"
-  --         end,
-  --       },
-  --       mode = "n",
-  --       body = "<leader>hd",
-  --       heads = {
-  --         { "<left>",  "<C-v>h:VBox<CR>" },
-  --         { "<down>",  "<C-v>j:VBox<CR>" },
-  --         { "<up>",    "<C-v>k:VBox<CR>" },
-  --         { "<right>", "<C-v>l:VBox<CR>" },
-  --         { "f",       ":VBox<CR>",      { mode = "v" } },
-  --         { "q",       nil,              { exit = true } },
-  --       },
-  --     })
-  -- },
+  {
+    "nvimtools/hydra.nvim",
+    name = "hydra",
+    lazy = true,
+    keys = {
+      "<leader>hd",
+    },
+    config = function(_, opts)
+      local Hydra = require("hydra")
+
+      Hydra({
+        name = "Draw Diagram",
+        hint = hint_diagram,
+        config = {
+          color = "pink",
+          invoke_on_body = true,
+          hint = {
+            -- border = "rounded",
+          },
+          on_enter = function()
+            vim.o.virtualedit = "all"
+          end,
+        },
+        mode = "n",
+        body = "<leader>hd",
+        heads = {
+          { "<left>", "<C-v>h:VBox<CR>" },
+          { "<down>", "<C-v>j:VBox<CR>" },
+          { "<up>", "<C-v>k:VBox<CR>" },
+          { "<right>", "<C-v>l:VBox<CR>" },
+          { "f", ":VBox<CR>", { mode = "v" } },
+          { "q", nil, { exit = true } },
+        },
+      })
+    end,
+  },
   -- Docstrings generator (neogen)
   {
     "danymat/neogen",

@@ -1,3 +1,8 @@
+-- Enable builtin undotree
+vim.cmd("packadd nvim.undotree")
+-- Enable builtin difftool
+-- vim.cmd("packadd nvim.difftool")
+
 require("tapia.remap")
 require("tapia.set")
 require("tapia.autocmd")

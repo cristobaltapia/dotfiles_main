@@ -2,6 +2,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     name = "nvim-treesitter",
+    branch = "main",
     event = { "BufReadPost", "BufNewFile" },
     build = ":TSUpdate",
     dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
@@ -79,7 +80,11 @@ return {
       },
     },
     config = function(_, opts)
-      require("nvim-treesitter.configs").setup(opts)
+      require("nvim-treesitter").setup({
+        -- Directory to install parsers and queries to (prepended to `runtimepath` to have priority)
+        install_dir = vim.fn.stdpath("data") .. "/site",
+      })
+
       -- Foldings
       vim.opt.foldmethod = "expr"
       vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
@@ -91,6 +96,6 @@ return {
     end,
   },
   { "nvim-treesitter/nvim-treesitter-textobjects" },
-  { "nvim-treesitter/playground" },
+  -- { "nvim-treesitter/playground" },
 }
 -- vim: set shiftwidth=2:

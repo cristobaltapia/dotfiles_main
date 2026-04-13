@@ -134,26 +134,5 @@ return {
       })
     end,
   },
-  -- Function signatures
-  -- {
-  --   "ray-x/lsp_signature.nvim",
-  --   lazy = true,
-  --   event = "InsertEnter",
-  --   -- config = function(_, opts)
-  --   --   require("lsp_signature").setup(opts)
-  --   -- end,
-  --   opts = {
-  --     bind = true, -- This is mandatory, otherwise border config won't get registered.
-  --     hint_enable = true,
-  --     doc_lines = 0,
-  --     floating_window = false,
-  --     toggle_key = "<C-h>",
-  --     select_signature_key = "<C-l>",
-  --     floating_window_above_cur_line = true,
-  --     handler_opts = {
-  --       border = "rounded",
-  --     },
-  --   },
-  -- },
 }
 -- vim: set shiftwidth=2:
