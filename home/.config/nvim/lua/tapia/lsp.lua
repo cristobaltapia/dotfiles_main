@@ -168,9 +168,22 @@ vim.lsp.config.julials = {
 
 --- Arduino
 vim.lsp.config.arduino_language_server = {
-  cmd = { mason_path .. "bin/arduino-language-server" },
+  cmd = {
+    mason_path .. "bin/arduino-language-server",
+    "-clangd", "clangd",
+    "-cli", "arduino-cli",
+    "-cli-config", vim.fn.expand("%:p:h") .. "/sketch.yaml",
+  },
   filetypes = { "arduino" },
   root_markers = { "sketch.yaml" },
+  capabilities = {
+    textDocument = {
+      semanticTokens = vim.NIL,
+    },
+    workspace = {
+      semanticTokens = vim.NIL,
+    },
+  },
 }
 
 --- Taplo (toml files)
