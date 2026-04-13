@@ -8,4 +8,4 @@ vim.opt_local.shiftwidth = 2
 vim.opt_local.tabstop = 2
 vim.opt.foldnestmax = 3
 
-vim.cmd("TSDisable highlight")
+-- vim.cmd("TSDisable highlight")

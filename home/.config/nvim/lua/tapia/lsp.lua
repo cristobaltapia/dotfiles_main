@@ -35,14 +35,16 @@ vim.lsp.config.clangd = {
     "clangd",
     "--background-index",
     "--function-arg-placeholders=0",
-    "--all-scopes-completion=false",
+    -- "--all-scopes-completion=false",
   },
   root_markers = { "compile_commands.json", "compile_flags.txt" },
   filetypes = { "c", "cpp" },
   capabilities = {
     textDocument = {
       completion = {
-        completionItem = { snippetSupport = true },
+        completionItem = {
+          snippetSupport = true,
+        },
         completionList = { "editRange" },
       },
     },
@@ -170,12 +172,16 @@ vim.lsp.config.julials = {
 vim.lsp.config.arduino_language_server = {
   cmd = {
     mason_path .. "bin/arduino-language-server",
-    "-clangd", "clangd",
-    "-cli", "arduino-cli",
-    "-cli-config", vim.fn.expand("%:p:h") .. "/sketch.yaml",
+    "-cli-config",
+    "path to your cli configs go here",
+    "-fqbn",
+    "arduino:avr:exampleText",
+    "-cli",
+    "arduino-cli",
+    "-clangd",
+    "clangd",
   },
   filetypes = { "arduino" },
-  root_markers = { "sketch.yaml" },
   capabilities = {
     textDocument = {
       semanticTokens = vim.NIL,
@@ -184,6 +190,10 @@ vim.lsp.config.arduino_language_server = {
       semanticTokens = vim.NIL,
     },
   },
+  root_markers = { "sketch.yaml" },
+  root_dir = function(bufnr, on_dir)
+    on_dir(vim.fn.expand("%:p:h"))
+  end,
 }
 
 --- Taplo (toml files)
