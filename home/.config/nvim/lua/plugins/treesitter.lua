@@ -6,9 +6,8 @@ return {
     event = { "BufReadPost", "BufNewFile" },
     build = ":TSUpdate",
     dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
-    opts = {
-      -- A list of parser names, or "all" (the five listed parsers should always be installed)
-      ensure_installed = {
+    init = function()
+      local ensure_installed = {
         "arduino",
         "bash",
         "bibtex",
@@ -17,7 +16,6 @@ return {
         "dockerfile",
         "javascript",
         "json",
-        "jsonc",
         "julia",
         "lua",
         "make",
@@ -31,54 +29,42 @@ return {
         "vimdoc",
         "yaml",
         "yuck",
-      },
+      }
+      local alreadyInstalled = require("nvim-treesitter.config").get_installed()
+      local parsersToInstall = vim
+        .iter(ensure_installed)
+        :filter(function(parser)
+          return not vim.tbl_contains(alreadyInstalled, parser)
+        end)
+        :totable()
+      require("nvim-treesitter").install(parsersToInstall)
 
-      -- Install parsers synchronously (only applied to `ensure_installed`)
-      sync_install = false,
-      auto_install = false,
-      indent = {
-        enable = false,
-      },
-      highlight = {
-        enable = true,
-        disable = { "tex" },
-        additional_vim_regex_highlighting = false,
-      },
-      rainbow = {
-        enable = true,
-        colors = {
-          "#eceff4",
-          "#88c0d0",
-          "#ebcb8b",
-          "#81a1c1",
-          "#d08770",
-        },
-        -- Highlight also non-parentheses delimiters, boolean or table: lang -> boolean
-        extended_mode = false,
-        -- Do not enable for files with more than 1000 lines, int
-        max_file_lines = 1000,
-      },
-      textobjects = {
-        select = {
-          enable = true,
-          -- Automatically jump forward to textobj, similar to targets.vim
-          lookahead = true,
-          keymaps = {
-            -- You can use the capture groups defined in textobjects.scm
-            ["af"] = "@function.outer",
-            ["if"] = "@function.inner",
-            ["ac"] = "@class.outer",
-            ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
-          },
-          selection_modes = {
-            ["@parameter.outer"] = "v", -- charwise
-            ["@function.outer"] = "V", -- linewise
-            ["@class.outer"] = "V", -- blockwise
-          },
-          include_surrounding_whitespace = false,
-        },
-      },
-    },
+      vim.api.nvim_create_autocmd("FileType", {
+        callback = function()
+          -- Enable treesitter highlighting and disable regex syntax
+          pcall(vim.treesitter.start)
+          -- Enable treesitter-based indentation
+          vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr{}"
+          vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+          vim.wo.foldmethod = "expr"
+        end,
+      })
+
+      -- keymaps
+      -- You can use the capture groups defined in `textobjects.scm`
+      vim.keymap.set({ "x", "o" }, "af", function()
+        require("nvim-treesitter-textobjects.select").select_textobject("@function.outer", "textobjects")
+      end)
+      vim.keymap.set({ "x", "o" }, "if", function()
+        require("nvim-treesitter-textobjects.select").select_textobject("@function.inner", "textobjects")
+      end)
+      vim.keymap.set({ "x", "o" }, "ac", function()
+        require("nvim-treesitter-textobjects.select").select_textobject("@class.outer", "textobjects")
+      end)
+      vim.keymap.set({ "x", "o" }, "ic", function()
+        require("nvim-treesitter-textobjects.select").select_textobject("@class.inner", "textobjects")
+      end)
+    end,
     config = function(_, opts)
       require("nvim-treesitter").setup({
         -- Directory to install parsers and queries to (prepended to `runtimepath` to have priority)
@@ -95,7 +81,10 @@ return {
       vim.cmd("hi TSConstant guifg=#ebcb8b")
     end,
   },
-  { "nvim-treesitter/nvim-treesitter-textobjects" },
+  {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    branch = "main",
+  },
   -- { "nvim-treesitter/playground" },
 }
 -- vim: set shiftwidth=2:
