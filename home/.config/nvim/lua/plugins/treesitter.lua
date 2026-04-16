@@ -44,7 +44,7 @@ return {
           -- Enable treesitter highlighting and disable regex syntax
           pcall(vim.treesitter.start)
           -- Enable treesitter-based indentation
-          vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr{}"
+          vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
           vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
           vim.wo.foldmethod = "expr"
         end,
