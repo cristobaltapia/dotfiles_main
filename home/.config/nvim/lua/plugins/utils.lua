@@ -392,13 +392,11 @@ Typst.
             api_key = os.getenv("OPENAI_API_KEY"),
             endpoint = "https://api.openai.com/v1/chat/completions",
             topic = {
-              model = "o4-mini",
+              model = "gpt-5.4-mini",
             },
             models = {
               "gpt-4o",
-              "gpt-5-mini",
-              "o4-mini",
-              "gpt-4.1-nano",
+              "gpt-5.4-mini",
             },
           },
           mistral = {
