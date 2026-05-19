@@ -248,12 +248,15 @@ end
 
 --- Ltex-plus (grammar check)
 vim.lsp.config.ltex_plus = {
-  cmd = { "ltex-ls-plus" },
+  cmd = { mason_path ..  "bin/ltex-ls-plus" },
   filetypes = { "markdown", "plaintex", "rst", "tex", "pandoc", "typst", "mail" },
   get_language_id = get_language_id,
   settings = {
     ltex = {
       language = "en-US",
+      additionalRules = {
+        languageModel = vim.env.HOME .. "/.local/share/languagetool/ngrams/"
+      }
     },
   },
 }
