@@ -7,7 +7,7 @@ separator: " ➜ "
 border_width: 3
 corner_r: 12
 padding: 15 # Defaults to corner_r
-rows_per_column: 5 # No limit by default
+rows_per_column: 6 # No limit by default
 column_padding: 25 # Defaults to padding
 
 # Anchor and margin
@@ -64,3 +64,51 @@ menu:
       - key: "S"
         desc: "Shutdown"
         cmd: systemctl poweroff
+      - key: "h"
+        desc: "Hibernate"
+        cmd: systemctl hibernate
+  - key: "p"
+    desc: Lecture mode
+    submenu:
+      - key: "p"
+        desc: "Presentation"
+        cmd: niri msg action focus-monitor-right && niri msg action focus-workspace 1 && niri msg action focus-monitor-left && niri msg action focus-workspace 1
+      - key: "j"
+        desc: "Jupyter Notebook"
+        cmd: niri msg action focus-monitor-left && niri msg action focus-workspace 2 && niri msg action focus-monitor-right && niri msg action focus-workspace 2
+      - key: "m"
+        desc: "Misc"
+        cmd: niri msg action focus-monitor-left && niri msg action focus-workspace 2 && niri msg action focus-monitor-right && niri msg action focus-workspace 3
+  - key: "b"
+    desc: Monitor brightness
+    submenu:
+      - key: "1"
+        desc: "10%"
+        cmd: ddcutil setvcp 10 10
+      - key: "2"
+        desc: "20%"
+        cmd: ddcutil setvcp 10 20
+      - key: "3"
+        desc: "30%"
+        cmd: ddcutil setvcp 10 30
+      - key: "4"
+        desc: "40%"
+        cmd: ddcutil setvcp 10 40
+      - key: "5"
+        desc: "50%"
+        cmd: ddcutil setvcp 10 50
+      - key: "6"
+        desc: "60%"
+        cmd: ddcutil setvcp 10 60
+      - key: "7"
+        desc: "70%"
+        cmd: ddcutil setvcp 10 70
+      - key: "8"
+        desc: "80%"
+        cmd: ddcutil setvcp 10 80
+      - key: "9"
+        desc: "90%"
+        cmd: ddcutil setvcp 10 90
+      - key: "0"
+        desc: "100%"
+        cmd: ddcutil setvcp 10 100
