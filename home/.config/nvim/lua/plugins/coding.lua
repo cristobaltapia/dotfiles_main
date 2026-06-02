@@ -2,7 +2,8 @@ return {
   {
     "ThePrimeagen/refactoring.nvim",
     dependencies = {
-      { "nvim-lua/plenary.nvim" },
+      "lewis6991/async.nvim",
+      -- { "nvim-lua/plenary.nvim" },
       -- { "nvim-treesitter/nvim-treesitter" }
     },
     ft = { "python", "lua" },

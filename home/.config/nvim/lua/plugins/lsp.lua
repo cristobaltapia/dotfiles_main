@@ -53,7 +53,7 @@ return {
     opts = {},
     dependencies = {
       "williamboman/mason-lspconfig.nvim",
-      "nvim-lspconfig",
+      "neovim/nvim-lspconfig",
     },
     config = function(_, opts)
       local conform = require("conform")
