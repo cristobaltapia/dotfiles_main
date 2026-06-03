@@ -24,3 +24,8 @@ require("tapia")
 -- Load lazy.nvim
 -- local plugins = require("plugins")
 require("lazy").setup("plugins")
+
+-- Define command for restarting session
+vim.api.nvim_create_user_command("RestartSession", function()
+  vim.api.nvim_command(":mksession! /tmp/session.vim | restart source /tmp/session.vim ")
+end, {})
