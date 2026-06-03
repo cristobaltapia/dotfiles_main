@@ -5,7 +5,7 @@ return {
       { "nvim-lua/plenary.nvim" },
       -- { "nvim-treesitter/nvim-treesitter" }
     },
-    ft = { "python", "lua" },
+    ft = { "python", "lua", "c", "cpp" },
     keys = {
       {
         "<leader>re",
