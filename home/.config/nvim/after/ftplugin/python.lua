@@ -188,7 +188,7 @@ if dap_ok then
       request = "launch",
       name = "Pytest (current file)",
       module = "pytest",
-      args = { "--color=yes", "${file}" },
+      args = { "${file}" },
       redirectOutput = true,
       pythonPath = get_python_path,
     },
