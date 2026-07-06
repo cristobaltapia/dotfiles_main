@@ -5,6 +5,14 @@ vim.lsp.config.basedpyright = {
   cmd = { mason_path .. "bin/basedpyright-langserver", "--stdio" },
   root_markers = { "pyproject.toml" },
   filetypes = { "python" },
+  capabilities = {
+    textDocument = {
+      hover = {
+        contentFormat = { "plaintext" },
+        dynamicRegistration = true,
+      },
+    },
+  },
   settings = {
     basedpyright = {
       disableOrganizeImports = true,
