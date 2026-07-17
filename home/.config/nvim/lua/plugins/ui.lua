@@ -276,6 +276,9 @@ return {
         -- Characters to use for hints (NOTE: make sure they don't collide with the navigation keymaps)
         dictionary = "etinsrchabumyl",
       },
+      navigate = {
+        cancel_snipe = "q",
+      },
     },
   },
 }
