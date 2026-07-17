@@ -254,7 +254,7 @@ end
 
 --- Ltex-plus (grammar check)
 vim.lsp.config.ltex_plus = {
-  cmd = { mason_path ..  "bin/ltex-ls-plus" },
+  cmd = { mason_path .. "bin/ltex-ls-plus" },
   filetypes = { "markdown", "plaintex", "rst", "tex", "pandoc", "typst", "mail" },
   get_language_id = get_language_id,
   settings = {
