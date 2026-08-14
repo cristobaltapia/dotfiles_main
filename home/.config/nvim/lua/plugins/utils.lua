@@ -432,7 +432,7 @@ Typst.
   {
     "yetone/avante.nvim",
     event = "VeryLazy",
-    tag = "v0.0.27",
+    tag = "v0.1.2",
     lazy = true,
     cmd = { "AvanteChat", "AvanteAsk" },
     version = false, -- set this if you want to always pull the latest change

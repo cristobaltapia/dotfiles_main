@@ -63,7 +63,6 @@ local function get_class_and_method_ts()
   end
 
   if class_name and function_name then
-    print(fname .. "::" .. class_name .. "::" .. function_name)
     return fname .. "::" .. class_name .. "::" .. function_name
   elseif function_name then
     return fname .. "::" .. function_name

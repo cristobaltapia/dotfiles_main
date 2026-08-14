@@ -28,6 +28,12 @@ vim.lsp.config.basedpyright = {
   },
 }
 
+-- vim.lsp.config.ty = {
+--   cmd = { mason_path .. "bin/ty", "server" },
+--   filetypes = { "python" },
+--   root_markers = { "ty.toml", "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", ".git" },
+-- }
+
 vim.lsp.config.ruff = {
   cmd = { mason_path .. "bin/ruff", "server" },
   root_markers = { "pyproject.toml" },
@@ -130,9 +136,10 @@ vim.lsp.config.tinymist = {
   settings = {
     exportPdf = "never",
     -- systemFonts = false,
+    fontPaths = { "${workspaceFolder}/fonts" },
     semanticTokens = "enable",
     projectResolution = "singleFile",
-    syntaxOnly = "enable",
+    -- syntaxOnly = "enable",
   },
 }
 
@@ -292,6 +299,7 @@ vim.lsp.config.html = {
 vim.lsp.enable({
   "arduino_language_server",
   "basedpyright",
+  -- "ty",
   "bashls",
   "clangd",
   "cssls",
