@@ -460,7 +460,7 @@ Typst.
         claude = {
           disable_tools = false,
           endpoint = "https://api.anthropic.com",
-          model = "claude-sonnet-4-6",
+          model = "claude-sonnet-5",
           extra_request_body = {
             temperature = 0.75,
             max_tokens = 20480,
