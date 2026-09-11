@@ -136,6 +136,7 @@ return {
           go_in_plus = "<cr>",
           go_out = "<Left>",
           go_out_plus = "t",
+          close = "q",
         },
       })
       require("mini.indentscope").setup()
@@ -432,7 +433,7 @@ Typst.
   {
     "yetone/avante.nvim",
     event = "VeryLazy",
-    tag = "v0.0.27",
+    tag = "v0.1.2",
     lazy = true,
     cmd = { "AvanteChat", "AvanteAsk" },
     version = false, -- set this if you want to always pull the latest change
@@ -460,9 +461,8 @@ Typst.
         claude = {
           disable_tools = false,
           endpoint = "https://api.anthropic.com",
-          model = "claude-sonnet-4-6",
+          model = "claude-opus-5",
           extra_request_body = {
-            temperature = 0.75,
             max_tokens = 20480,
           },
         },
