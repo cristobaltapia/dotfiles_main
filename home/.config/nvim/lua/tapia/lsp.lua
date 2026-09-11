@@ -28,6 +28,12 @@ vim.lsp.config.basedpyright = {
   },
 }
 
+-- vim.lsp.config.ty = {
+--   cmd = { mason_path .. "bin/ty", "server" },
+--   filetypes = { "python" },
+--   root_markers = { "ty.toml", "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", ".git" },
+-- }
+
 vim.lsp.config.ruff = {
   cmd = { mason_path .. "bin/ruff", "server" },
   root_markers = { "pyproject.toml" },
@@ -130,51 +136,58 @@ vim.lsp.config.tinymist = {
   settings = {
     exportPdf = "never",
     -- systemFonts = false,
+    fontPaths = { "${workspaceFolder}/fonts" },
     semanticTokens = "enable",
     projectResolution = "singleFile",
-    syntaxOnly = "enable",
+    -- syntaxOnly = "enable",
   },
 }
 
 --- Julia
-vim.lsp.config.julials = {
+vim.lsp.config("julials", {
   cmd = {
-    "julia",
-    "--startup-file=no",
-    "--project=" .. "~/.julia/environments/lsp/",
-    "--history-file=no",
-    "-e",
+    'julia',
+    '--startup-file=no',
+    '--project=' .. vim.fn.expand('~/.julia/environments/lsp'),
+    '--history-file=no',
+    '-e',
     [[
-      using Pkg
-      Pkg.instantiate()
-      using LanguageServer
-      depot_path = get(ENV, "JULIA_DEPOT_PATH", "")
-      project_path = let
-          dirname(something(
-              ## 1. Finds an explicitly set project (JULIA_PROJECT)
-              Base.load_path_expand((
-                  p = get(ENV, "JULIA_PROJECT", nothing);
-                      p === nothing ? nothing : isempty(p) ? nothing : p
-                  )),
-                      ## 2. Look for a Project.toml file in the current working directory,
-                      ##    or parent directories, with $HOME as an upper boundary
-                      Base.current_project(),
-                      ## 3. First entry in the load path
-                      get(Base.load_path(), 1, nothing),
-                      ## 4. Fallback to default global environment,
-                      ##    this is more or less unreachable
-                  Base.load_path_expand("@v#.#"),
-              ))
-          end
-                  @info "Running language server" VERSION pwd() project_path depot_path
-                  server = LanguageServer.LanguageServerInstance(stdin, stdout, project_path, depot_path)
-      server.runlinter = true
-      run(server)
+    # Load LanguageServer.jl: attempt to load from ~/.julia/environments/lsp
+    # with the regular load path as a fallback
+    ls_install_path = joinpath(
+        get(DEPOT_PATH, 1, joinpath(homedir(), ".julia")),
+        "environments", "lsp"
+    )
+    pushfirst!(LOAD_PATH, ls_install_path)
+    using LanguageServer, SymbolServer, StaticLint
+    popfirst!(LOAD_PATH)
+    depot_path = get(ENV, "JULIA_DEPOT_PATH", "")
+    project_path = let
+        dirname(something(
+            ## 1. Finds an explicitly set project (JULIA_PROJECT)
+            Base.load_path_expand((
+                p = get(ENV, "JULIA_PROJECT", nothing);
+                p === nothing ? nothing : isempty(p) ? nothing : p
+            )),
+            ## 2. Look for a Project.toml file in the current working directory,
+            ##    or parent directories, with $HOME as an upper boundary
+            Base.current_project(),
+            ## 3. First entry in the load path
+            get(Base.load_path(), 1, nothing),
+            ## 4. Fallback to default global environment,
+            ##    this is more or less unreachable
+            Base.load_path_expand("@v#.#"),
+        ))
+    end
+    @info "Running language server" VERSION pwd() project_path depot_path
+    server = LanguageServer.LanguageServerInstance(stdin, stdout, project_path, depot_path)
+    server.runlinter = true
+    run(server)
   ]],
   },
   filetypes = { "julia" },
   root_markers = { "Project.toml" },
-}
+})
 
 --- Arduino
 vim.lsp.config.arduino_language_server = {
@@ -292,6 +305,7 @@ vim.lsp.config.html = {
 vim.lsp.enable({
   "arduino_language_server",
   "basedpyright",
+  -- "ty",
   "bashls",
   "clangd",
   "cssls",

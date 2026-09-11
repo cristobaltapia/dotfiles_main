@@ -461,7 +461,7 @@ Typst.
         claude = {
           disable_tools = false,
           endpoint = "https://api.anthropic.com",
-          model = "claude-opus-5",
+          model = "claude-sonnet-5",
           extra_request_body = {
             max_tokens = 20480,
           },
