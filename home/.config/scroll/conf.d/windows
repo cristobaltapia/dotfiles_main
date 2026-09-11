@@ -1,0 +1,174 @@
+# Windows
+
+# Borders
+default_border pixel 5
+default_floating_border pixel 5
+# hide_edge_borders smart
+default_decoration border_radius 10
+
+# Gaps
+gaps inner 10
+smart_gaps on
+# gaps horizontal 100
+
+# class        border  backgr. text    indicator child_border
+client.focused #a3be8c #a3be8c #fdf6e3 #bf616a #a3be8c
+client.focused_inactive #81a1c1 #81a1c1 #d8dee9 #8fbcbb #4c566a
+client.unfocused #4c566a #4c566a #d8dee9 #8fbcbb #4c566a
+client.urgent #bf616a #bf616a #d8dee9 #ebcb8b #bf616a
+
+# Deactivate idle for certain apps
+for_window [title="Jellyfin Media Player"] inhibit_idle visible
+
+# Set floating windows
+# swaymsg -t get_tree
+
+# Specific settings for Apps
+for_window [app_id="blender" title="Preferences"] floating enable;\
+    resize set width 700; \
+    resize set height 700;
+for_window [title="Blender Render" app_id="blender"] floating enable; \
+    resize width 1000 height 700
+
+
+# Start following apps in full-width
+for_window [app_id="org.gnome.Evolution" title="^Mail — Evolution$"] set_size h 1.0
+for_window [app_id="org.gnome.Evolution" title="^[Inbox|Posteingang] \(.*$"] set_size h 1.0
+for_window [app_id="blender"] set_size h 1.0
+for_window [app_id="prusa-slicer"] set_size h 1.0
+for_window [app_id="PrusaSlicer"] set_size h 1.0
+for_window [app_id="gimp"] set_size h 1.0
+for_window [app_id="librecad"] set_size h 1.0
+for_window [app_id="org.inkscape.Inkscape"] set_size h 1.0
+for_window [app_id="org.inkscape.Inkscape"] set_size h 1.0
+for_window [app_id="org.freecad.FreeCAD"] set_size h 1.0
+
+# 60% of width
+for_window [app_id="firefox"] set_size h 0.6667
+
+# Start following apps as floating window
+for_window [app_id="org.gnome.Evolution" title="Nachricht verfassen"] floating enable
+for_window [app_id="org.gnome.Evolution" title="Compose Message"] floating enable; \
+    resize width 1000 height 720;
+for_window [app_id="org.gnome.Evolution" title="^Reference for .*"] floating enable
+for_window [app_id="org.gnome.Evolution" title="Re: .*"] floating enable
+for_window [app_id="org.gnome.Evolution" title="Fw: .*"] floating enable
+for_window [app_id="org.gnome.Evolution" title="Fwd: .*"] floating enable
+for_window [app_id="org.gnome.Evolution" title="Termin .*"] floating enable
+for_window [app_id="org.gnome.Evolution" title="Meeting — .*"] floating enable
+for_window [app_id="org.gnome.Evolution" title="Task — .*"] floating enable
+for_window [app_id="org.gnome.Evolution" title="Appointment — .*"] floating enable
+for_window [app_id="org.gnome.Evolution" title="Besprechung .*"] floating enable
+for_window [app_id="org.gnome.Evolution" title="^Drucken$"] floating enable
+for_window [app_id="evolution-alarm-notif"] floating enable
+for_window [app_id="foot" title="^compose-message"] floating enable; \
+    resize width 1000 height 720;
+# Multimedia
+for_window [app_id="pavucontrol"] floating enable
+for_window [app_id="com.github.wwmm.easyeffects"] floating enable
+for_window [class="vlc"] floating enable; \
+    resize set width 1080 height 720
+for_window [app_id="zoom" title="Zoom - Free Account"] floating enable; \
+    resize width 110 height 480; \
+    move position 460 190
+for_window [app_id="zoom" title="^Zoom Cloud Meetings$"] floating enable; \
+    resize width 110 height 480; \
+    move position 460 190
+for_window [app_id="zoom" title="Settings"] floating enable
+for_window [app_id="zoom" title="^Choose ONE of the audio conference options$"] floating enable
+for_window [app_id="zoom" title="^[zZ]oom$"] floating enable
+for_window [app_id="zoom" title="^Chat"] floating enable; \
+    resize width 600 height 700
+for_window [app_id="obs" title="^V4l2sinkProperties$"] floating enable; \
+    move position 1120 0
+# Gnome
+for_window [app_id="gnote"] floating enable
+for_window [app_id="cheese"] floating enable
+for_window [app_id="bluetooth-sendto"] floating enable
+for_window [app_id="nm-connection-editor"] floating enable
+for_window [app_id="gnome-[power-statistics,system-monitor,contacts,clocks,font-viewer]"] floating enable
+for_window [app_id="org.gnome.Weather"] floating enable
+for_window [app_id="org.gnome.clocks"] floating enable
+for_window [app_id="org.gnome.DejaDup"] floating enable
+for_window [app_id="org.gnome.Calendar"] floating enable
+for_window [app_id="org.gnome.Calculator"] floating enable
+for_window [app_id="blueberry.py"] floating enable; \
+    resize set height 760
+for_window [app_id="yad"] \ floating enable; \
+    resize set width 720 height 300
+for_window [app_id="zenity"] floating enable; \
+    resize set width 400 height 220
+for_window [app_id="nm-openconnect-auth-dialog"] floating enable; \
+    resize set width 400 height 250
+for_window [app_id="org.remmina.Remmina"] floating enable
+# Plotting
+for_window [class="Matplotlib"] floating enable
+for_window [class="Makie"] floating enable
+for_window [class="GLWindow" title="Makie"] floating enable
+for_window [title="Figure 1" app_id="python3"] floating enable
+for_window [title="Figure 1" app_id="julia"] floating enable
+for_window [app_id="gnuplot_qt"] floating enable
+for_window [app_id="gksqt"] floating enable
+for_window [class="Vtk" title="PyVista"] floating enable
+for_window [class="vtk" title="Visualization Toolkit - OpenGL"] floating enable
+
+# Steam
+for_window [title="Steam - News .*"] kill
+for_window [class="^Steam$" title="^Friends$"] floating enable
+for_window [class="^Steam$" title=".* - Chat"] floating enable
+for_window [class="^Steam$" title="^Settings$"] floating enable
+for_window [class="^Steam$" title=".* - event started"] floating enable
+for_window [class="^Steam$" title=".* CD key"] floating enable
+for_window [class="^Steam$" title="^Steam - Self Updater$"] floating enable
+for_window [class="^Steam$" title="^Screenshot Uploader$"] floating enable
+for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Required$"] floating enable
+for_window [title="^Steam Keyboard$"] floating enable
+for_window [class="hl_linux" title="Counter-Strike"] fullscreen enable
+# Firefox
+for_window [app_id="firefox" title="^Picture-in-Picture$"] floating enable; \
+    sticky enable; \
+    move position 1250 0
+for_window [app_id="firefox" title="^Firefox — Sharing Indicator$"] floating enable; \
+    move position 1800 920
+for_window [title="^nvim-tridactyl$"] floating enable
+# for_window [app_id="firefox" title="^Opening .*"] resize set width 550 height 430
+for_window [app_id="org.pwmt.zathura" title="^\/tmp\/firefox"] floating enable; \
+    resize set width 1000 height 1050
+# Misc
+for_window [app_id="foot" title="vimwiki"] floating enable; \
+    resize set width 860 height 810
+for_window [class="feh" title="^pass: .*"] floating enable
+for_window [title="^Vibrometer.*"] floating enable; \
+    resize set width 630 height 820
+for_window [title="Pubs edit"] floating enable; \
+    resize set width 800 height 800
+for_window [app_id="wofi-pubs"] floating enable
+for_window [app_id="rofi-pubs"] floating enable
+for_window [app_id="Send Pubs reference"] floating enable
+for_window [app_id="nwg-look"] floating enable
+for_window [app_id="blueman-manager"] floating enable, \
+    resize width 650 height 800
+for_window [class="alfaview" title="^alfaview settings$"] floating enable
+for_window [app_id="WebexFileSelector"] floating enable
+# for_window [app_id="CiscoCollabHost" window_type="floating_con"] kill
+for_window [window_role = "pop-up"] floating enable
+for_window [window_role = "bubble"] floating enable
+for_window [window_role = "dialog"] floating enable
+for_window [window_type = "dialog"] floating enable
+for_window [window_role = "task_dialog"] floating enable
+for_window [window_type = "menu"] floating enable
+for_window [app_id = "floating"] floating enable
+for_window [app_id = "floating_update"] floating enable, resize set width 1000px height 600px
+for_window [class = "(?i)pinentry"] floating enable
+for_window [title = "Administrator privileges required"] floating enable
+for_window [app_id = "wihotspot-gui"] floating enable
+for_window [app_id = "solvespace" title = "^Property Browser — SolveSpace"] floating enable; \
+    resize set width 450px height 500px; \
+    move position 1100 60
+for_window [app_id = "gpick"] floating enable
+for_window [app_id = "localsend"] floating enable
+for_window [class = "Darktable" title = "^darktable - darkroom preview"] floating enable
+for_window [app_id = "com.nextcloud.desktopclient.nextcloud"] floating enable
+
+
+# vim: set ft=swayconfig:
