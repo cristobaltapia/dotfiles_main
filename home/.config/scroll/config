@@ -1,0 +1,354 @@
+#/.config/sway/config
+# My configuration for sway
+#
+# Read `man 5 sway` for a complete reference.
+
+# Some services used within scroll are started as systemd services:
+# - Waybar (waybar.service)
+# - kanshi (kanshi.service)
+# - mako (mako.service)
+# - wlsunset (wlsunset.service)
+# - wob (wob.socket)
+#
+# To activate these services use e.g.:
+# systemctl --user add-wants scroll-session.target waybar.service
+
+### Variables
+
+# Logo key. Use Mod1 for Alt.
+set $mod Mod4
+
+# Home row direction keys, like vim
+set $left t
+set $down n
+set $up r
+set $right h
+
+set $out-main eDP-1
+set $out-left DP-12 DP-13
+#set $out-secondary DP-1
+set $out-secondary DP-4
+
+output eDP-1 {
+  color_profile icc ~/.config/sway/icc/framework_13.icc
+  layout_type horizontal
+}
+# ddctutil -b 7 setvcp 16 91
+# ddctutil -b 7 setvcp 18 100
+# ddctutil -b 7 setvcp 1A 81
+output 'Dell Inc. DELL P2219H 9Y3B8W2' color_profile icc ~/.config/sway/icc/dell_P2219H.icc
+output 'Samsung Electric Company LS27D70xE HK2L100522' color_profile icc ~/.config/sway/icc/samsung_syncview.icc
+output 'Sharp Corporation PN-Y496 0x01010101' color_profile icc ~/.config/sway/icc/mpa_meeting_room.icc
+
+# Your preferred terminal emulator
+# set $term alacritty
+set $term footclient
+
+### Key bindings
+#
+# Basics:
+#
+    # start a terminal
+    bindsym $mod+Return exec $term
+    # bindsym $mod+Shift+Return exec ~/.config/sway/scripts/executable_cwd-term.sh
+
+    # kill focused window
+    bindsym $mod+Shift+q kill
+
+    # start your launcher
+    bindsym $mod+d exec $menu
+    bindsym $mod+p exec $passmenu
+
+    # Drag floating windows by holding down $mod and left mouse button.
+    # Resize them with right mouse button + $mod.
+    # Despite the name, also works for non-floating windows.
+    # Change normal to inverse to use left mouse button for resizing and right
+    # mouse button for dragging.
+    floating_modifier $mod normal
+
+    # reload the configuration file
+    bindsym $mod+Shift+j reload
+    #
+    # Open nvim with vimwiki
+    bindsym $mod+w exec "footclient -T 'vimwiki' nvim -c WikiIndex"
+
+# Idle inhibit for fullscreen windows
+for_window [all] inhibit_idle fullscreen
+
+# Layout settings
+layout_default_width 0.5
+layout_default_height 1.0
+layout_widths [0.33333333 0.5 0.666666667]
+layout_heights [0.33333333 0.5 0.666666667 1.0]
+
+align_reset_auto yes
+# cursor_shake_magnify false
+# fullscreen_movefocus true nofollow
+# fullscreen_on_request default
+# maximize_if_single false
+# workspace_next_on_output_create_empty true
+# xwayland_output_scale true
+focus_wrapping no
+# focus_on_window_activation focus
+# xdg_activation_force false
+# scratchpad_minimize false
+
+bindgesture swipe:3:right focus left
+bindgesture swipe:3:left focus right
+
+bindgesture swipe:4:up scale_workspace overview 
+
+# Animations
+animations {
+    enabled yes
+    style clip
+    default yes 200 var 3 [0.76  0  0.24 1]
+    window_open yes 200
+    window_move yes 200
+    window_size yes 150
+    window_fullscreen yes 150
+    workspace_switch yes 150
+    jump yes 200
+    layer_shell no
+}
+
+#
+# Moving around:
+#
+    # Move your focus around
+    bindsym $mod+$left focus left
+    bindsym $mod+$down focus down
+    bindsym $mod+$up focus up
+    bindsym $mod+$right focus right
+    # or use $mod+[up|down|left|right]
+    bindsym $mod+Left focus left
+    bindsym $mod+Down focus down
+    bindsym $mod+Up focus up
+    bindsym $mod+Right focus right
+
+    # _move_ the focused window with the same, but add Shift
+    bindsym $mod+Shift+$left move left
+    bindsym $mod+Shift+$down move down
+    bindsym $mod+Shift+$up move up
+    bindsym $mod+Shift+$right move right
+    # ditto, with arrow keys
+    bindsym $mod+Shift+Left move left
+    bindsym $mod+Shift+Down move down
+    bindsym $mod+Shift+Up move up
+    bindsym $mod+Shift+Right move right
+    # Move container to outputs
+    bindsym $mod+alt+$left move container to output left; focus output left
+    bindsym $mod+alt+$right move container to output right; focus output right
+    bindsym $mod+alt+$up move container to output up; focus output up
+    bindsym $mod+alt+$down move container to output down; focus output down
+    # Move workspace to outputs
+    bindsym $mod+Shift+Ctrl+$left move workspace to output left; focus output left
+    bindsym $mod+Shift+Ctrl+$right move workspace to output right; focus output right
+    bindsym $mod+Shift+Ctrl+$up move workspace to output up; focus output up
+    bindsym $mod+Shift+Ctrl+$down move workspace to output down; focus output down
+#
+# Workspaces:
+#
+    # switch to workspace
+    bindsym $mod+1 workspace 1
+    bindsym $mod+2 workspace 2
+    bindsym $mod+3 workspace 3
+    bindsym $mod+4 workspace 4
+    bindsym $mod+5 workspace 5
+    bindsym $mod+6 workspace 6
+    bindsym $mod+7 workspace 7
+    bindsym $mod+8 workspace 8
+    bindsym $mod+9 workspace 9
+    bindsym $mod+0 workspace 10
+    bindsym $mod+F1 workspace P1
+    bindsym $mod+F2 workspace P2
+    bindsym $mod+F3 workspace P3
+    bindsym $mod+F4 workspace P4
+    bindsym $mod+F5 workspace P5
+    bindsym $mod+F6 workspace H1
+    # move focused container to workspace
+    bindsym $mod+Shift+1 move container to workspace 1, workspace 1
+    bindsym $mod+Shift+2 move container to workspace 2, workspace 2
+    bindsym $mod+Shift+3 move container to workspace 3, workspace 3
+    bindsym $mod+Shift+4 move container to workspace 4, workspace 4
+    bindsym $mod+Shift+5 move container to workspace 5, workspace 5
+    bindsym $mod+Shift+6 move container to workspace 6, workspace 6
+    bindsym $mod+Shift+7 move container to workspace 7, workspace 7
+    bindsym $mod+Shift+8 move container to workspace 8, workspace 8
+    bindsym $mod+Shift+9 move container to workspace 9, workspace 9
+    bindsym $mod+Shift+0 move container to workspace 10, workspace 10
+    bindsym $mod+Shift+F1 move container to workspace P1, workspace P1
+    bindsym $mod+Shift+F2 move container to workspace P2, workspace P2
+    bindsym $mod+Shift+F3 move container to workspace P3, workspace P3
+    bindsym $mod+Shift+F4 move container to workspace P4, workspace P4
+    bindsym $mod+Shift+F5 move container to workspace P5, workspace P5
+    bindsym $mod+Shift+F6 move container to workspace H1, workspace H1
+    # Note: workspaces can have any name you want, not just numbers.
+    # We just use 1-10 as the default.
+    #
+    workspace 1 output $out-left $out-main
+    workspace 2 output $out-left $out-main
+    workspace 3 output $out-left $out-main
+    workspace 4 output $out-left $out-main
+    workspace 5 output $out-left $out-main
+    workspace 6 output $out-left $out-main
+    workspace 7 output $out-main
+    workspace 8 output $out-main
+    workspace 9 output $out-main
+    workspace 10 output $out-main
+    workspace P1 output $out-secondary $out-left
+    workspace P2 output $out-secondary $out-left
+    workspace P3 output $out-secondary $out-left
+    workspace P4 output $out-secondary $out-left
+    workspace P5 output $out-secondary $out-left
+    workspace H1 output HEADLESS-1 $out-main
+#
+# Layout stuff:
+#
+    # $mod+b or $mod+v, for horizontal and vertical layouts.
+    bindsym $mod+x set_mode h
+    bindsym $mod+v set_mode v
+    bindsym $mod+a fit_size v all equal
+
+    # Make the current focus fullscreen
+    bindsym $mod+Shift+f fullscreen toggle
+    bindsym $mod+f toggle_size this 1.0 1.0
+
+    # Toggle the current focus between tiling and floating mode
+    bindsym $mod+Shift+space floating toggle
+    # bindsym $mod+Shift+s sticky toggle
+
+    # Swap focus between the tiling area and the floating area
+    bindsym $mod+space focus mode_toggle
+
+    # move focus to the parent container
+    bindsym $mod+z focus parent
+    bindsym $mod+Shift+z focus child
+
+    # Move to left and right output
+    bindsym $mod+Ctrl+$left focus output left
+    bindsym $mod+Ctrl+$right focus output right
+    bindsym $mod+Ctrl+$up focus output up
+    bindsym $mod+Ctrl+$down focus output down
+
+# ------------------------------------------
+# Scratchpad:
+#
+    # Sway has a "scratchpad", which is a bag of holding for windows.
+    # You can send windows there and get them back later.
+
+    # Move the currently focused window to the scratchpad
+    bindsym $mod+Shift+minus move scratchpad
+
+    # Show the next scratchpad window or hide the focused scratchpad window.
+    # If there are multiple scratchpad windows, this command cycles through them.
+    bindsym $mod+minus scratchpad show
+
+# ------------------------------------------
+# Resizing containers:
+#
+mode "resize" {
+    # left will shrink the containers width
+    # right will grow the containers width
+    # up will shrink the containers height
+    # down will grow the containers height
+    bindsym $left resize shrink width 20px
+    bindsym $down resize grow height 20px
+    bindsym $up resize shrink height 20px
+    bindsym $right resize grow width 20px
+
+    # Place window on the top right corner
+    bindsym p floating enable; resize set width 830 height 470; \
+        move position 765 10; mode "default"
+
+    # ditto, with arrow keys
+    bindsym Left resize shrink width 20px
+    bindsym Down resize grow height 20px
+    bindsym Up resize shrink height 20px
+    bindsym Right resize grow width 20px
+
+    # return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Shift+s mode "resize"
+
+# Resizing containers:
+#
+bindsym $mod+s cycle_size h prev
+bindsym $mod+e cycle_size h next
+# bindsym $mod+equal cycle_size h next
+bindsym $mod+b cycle_size v next
+bindsym $mod+l cycle_size v prev
+
+cycle_size_wrap false
+
+bindsym $mod+c align center
+
+# ------------------------------------------
+# System control (Logout, shutdown, etc)
+set $lock "swaylock -f"
+set $mode_system System: (l) lock, (e) logout, (o) turn off screens, (s) suspend, (r) reboot, (S) shutdown, (R) UEFI
+
+set $screenoff swayidle -w  \
+               timeout 1 'swaymsg "output * dpms off"' \
+               resume 'swaymsg "output * dpms on"; pkill -nx swayidle'
+
+mode "$mode_system" {
+    bindsym l exec $lock, mode "default"
+    bindsym e exit
+    bindsym o exec --no-startup-id $screenoff, mode "default"
+    bindsym s exec --no-startup-id systemctl suspend, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
+    bindsym Shift+r exec --no-startup-id systemctl reboot --firmware-setup, mode "default"
+
+    # return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Shift+e mode "$mode_system"
+
+mode "screen_off" {
+    bindsym Return output * enable, mode "default"
+}
+
+# Usefull for remote desktops
+mode passthrough {
+    bindsym $mod+Shift+l mode "default"
+}
+
+bindsym $mod+Shift+l mode passthrough
+
+
+# ------------------------------------------
+# Start at boot
+# exec --no-startup-id redshift -m wayland
+# exec nwg-wrapper -s ~/.config/nwg-wrapper/plan.py -o eDP-1 -p right -c ~/.config/nwg-wrapper/style.css
+exec --no-startup-id nm-applet
+exec --no-startup-id nextcloud --background
+exec /usr/lib/soteria-polkit/soteria
+# exec ~/.config/sway/scripts/hide_mouse_cs
+# exec --no-startup-id flashfocus
+
+# Always mute mic at boot
+exec --no-startup-id pactl set-source-mute alsa_input.pci-0000_00_1b.0.analog-stereo 1
+
+exec_always "systemctl --user import-environment
+
+# exec startup sway -d 2> ~/sway.log
+
+# ------------------------------------------
+# Fonts
+font "Inter Nerd Font Medium 10"
+exec_always gsettings set org.gnome.desktop.interface font-name "Inter Nerd Font Medium 12"
+exec_always gsettings set org.gnome.desktop.interface document-font-name "Inter Nerd Font Medium 12"
+exec_always gsettings set org.gnome.desktop.interface monospace-font-name "FuraCode Nerd Font Medium 12"
+
+# Fix delay in start of GTK apps
+include ~/.config/scroll/conf.d/*
+include /etc/scroll/config.d/*
+
+exec "systemctl --user import-environment WAYLAND_DISPLAY SWAYSOCK; systemctl --user start scroll-session.target"
+
+# vim: ft=swayconfig
