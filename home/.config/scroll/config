@@ -25,7 +25,7 @@ set $up r
 set $right h
 
 set $out-main eDP-1
-set $out-left DP-12 DP-13
+set $out-left DP-12 DP-13 "Dell Inc. DELL U3225QE 19C6MF4"
 #set $out-secondary DP-1
 set $out-secondary DP-4
 
@@ -146,6 +146,10 @@ animations {
     bindsym $mod+Shift+Ctrl+$right move workspace to output right; focus output right
     bindsym $mod+Shift+Ctrl+$up move workspace to output up; focus output up
     bindsym $mod+Shift+Ctrl+$down move workspace to output down; focus output down
+
+    # Move inside and outside column
+    bindsym $mod+k move right nomode
+    bindsym $mod+g move left nomode
 #
 # Workspaces:
 #
@@ -325,8 +329,8 @@ bindsym $mod+Shift+l mode passthrough
 # Start at boot
 # exec --no-startup-id redshift -m wayland
 # exec nwg-wrapper -s ~/.config/nwg-wrapper/plan.py -o eDP-1 -p right -c ~/.config/nwg-wrapper/style.css
-exec --no-startup-id nm-applet
-exec --no-startup-id nextcloud --background
+# exec --no-startup-id nm-applet
+# exec --no-startup-id nextcloud --background
 exec /usr/lib/soteria-polkit/soteria
 # exec ~/.config/sway/scripts/hide_mouse_cs
 # exec --no-startup-id flashfocus
@@ -334,7 +338,8 @@ exec /usr/lib/soteria-polkit/soteria
 # Always mute mic at boot
 exec --no-startup-id pactl set-source-mute alsa_input.pci-0000_00_1b.0.analog-stereo 1
 
-exec_always "systemctl --user import-environment
+# exec_always "systemctl --user import-environment"
+exec_always "kanshictl reload"
 
 # exec startup sway -d 2> ~/sway.log
 
