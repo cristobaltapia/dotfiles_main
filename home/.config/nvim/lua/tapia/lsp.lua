@@ -139,7 +139,7 @@ vim.lsp.config.tinymist = {
     fontPaths = { "${workspaceFolder}/fonts" },
     semanticTokens = "enable",
     projectResolution = "singleFile",
-    -- syntaxOnly = "enable",
+    syntaxOnly = "enable",
   },
 }
 
