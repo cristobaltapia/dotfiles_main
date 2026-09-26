@@ -136,6 +136,7 @@ return {
           go_in_plus = "<cr>",
           go_out = "<Left>",
           go_out_plus = "t",
+          close = "q",
         },
       })
       require("mini.indentscope").setup()
@@ -462,7 +463,6 @@ Typst.
           endpoint = "https://api.anthropic.com",
           model = "claude-sonnet-5",
           extra_request_body = {
-            temperature = 0.75,
             max_tokens = 20480,
           },
         },
