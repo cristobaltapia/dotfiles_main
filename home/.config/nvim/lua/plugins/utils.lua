@@ -433,12 +433,15 @@ Typst.
   {
     "yetone/avante.nvim",
     event = "VeryLazy",
-    tag = "v0.1.2",
+    tag = "v0.4.0",
+    build = "make",
     lazy = true,
     cmd = { "AvanteChat", "AvanteAsk" },
     version = false, -- set this if you want to always pull the latest change
     opts = {
       -- add any opts here
+      mode = "agentic",
+      instructions_file = "avante.md",
       behaviour = {
         auto_suggestions = false,
         auto_set_highlight_group = true,
@@ -450,7 +453,7 @@ Typst.
       acp_providers = {
         claude = {
           command = "npx",
-          args = { "@zed-industries/claude-code-acp" },
+          args = { "@agentclientprotocol/claude-agent-acp" },
           env = {
             NODE_NO_WARNINGS = "1",
             ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY"),
@@ -462,6 +465,7 @@ Typst.
           disable_tools = false,
           endpoint = "https://api.anthropic.com",
           model = "claude-sonnet-5",
+          timeout = 30000,
           extra_request_body = {
             max_tokens = 20480,
           },
@@ -491,45 +495,13 @@ Typst.
           height = 15, -- Height of the input window in vertical layout
         },
       },
-      mappings = {
-        --- @class AvanteConflictMappings
-        diff = {
-          ours = "go",
-          theirs = "gt",
-          all_theirs = "ga",
-          both = nil,
-          cursor = nil,
-          next = "]x",
-          prev = "[x",
-        },
-        suggestion = {
-          accept = "<M-l>",
-          next = "<M-]>",
-          prev = "<M-[>",
-          dismiss = "<C-]>",
-        },
-        jump = {
-          next = "]]",
-          prev = "[[",
-        },
-        submit = {
-          normal = "<CR>",
-          insert = "<C-s>",
-        },
-        sidebar = {
-          apply_all = "A",
-          apply_cursor = "a",
-          -- switch_windows = "<Tab>",
-          -- reverse_switch_windows = "<S-Tab>",
-        },
-      },
     },
     -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-    build = "make",
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
       "stevearc/dressing.nvim",
       "nvim-lua/plenary.nvim",
+      { "ColinKennedy/mega.cmdparse", dependencies = { "ColinKennedy/mega.logging" } },
       "MunifTanjim/nui.nvim",
       {
         -- Make sure to set this up properly if you have lazy=true
