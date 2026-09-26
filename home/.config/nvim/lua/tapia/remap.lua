@@ -66,7 +66,7 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
   end,
 })
 
-vim.api.nvim_create_autocmd("BufLeave", {
+vim.api.nvim_create_autocmd({ "BufLeave", "BufDelete", "BufUnload" }, {
   pattern = { "qf" },
   group = qf_group,
   callback = function()
@@ -92,18 +92,16 @@ end)
 -- Define mapping for triggering blink.cmp completion. For some reason,
 -- defining this function inside the configuration of blink.cmp gives errors
 -- when the UltiSnips#ExpandSnippet() function is called.
-vim.keymap.set("i", "<C-space>",
-  function()
-    local blink = require("blink-cmp")
-    -- if blink.is_visible() then
-    if blink.is_menu_visible() then
-      -- Insert text if the selection is a path and replace otherwise.
-      blink.select_and_accept()
-    else
-      vim.cmd("call UltiSnips#ExpandSnippet()")
-    end
+vim.keymap.set("i", "<C-space>", function()
+  local blink = require("blink-cmp")
+  -- if blink.is_visible() then
+  if blink.is_menu_visible() then
+    -- Insert text if the selection is a path and replace otherwise.
+    blink.select_and_accept()
+  else
+    vim.cmd("call UltiSnips#ExpandSnippet()")
   end
-)
+end)
 
 -- The following keymaps are activated on lsp attach
 vim.api.nvim_create_autocmd("LspAttach", {

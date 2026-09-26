@@ -340,9 +340,9 @@ exec_always "systemctl --user import-environment
 
 # ------------------------------------------
 # Fonts
-font "Inter Nerd Font Medium 10"
-exec_always gsettings set org.gnome.desktop.interface font-name "Inter Nerd Font Medium 12"
-exec_always gsettings set org.gnome.desktop.interface document-font-name "Inter Nerd Font Medium 12"
+font "Inter Nerd Font Propo,Inter Nerd Font Propo Medium 10"
+exec_always gsettings set org.gnome.desktop.interface font-name "Inter Nerd Font Propo,Inter Nerd Font Propo Medium 12"
+exec_always gsettings set org.gnome.desktop.interface document-font-name "Inter Nerd Font Propo,Inter Nerd Font Propo Medium 12"
 exec_always gsettings set org.gnome.desktop.interface monospace-font-name "FuraCode Nerd Font Medium 12"
 
 # Fix delay in start of GTK apps
