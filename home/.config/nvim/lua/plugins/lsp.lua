@@ -99,6 +99,11 @@ return {
             args = { "format", "-" },
             stdin = true,
           },
+          typstyle = {
+            args = {
+              "$FILENAME",
+            },
+          },
           prettypst = {
             args = {
               "--use-std-in",
@@ -128,7 +133,7 @@ return {
           sty = { "latexindent" },
           tex = { "latexindent" },
           toml = { "taplo" },
-          typst = { "prettypst" },
+          typst = { "typstyle" },
           yaml = { "yamlfmt" },
         },
       })
